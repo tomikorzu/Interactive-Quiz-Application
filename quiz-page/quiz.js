@@ -90,7 +90,16 @@ function getQuestion(order, questions) {
   return questions[order[0]];
 }
 
-let category = getCategory("historia", globalCategories);
+let category = getCategory("history", globalCategories);
+console.log(category);
 let questions = getDificulty(1, category[1]);
+console.log(questions);
 let order = orderQuestions(questions);
-let question = getQuestion(order, questions);
+console.log(order);
+let question;
+while (order.length > 0) {
+  question = getQuestion(order, questions);
+  console.log(question);
+  order.shift();
+  confirm(Object.keys(question));
+}
