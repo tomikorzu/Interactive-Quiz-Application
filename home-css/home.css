@@ -1,12 +1,170 @@
-body{
-    background-color: var(--bg-color);
+body {
+  background-color: var(--bg-color);
 }
-main{
-
+main {
 }
-.h1-home{
-
+.h1-home {
 }
-.select-category{
+.h2-home {
+}
+.home-button {
+}
+.select-category {
+}
+.h2-category {
+}
+.ul-category {
+}
+.btn-category {
+}
+.icon-category {
+}
+.science-btn {
+}
+.history-btn {
+}
+.geography-btn {
+}
+.entretainment-btn {
+}
+.art-btn {
+}
+.easy-btn {
+}
+.medium-btn {
+}
+.difficult-btn {
+}
+footer {
+}
+.copyright {
+}
 
+@media (min-width: 768px) {
+  body {
+  }
+  main {
+  }
+  .h1-home {
+  }
+  .h2-home {
+  }
+  .home-button {
+  }
+  .select-category {
+  }
+  .h2-category {
+  }
+  .ul-category {
+  }
+  .btn-category {
+  }
+  .icon-category {
+  }
+  .science-btn {
+  }
+  .history-btn {
+  }
+  .geography-btn {
+  }
+  .entretainment-btn {
+  }
+  .art-btn {
+  }
+  .easy-btn {
+  }
+  .medium-btn {
+  }
+  .difficult-btn {
+  }
+  footer {
+  }
+  .copyright {
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+  }
+  main {
+  }
+  .h1-home {
+  }
+  .h2-home {
+  }
+  .home-button {
+  }
+  .select-category {
+  }
+  .h2-category {
+  }
+  .ul-category {
+  }
+  .btn-category {
+  }
+  .icon-category {
+  }
+  .science-btn {
+  }
+  .history-btn {
+  }
+  .geography-btn {
+  }
+  .entretainment-btn {
+  }
+  .art-btn {
+  }
+  .easy-btn {
+  }
+  .medium-btn {
+  }
+  .difficult-btn {
+  }
+  footer {
+  }
+  .copyright {
+  }
+}
+
+@media (min-width: 1440px) {
+  body {
+  }
+  main {
+  }
+  .h1-home {
+  }
+  .h2-home {
+  }
+  .home-button {
+  }
+  .select-category {
+  }
+  .h2-category {
+  }
+  .ul-category {
+  }
+  .btn-category {
+  }
+  .icon-category {
+  }
+  .science-btn {
+  }
+  .history-btn {
+  }
+  .geography-btn {
+  }
+  .entretainment-btn {
+  }
+  .art-btn {
+  }
+  .easy-btn {
+  }
+  .medium-btn {
+  }
+  .difficult-btn {
+  }
+  footer {
+  }
+  .copyright {
+  }
 }
