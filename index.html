@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Quiz Application</title>
+    <title>QuizMaster</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./home-css/home.css">
 </head>
 <body>
-    <h1>Welcome to GM2 Quiz</h1>
-    <a href="./quiz-page/index.html">Quiz Page</a>
-    <a href="./results-page/index.html">Results Page</a>
-    <a href="./leaderboard-page/index.html">Leaderboard</a>
+    <main>
+        <h1 class="h1-home">Welcome to QuizMaster</h1>
+        <nav class="select-category">
+            <h2 class="h2-category">Select one category</h2>
+            <ul class="ul-category">
+                <li><button class="btn-category science"><i class="fa-solid fa-flask icon-category"></i>Science</button></li>
+                <li><button class="btn-category "><i class="fa-solid fa-book-open icon-category"></i>History</button></li>
+                <li><button class="btn-category "></button></li>
+                <li><button class="btn-category "></button></li>
+                <li><button class="btn-category "></button></li>
+            </ul>
+        </nav>
+        <a href="./quiz-page/index.html">Quiz Page</a>
+        <a href="./results-page/index.html">Results Page</a>
+        <a href="./leaderboard-page/index.html">Leaderboard</a>
+    </main>
+    <footer>
+        <p class="copyright">© 2024 QuizMaster Inc.</p>
+    </footer>
     <script src="./main.js"></script>
 </body>
 </html>

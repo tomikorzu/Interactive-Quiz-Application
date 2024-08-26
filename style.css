@@ -21,6 +21,7 @@ body {
   color-scheme: light dark;
   --bg-color: #140329;
   --text-color: #F5F5F5;
+  --form-bg: #330769;
 }
 ul {
   list-style: none;
