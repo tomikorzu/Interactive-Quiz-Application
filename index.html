@@ -10,9 +10,9 @@
 <body>
     <main>
         <h1 class="h1-home">Welcome to QuizMaster</h1>
-        <h2 class="h2-home">¡Challenge your knowledge and reach the top!</h2>
-        <button class="home-button">Get started!</button>
-        <nav class="select-category">
+        <h4 class="h2-home">¡Challenge your knowledge and reach the top!</h4>
+        <button class="home-button" id="start-btn">Get started!</button>
+        <nav class="select-category" style="display: none;">
             <h2 class="h2-category">Select one category</h2>
             <ul class="ul-category">
                 <li><button class="btn-category science-btn"><i class="fa-solid fa-flask icon-category"></i>Science</button></li>
@@ -22,7 +22,7 @@
                 <li><button class="btn-category art-btn"><i class="fa-solid fa-paintbrush icon-category"></i>Art and culture</button></li>
             </ul>
         </nav>
-        <nav class="select-category">
+        <nav class="select-category" style="display: none;">
             <h2 class="h2-category">Select the difficulty</h2>
             <ul class="ul-category">
                 <li><button class="btn-category easy-btn">Easy</button></li>
@@ -30,13 +30,14 @@
                 <li><button class="btn-category difficult-btn">Difficult</button></li>
             </ul>
         </nav>
-        <a href="./quiz-page/index.html">Quiz Page</a>
-        <a href="./results-page/index.html">Results Page</a>
-        <a href="./leaderboard-page/index.html">Leaderboard</a>
+        <a href="./quiz-page/index.html" style="display: none;">Quiz Page</a>
+        <a href="./results-page/index.html" style="display: none;">Results Page</a>
+        <a href="./leaderboard-page/index.html" style="display: none;">Leaderboard</a>
     </main>
     <footer>
         <p class="copyright">© 2024 QuizMaster Inc.</p>
     </footer>
     <script src="./main.js"></script>
+    <script src="./home-css/home.js"></script>
 </body>
 </html>
