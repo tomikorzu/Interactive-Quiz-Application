@@ -8,7 +8,8 @@
 
 body {
   scroll-behavior: smooth;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
 }
 *,
 *::before,
@@ -25,6 +26,53 @@ ul {
 a {
   text-decoration: none;
 }
-h1, h2, h3, h4, h5 ,h6, p, figure{
-    margin: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure {
+  margin: 0;
+}
+
+h1{
+    font-size: 2em;
+}
+h2{
+    font-size: 1.75em;
+}
+h3{
+    font-size: 1.5em;
+}
+h4{
+    font-size: 1.25em;
+}
+h5{
+    font-size: 1em;
+}
+h6{
+    font-size: .875em;
+}
+p{
+    font-size: .875em;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1440px) {
+  body {
+    font-size: 22px;
+  }
 }
