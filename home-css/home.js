@@ -19,14 +19,7 @@ function viewCategories() {
       selectDificult();
       const exitBtn = document.getElementById("exit-btn");
       exitBtn.addEventListener("click", quitSelecter);
-      
     });
-    const difficultyBtn = document.querySelectorAll('.btn-category')
-    difficultyBtn.forEach(function(btn){
-        btn.addEventListener('click', function(){
-            localStorage.setItem('difficult', btn.textContent.toLowerCase()) 
-        })
-    })
   });
 }
 function createSelecter() {
@@ -49,19 +42,32 @@ function createSelecter() {
 function selectDificult() {
   selecter.innerHTML = "";
   selecterContent.classList.add("selecter-div");
-  selecterContent.innerHTML = `<button id="exit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category">Select the difficulty</h3>
+  selecterContent.innerHTML = `<button class="back-btn" id="back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button><button id="exit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category h2-margin">Select the difficulty</h3>
             <ul class="ul-category">
-                <li><button class="btn-category easy-btn">Easy</button></li>
-                <li><button class="btn-category medium-btn">Medium</button></li>
-                <li><button class="btn-category difficult-btn">Difficult</button></li>
+                <li><button class="btn-category btn-difficult easy-btn">Easy</button></li>
+                <li><button class="btn-category btn-difficult medium-btn">Medium</button></li>
+                <li><button class="btn-category btn-difficult difficult-btn">Difficult</button></li>
             </ul>`;
   selecter.append(selecterContent);
+  const goBackBtn = document.getElementById("back-btn");
+  goBackBtn.addEventListener("click", goBack);
+  const difficultyBtn = document.querySelectorAll(".btn-difficult");
+  difficultyBtn.forEach(function (btn, index) {
+    btn.addEventListener("click", function () {
+      localStorage.setItem("difficult", index);
+    });
+  });
 }
 
 function quitSelecter() {
   selecter.classList.remove("selecter-show");
   startBtn.style.pointerEvents = "auto";
   quitBlur();
+  localStorage.clear()
+}
+function goBack() {
+  viewCategories();
+  localStorage.clear()
 }
 
 function applyBlur() {
