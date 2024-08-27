@@ -1,5 +1,6 @@
 let answers = document.querySelectorAll(".answer");
 let skipButton = document.getElementById("next-question");
+let explanationButton = document.querySelector(".explanation");
 let skips = 0;
 let progress = document.getElementById("progress");
 let progressBar = document.getElementById("progress-bar");
@@ -9,6 +10,9 @@ progress.style.backgroundColor = "green";
 progressBar.style.backgroundColor = "grey";
 progressBar.style.width = "80%";
 progressBar.style.height = "30px";
+
+let selectedCategory = localStorage.getItem("preferences");
+let selectedDificulty = localStorage.getItem("difficult");
 
 skipButton.addEventListener("click", skipQuestion);
 
@@ -117,8 +121,8 @@ function getAnswer(answers) {
   });
 }
 
-let category = getCategory("history", globalCategories);
-let questions = getDificulty(1, category[1]);
+let category = getCategory(selectedCategory, globalCategories);
+let questions = getDificulty(selectedDificulty, category[1]);
 let initialOrder = orderQuestions(questions);
 let order = initialOrder.map(function (o) {
   return o;
@@ -140,6 +144,7 @@ function setQuestion() {
   } else {
     h2.style.display = "none";
     skipButton.style.display = "none";
+    explanationButton.style.display = "None";
     answers.forEach(function (answer) {
       answer.style.display = "none";
     });
