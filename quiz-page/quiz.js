@@ -1,3 +1,5 @@
+body.classList.add(localStorage.getItem('preferences'))
+
 let globalCategories = {
   history: [
     [
