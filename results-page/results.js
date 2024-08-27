@@ -1,26 +1,23 @@
-let totalQuestions = 10;
-let correctAnswers = 7;
-let incorrectAnswers = 2;
-let skippedAnswers = 1;
-let correctAnswerDetails = [
-    { question: "Question 1", explanation: "Explanation 1" },
-    { question: "Question 3", explanation: "Explanation 3" },
-];
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('final-score').innerText = `${correctAnswers} / ${totalQuestions}`;
-    document.getElementById('correct-count').innerText = correctAnswers;
-    document.getElementById('incorrect-count').innerText = incorrectAnswers;
-    document.getElementById('skipped-count').innerText = skippedAnswers;
+window.onload = function(){
+    let accumulatedPoints = localStorage.getItem('quizPoints');
+    let totalQuestions = localStorage.getItem('totalQuestions');
+    let incorrectAnswers = localStorage.getItem('quizFailures');
+    let skippedAnswers = localStorage.getItem('quizSkips');
+    let correctAnswers = localStorage.getItem('correctAnswers') || []; //averiguar JSON (correctAnsewers = object)
 
-    let summaryContainer = document.getElementById('correct-answers-summary');
-    correctAnswerDetails.forEach(detail => {
-        let summaryItem = document.createElement('div');
-        summaryItem.classList.add('summary-item');
-        summaryItem.innerHTML = `<strong>${detail.question}</strong>: ${detail.explanation}`;
-        summaryContainer.appendChild(summaryItem);
+    document.getElementById('final-score').innerText = `${accumulatedPoints} / ${totalQuestions}`;
+    document.getElementById('correct-count').innerText = `${accumulatedPoints}`;
+    document.getElementById('incorrect-count').innerText = `${incorrectAnswers}`;
+    document.getElementById('skipped-count').innerText = `${skippedAnswers}`;
+
+    let correctAnswersSummary = document.getElementById('correct-answers-summary');
+    correctAnswers.forEach(item => {
+        let listItem = document.createElement('li');
+        listItem.innerHTML = `<strong>Question:</strong> ${item.question} <br> <strong>Correct Answer:</strong> ${item.correctAnswer} <br> <strong>Explanation:</strong> ${item.explanation}`;
+        correctAnswersSummary.appendChild(listItem);
     });
-});
+}
 
 function restartQuiz() {
     window.location.href = "quiz-page/index.html";
