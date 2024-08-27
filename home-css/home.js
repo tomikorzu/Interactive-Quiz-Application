@@ -55,6 +55,7 @@ function selectDificult() {
   difficultyBtn.forEach(function (btn, index) {
     btn.addEventListener("click", function () {
       localStorage.setItem("difficult", index);
+      transitionRedirect('../quiz-page/index.html')
     });
   });
 }
@@ -63,11 +64,11 @@ function quitSelecter() {
   selecter.classList.remove("selecter-show");
   startBtn.style.pointerEvents = "auto";
   quitBlur();
-  localStorage.clear()
+  localStorage.clear();
 }
 function goBack() {
   viewCategories();
-  localStorage.clear()
+  localStorage.clear();
 }
 
 function applyBlur() {
@@ -75,4 +76,11 @@ function applyBlur() {
 }
 function quitBlur() {
   main.classList.remove("apply-blur");
+}
+
+function transitionRedirect(url) {
+  body.classList.add('transition-page');
+  setTimeout(function() {
+    window.location.href = url;
+  }, 500);
 }

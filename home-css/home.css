@@ -5,6 +5,10 @@ body {
   align-items: center;
   justify-content: center;
   margin: 0;
+  transition: opacity .5s;
+}
+.transition-page{
+    opacity: 0;
 }
 main {
   display: flex;
