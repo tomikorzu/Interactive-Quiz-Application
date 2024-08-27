@@ -55,6 +55,11 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    opacity: 0;
+    transition: all .4s 2s;
+}
+.selecter-content-show{
+    opacity: 1;
 }
 #quit-btn, #exit-btn{
     position: fixed;
@@ -124,10 +129,22 @@ main {
     background-color: #9A0508;
 }
 .easy-btn {
+    background-color: #01B66E;
+}
+.easy-btn:hover{
+    background-color: #068653;
 }
 .medium-btn {
+    background-color: #BA8B00;
+}
+.medium-btn:hover{
+    background-color: #836303;
 }
 .difficult-btn {
+    background-color: #D91B1E;
+}
+.difficult-btn:hover{
+    background-color: #A40003;
 }
 footer {
     position: fixed;

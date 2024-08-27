@@ -12,20 +12,22 @@ function viewCategories() {
   createSelecter();
   const quitBtn = document.getElementById("quit-btn");
   quitBtn.addEventListener("click", quitSelecter);
-  const scienceBtn = document.getElementById("science-btn");
-  const historyBtn = document.getElementById("history-btn");
-  const geographyBtn = document.getElementById("geography-btn");
-  const entretainmentBtn = document.getElementById("entretainment-btn");
-  const artBtn = document.getElementById("art-btn");
   const categoriesBtn = document.querySelectorAll(".btn-category");
   categoriesBtn.forEach(function (btn) {
     btn.addEventListener("click", function () {
       localStorage.setItem("preferences", btn.textContent.toLowerCase());
       selectDificult();
-      const exitBtn = document.getElementById('exit-btn')
-      exitBtn.addEventListener('click', quitSelecter)
+      const exitBtn = document.getElementById("exit-btn");
+      exitBtn.addEventListener("click", quitSelecter);
+      
     });
-});
+    const difficultyBtn = document.querySelectorAll('.btn-category')
+    difficultyBtn.forEach(function(btn){
+        btn.addEventListener('click', function(){
+            localStorage.setItem('difficult', btn.textContent.toLowerCase()) 
+        })
+    })
+  });
 }
 function createSelecter() {
   selecter.innerHTML = "";
@@ -38,23 +40,22 @@ function createSelecter() {
                 <li><button class="btn-category geography-btn" id="geography-btn"><i class="fa-solid fa-earth-americas icon-category"></i>Geography</button></li>
                 <li><button class="btn-category entretainment-btn" id="entretainment-btn"><i class="fa-solid fa-gamepad icon-category"></i>Entretainment</button></li>
                 <li><button class="btn-category art-btn" id="art-btn"><i class="fa-solid fa-paintbrush icon-category"></i>Culture</button></li>
-            </ul>`;
+                </ul>`;
   selecter.append(selecterContent);
   selecter.classList.add("selecter-show");
+  selecterContent.classList.add("selecter-content-show");
 }
 
 function selectDificult() {
   selecter.innerHTML = "";
   selecterContent.classList.add("selecter-div");
-  selecterContent.innerHTML = `<button id="exit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h2 class="h2-category">Select the difficulty</h2>
+  selecterContent.innerHTML = `<button id="exit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category">Select the difficulty</h3>
             <ul class="ul-category">
                 <li><button class="btn-category easy-btn">Easy</button></li>
                 <li><button class="btn-category medium-btn">Medium</button></li>
                 <li><button class="btn-category difficult-btn">Difficult</button></li>
             </ul>`;
   selecter.append(selecterContent);
-  selecter.classList.add("selecter-show");
-  
 }
 
 function quitSelecter() {
