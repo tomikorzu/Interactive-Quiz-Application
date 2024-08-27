@@ -4,6 +4,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
 }
 main {
     display: flex;
@@ -11,6 +12,7 @@ main {
     gap: 10px;
     padding: 20px;
     align-items: center;
+    transition: filter .5s;
 }
 .h1-home {
     font-size: 1.5em;
@@ -31,24 +33,95 @@ main {
     background-color: #0ca80a;
 }
 .select-category {
+    border-radius: 10px;
+    padding: 40px 15px;
+    position: fixed;
+    top: 50%;
+    transform: translateY(400%);
+    background-color: #330769;
+    margin: 10px;
+    max-width: 450px;
+    z-index: 2;
+    transition: all .4s .2s;
+}
+.selecter-show{
+    transform: translateY(-50%);
+}
+.apply-blur{
+    filter:blur(10px)
+}
+.selecter-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+#quit-btn{
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background-color: transparent;
+}
+.quit-icon{
+    font-size: 2em;
+    color: #ffffff90;
+    transition: all .4s;
+}
+.quit-icon:hover{
+    color: #fff;
 }
 .h2-category {
 }
 .ul-category {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 5px;
 }
 .btn-category {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    font-size: .875em;
+    transition: all .4s;
 }
 .icon-category {
 }
 .science-btn {
+    background-color: #28A506;
+}
+.science-btn:hover{
+    background-color: #1D8500;
 }
 .history-btn {
+    background-color: #067BA5;
+}
+.history-btn:hover{
+    background-color: #015979;
 }
 .geography-btn {
+    background-color: #2006A5;
+}
+.geography-btn:hover{
+    background-color: #160371;
 }
 .entretainment-btn {
+    background-color: #A605AF;
+}
+.entretainment-btn:hover{
+    background-color: #700176;
 }
 .art-btn {
+    background-color: #D3080B;
+}
+.art-btn:hover{
+    background-color: #9A0508;
 }
 .easy-btn {
 }
