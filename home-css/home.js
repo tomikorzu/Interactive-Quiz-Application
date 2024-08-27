@@ -83,4 +83,7 @@ function transitionRedirect(url) {
   setTimeout(function() {
     window.location.href = url;
   }, 500);
+  setTimeout(function(){
+    body.classList.remove('transition-page')
+  }, 2000)
 }
