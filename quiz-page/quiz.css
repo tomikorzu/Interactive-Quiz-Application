@@ -1,9 +1,146 @@
-@media (min-width: 768px){
+.back-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 40px;
+}
+
+.back-btn:hover {
+  background-color: transparent;
+  color: azure;
+}
+
+.back-icon {
+  font-size: 20px;
+}
+.category {
+  text-align: center;
+  padding-bottom: 30px;
 
 }
-@media (min-width: 1024px){
-    
+.category-tittle {
+    font-size: 32px;
+    padding-bottom: 10px;
 }
-@media (min-width: 1440px){
-    
+
+.level-dificulty{
+    font-size: 24px;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+
+.content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background-color: grey;
+  margin: 20px;
+}
+
+.timer {
+    width: 100px;
+    height: 100px;
+    border: 5px solid rgb(14, 187, 14); 
+    border-radius: 50%;
+    background-color: white;
+    color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    font-weight: bold;
+    padding: 5px; 
+    box-sizing: border-box; 
+    margin-top: 20px; /
+}
+
+.correct{
+background-color: greenyellow;
+}
+
+.incorrect{
+background-color: red;
+}
+
+.question {
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 90%;
+}
+.answer {
+    display: block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  color: #333333;
+  background-color: #BFBFBF;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.action-button {
+    display: flex; 
+    justify-content: center;
+    gap: 10px; 
+    padding:30px 0px;
+    width: 100%;
+}
+
+.action-button button {
+    align-items: center;
+    justify-content: center;
+    width: 145px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px; 
+    font-size: 16px; 
+}
+
+.explanation{
+    color: black;
+    background-color: #C8BE00;
+    font-weight: bold;
+}
+#next-question{
+    color: black;
+    background-color: #00B759;
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+}
+@media (min-width: 1024px) {
+}
+@media (min-width: 1440px) {
 }
