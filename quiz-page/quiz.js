@@ -7,7 +7,7 @@ let currentExplanation = "";
 progress.style.height = "30px";
 progress.style.backgroundColor = "green";
 progressBar.style.backgroundColor = "grey";
-progressBar.style.width = "600px";
+progressBar.style.width = "80%";
 progressBar.style.height = "30px";
 
 skipButton.addEventListener("click", skipQuestion);
@@ -111,7 +111,6 @@ function getQuestion(order, questions) {
 }
 
 function getAnswer(answers) {
-  console.log(answers);
   let answersEntries = Object.entries(answers);
   return answersEntries.find(function () {
     return answersEntries[1];
@@ -124,23 +123,22 @@ let initialOrder = orderQuestions(questions);
 let order = initialOrder.map(function (o) {
   return o;
 });
-let h1 = document.querySelector("h1");
+let h2 = document.querySelector("h2");
 let spans = document.querySelectorAll("span");
 let userSelection = [];
 let correct = 0;
 
 function setQuestion() {
-  console.log(questions);
   progress.style.width =
     parseInt(100 - (order.length * 100) / questions.length) + "%";
   let question = getQuestion(order, questions);
   if (question) {
     currentExplanation = Object.values(question)[1];
-    h1.textContent = Object.keys(question)[0];
+    h2.textContent = Object.keys(question)[0];
     setAnswers(Object.values(question)[0]);
     order.shift();
   } else {
-    h1.style.display = "none";
+    h2.style.display = "none";
     skipButton.style.display = "none";
     answers.forEach(function (answer) {
       answer.style.display = "none";
@@ -149,18 +147,16 @@ function setQuestion() {
 }
 
 function setAnswers(question) {
+  orderAnswer = orderAnswers(Object.keys(question));
   answers.forEach(function (answer, index) {
     answer.style.backgroundColor = "#BFBFBF";
-    answer.classList.remove("incorrect");
-    answer.textContent = Object.keys(question)[index];
+    answer.textContent = Object.keys(question)[orderAnswer[index]];
     answer.addEventListener("click", function () {
       if (!userSelection.includes(getAnswer(question)[0])) {
         skipButton.textContent = "Next question";
-        userSelection.push(h1.textContent);
+        userSelection.push(h2.textContent);
         userSelection.push(answer.textContent);
-        console.log(question);
         userSelection.push(getAnswer(question)[0]);
-        console.log(getAnswer(question)[0]);
         setQuestionTransition(getAnswer(question)[0], answer.textContent);
         if (answer.textContent == getAnswer(question)[0]) {
           correct++;
@@ -172,7 +168,6 @@ function setAnswers(question) {
 
 function setQuestionTransition(correctAnswer, userAnswer) {
   answers.forEach(function (answer) {
-    console.log(userAnswer);
     if (answer.textContent == userAnswer) {
       answer.style.backgroundColor = "red";
     }
@@ -184,7 +179,21 @@ function setQuestionTransition(correctAnswer, userAnswer) {
 
 function skipQuestion() {
   skips++;
+  answers.forEach(function (answer) {
+    answer.style.backgroundColor = "#BFBFBF";
+  });
   setQuestion();
+}
+
+function orderAnswers(ans) {
+  let order = [];
+  while (order.length < answers.length) {
+    random = Math.floor(Math.random() * ans.length);
+    if (!order.includes(random)) {
+      order.push(random);
+    }
+  }
+  return order;
 }
 
 setQuestion();
