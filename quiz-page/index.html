@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="./quiz.css">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="./quiz.css" />
+  </head>
+  <body>
+    <button class="back-btn" id="back-btn">
+        <i class="fa-solid fa-arrow-left back-icon"></i>
+      </button>
+      <h1 class="category-tittle">CATEGORY</h1>
+      <div class="content-box">
+        <div class="timer">10</div>
+        <h2 class="question">¿?</h2>
+        <div class="question-container">
+          <button class="answer">buttton1</button>
+          <button class="answer">button2</button>
+          <button class="answer">button3</button>
+          <button class="answer">button4</button>
+        </div>
+        <div class="action-button">
+          <button class="explanation">Explanation</button>
+          <button class="next">Next</button>
+        </div>
+      </div>
+      <div class="score-board">
+        <div class="score"></div>
+      </div>
     <script src="./quiz.js"></script>
-</body>
+  </body>
 </html>
