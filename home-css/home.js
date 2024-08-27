@@ -55,7 +55,7 @@ function selectDificult() {
   difficultyBtn.forEach(function (btn, index) {
     btn.addEventListener("click", function () {
       localStorage.setItem("difficult", index);
-      transitionRedirect('../quiz-page/index.html')
+      transitionRedirect('./quiz-page/index.html')
     });
   });
 }
