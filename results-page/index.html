@@ -8,7 +8,26 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    
+    <main>
+        <h1>Quiz Results</h1>
+        <h2 id="final-score"></h2>
+        <div class="results-container">
+            <div class="performance-breakdown">
+                <p>Correct Answers: <span id="correct-count"></span></p>
+                <p>Incorrect Answers: <span id="incorrect-count"></span></p>
+                <p>Skipped Answers: <span id="skipped-count"></span></p>
+            </div>
+            <div id="correct-answers-summary"></div>
+        </div>
+        <div class="actions">
+            <button onclick="restartQuiz()">Restart Quiz</button>
+            <button onclick="goToHomePage()">Home Page</button>
+            <button onclick="viewLeaderboard()">View Leaderboard</button>
+        </div>
+    </main> 
+    <footer>
+        <p class="copyright">© 2024 QuizMaster Inc.</p>
+    </footer>
     <script src="./results.js"></script>
 </body>
 </html>
