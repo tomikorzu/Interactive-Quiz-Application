@@ -34,6 +34,11 @@
     font-size: 24px;
 }
 
+#progress-container{
+    display: flex;
+    justify-content: center;
+}
+
 body {
   height: 100%;
   margin: 0;
