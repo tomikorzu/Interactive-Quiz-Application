@@ -9,26 +9,30 @@
   </head>
   <body>
     <button class="back-btn" id="back-btn">
-        <i class="fa-solid fa-arrow-left back-icon"></i>
-      </button>
+      <i class="fa-solid fa-arrow-left back-icon"></i>
+    </button>
+    <div class="category">
       <h1 class="category-tittle">CATEGORY</h1>
-      <div class="content-box">
-        <div class="timer">10</div>
-        <h2 class="question">¿?</h2>
-        <div class="question-container">
-          <button class="answer">buttton1</button>
-          <button class="answer">button2</button>
-          <button class="answer">button3</button>
-          <button class="answer">button4</button>
-        </div>
-        <div class="action-button">
-          <button class="explanation">Explanation</button>
-          <button class="next">Next</button>
-        </div>
+      <h3 class="level-dificulty">Level dificulty</h3>
+    </div>
+    <div id="progress-bar"><div id="progress"></div></div>
+    <div class="content-box">
+      <div class="timer">10</div>
+      <h2 class="question">¿?</h2>
+      <div class="question-container">
+        <button class="answer">buttton1</button>
+        <button class="answer">button2</button>
+        <button class="answer">button3</button>
+        <button class="answer">button4</button>
       </div>
-      <div class="score-board">
-        <div class="score"></div>
+      <div class="action-button">
+        <button class="explanation">Explanation</button>
+        <button id="next-question">Next</button>
       </div>
+    </div>
+    <div class="score-board">
+      <div class="score"></div>
+    </div>
     <script src="./quiz.js"></script>
   </body>
 </html>

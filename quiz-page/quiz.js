@@ -1,6 +1,14 @@
 let answers = document.querySelectorAll(".answer");
 let skipButton = document.getElementById("next-question");
 let skips = 0;
+let progress = document.getElementById("progress");
+let progressBar = document.getElementById("progress-bar");
+let currentExplanation = "";
+progress.style.height = "30px";
+progress.style.backgroundColor = "green";
+progressBar.style.backgroundColor = "grey";
+progressBar.style.width = "600px";
+progressBar.style.height = "30px";
 
 skipButton.addEventListener("click", skipQuestion);
 
@@ -122,14 +130,18 @@ let userSelection = [];
 let correct = 0;
 
 function setQuestion() {
-  spans[1].textContent = correct;
+  console.log(questions);
+  progress.style.width =
+    parseInt(100 - (order.length * 100) / questions.length) + "%";
   let question = getQuestion(order, questions);
   if (question) {
-    h1.textContent = Object.keys(question);
+    currentExplanation = Object.values(question)[1];
+    h1.textContent = Object.keys(question)[0];
     setAnswers(Object.values(question)[0]);
     order.shift();
   } else {
     h1.style.display = "none";
+    skipButton.style.display = "none";
     answers.forEach(function (answer) {
       answer.style.display = "none";
     });
@@ -137,35 +149,35 @@ function setQuestion() {
 }
 
 function setAnswers(question) {
-  console.log(question);
   answers.forEach(function (answer, index) {
+    answer.style.backgroundColor = "#BFBFBF";
+    answer.classList.remove("incorrect");
     answer.textContent = Object.keys(question)[index];
     answer.addEventListener("click", function () {
       if (!userSelection.includes(getAnswer(question)[0])) {
+        skipButton.textContent = "Next question";
         userSelection.push(h1.textContent);
         userSelection.push(answer.textContent);
         console.log(question);
         userSelection.push(getAnswer(question)[0]);
         console.log(getAnswer(question)[0]);
         setQuestionTransition(getAnswer(question)[0], answer.textContent);
-      }
-      if (answer.textContent == getAnswer(question)[0]) {
-        correct++;
-      } else {
+        if (answer.textContent == getAnswer(question)[0]) {
+          correct++;
+        }
       }
     });
   });
 }
 
 function setQuestionTransition(correctAnswer, userAnswer) {
-  console.log(correctAnswer);
   answers.forEach(function (answer) {
     console.log(userAnswer);
     if (answer.textContent == userAnswer) {
       answer.style.backgroundColor = "red";
     }
     if (answer.textContent == correctAnswer) {
-      answer.style.backgroundColor = "green";
+      answer.style.backgroundColor = "greenyellow";
     }
   });
 }
