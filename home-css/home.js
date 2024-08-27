@@ -22,8 +22,10 @@ function viewCategories() {
     btn.addEventListener("click", function () {
       localStorage.setItem("preferences", btn.textContent.toLowerCase());
       selectDificult();
+      const exitBtn = document.getElementById('exit-btn')
+      exitBtn.addEventListener('click', quitSelecter)
     });
-  });
+});
 }
 function createSelecter() {
   selecter.innerHTML = "";
@@ -44,7 +46,7 @@ function createSelecter() {
 function selectDificult() {
   selecter.innerHTML = "";
   selecterContent.classList.add("selecter-div");
-  selecterContent.innerHTML = `<button id="quit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h2 class="h2-category">Select the difficulty</h2>
+  selecterContent.innerHTML = `<button id="exit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h2 class="h2-category">Select the difficulty</h2>
             <ul class="ul-category">
                 <li><button class="btn-category easy-btn">Easy</button></li>
                 <li><button class="btn-category medium-btn">Medium</button></li>
@@ -52,6 +54,7 @@ function selectDificult() {
             </ul>`;
   selecter.append(selecterContent);
   selecter.classList.add("selecter-show");
+  
 }
 
 function quitSelecter() {
