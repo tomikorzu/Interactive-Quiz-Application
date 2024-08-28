@@ -27,9 +27,21 @@ function updateLeaderboard() {
     }
 }
 
+function order(){
+    for (let i = 0; i < leaderboard.length; i++) {        
+        for (let j = i + 1; j < leaderboard.length; j++) {
+            if (leaderboard[j].score > leaderboard[i].score) {
+                let temp = leaderboard[i];
+                leaderboard[i] = leaderboard[j];
+                leaderboard[j] = temp;
+            }
+        }
+    }
+}
 
 window.onload = function() {
     updateLeaderboard();
+    order();
 }
 
 
