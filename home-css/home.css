@@ -34,7 +34,7 @@ main {
   max-width: fit-content;
   transition: all 0.4s;
   font-weight: bold;
-  font-size: 1.15em;
+  font-size: 1em;
   color: var(--text-color);
   margin-top: 10px;
 }
