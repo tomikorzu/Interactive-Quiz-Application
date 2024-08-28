@@ -74,7 +74,6 @@ main {
 
 .category-selecter{
   animation: appearDifficult 1s;
-  padding: 10px;
 }
 .selecter-content-show {
   opacity: 1;
@@ -86,7 +85,7 @@ main {
   top: 5px;
   border: none;
   background-color: transparent;
-  font-size: 18px;
+  font-size: 16px;
 }
 .quit-icon {
   font-size: 2em;
@@ -174,7 +173,7 @@ main {
   left: 5px;
   background-color: transparent;
   border: none;
-  font-size: 18px;
+  font-size: 16px;
 }
 .back-icon {
   font-size: 2em;
