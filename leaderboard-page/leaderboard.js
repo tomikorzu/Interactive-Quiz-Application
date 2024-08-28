@@ -39,9 +39,37 @@ function order(){
     }
 }
 
+function scoreUpdate(){
+    let scoreForm = document.getElementById('scoreForm');
+
+    scoreForm.addEventListener('submit', function(user) {
+        user.preventDefault(); 
+    
+        let name = document.getElementById('username').value.trim();
+        let score = localStorage.getItem('quizPoints'); // JSON
+        
+        score = 50;
+        
+        if (isNaN(score)) {
+            alert('No score available from the last game.');
+            return;
+        }
+    
+        leaderboard.push({ name: name, score: score });
+    
+        localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+    
+        updateLeaderboard();
+        
+        document.getElementById('scoreForm').reset();
+    });
+}
+
+
 window.onload = function() {
     updateLeaderboard();
     order();
+    scoreUpdate();
 }
 
 
