@@ -49,7 +49,7 @@ main {
   top: 50%;
   transform: translateY(400%);
   background-color: #330769;
-  margin: 5px;
+  margin: 10px;
   max-width: 450px;
   z-index: 2;
   transition: all 0.4s 0.2s;
@@ -217,6 +217,8 @@ footer {
   .home-button {
   }
   .select-category {
+    padding: 30px;
+    max-width: 500px;
   }
   .h2-category {
   }
@@ -234,6 +236,10 @@ footer {
   }
   .entretainment-btn {
   }
+  .difficult-menu{
+    padding: 40px;
+  }
+  
   .art-btn {
   }
   .easy-btn {
