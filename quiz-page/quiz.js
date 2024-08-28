@@ -1,5 +1,6 @@
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
+const body = document.querySelector("body");
 
 let answers = document.querySelectorAll(".answer");
 let skipButton = document.getElementById("next-question");
@@ -8,9 +9,13 @@ let progress = document.getElementById("progress");
 let progressBar = document.getElementById("progress-bar");
 let h2 = document.querySelector("h2");
 let timer = document.getElementById("timer");
+let explainMenu = document.querySelector(".explain-menu");
+let quitExplainButton = document.getElementById("quit-explain");
+let nextExplainButton = document.getElementById("next-question");
 
 let seconds = 15;
 let stopTimer = false;
+let answered = false;
 let userSelection = [];
 let currentExplanation = "";
 let correctAnswer = "";
@@ -81,11 +86,6 @@ let globalCategories = {
       },
     ],
   ],
-  biologia: {
-    0: [{}, {}],
-    1: [{}, {}],
-    2: [{}, {}],
-  },
 };
 
 let category = getCategory("history", globalCategories);
@@ -96,6 +96,11 @@ let order = initialOrder.map(function (o) {
 });
 
 skipButton.addEventListener("click", skipQuestion);
+explanationButton.addEventListener("click", showExplain);
+quitExplainButton.addEventListener("click", function () {
+  explainMenu.classList.remove("show");
+});
+nextExplainButton.addEventListener("click", skipQuestion);
 
 function getCategory(category, categories) {
   let entriesCategoreis = Object.entries(categories);
@@ -152,32 +157,39 @@ function setQuestion() {
 }
 
 function setAnswers(question) {
-  explanationButton.style.display = "none";
-  timer.textContent = seconds;
-  correctAnswer = getAnswer(question)[0];
-  seconds = 15;
-  stopTimer = false;
-  manageTimer();
+  setStartQuestionTransition();
   orderAnswer = orderAnswers(Object.keys(question));
+  correctAnswer = getAnswer(question)[0];
   answers.forEach(function (answer, index) {
     answer.style.backgroundColor = "#BFBFBF";
     answer.textContent = Object.keys(question)[orderAnswer[index]];
     answer.addEventListener("click", function () {
-      if (!userSelection.includes(correctAnswer)) {
+      if (!userSelection.includes(correctAnswer) && answered) {
+        answered = false;
         userSelection.push({
           [h2.textContent]: [answer.textContent, correctAnswer],
           explanation: currentExplanation,
         });
-        setQuestionTransition(correctAnswer, answer.textContent);
+        setEndQuestionTransition(correctAnswer, answer.textContent);
         if (answer.textContent == correctAnswer) {
           correct++;
         }
       }
     });
   });
+  stopTimer = false;
 }
 
-function setQuestionTransition(correctAnswer, userAnswer) {
+function setStartQuestionTransition() {
+  answered = true;
+  explanationButton.style.display = "none";
+  explainMenu.classList.remove("show");
+  timer.textContent = seconds;
+  seconds = 15;
+  manageTimer();
+}
+
+function setEndQuestionTransition(correctAnswer, userAnswer) {
   skipButton.textContent = "Next question";
   explanationButton.style.display = "block";
   stopTimer = true;
@@ -192,7 +204,8 @@ function setQuestionTransition(correctAnswer, userAnswer) {
 }
 
 function skipQuestion() {
-  if (skipButton.textContent == "skip") {
+  stopTimer = true;
+  if (skipButton.textContent == "Skip") {
     skips++;
   }
   answers.forEach(function (answer) {
@@ -215,18 +228,24 @@ function orderAnswers(ans) {
 
 function contTimer() {
   if (seconds > 0 && !stopTimer) {
+    manageTimer();
     seconds--;
     timer.textContent = seconds;
-    manageTimer();
   } else if (!stopTimer) {
-    setQuestionTransition(correctAnswer, null);
+    setEndQuestionTransition(correctAnswer, null);
   }
 }
 
 function manageTimer() {
-  if (seconds >= 0) {
+  if (seconds >= 0 && !stopTimer) {
     setTimeout(contTimer, 1000);
   }
+}
+
+function showExplain() {
+  explainMenu.classList.add("show");
+  let explain = explainMenu.querySelector(".text-explain");
+  explain.textContent = currentExplanation;
 }
 
 setQuestion();
