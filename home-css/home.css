@@ -65,7 +65,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   opacity: 0;
   transition: all 0.4s 2s;
 }
@@ -79,6 +79,7 @@ main {
   top: 10px;
   border: none;
   background-color: transparent;
+  font-size: 1.15em;
 }
 .quit-icon {
   font-size: 2em;
@@ -89,6 +90,7 @@ main {
   color: #fff;
 }
 .h2-category {
+  margin-top: 15px;
 }
 .ul-category {
   display: flex;
@@ -165,9 +167,7 @@ main {
   left: 10px;
   background-color: transparent;
   border: none;
-}
-.h2-margin{
-    margin-top: 10px;
+  font-size: 1.15em;
 }
 .back-icon {
   font-size: 2em;
