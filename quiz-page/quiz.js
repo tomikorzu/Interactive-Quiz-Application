@@ -1,20 +1,26 @@
+let selectedCategory = localStorage.getItem("preferences");
+let selectedDificulty = localStorage.getItem("difficult");
+const body = document.querySelector("body");
+
 let answers = document.querySelectorAll(".answer");
 let skipButton = document.getElementById("next-question");
 let explanationButton = document.querySelector(".explanation");
-let skips = 0;
 let progress = document.getElementById("progress");
 let progressBar = document.getElementById("progress-bar");
+let h2 = document.querySelector("h2");
+let timer = document.getElementById("timer");
+let explainMenu = document.querySelector(".explain-menu");
+let quitExplainButton = document.getElementById("quit-explain");
+let nextExplainButton = document.getElementById("next-question");
+
+let seconds = 15;
+let stopTimer = false;
+let answered = false;
+let userSelection = [];
 let currentExplanation = "";
-progress.style.height = "30px";
-progress.style.backgroundColor = "green";
-progressBar.style.backgroundColor = "grey";
-progressBar.style.width = "80%";
-progressBar.style.height = "30px";
-
-let selectedCategory = localStorage.getItem("preferences");
-let selectedDificulty = localStorage.getItem("difficult");
-
-skipButton.addEventListener("click", skipQuestion);
+let correctAnswer = "";
+let skips = 0;
+let correct = 0;
 
 let globalCategories = {
   history: [
@@ -80,12 +86,21 @@ let globalCategories = {
       },
     ],
   ],
-  biologia: {
-    0: [{}, {}],
-    1: [{}, {}],
-    2: [{}, {}],
-  },
 };
+
+let category = getCategory("history", globalCategories);
+let questions = getDificulty(1, category[1]);
+let initialOrder = orderQuestions(questions);
+let order = initialOrder.map(function (o) {
+  return o;
+});
+
+skipButton.addEventListener("click", skipQuestion);
+explanationButton.addEventListener("click", showExplain);
+quitExplainButton.addEventListener("click", function () {
+  explainMenu.classList.remove("show");
+});
+nextExplainButton.addEventListener("click", skipQuestion);
 
 function getCategory(category, categories) {
   let entriesCategoreis = Object.entries(categories);
@@ -121,18 +136,8 @@ function getAnswer(answers) {
   });
 }
 
-let category = getCategory(selectedCategory, globalCategories);
-let questions = getDificulty(selectedDificulty, category[1]);
-let initialOrder = orderQuestions(questions);
-let order = initialOrder.map(function (o) {
-  return o;
-});
-let h2 = document.querySelector("h2");
-let spans = document.querySelectorAll("span");
-let userSelection = [];
-let correct = 0;
-
 function setQuestion() {
+  skipButton.textContent = "Skip";
   progress.style.width =
     parseInt(100 - (order.length * 100) / questions.length) + "%";
   let question = getQuestion(order, questions);
@@ -152,26 +157,42 @@ function setQuestion() {
 }
 
 function setAnswers(question) {
+  setStartQuestionTransition();
   orderAnswer = orderAnswers(Object.keys(question));
+  correctAnswer = getAnswer(question)[0];
   answers.forEach(function (answer, index) {
     answer.style.backgroundColor = "#BFBFBF";
     answer.textContent = Object.keys(question)[orderAnswer[index]];
     answer.addEventListener("click", function () {
-      if (!userSelection.includes(getAnswer(question)[0])) {
-        skipButton.textContent = "Next question";
-        userSelection.push(h2.textContent);
-        userSelection.push(answer.textContent);
-        userSelection.push(getAnswer(question)[0]);
-        setQuestionTransition(getAnswer(question)[0], answer.textContent);
-        if (answer.textContent == getAnswer(question)[0]) {
+      if (!userSelection.includes(correctAnswer) && answered) {
+        answered = false;
+        userSelection.push({
+          [h2.textContent]: [answer.textContent, correctAnswer],
+          explanation: currentExplanation,
+        });
+        setEndQuestionTransition(correctAnswer, answer.textContent);
+        if (answer.textContent == correctAnswer) {
           correct++;
         }
       }
     });
   });
+  stopTimer = false;
 }
 
-function setQuestionTransition(correctAnswer, userAnswer) {
+function setStartQuestionTransition() {
+  answered = true;
+  explanationButton.style.display = "none";
+  explainMenu.classList.remove("show");
+  timer.textContent = seconds;
+  seconds = 15;
+  manageTimer();
+}
+
+function setEndQuestionTransition(correctAnswer, userAnswer) {
+  skipButton.textContent = "Next question";
+  explanationButton.style.display = "block";
+  stopTimer = true;
   answers.forEach(function (answer) {
     if (answer.textContent == userAnswer) {
       answer.style.backgroundColor = "red";
@@ -183,10 +204,14 @@ function setQuestionTransition(correctAnswer, userAnswer) {
 }
 
 function skipQuestion() {
-  skips++;
+  stopTimer = true;
+  if (skipButton.textContent == "Skip") {
+    skips++;
+  }
   answers.forEach(function (answer) {
     answer.style.backgroundColor = "#BFBFBF";
   });
+  seconds = 15;
   setQuestion();
 }
 
@@ -199,6 +224,28 @@ function orderAnswers(ans) {
     }
   }
   return order;
+}
+
+function contTimer() {
+  if (seconds > 0 && !stopTimer) {
+    manageTimer();
+    seconds--;
+    timer.textContent = seconds;
+  } else if (!stopTimer) {
+    setEndQuestionTransition(correctAnswer, null);
+  }
+}
+
+function manageTimer() {
+  if (seconds >= 0 && !stopTimer) {
+    setTimeout(contTimer, 1000);
+  }
+}
+
+function showExplain() {
+  explainMenu.classList.add("show");
+  let explain = explainMenu.querySelector(".text-explain");
+  explain.textContent = currentExplanation;
 }
 
 setQuestion();

@@ -11,6 +11,7 @@ body {
 .transition-page{
     opacity: 0;
 }
+
 main {
   display: flex;
   flex-direction: column;
@@ -27,7 +28,7 @@ main {
   font-size: 1.25em;
 }
 .home-button {
-  background-color: #0ad506;
+  background-color: #088417;
   border: none;
   border-radius: 10px;
   padding: 10px;
@@ -39,7 +40,7 @@ main {
   margin-top: 10px;
 }
 .home-button:hover {
-  background-color: #0ca80a;
+  background-color: #025a0d;
 }
 .select-category {
   border-radius: 10px;
@@ -48,11 +49,12 @@ main {
   top: 50%;
   transform: translateY(400%);
   background-color: #330769;
-  margin: 5px;
+  margin: 10px;
   max-width: 450px;
   z-index: 2;
   transition: all 0.4s 0.2s;
   opacity: 0;
+  
 }
 .selecter-show {
   transform: translateY(-50%);
@@ -71,7 +73,7 @@ main {
 }
 
 .category-selecter{
-  padding: 10px;
+  animation: appearDifficult 1s;
 }
 .selecter-content-show {
   opacity: 1;
@@ -83,7 +85,7 @@ main {
   top: 5px;
   border: none;
   background-color: transparent;
-  font-size: 1.15em;
+  font-size: 16px;
 }
 .quit-icon {
   font-size: 2em;
@@ -171,7 +173,7 @@ main {
   left: 5px;
   background-color: transparent;
   border: none;
-  font-size: 1.15em;
+  font-size: 16px;
 }
 .back-icon {
   font-size: 2em;
@@ -194,6 +196,15 @@ footer {
   font-weight: 500;
 }
 
+@keyframes appearDifficult {
+  from {
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
 @media (min-width: 768px) {
   body {
   }
@@ -206,6 +217,8 @@ footer {
   .home-button {
   }
   .select-category {
+    padding: 30px;
+    max-width: 500px;
   }
   .h2-category {
   }
@@ -223,6 +236,10 @@ footer {
   }
   .entretainment-btn {
   }
+  .difficult-menu{
+    padding: 40px;
+  }
+  
   .art-btn {
   }
   .easy-btn {
