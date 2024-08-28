@@ -1,15 +1,54 @@
+body .history{
+  background-color: #003346;
+}
+.content-box .history{
+  background-color: #006284;
+}
+
+body .science{
+  background-color: #0C3700;
+}
+.content-box .science{
+  background-color: #2B6B1A;
+}
+
+body .geography{
+  background-color: #003346;
+}
+.content-box .geography{
+  background-color: #006284;
+}
+
+body .culture{
+  background-color: #4D0102;
+}
+.content-box .culture{
+  background-color: #961315;
+}
+
+body .entertainment{
+  background-color: #3f096c;
+}
+.content-box .entertainment{
+  background-color: #ab0aba;
+}
+
 .back-btn {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   background-color: transparent;
-  border: 2px solid #ccc;
+  border: 3px solid #ccc;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: background-color 0.3s;
   font-size: 40px;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  color: white;
 }
 
 .back-btn:hover {
@@ -18,7 +57,10 @@
 }
 
 .back-icon {
-  font-size: 20px;
+  font-size: 30px;
+}
+header{
+  margin-top: 30px;
 }
 .category {
   text-align: center;
@@ -42,15 +84,9 @@
 body {
   height: 100%;
   margin: 0;
+  background-color: #333333;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
 
 
 .content-box {
@@ -59,7 +95,6 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-sizing: border-box;
   border-radius: 15px;
   background-color: grey;
   margin: 20px;
@@ -82,13 +117,6 @@ body {
     margin-top: 20px; /
 }
 
-.correct{
-background-color: greenyellow;
-}
-
-.incorrect{
-background-color: red;
-}
 
 .question {
   font-size: 24px;
@@ -103,8 +131,8 @@ background-color: red;
   width: 90%;
 }
 .answer {
-    display: block;
-  font-size: 16px;
+  display: block;
+  font-size: 24px;
   cursor: pointer;
   border-radius: 10px;
   border: none;
@@ -113,6 +141,14 @@ background-color: red;
   font-weight: bold;
   padding: 10px;
 }
+
+.answer-buttons{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
 
 .action-button {
     display: flex; 
@@ -143,70 +179,38 @@ background-color: red;
     font-weight: bold;
 }
 
-#progress-bar{
-  height: 30px;
-  width: 90%;
-  background-color: grey;
-  border-radius: 25px
-}
-
-#progress{
-  background-color: green;
-  height: 30px;
-  width: 0;
-  border-radius: 25px;
-  transition: width 0.5s  ease-in-out; 
-}
-
-.explain-menu{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  opacity: 0;
+#result{
   display: none;
-  transform: translate(-50%, -50%);
-  background-color: #DCC600;
-  color: #222;
+}
+
+.explanation-box{
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
-  padding: 20px;
-  gap: 10px;
-  transition: opacity 0.1s ease;
+  background-color: #DCC600;
+  width: 90%;
 }
 
-.show{
-  display: block;
-  opacity: 100%;
-}
-
-.h2-explain{
-
-}
-.text-explain{
-
-}
-.buttons{
-  display: flex;
-  gap: 10px;
-  font-size: 20px;
-}
-#quit-explain{
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-}
-#next-question{
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-
-}
 
 @media (min-width: 768px) {
+  .category-tittle{
+    font-size: 48px;
+  }
+  .answer-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  .answer{
+    width: 100%;
+  }
 }
 @media (min-width: 1024px) {
+  .level-dificulty{
+    font-size: 32px;
+  }
 }
 @media (min-width: 1440px) {
 }

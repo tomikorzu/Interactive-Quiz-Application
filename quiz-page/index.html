@@ -8,41 +8,39 @@
     <link rel="stylesheet" href="./quiz.css" />
   </head>
   <body>
-    <button class="back-btn" id="back-btn">
+    <a href="../index.html" class="back-btn" id="back-btn">
       <i class="fa-solid fa-arrow-left back-icon"></i>
-    </button>
-    <div class="category">
-      <h1 class="category-tittle">CATEGORY</h1>
-      <h3 class="level-dificulty">Level dificulty</h3>
-    </div>
-    <div id="progress-container">
-      <div id="progress-bar"><div id="progress"></div></div>
-    </div>
-    <div class="content-box">
-      <div id="timer"></div>
-      <h2 class="question">¿?</h2>
-      <div class="question-container">
-        <button class="answer">button1</button>
-        <button class="answer">button2</button>
-        <button class="answer">button3</button>
-        <button class="answer">button4</button>
+    </a>
+    <header>
+      <div class="category">
+        <h1 class="category-tittle">CATEGORY</h1>
+        <h3 class="level-dificulty">Level dificulty</h3>
       </div>
-      <div class="action-button">
-        <button class="explanation">Explanation</button>
-        <button id="next-question">Next</button>
+    </header>
+    <main>
+      <div id="progress-container">
+        <div id="progress-bar"><div id="progress"></div></div>
       </div>
-    </div>
-    <div class="score-board">
-      <div class="score"></div>
-    </div>
-    <div class="explain-menu">
-      <h3 class="h2-explain">Explanation</h3>
-      <p class="text-explain">${currentExplanation}</p>
-      <div class="buttons">
-        <button id="quit-explain">Exit</button>
-        <button id="next-question">Next</button>
+      <div class="content-box">
+        <div class="timer"></div>
+        <h2 class="question">¿?</h2>
+        <div class="question-container">
+          <div class="answer-buttons">
+            <button class="answer">buttton1</button>
+            <button class="answer">button2</button>
+          </div>
+          <div class="answer-buttons">
+            <button class="answer">button3</button>
+            <button class="answer">button4</button>
+          </div>
+        </div>
+        <div class="action-button">
+          <button class="explanation">Explanation</button>
+          <button id="next-question">Next</button>
+          <button id="result">Results</button>
+        </div>
       </div>
-    </div>
+    </main>
     <script src="./quiz.js"></script>
   </body>
 </html>
