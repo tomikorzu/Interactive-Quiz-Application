@@ -1,6 +1,7 @@
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
 const body = document.querySelector("body");
+console.log(localStorage)
 
 let answers = document.querySelectorAll(".answer");
 let skipButton = document.getElementById("next-question");
