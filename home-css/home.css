@@ -52,7 +52,7 @@ main {
   margin: 10px;
   max-width: 450px;
   z-index: 2;
-  transition: all 0.4s 0.2s;
+  transition: transform 0.4s 0.2s;
   opacity: 0;
   
 }
