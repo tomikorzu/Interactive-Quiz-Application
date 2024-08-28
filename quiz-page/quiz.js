@@ -11,7 +11,7 @@ let h2 = document.querySelector("h2");
 let timer = document.getElementById("timer");
 let explainMenu = document.querySelector(".explain-menu");
 let quitExplainButton = document.getElementById("quit-explain");
-let nextExplainButton = document.getElementById("next-question");
+let nextExplainButton = document.getElementById("next-explain");
 
 let seconds = 15;
 let stopTimer = false;
@@ -100,7 +100,10 @@ explanationButton.addEventListener("click", showExplain);
 quitExplainButton.addEventListener("click", function () {
   explainMenu.classList.remove("show");
 });
-nextExplainButton.addEventListener("click", skipQuestion);
+nextExplainButton.addEventListener("click", function () {
+  explainMenu.classList.remove("show");
+  skipQuestion();
+});
 
 function getCategory(category, categories) {
   let entriesCategoreis = Object.entries(categories);
