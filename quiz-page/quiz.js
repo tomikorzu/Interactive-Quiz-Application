@@ -88,8 +88,8 @@ let globalCategories = {
   ],
 };
 
-let category = getCategory("history", globalCategories);
-let questions = getDificulty(1, category[1]);
+let category = getCategory(selectedCategory, globalCategories);
+let questions = getDificulty(selectedDificulty, category[1]);
 let initialOrder = orderQuestions(questions);
 let order = initialOrder.map(function (o) {
   return o;
