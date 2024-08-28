@@ -15,15 +15,16 @@ main {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 20px;
+  padding: 10px;
   align-items: center;
   transition: filter 0.5s;
 }
 .h1-home {
-  font-size: 1.5em;
+  font-size: 1.75em;
 }
 .h2-home {
   color: #ffffff70;
+  font-size: 1.5em;
 }
 .home-button {
   background-color: #0ad506;
@@ -33,7 +34,9 @@ main {
   max-width: fit-content;
   transition: all 0.4s;
   font-weight: bold;
+  font-size: 1.25em;
   color: var(--text-color);
+  margin-top: 10px;
 }
 .home-button:hover {
   background-color: #0ca80a;
