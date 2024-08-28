@@ -10,7 +10,7 @@ body {
   scroll-behavior: smooth;
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
-  color: var(--text-color);
+  color: #F5F5F5;
 }
 *,
 *::before,
@@ -18,7 +18,6 @@ body {
   box-sizing: border-box;
 }
 :root {
-  color-scheme: light dark;
   --bg-color: #140329;
   --text-color: #F5F5F5;
   --form-bg: #330769;
