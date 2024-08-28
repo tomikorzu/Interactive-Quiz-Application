@@ -11,7 +11,7 @@ let h2 = document.querySelector("h2");
 let timer = document.getElementById("timer");
 let explainMenu = document.querySelector(".explain-menu");
 let quitExplainButton = document.getElementById("quit-explain");
-let nextExplainButton = document.getElementById("next-explain");
+let nextExplainButton = document.getElementById("next-question");
 
 let seconds = 15;
 let stopTimer = false;
@@ -88,8 +88,8 @@ let globalCategories = {
   ],
 };
 
-let category = getCategory(selectedCategory, globalCategories);
-let questions = getDificulty(selectedDificulty, category[1]);
+let category = getCategory("history", globalCategories);
+let questions = getDificulty(1, category[1]);
 let initialOrder = orderQuestions(questions);
 let order = initialOrder.map(function (o) {
   return o;
@@ -100,10 +100,7 @@ explanationButton.addEventListener("click", showExplain);
 quitExplainButton.addEventListener("click", function () {
   explainMenu.classList.remove("show");
 });
-nextExplainButton.addEventListener("click", function () {
-  explainMenu.classList.remove("show");
-  skipQuestion();
-});
+nextExplainButton.addEventListener("click", skipQuestion);
 
 function getCategory(category, categories) {
   let entriesCategoreis = Object.entries(categories);
