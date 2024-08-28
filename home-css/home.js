@@ -42,6 +42,7 @@ function createSelecter() {
 function selectDificult() {
   selecter.innerHTML = "";
   selecterContent.classList.add("selecter-div");
+  selecterContent.classList.add('category-selecter')
   selecterContent.innerHTML = `<button class="back-btn" id="back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button><button id="exit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category h2-margin">Select the difficulty</h3>
             <ul class="ul-category">
                 <li><button class="btn-category btn-difficult easy-btn">Easy</button></li>

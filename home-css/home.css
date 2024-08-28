@@ -69,14 +69,18 @@ main {
   opacity: 0;
   transition: all 0.4s 2s;
 }
+
+.category-selecter{
+  padding: 10px;
+}
 .selecter-content-show {
   opacity: 1;
 }
 #quit-btn,
 #exit-btn {
   position: fixed;
-  right: 10px;
-  top: 10px;
+  right: 5px;
+  top: 5px;
   border: none;
   background-color: transparent;
   font-size: 1.15em;
@@ -163,8 +167,8 @@ main {
 }
 .back-btn {
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 5px;
+  left: 5px;
   background-color: transparent;
   border: none;
   font-size: 1.15em;
