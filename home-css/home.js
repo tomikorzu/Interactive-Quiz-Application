@@ -16,7 +16,7 @@ function viewCategories() {
   categoriesBtn.forEach(function (btn) {
     btn.addEventListener("click", function () {
       localStorage.setItem("preferences", btn.textContent.toLowerCase());
-      selectDificult();
+      selectDificult()
       const exitBtn = document.getElementById("exit-btn");
       exitBtn.addEventListener("click", quitSelecter);
     });
@@ -39,7 +39,7 @@ function createSelecter() {
   selecterContent.classList.add("selecter-content-show");
 }
 
-function selectDificult() {
+function selectDificult() { 
   selecter.innerHTML = "";
   selecterContent.classList.add("selecter-div");
   selecterContent.classList.add('category-selecter')

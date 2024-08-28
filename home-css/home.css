@@ -11,6 +11,7 @@ body {
 .transition-page{
     opacity: 0;
 }
+
 main {
   display: flex;
   flex-direction: column;
@@ -27,7 +28,7 @@ main {
   font-size: 1.25em;
 }
 .home-button {
-  background-color: #0ad506;
+  background-color: #088417;
   border: none;
   border-radius: 10px;
   padding: 10px;
@@ -39,7 +40,7 @@ main {
   margin-top: 10px;
 }
 .home-button:hover {
-  background-color: #0ca80a;
+  background-color: #025a0d;
 }
 .select-category {
   border-radius: 10px;
@@ -53,6 +54,7 @@ main {
   z-index: 2;
   transition: all 0.4s 0.2s;
   opacity: 0;
+  
 }
 .selecter-show {
   transform: translateY(-50%);
@@ -71,6 +73,7 @@ main {
 }
 
 .category-selecter{
+  animation: appearDifficult 1s;
   padding: 10px;
 }
 .selecter-content-show {
@@ -83,7 +86,7 @@ main {
   top: 5px;
   border: none;
   background-color: transparent;
-  font-size: 1.15em;
+  font-size: 18px;
 }
 .quit-icon {
   font-size: 2em;
@@ -171,7 +174,7 @@ main {
   left: 5px;
   background-color: transparent;
   border: none;
-  font-size: 1.15em;
+  font-size: 18px;
 }
 .back-icon {
   font-size: 2em;
@@ -192,6 +195,15 @@ footer {
 .copyright {
   padding: 15px;
   font-weight: 500;
+}
+
+@keyframes appearDifficult {
+  from {
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
 }
 
 @media (min-width: 768px) {
