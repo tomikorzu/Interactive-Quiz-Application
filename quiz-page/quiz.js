@@ -1,20 +1,21 @@
-let answers = document.querySelectorAll(".answer");
-let skipButton = document.getElementById("next-question");
-let explanationButton = document.querySelector(".explanation");
-let skips = 0;
-let progress = document.getElementById("progress");
-let progressBar = document.getElementById("progress-bar");
-let currentExplanation = "";
-progress.style.height = "30px";
-progress.style.backgroundColor = "green";
-progressBar.style.backgroundColor = "grey";
-progressBar.style.width = "80%";
-progressBar.style.height = "30px";
-
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
 
-skipButton.addEventListener("click", skipQuestion);
+let answers = document.querySelectorAll(".answer");
+let skipButton = document.getElementById("next-question");
+let explanationButton = document.querySelector(".explanation");
+let progress = document.getElementById("progress");
+let progressBar = document.getElementById("progress-bar");
+let h2 = document.querySelector("h2");
+let timer = document.getElementById("timer");
+
+let seconds = 15;
+let stopTimer = false;
+let userSelection = [];
+let currentExplanation = "";
+let correctAnswer = "";
+let skips = 0;
+let correct = 0;
 
 let globalCategories = {
   history: [
@@ -87,6 +88,15 @@ let globalCategories = {
   },
 };
 
+let category = getCategory("history", globalCategories);
+let questions = getDificulty(1, category[1]);
+let initialOrder = orderQuestions(questions);
+let order = initialOrder.map(function (o) {
+  return o;
+});
+
+skipButton.addEventListener("click", skipQuestion);
+
 function getCategory(category, categories) {
   let entriesCategoreis = Object.entries(categories);
   return entriesCategoreis.find(function (entrieCategory) {
@@ -121,18 +131,8 @@ function getAnswer(answers) {
   });
 }
 
-let category = getCategory(selectedCategory, globalCategories);
-let questions = getDificulty(selectedDificulty, category[1]);
-let initialOrder = orderQuestions(questions);
-let order = initialOrder.map(function (o) {
-  return o;
-});
-let h2 = document.querySelector("h2");
-let spans = document.querySelectorAll("span");
-let userSelection = [];
-let correct = 0;
-
 function setQuestion() {
+  skipButton.textContent = "Skip";
   progress.style.width =
     parseInt(100 - (order.length * 100) / questions.length) + "%";
   let question = getQuestion(order, questions);
@@ -152,18 +152,24 @@ function setQuestion() {
 }
 
 function setAnswers(question) {
+  explanationButton.style.display = "none";
+  timer.textContent = seconds;
+  correctAnswer = getAnswer(question)[0];
+  seconds = 15;
+  stopTimer = false;
+  manageTimer();
   orderAnswer = orderAnswers(Object.keys(question));
   answers.forEach(function (answer, index) {
     answer.style.backgroundColor = "#BFBFBF";
     answer.textContent = Object.keys(question)[orderAnswer[index]];
     answer.addEventListener("click", function () {
-      if (!userSelection.includes(getAnswer(question)[0])) {
-        skipButton.textContent = "Next question";
-        userSelection.push(h2.textContent);
-        userSelection.push(answer.textContent);
-        userSelection.push(getAnswer(question)[0]);
-        setQuestionTransition(getAnswer(question)[0], answer.textContent);
-        if (answer.textContent == getAnswer(question)[0]) {
+      if (!userSelection.includes(correctAnswer)) {
+        userSelection.push({
+          [h2.textContent]: [answer.textContent, correctAnswer],
+          explanation: currentExplanation,
+        });
+        setQuestionTransition(correctAnswer, answer.textContent);
+        if (answer.textContent == correctAnswer) {
           correct++;
         }
       }
@@ -172,6 +178,9 @@ function setAnswers(question) {
 }
 
 function setQuestionTransition(correctAnswer, userAnswer) {
+  skipButton.textContent = "Next question";
+  explanationButton.style.display = "block";
+  stopTimer = true;
   answers.forEach(function (answer) {
     if (answer.textContent == userAnswer) {
       answer.style.backgroundColor = "red";
@@ -183,10 +192,13 @@ function setQuestionTransition(correctAnswer, userAnswer) {
 }
 
 function skipQuestion() {
-  skips++;
+  if (skipButton.textContent == "skip") {
+    skips++;
+  }
   answers.forEach(function (answer) {
     answer.style.backgroundColor = "#BFBFBF";
   });
+  seconds = 15;
   setQuestion();
 }
 
@@ -199,6 +211,22 @@ function orderAnswers(ans) {
     }
   }
   return order;
+}
+
+function contTimer() {
+  if (seconds > 0 && !stopTimer) {
+    seconds--;
+    timer.textContent = seconds;
+    manageTimer();
+  } else if (!stopTimer) {
+    setQuestionTransition(correctAnswer, null);
+  }
+}
+
+function manageTimer() {
+  if (seconds >= 0) {
+    setTimeout(contTimer, 1000);
+  }
 }
 
 setQuestion();
