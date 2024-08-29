@@ -1,3 +1,7 @@
+main{
+  margin-top: 40px;
+}
+
 .history{
   background-color: #003346;
 }
@@ -15,8 +19,8 @@
 }
 .back-btn {
   position: fixed;
-  top: 15px;
-  left: 15px;
+  top: 10px;
+  left: 10px;
   border: 2px solid #999;
   padding: 7.5px;
   border-radius: 100%;
