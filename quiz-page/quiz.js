@@ -7,6 +7,8 @@ const categoryTitle = document.querySelector('.category-tittle')
 const levelDifficulty = document.querySelector('.level-dificulty')
 const contentBox = document.querySelector('.content-box')
 
+
+
 setColorTheme(selectedCategory)
 setDifficulty(selectedDificulty) 
 
