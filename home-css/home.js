@@ -16,7 +16,7 @@ function viewCategories() {
   categoriesBtn.forEach(function (btn) {
     btn.addEventListener("click", function () {
       localStorage.setItem("preferences", btn.textContent.toLowerCase());
-      selectDificult();
+      selectDificult()
       const exitBtn = document.getElementById("exit-btn");
       exitBtn.addEventListener("click", quitSelecter);
     });
@@ -39,8 +39,9 @@ function createSelecter() {
   selecterContent.classList.add("selecter-content-show");
 }
 
-function selectDificult() {
+function selectDificult() { 
   selecter.innerHTML = "";
+  selecter.classList.add('difficult-menu')
   selecterContent.classList.add("selecter-div");
   selecterContent.classList.add('category-selecter')
   selecterContent.innerHTML = `<button class="back-btn" id="back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button><button id="exit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category h2-margin">Select the difficulty</h3>
