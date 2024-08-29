@@ -1,5 +1,10 @@
+body{
+  overflow: hidden;
+}
+
 main{
   margin-top: 40px;
+  transition: all .4s;
 }
 
 .history{
@@ -99,13 +104,7 @@ body {
     margin-top: 20px; /
 }
 
-.correct{
-background-color: #04FF00;
-}
 
-.incorrect{
-background-color: red;
-}
 
 .question {
   font-size: 24px;
@@ -126,10 +125,21 @@ background-color: red;
   border-radius: 10px;
   border: none;
   color: #333333;
-  background-color: #BFBFBF;
+  background-color: #eee;
   font-weight: bold;
   padding: 10px;
+  transition: all .4s;
+}
 
+.answer:hover{
+  background-color: #b2b2b2;
+}
+
+.correct{
+  background-color: #04FF00;
+}
+.incorrect{
+  background-color: #FF0000;
 }
 
 .action-button {
@@ -154,12 +164,14 @@ background-color: red;
     color: black;
     background-color: #C8BE00;
     font-weight: bold;
+    transition: all .4s;
+    cursor: pointer;
 }
-#next-question{
-    color: black;
-    background-color: #00B759;
-    font-weight: bold;
+
+.explanation:hover{
+  background-color: #af9e01;
 }
+
 
 #progress-bar{
   height: 30px;
@@ -178,29 +190,32 @@ background-color: red;
 
 .explain-menu{
   position: absolute;
+  background-color: #DCC600;
+  display: none;
+  flex-direction: column;
+  align-items: center;
   top: 50%;
   left: 50%;
+  transform: translate(-50%,-50%);
   opacity: 0;
-  display: none;
-  transform: translate(-50%, -50%);
-  background-color: #DCC600;
   color: #222;
   border-radius: 10px;
   padding: 20px;
   gap: 10px;
-  transition: opacity 0.1s ease;
+  transition: all .4s;
 }
 
 .show{
-  opacity: 100%;
+  opacity: 1;
+}
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.apply-blur {
+  filter: blur(5px);
 }
 
 .h2-explain{
-
+  padding-top: 10px;
+color: #333;
 }
 .text-explain{
 
@@ -211,16 +226,34 @@ background-color: red;
   font-size: 20px;
 }
 #quit-explain{
-  padding: 10px;
   border: none;
-  border-radius: 10px;
+  background-color: transparent;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 1.5em;
+}
+
+.icon-quit{
+  color: #555;
+  transition: all .4s;
+}
+.icon-quit:hover{
+  color: #222;
 }
 #next-question{
   padding: 10px;
   border: none;
   border-radius: 10px;
-
+  background-color: #00B759;
+  font-weight: bold;
+  transition: all .4s;
+  cursor: pointer;
 }
+#next-question:hover{
+  background-color: #039d4e;
+}
+
 
 @media (min-width: 768px) {
 }

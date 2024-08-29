@@ -106,7 +106,12 @@ let order = initialOrder.map(function (o) {
 skipButton.addEventListener("click", skipQuestion);
 explanationButton.addEventListener("click", showExplain);
 quitExplainButton.addEventListener("click", function () {
+  explainMenu.style.display = 'none'
   explainMenu.classList.remove("show");
+  quitBlur()
+  nextExplainButton.style.pointerEvents = 'auto'
+  explanationButton.style.pointerEvents = 'auto'
+
 });
 nextExplainButton.addEventListener("click", skipQuestion);
 
@@ -169,7 +174,6 @@ function setAnswers(question) {
   orderAnswer = orderAnswers(Object.keys(question));
   correctAnswer = getAnswer(question)[0];
   answers.forEach(function (answer, index) {
-    answer.style.backgroundColor = "#BFBFBF";
     answer.textContent = Object.keys(question)[orderAnswer[index]];
     answer.addEventListener("click", function () {
       if (!userSelection.includes(correctAnswer) && answered) {
@@ -189,9 +193,14 @@ function setAnswers(question) {
 }
 
 function setStartQuestionTransition() {
+  answers.forEach(function(answer){
+    answer.style.pointerEvents = 'auto'
+    
+  })
   answered = true;
   explanationButton.style.display = "none";
   explainMenu.classList.remove("show");
+  quitBlur()
   timer.textContent = seconds;
   seconds = 15;
   manageTimer();
@@ -203,24 +212,29 @@ function setEndQuestionTransition(correctAnswer, userAnswer) {
   stopTimer = true;
   answers.forEach(function (answer) {
     if (answer.textContent == userAnswer) {
-      answer.style.backgroundColor = "#FF0000";
+      answer.classList.add('incorrect')
+      answer.classList.remove('correct')
     }
     if (answer.textContent == correctAnswer) {
-      answer.style.backgroundColor = "#04FF00";
+      answer.classList.remove('incorrect')
+      answer.classList.add('correct')
     }
+    answer.style.pointerEvents = 'none'
   });
 }
 
 function skipQuestion() {
+  answers.forEach(function(answer){
+    answer.classList.remove('incorrect')
+    answer.classList.remove('correct')
+  })
   stopTimer = true;
   if (skipButton.textContent == "Skip") {
     skips++;
   }
-  answers.forEach(function (answer) {
-    answer.style.backgroundColor = "#BFBFBF";
-  });
   seconds = 15;
   setQuestion();
+  
 }
 
 function orderAnswers(ans) {
@@ -251,7 +265,13 @@ function manageTimer() {
 }
 
 function showExplain() {
-  explainMenu.classList.add("show");
+  explanationButton.style.pointerEvents = 'none'
+  nextExplainButton.style.pointerEvents = 'none'
+  explainMenu.style.display = 'flex'
+  setTimeout(function(){
+    applyBlur()
+    explainMenu.classList.add("show");
+  },100)
   let explain = explainMenu.querySelector(".text-explain");
   explain.textContent = currentExplanation;
 }
@@ -292,6 +312,13 @@ function setDifficulty(){
     levelDifficulty.textContent = 'Hard level'
     levelDifficulty.style.color = '#FD0105'
   }
+}
+
+function applyBlur() {
+  main.classList.add("apply-blur");
+}
+function quitBlur() {
+  main.classList.remove("apply-blur");
 }
 
 setQuestion();
