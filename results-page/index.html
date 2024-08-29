@@ -17,12 +17,24 @@
                 <p>Incorrect Answers: <span id="incorrect-count"></span></p>
                 <p>Skipped Answers: <span id="skipped-count"></span></p>
             </div>
-            <div id="correct-answers-summary"></div>
+            <h2>Correct Answers Summary</h2>
+            <table id="correct-answers-summary" class="results-table">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Correct Answer</th>
+                        <th>Explanation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
         </div>
         <div class="actions">
-            <button onclick="restartQuiz()">Restart Quiz</button>
-            <button onclick="goToHomePage()">Home Page</button>
-            <button onclick="viewLeaderboard()">View Leaderboard</button>
+            <button><a href="../quiz-page/index.html">Restart Quiz</button>
+            <button><a href="../index.html">Home Page</button>
+            <button><a href="../leaderboard-page/index.html">View Leaderboard</button>
         </div>
     </main> 
     <footer>
