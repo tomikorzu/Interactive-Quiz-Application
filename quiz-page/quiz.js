@@ -4,6 +4,7 @@ let selectedDificulty = localStorage.getItem("difficult");
 const body = document.querySelector("body");
 const main = document.querySelector('main')
 const categoryTitle = document.querySelector('.category-tittle')
+const levelDifficulty = document.querySelector('.level-dificulty')
 const contentBox = document.querySelector('.content-box')
 
 setColorTheme(selectedCategory)
@@ -281,8 +282,15 @@ function setColorTheme(){
 }
 
 function setDifficulty(){
-  if (selectedDificulty === 0){
-
+  if (selectedDificulty == 0){
+    levelDifficulty.textContent = 'Easy level'
+    levelDifficulty.style.color = '#01B66E'
+  } else if(selectedDificulty == 1){
+    levelDifficulty.textContent = 'Mid level'
+    levelDifficulty.style.color = '#BA8B00'
+  } else if(selectedDificulty == 2){
+    levelDifficulty.textContent = 'Hard level'
+    levelDifficulty.style.color = '#FD0105'
   }
 }
 
