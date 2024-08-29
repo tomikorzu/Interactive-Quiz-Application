@@ -17,29 +17,71 @@ main {
 
 .results-container {
     background-color: #330769;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 30px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    max-width: 800px;
     width: 100%;
     text-align: center;
 }
 
-h1 {
+h1, h2{
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.score-summary {
+    margin-bottom: 30px;
+}
+
+.performance-breakdown{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.performance-breakdown div {
+    padding: 10px;
+    border-radius: 5px;
+    width: 30%;
+}
+
+.correct{
+    background-color: #33EF2D ;
+}
+
+.incorrect{
+    background-color: #F43F2D;
+}
+
+.skipped{
+    background-color: #FCC413;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.results-table th, .results-table td {
+    padding: 12px;
+    text-align: left;
+}
+
+.results-table th {
+    background-color: #7542D3;
     color: #fff;
 }
 
-.performance-breakdown p {
-    margin: 10px 0;
-}
-
-#correct-answers-summary {
-    text-align: left;
-    margin-top: 20px;
+.results-table tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
 .actions {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .actions button {
@@ -47,13 +89,17 @@ h1 {
     margin: 0 10px;
     border: none;
     border-radius: 5px;
-    background-color: #0AD506;
+    background-color: #7542D3;
     color: #fff;
     cursor: pointer;
 }
 
 .actions button:hover {
     background-color: #0ca80a;
+}
+
+a{
+    color: #fff;
 }
 
 footer {
@@ -63,12 +109,9 @@ footer {
     justify-content: center;
     width: 100%;
     background-color: #00000060;
+    color: #fff;
 }
 
-.copyright {
-    padding: 15px;
-    font-weight: 500;
-}
 
 @media (min-width: 768px){
 
