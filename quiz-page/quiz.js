@@ -2,6 +2,12 @@
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
 const body = document.querySelector("body");
+const main = document.querySelector('main')
+const categoryTitle = document.querySelector('.category-tittle')
+const contentBox = document.querySelector('.content-box')
+
+setColorTheme(selectedCategory)
+setDifficulty(selectedDificulty) 
 
 let answers = document.querySelectorAll(".answer");
 let skipButton = document.getElementById("next-question");
@@ -247,6 +253,37 @@ function showExplain() {
   explainMenu.classList.add("show");
   let explain = explainMenu.querySelector(".text-explain");
   explain.textContent = currentExplanation;
+}
+
+function setColorTheme(){
+  if (selectedCategory === 'history'){
+    categoryTitle.textContent = 'History'
+    body.classList.add('history')
+    contentBox.style.backgroundColor = '#006284'
+  } else if(selectedCategory === 'science'){
+    categoryTitle.textContent = 'Science'
+    body.classList.add('science')
+    contentBox.style.backgroundColor = '#2B6B1A'
+  } else if(selectedCategory === 'culture'){
+    categoryTitle.textContent = 'Culture'
+    body.classList.add('culture')
+    contentBox.style.backgroundColor = '#961315'
+  } else if (selectedCategory === 'geography'){
+    categoryTitle.textContent = 'Geography'
+    body.classList.add('geography')
+    contentBox.style.backgroundColor = '#0B1184'
+  } else if (selectedCategory === 'entretainment'){
+    categoryTitle.textContent = 'Entretainment'
+    body.classList.add('entretainment')
+    contentBox.style.backgroundColor = '#A20679'
+  }
+  
+}
+
+function setDifficulty(){
+  if (selectedDificulty === 0){
+
+  }
 }
 
 setQuestion();
