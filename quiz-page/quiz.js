@@ -203,10 +203,10 @@ function setEndQuestionTransition(correctAnswer, userAnswer) {
   stopTimer = true;
   answers.forEach(function (answer) {
     if (answer.textContent == userAnswer) {
-      answer.style.backgroundColor = "red";
+      answer.style.backgroundColor = "#FF0000";
     }
     if (answer.textContent == correctAnswer) {
-      answer.style.backgroundColor = "greenyellow";
+      answer.style.backgroundColor = "#04FF00";
     }
   });
 }
