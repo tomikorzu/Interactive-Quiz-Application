@@ -305,16 +305,6 @@ export let globalCategories = {
         explanation:
           "Nikita Khrushchev was the leader of the Soviet Union during the Cuban Missile Crisis in 1962.",
       },
-      {
-        "Which historical figure is known for writing 'The Prince'?": {
-          "Niccolò Machiavelli": true,
-          "Thomas More": false,
-          "Francis Bacon": false,
-          "Rene Descartes": false,
-        },
-        explanation:
-          "'The Prince' was written by Niccolò Machiavelli and is a seminal work on political theory and realpolitik.",
-      },
     ],
   ],
   science: [
@@ -419,16 +409,6 @@ export let globalCategories = {
         },
         explanation:
           "The roots of a plant absorb water and nutrients from the soil, essential for its growth.",
-      },
-      {
-        "What is the largest organ in the human body?": {
-          Skin: true,
-          Heart: false,
-          Liver: false,
-          Lung: false,
-        },
-        explanation:
-          "The skin is the largest organ in the human body, serving as a protective barrier.",
       },
     ],
     [
@@ -537,16 +517,6 @@ export let globalCategories = {
           },
         explanation:
           "The pancreas regulates blood sugar levels by producing insulin and glucagon.",
-      },
-      {
-        "What is the most common type of rock found in the Earth's crust?": {
-          "Igneous Rock": true,
-          "Sedimentary Rock": false,
-          "Metamorphic Rock": false,
-          "Organic Rock": false,
-        },
-        explanation:
-          "Igneous rock is the most common type of rock found in the Earth's crust, formed from solidified magma.",
       },
     ],
     [
@@ -658,17 +628,6 @@ export let globalCategories = {
           },
         explanation:
           "Cellular respiration is the chemical reaction that breaks down glucose to produce ATP in the presence of oxygen.",
-      },
-      {
-        "Which mathematical constant is represented by the ratio of the circumference of a circle to its diameter?":
-          {
-            "Pi (π)": true,
-            "Euler's Number (e)": false,
-            "Golden Ratio (φ)": false,
-            "Square Root of 2 (√2)": false,
-          },
-        explanation:
-          "Pi (π) is the mathematical constant that represents the ratio of the circumference of a circle to its diameter, approximately 3.14159.",
       },
     ],
   ],
@@ -878,16 +837,6 @@ export let globalCategories = {
         },
         explanation:
           "Lake Victoria is the largest lake by surface area in Africa, shared by Tanzania, Uganda, and Kenya.",
-      },
-      {
-        "Which mountain range is the longest in the world?": {
-          Andes: true,
-          Himalayas: false,
-          "Rocky Mountains": false,
-          Alps: false,
-        },
-        explanation:
-          "The Andes mountain range is the longest in the world, extending over 7,000 kilometers along the western coast of South America.",
       },
     ],
     [
