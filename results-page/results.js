@@ -17,11 +17,35 @@ function perfomanceList(){
     document.getElementById('skipped-count').innerText = `${skippedAnswers}`;
 }
 
+// correctAnswers = [
+//     {question: "Pregunta 1",
+//         correctAnswer: "Respuesta correcta",
+//         explanation: "Explicaciooooooooooooooooooo0000000000000000000000000n",
+//     },
+//     {question: "Pregunta 2",
+//         correctAnswer: "Respuesta correcta",
+//         explanation: "Explicaciooooooooooooooooooo0000000000000000000000000n",
+//     }
+// ]
+
 function summary(){
     let correctAnswersSummary = document.getElementById('correct-answers-summary');
+    correctAnswersSummary.innerHTML = '';
+
     correctAnswers.forEach(item => {
-        let listItem = document.createElement('li');
-        listItem.innerHTML = `<strong>Question:</strong> ${item.question} <br> <strong>Correct Answer:</strong> ${item.correctAnswer} <br> <strong>Explanation:</strong> ${item.explanation}`;
-        correctAnswersSummary.appendChild(listItem);
+        let row = document.createElement('tr');
+        let questionCell = document.createElement('td');
+        questionCell.textContent = item.question;
+        row.appendChild(questionCell);
+
+        let correctAnswerCell = document.createElement('td');
+        correctAnswerCell.textContent = item.correctAnswer;
+        row.appendChild(correctAnswerCell);
+
+        let explanationCell = document.createElement('td');
+        explanationCell.textContent = item.explanation;
+        row.appendChild(explanationCell);
+
+        correctAnswersSummary.append(row);
     });
 }
