@@ -46,9 +46,9 @@ function scoreUpdate(){
         user.preventDefault(); 
     
         let name = document.getElementById('username').value.trim();
-        let score = localStorage.getItem('quizPoints'); // JSON
+        //let score = localStorage.getItem('quizPoints');
         
-        score = 50;
+        score = 160000;
         
         if (isNaN(score)) {
             alert('No score available from the last game.');
@@ -67,8 +67,8 @@ function scoreUpdate(){
 
 
 window.onload = function() {
-    updateLeaderboard();
     order();
+    updateLeaderboard();
     scoreUpdate();
 }
 

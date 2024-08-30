@@ -9,20 +9,41 @@
 </head>
 <body>
     <main>
-        <h1>Quiz Results</h1>
-        <h2 id="final-score"></h2>
         <div class="results-container">
-            <div class="performance-breakdown">
-                <p>Correct Answers: <span id="correct-count"></span></p>
-                <p>Incorrect Answers: <span id="incorrect-count"></span></p>
-                <p>Skipped Answers: <span id="skipped-count"></span></p>
+            <h1>TOTAL SCORE</h1>
+            <div class="score-summary">
+                <h2 id="final-score"></h2>
+                <div class="performance-breakdown">
+                    <div class="correct">
+                        <strong>Correct:</strong> <span id="correct-count"></span>
+                    </div>
+                    <div class="incorrect">
+                        <strong>Incorrect:</strong> <span id="incorrect-count"></span>
+                    </div>
+                    <div class="skipped">
+                        <strong>Skipped:</strong> <span id="skipped-count"></span>
+                    </div>
+                </div>
             </div>
-            <div id="correct-answers-summary"></div>
-        </div>
-        <div class="actions">
-            <button onclick="restartQuiz()">Restart Quiz</button>
-            <button onclick="goToHomePage()">Home Page</button>
-            <button onclick="viewLeaderboard()">View Leaderboard</button>
+            <div class="table-container">
+                <table  class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Correct Answer</th>
+                            <th>Explanation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="correct-answers-summary">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="actions">
+                <button><a href="../quiz-page/index.html">Restart Quiz</button>
+                <button><a href="../index.html">Home Page</button>
+                <button><a href="../leaderboard-page/index.html">View Leaderboard</button>
+            </div>
         </div>
     </main> 
     <footer>
