@@ -1,6 +1,5 @@
 import { globalCategories } from "./questions.js";
 
-console.log(globalCategories);
 
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
@@ -55,7 +54,6 @@ nextExplainButton.addEventListener("click", skipQuestion);
 function getCategory(category, categories) {
   let entriesCategoreis = Object.entries(categories);
   return entriesCategoreis.find(function (entrieCategory) {
-    console.log(entrieCategory[0]);
     return entrieCategory[0] == category;
   });
 }
@@ -239,6 +237,9 @@ function setColorTheme() {
     categoryTitle.textContent = "Entretainment";
     body.classList.add("entretainment");
     contentBox.style.backgroundColor = "#A20679";
+  } else{
+    body.innerHTML = ''
+    window.location.href = '../page-not-found/index.html'
   }
 }
 
