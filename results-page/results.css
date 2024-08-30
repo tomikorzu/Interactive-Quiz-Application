@@ -23,9 +23,10 @@ main {
     max-width: 1000px;
     width: 100%;
     text-align: center;
-    overflow-y: auto;
     max-height: 80vh;
+    overflow: hidden;
 }
+
 
 h1, h2{
     color: #fff;
@@ -64,6 +65,13 @@ h1, h2{
 
 .skipped{
     background-color: #FCC413;
+}
+
+.table-container {
+    max-height: 50vh;
+    overflow-y: auto;
+    width: 100%;
+    max-height: 40vh;
 }
 
 .results-table {
