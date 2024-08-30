@@ -122,7 +122,7 @@ h1, h2{
 }
 
 .actions button:hover {
-    background-color: #0ca80a;
+    background-color: #6731CB;
 }
 
 a{
@@ -139,6 +139,10 @@ footer {
     color: #fff;
 }
 
+.copyright {
+    padding: 15px;
+    font-weight: 500;
+}
 
 @media (min-width: 768px){
 
