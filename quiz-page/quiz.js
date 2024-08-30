@@ -1,6 +1,5 @@
 import { globalCategories } from "./questions.js";
 
-console.log(globalCategories);
 
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
@@ -23,6 +22,7 @@ let timer = document.getElementById("timer");
 let explainMenu = document.querySelector(".explain-menu");
 let quitExplainButton = document.getElementById("quit-explain");
 let nextExplainButton = document.getElementById("next-question");
+let backBtn = document.getElementById('back-btn')
 
 let seconds = 15;
 let stopTimer = false;
@@ -52,10 +52,11 @@ quitExplainButton.addEventListener("click", function () {
 });
 nextExplainButton.addEventListener("click", skipQuestion);
 
+backBtn.addEventListener('click', goBack)
+
 function getCategory(category, categories) {
   let entriesCategoreis = Object.entries(categories);
   return entriesCategoreis.find(function (entrieCategory) {
-    console.log(entrieCategory[0]);
     return entrieCategory[0] == category;
   });
 }
@@ -239,7 +240,11 @@ function setColorTheme() {
     categoryTitle.textContent = "Entretainment";
     body.classList.add("entretainment");
     contentBox.style.backgroundColor = "#A20679";
+  } else{
+    body.innerHTML = ''
+    window.location.href = '../page-not-found/index.html'
   }
+  body.classList.add('appear-body')
 }
 
 function setDifficulty() {
@@ -253,6 +258,13 @@ function setDifficulty() {
     levelDifficulty.textContent = "Hard level";
     levelDifficulty.style.color = "#FD0105";
   }
+}
+function goBack(){
+  body.classList.remove('appear-body')
+  body.style.backgroundColor = 'var(--bg-color)'
+  setTimeout(function(){
+    window.location.href = '../index.html'
+  }, 400)
 }
 function applyBlur() {
   main.classList.add("apply-blur");
