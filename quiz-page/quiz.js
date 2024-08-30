@@ -9,6 +9,7 @@ const contentBox = document.querySelector('.content-box')
 
 
 
+
 setColorTheme(selectedCategory)
 setDifficulty(selectedDificulty) 
 
@@ -204,6 +205,7 @@ function setStartQuestionTransition() {
   explainMenu.classList.remove("show");
   quitBlur()
   timer.textContent = seconds;
+  stopTimer = false
   seconds = 15;
   manageTimer();
 }
@@ -321,6 +323,11 @@ function applyBlur() {
 }
 function quitBlur() {
   main.classList.remove("apply-blur");
+}
+function sendResults() {
+  localStorage.setItem("quizPoints", correct);
+  localStorage.setItem("totalQuestions", initialOrder.length);
+  localStorage.setItem("quizSkips", skips);
 }
 
 setQuestion();
