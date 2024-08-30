@@ -16,6 +16,7 @@ let skipButton = document.getElementById("next-question");
 let explanationButton = document.querySelector(".explanation");
 let progress = document.getElementById("progress");
 let progressBar = document.getElementById("progress-bar");
+let progressIcon = document.querySelector(".progress-icon");
 let h2 = document.querySelector("h2");
 let timer = document.getElementById("timer");
 let explainMenu = document.querySelector(".explain-menu");
@@ -23,7 +24,6 @@ let quitExplainButton = document.getElementById("quit-explain");
 let nextExplainButton = document.getElementById("next-question");
 let backBtn = document.getElementById("back-btn");
 let finishMessageMenu = document.createElement("div");
-
 
 let seconds = 15;
 let stopTimer = false;
@@ -101,14 +101,35 @@ function setQuestion() {
     setAnswers(Object.values(question)[0]);
     order.shift();
   } else {
+    setTimeout(function () {
+      progressBar.style.width = "30px";
+      progressBar.style.backgroundColor = 'green'
+    }, 500);
+
+    setTimeout(function(){
+      progressIcon.classList.add("check-icon-appear");
+    },1100)
+
+    setTimeout(function(){
+      progressIcon.classList.remove('check-icon-appear')
+    },1950)
+
+    setTimeout(function () {
+      progressBar.style.position = 'fixed'
+      progressBar.style.width = "100%";
+      progressBar.style.height = "100%";
+      progressBar.classList.add("fullscreen");
+      progress.style.borderRadius = '0'
+    }, 2300);
+
     h2.style.display = "none";
     skipButton.style.display = "none";
     explanationButton.style.display = "None";
     answers.forEach(function (answer) {
       answer.style.display = "none";
     });
-    setFinishMessage()
-    sendResults()
+    setFinishMessage();
+    sendResults();
   }
 }
 
@@ -286,38 +307,38 @@ function setFinishMessage() {
   contentBox.innerHTML = `<h4 class="h2-finish">Congratulations you finished the ${selectedCategory} Quiz</h4><div class="btns-div">
   <button class="btn-finish" id="go-home">Go Home</button><button class="btn-finish" id="go-results">View Results</button><button class="btn-finish" id="go-leaderboard">View Leaderboard</button></div>`;
   let goHomeBtn = document.getElementById("go-home");
-  let goResultsBtn = document.getElementById('go-results')
-  let goLeaderboardBtn = document.getElementById('go-leaderboard')
+  let goResultsBtn = document.getElementById("go-results");
+  let goLeaderboardBtn = document.getElementById("go-leaderboard");
   goHomeBtn.addEventListener("click", goHome);
   goResultsBtn.addEventListener("click", goResults);
   goLeaderboardBtn.addEventListener("click", goLeaderboard);
 }
 
 function goHome() {
-  main.classList.add('hide-main')
-  body.classList.add('change-bg')
-  backBtn.classList.add('hide-back-btn')
-  finishMessageMenu.classList.remove('appear-menu')
-  setTimeout(function(){
+  main.classList.add("hide-main");
+  body.classList.add("change-bg");
+  backBtn.classList.add("hide-back-btn");
+  finishMessageMenu.classList.remove("appear-menu");
+  setTimeout(function () {
     window.location.href = "../index.html";
-  },700)
+  }, 700);
 }
 function goResults() {
-  main.classList.add('hide-main')
-  body.classList.add('change-bg')
-  backBtn.classList.add('hide-back-btn')
-  finishMessageMenu.classList.remove('appear-menu')
-  setTimeout(function(){
+  main.classList.add("hide-main");
+  body.classList.add("change-bg");
+  backBtn.classList.add("hide-back-btn");
+  finishMessageMenu.classList.remove("appear-menu");
+  setTimeout(function () {
     window.location.href = "../results-page/index.html";
-  },700)
+  }, 700);
 }
-function goLeaderboard(){
-  main.classList.add('hide-main')
-  body.classList.add('change-bg')
-  backBtn.classList.add('hide-back-btn')
-  finishMessageMenu.classList.remove('appear-menu')
-  setTimeout(function(){
+function goLeaderboard() {
+  main.classList.add("hide-main");
+  body.classList.add("change-bg");
+  backBtn.classList.add("hide-back-btn");
+  finishMessageMenu.classList.remove("appear-menu");
+  setTimeout(function () {
     window.location.href = "../leaderboard-page/index.html";
-  },700)
+  }, 700);
 }
 setQuestion();
