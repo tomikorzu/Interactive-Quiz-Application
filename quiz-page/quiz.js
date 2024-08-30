@@ -1,6 +1,5 @@
 import { globalCategories } from "./questions.js";
 
-
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
 const body = document.querySelector("body");
@@ -22,14 +21,16 @@ let timer = document.getElementById("timer");
 let explainMenu = document.querySelector(".explain-menu");
 let quitExplainButton = document.getElementById("quit-explain");
 let nextExplainButton = document.getElementById("next-question");
-let backBtn = document.getElementById('back-btn')
+let backBtn = document.getElementById("back-btn");
+let finishMessageMenu = document.createElement("div");
+
 
 let seconds = 15;
 let stopTimer = false;
 let answered = false;
 let userSelection = [];
 let currentExplanation = "";
-let currentDifficulty = selectedDificulty
+let currentDifficulty = selectedDificulty;
 let correctAnswer = "";
 let skips = 0;
 let correct = 0;
@@ -53,7 +54,7 @@ quitExplainButton.addEventListener("click", function () {
 });
 nextExplainButton.addEventListener("click", skipQuestion);
 
-backBtn.addEventListener('click', goBack)
+backBtn.addEventListener("click", goBack);
 
 function getCategory(category, categories) {
   let entriesCategoreis = Object.entries(categories);
@@ -63,9 +64,6 @@ function getCategory(category, categories) {
 }
 
 function getDificulty(dificulty, questions) {
-  console.log(questions[dificulty])
-  console.log(dificulty)
-  console.log(questions)
   return questions[dificulty];
 }
 
@@ -115,7 +113,6 @@ function setQuestion() {
 function setAnswers(question) {
   setStartQuestionTransition();
   let orderAnswer = orderAnswers(Object.keys(question));
-  console.log(orderAnswer)
   correctAnswer = getAnswer(question)[0];
   answers.forEach(function (answer, index) {
     answer.textContent = Object.keys(question)[orderAnswer[index]];
@@ -124,7 +121,7 @@ function setAnswers(question) {
         answered = false;
         userSelection.push({
           [h2.textContent]: [answer.textContent, correctAnswer],
-          explanation: currentExplanation, difficulty: currentDifficulty
+          explanation: currentExplanation,
         });
         setEndQuestionTransition(correctAnswer, answer.textContent);
         if (answer.textContent == correctAnswer) {
@@ -245,11 +242,11 @@ function setColorTheme() {
     categoryTitle.textContent = "Entretainment";
     body.classList.add("entretainment");
     contentBox.style.backgroundColor = "#A20679";
-  } else{
-    body.innerHTML = ''
-    window.location.href = '../page-not-found/index.html'
+  } else {
+    body.innerHTML = "";
+    window.location.href = "../page-not-found/index.html";
   }
-  body.classList.add('appear-body')
+  body.classList.add("appear-body");
 }
 
 function setDifficulty() {
@@ -264,12 +261,12 @@ function setDifficulty() {
     levelDifficulty.style.color = "#FD0105";
   }
 }
-function goBack(){
-  body.classList.remove('appear-body')
-  body.style.backgroundColor = 'var(--bg-color)'
-  setTimeout(function(){
-    window.location.href = '../index.html'
-  }, 400)
+function goBack() {
+  body.classList.remove("appear-body");
+  body.style.backgroundColor = "var(--bg-color)";
+  setTimeout(function () {
+    window.location.href = "../index.html";
+  }, 400);
 }
 function applyBlur() {
   main.classList.add("apply-blur");
@@ -282,4 +279,49 @@ function sendResults() {
   localStorage.setItem("totalQuestions", initialOrder.length);
   localStorage.setItem("quizSkips", skips);
 }
+function setFinishMessage() {
+  applyBlur();
+  finishMessageMenu.classList.add("message-menu");
+  finishMessageMenu.innerHTML = `<h4 class="h2-finish">Congratulations you finished the ${selectedCategory} Quiz</h4><div class="btns-div">
+  <button class="btn-finish" id="go-home">Go Home</button><button class="btn-finish" id="go-results">View Results</button><button class="btn-finish" id="go-leaderboard">View Leaderboard</button></div>`;
+  body.append(finishMessageMenu);
+  setTimeout(function () {
+    finishMessageMenu.classList.add("appear-menu");
+  }, 500);
+  let goHomeBtn = document.getElementById("go-home");
+  let goResultsBtn = document.getElementById('go-results')
+  let goLeaderboardBtn = document.getElementById('go-leaderboard')
+  goHomeBtn.addEventListener("click", goHome);
+  goResultsBtn.addEventListener("click", goResults);
+  goLeaderboardBtn.addEventListener("click", goLeaderboard);
+}
+
+function goHome() {
+  main.classList.add('hide-main')
+  body.classList.add('change-bg')
+  backBtn.classList.add('hide-back-btn')
+  finishMessageMenu.classList.remove('appear-menu')
+  setTimeout(function(){
+    window.location.href = "../index.html";
+  },700)
+}
+function goResults() {
+  main.classList.add('hide-main')
+  body.classList.add('change-bg')
+  backBtn.classList.add('hide-back-btn')
+  finishMessageMenu.classList.remove('appear-menu')
+  setTimeout(function(){
+    window.location.href = "../results-page/index.html";
+  },700)
+}
+function goLeaderboard(){
+  main.classList.add('hide-main')
+  body.classList.add('change-bg')
+  backBtn.classList.add('hide-back-btn')
+  finishMessageMenu.classList.remove('appear-menu')
+  setTimeout(function(){
+    window.location.href = "../leaderboard-page/index.html";
+  },700)
+}
 setQuestion();
+// setFinishMessage();
