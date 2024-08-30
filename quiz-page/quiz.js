@@ -22,6 +22,7 @@ let timer = document.getElementById("timer");
 let explainMenu = document.querySelector(".explain-menu");
 let quitExplainButton = document.getElementById("quit-explain");
 let nextExplainButton = document.getElementById("next-question");
+let backBtn = document.getElementById('back-btn')
 
 let seconds = 15;
 let stopTimer = false;
@@ -50,6 +51,8 @@ quitExplainButton.addEventListener("click", function () {
   explanationButton.style.pointerEvents = "auto";
 });
 nextExplainButton.addEventListener("click", skipQuestion);
+
+backBtn.addEventListener('click', goBack)
 
 function getCategory(category, categories) {
   let entriesCategoreis = Object.entries(categories);
@@ -241,6 +244,7 @@ function setColorTheme() {
     body.innerHTML = ''
     window.location.href = '../page-not-found/index.html'
   }
+  body.classList.add('appear-body')
 }
 
 function setDifficulty() {
@@ -254,6 +258,13 @@ function setDifficulty() {
     levelDifficulty.textContent = "Hard level";
     levelDifficulty.style.color = "#FD0105";
   }
+}
+function goBack(){
+  body.classList.remove('appear-body')
+  body.style.backgroundColor = 'var(--bg-color)'
+  setTimeout(function(){
+    window.location.href = '../index.html'
+  }, 400)
 }
 function applyBlur() {
   main.classList.add("apply-blur");
