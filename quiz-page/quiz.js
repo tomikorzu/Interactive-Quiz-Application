@@ -29,6 +29,7 @@ let stopTimer = false;
 let answered = false;
 let userSelection = [];
 let currentExplanation = "";
+let currentDifficulty = selectedDificulty
 let correctAnswer = "";
 let skips = 0;
 let correct = 0;
@@ -62,6 +63,9 @@ function getCategory(category, categories) {
 }
 
 function getDificulty(dificulty, questions) {
+  console.log(questions[dificulty])
+  console.log(dificulty)
+  console.log(questions)
   return questions[dificulty];
 }
 
@@ -111,6 +115,7 @@ function setQuestion() {
 function setAnswers(question) {
   setStartQuestionTransition();
   let orderAnswer = orderAnswers(Object.keys(question));
+  console.log(orderAnswer)
   correctAnswer = getAnswer(question)[0];
   answers.forEach(function (answer, index) {
     answer.textContent = Object.keys(question)[orderAnswer[index]];
@@ -119,7 +124,7 @@ function setAnswers(question) {
         answered = false;
         userSelection.push({
           [h2.textContent]: [answer.textContent, correctAnswer],
-          explanation: currentExplanation,
+          explanation: currentExplanation, difficulty: currentDifficulty
         });
         setEndQuestionTransition(correctAnswer, answer.textContent);
         if (answer.textContent == correctAnswer) {
