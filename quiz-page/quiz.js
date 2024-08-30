@@ -33,6 +33,7 @@ let currentDifficulty = selectedDificulty
 let correctAnswer = "";
 let skips = 0;
 let correct = 0;
+let incorrect = 0;
 let id = 0;
 
 let category = getCategory(selectedCategory, globalCategories);
@@ -129,6 +130,8 @@ function setAnswers(question) {
         setEndQuestionTransition(correctAnswer, answer.textContent);
         if (answer.textContent == correctAnswer) {
           correct++;
+        }else{
+          incorrect++;
         }
       }
     });
@@ -279,6 +282,7 @@ function quitBlur() {
 }
 function sendResults() {
   localStorage.setItem("quizPoints", correct);
+  localStorage.setItem("quizFailures", incorrect);
   localStorage.setItem("totalQuestions", initialOrder.length);
   localStorage.setItem("quizSkips", skips);
 }
