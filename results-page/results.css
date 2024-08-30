@@ -23,6 +23,8 @@ main {
     max-width: 800px;
     width: 100%;
     text-align: center;
+    overflow-y: auto;
+    max-height: 80vh;
 }
 
 h1, h2{
@@ -64,11 +66,14 @@ h1, h2{
     border-collapse: collapse;
     margin-top: 20px;
     border-radius: 20px;
+    table-layout: fixed;
 }
 
 .results-table th, .results-table td {
     padding: 12px;
     text-align: left;
+    white-space: normal;
+    word-wrap: break-word;
 }
 
 .results-table th {
