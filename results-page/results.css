@@ -68,7 +68,6 @@ h1, h2{
 }
 
 .table-container {
-    max-height: 50vh;
     overflow-y: auto;
     width: 100%;
     max-height: 40vh;
@@ -96,6 +95,15 @@ h1, h2{
 
 .results-table tr:nth-child(even) {
     background-color: #9270D1;
+}
+
+.results-table thead {
+    background-color: #7542D3;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .actions {
