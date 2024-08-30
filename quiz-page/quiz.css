@@ -21,22 +21,13 @@ main{
 
 
 .message-menu{
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 400%);
-  background-color: #473b80;
   padding: 30px;
   display: flex;
+  opacity: 1;
   flex-direction: column;
   gap: 20px;
   align-items: center;
   border-radius: 10px;
-  transition: all .4s;
-}
-.appear-menu{
-  transform: translate(-50%, -50%);  
 }
 .h2-finish{
 }
@@ -47,16 +38,19 @@ main{
 }
 
 .btn-finish{
-  padding: 10px;
-  border-radius: 10px;
+  background-color: #9439a8;
   border: none;
-  background-color: #088417;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: fit-content;
+  font-weight: bold;
+  font-size: 1em;
   color: var(--text-color);
-  transition: all .4s;
+  transition: background .4s;
 }
 
 .btn-finish:hover{
-  background-color: #025a0d;
+  background-color: #742985;
 }
 
 .history{

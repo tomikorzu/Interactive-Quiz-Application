@@ -107,6 +107,8 @@ function setQuestion() {
     answers.forEach(function (answer) {
       answer.style.display = "none";
     });
+    setFinishMessage()
+    sendResults()
   }
 }
 
@@ -280,14 +282,9 @@ function sendResults() {
   localStorage.setItem("quizSkips", skips);
 }
 function setFinishMessage() {
-  applyBlur();
-  finishMessageMenu.classList.add("message-menu");
-  finishMessageMenu.innerHTML = `<h4 class="h2-finish">Congratulations you finished the ${selectedCategory} Quiz</h4><div class="btns-div">
+  contentBox.classList.add("message-menu");
+  contentBox.innerHTML = `<h4 class="h2-finish">Congratulations you finished the ${selectedCategory} Quiz</h4><div class="btns-div">
   <button class="btn-finish" id="go-home">Go Home</button><button class="btn-finish" id="go-results">View Results</button><button class="btn-finish" id="go-leaderboard">View Leaderboard</button></div>`;
-  body.append(finishMessageMenu);
-  setTimeout(function () {
-    finishMessageMenu.classList.add("appear-menu");
-  }, 500);
   let goHomeBtn = document.getElementById("go-home");
   let goResultsBtn = document.getElementById('go-results')
   let goLeaderboardBtn = document.getElementById('go-leaderboard')
@@ -324,4 +321,3 @@ function goLeaderboard(){
   },700)
 }
 setQuestion();
-// setFinishMessage();
