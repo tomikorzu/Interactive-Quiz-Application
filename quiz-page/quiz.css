@@ -17,13 +17,22 @@ main {
 }
 
 .message-menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 400%);
   padding: 30px;
   display: flex;
-  opacity: 1;
+  background-color: #50025f;
   flex-direction: column;
   gap: 20px;
   align-items: center;
   border-radius: 10px;
+  transition: transform .4s;
+}
+
+.show-menu{
+  transform: translate(-50%, -50%);
 }
 .h2-finish {
 }

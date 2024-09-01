@@ -109,26 +109,9 @@ function setQuestion() {
     setTimeout(function(){
       progressIcon.classList.add("check-icon-appear");
     },1100)
-
     setTimeout(function(){
-      progressIcon.classList.remove('check-icon-appear')
-    },1950)
-
-    setTimeout(function () {
-      progressBar.style.position = 'fixed'
-      progressBar.style.width = "100%";
-      progressBar.style.height = "100%";
-      progressBar.classList.add("fullscreen");
-      progress.style.borderRadius = '0'
-    }, 2300);
-
-    h2.style.display = "none";
-    skipButton.style.display = "none";
-    explanationButton.style.display = "None";
-    answers.forEach(function (answer) {
-      answer.style.display = "none";
-    });
-    setFinishMessage();
+      setFinishMessage()
+    }, 1500)
     sendResults();
   }
 }
@@ -303,22 +286,30 @@ function sendResults() {
   localStorage.setItem("quizSkips", skips);
 }
 function setFinishMessage() {
-  contentBox.classList.add("message-menu");
-  contentBox.innerHTML = `<h4 class="h2-finish">Congratulations you finished the ${selectedCategory} Quiz</h4><div class="btns-div">
+  applyBlur()
+  
+  finishMessageMenu.innerHTML = `<h4 class="h2-finish">Congratulations you finished the ${selectedCategory} Quiz</h4><div class="btns-div">
   <button class="btn-finish" id="go-home">Go Home</button><button class="btn-finish" id="go-results">View Results</button><button class="btn-finish" id="go-leaderboard">View Leaderboard</button></div>`;
+  finishMessageMenu.classList.add("message-menu");
+  body.append(finishMessageMenu)
+  setTimeout(function(){
+    finishMessageMenu.classList.add('show-menu')
+  }, 400)
   let goHomeBtn = document.getElementById("go-home");
   let goResultsBtn = document.getElementById("go-results");
   let goLeaderboardBtn = document.getElementById("go-leaderboard");
   goHomeBtn.addEventListener("click", goHome);
   goResultsBtn.addEventListener("click", goResults);
   goLeaderboardBtn.addEventListener("click", goLeaderboard);
+  
 }
+
 
 function goHome() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
   backBtn.classList.add("hide-back-btn");
-  finishMessageMenu.classList.remove("appear-menu");
+  finishMessageMenu.classList.remove("show-menu");
   setTimeout(function () {
     window.location.href = "../index.html";
   }, 700);
@@ -327,7 +318,7 @@ function goResults() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
   backBtn.classList.add("hide-back-btn");
-  finishMessageMenu.classList.remove("appear-menu");
+  finishMessageMenu.classList.remove("show-menu");
   setTimeout(function () {
     window.location.href = "../results-page/index.html";
   }, 700);
@@ -336,7 +327,7 @@ function goLeaderboard() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
   backBtn.classList.add("hide-back-btn");
-  finishMessageMenu.classList.remove("appear-menu");
+  finishMessageMenu.classList.remove("show-menu");
   setTimeout(function () {
     window.location.href = "../leaderboard-page/index.html";
   }, 700);
