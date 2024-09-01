@@ -101,24 +101,24 @@ function setQuestion() {
     setAnswers(Object.values(question)[0]);
     order.shift();
   } else {
-    h2.style.pointerEvents = 'none'
-    answers.forEach(function(answer){
-      answer.style.pointerEvents = 'none'
-    })
-    skipButton.style.pointerEvents = 'none'
-    nextExplainButton.style.pointerEvents = 'none'
-    explanationButton.style.pointerEvents = 'none'
+    h2.style.pointerEvents = "none";
+    answers.forEach(function (answer) {
+      answer.style.pointerEvents = "none";
+    });
+    skipButton.style.pointerEvents = "none";
+    nextExplainButton.style.pointerEvents = "none";
+    explanationButton.style.pointerEvents = "none";
     setTimeout(function () {
       progressBar.style.width = "30px";
-      progressBar.style.backgroundColor = 'green'
+      progressBar.style.backgroundColor = "green";
     }, 500);
 
-    setTimeout(function(){
+    setTimeout(function () {
       progressIcon.classList.add("check-icon-appear");
-    },1100)
-    setTimeout(function(){
-      setFinishMessage()
-    }, 1500)
+    }, 1100);
+    setTimeout(function () {
+      setFinishMessage();
+    }, 1500);
     sendResults();
   }
 }
@@ -293,24 +293,22 @@ function sendResults() {
   localStorage.setItem("quizSkips", skips);
 }
 function setFinishMessage() {
-  applyBlur()
-  
+  applyBlur();
+
   finishMessageMenu.innerHTML = `<h4 class="h2-finish">Congratulations you finished the ${selectedCategory} Quiz</h4><div class="btns-div">
   <button class="btn-finish" id="go-home">Go Home</button><button class="btn-finish" id="go-results">View Results</button><button class="btn-finish" id="go-leaderboard">View Leaderboard</button></div>`;
   finishMessageMenu.classList.add("message-menu");
-  body.append(finishMessageMenu)
-  setTimeout(function(){
-    finishMessageMenu.classList.add('show-menu')
-  }, 400)
+  body.append(finishMessageMenu);
+  setTimeout(function () {
+    finishMessageMenu.classList.add("show-menu");
+  }, 400);
   let goHomeBtn = document.getElementById("go-home");
   let goResultsBtn = document.getElementById("go-results");
   let goLeaderboardBtn = document.getElementById("go-leaderboard");
   goHomeBtn.addEventListener("click", goHome);
   goResultsBtn.addEventListener("click", goResults);
   goLeaderboardBtn.addEventListener("click", goLeaderboard);
-  
 }
-
 
 function goHome() {
   main.classList.add("hide-main");
