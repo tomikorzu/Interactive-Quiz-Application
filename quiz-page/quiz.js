@@ -101,6 +101,13 @@ function setQuestion() {
     setAnswers(Object.values(question)[0]);
     order.shift();
   } else {
+    h2.style.pointerEvents = 'none'
+    answers.forEach(function(answer){
+      answer.style.pointerEvents = 'none'
+    })
+    skipButton.style.pointerEvents = 'none'
+    nextExplainButton.style.pointerEvents = 'none'
+    explanationButton.style.pointerEvents = 'none'
     setTimeout(function () {
       progressBar.style.width = "30px";
       progressBar.style.backgroundColor = 'green'
