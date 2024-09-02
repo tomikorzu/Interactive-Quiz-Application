@@ -4,7 +4,8 @@ const body = document.querySelector("body");
 const main = document.querySelector("main");
 const selecterContent = document.createElement("div");
 startBtn.addEventListener("click", viewCategories);
-localStorage.clear();
+localStorage.removeItem('difficult');
+localStorage.removeItem('preferences');
 
 function viewCategories() {
   startBtn.style.pointerEvents = "none";
