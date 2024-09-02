@@ -2,6 +2,7 @@ const startBtn = document.getElementById("start-btn");
 const selecter = document.getElementById("selecter");
 const body = document.querySelector("body");
 const main = document.querySelector("main");
+const footer = document.querySelector("footer");
 const selecterContent = document.createElement("div");
 startBtn.addEventListener("click", viewCategories);
 localStorage.clear()
@@ -76,9 +77,11 @@ function goBack() {
 
 function applyBlur() {
   main.classList.add("apply-blur");
+  footer.classList.add('apply-blur')
 }
 function quitBlur() {
   main.classList.remove("apply-blur");
+  footer.classList.remove('apply-blur')
 }
 
 function transitionRedirect(url) {
