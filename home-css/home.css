@@ -6,17 +6,17 @@ body {
   justify-content: center;
   margin: 0;
   color: #f5f5f5;
-  transition: opacity .4s;
+  transition: opacity 0.4s;
   animation: preload 1s;
 }
-.transition-page{
+.transition-page {
   opacity: 0;
 }
-@keyframes preload{
-  from{
+@keyframes preload {
+  from {
     opacity: 0;
   }
-  to{
+  to {
     opacity: 1;
   }
 }
@@ -50,9 +50,7 @@ main {
   color: var(--text-color);
   margin-top: 10px;
 }
-.home-button:hover {
-  background-color: #025a0d;
-}
+
 .select-category {
   border-radius: 10px;
   padding: 40px 15px;
@@ -65,7 +63,6 @@ main {
   z-index: 2;
   transition: transform 0.4s 0.2s;
   opacity: 0;
-  
 }
 .selecter-show {
   transform: translateY(-50%);
@@ -83,7 +80,7 @@ main {
   transition: all 0.4s 2s;
 }
 
-.category-selecter{
+.category-selecter {
   animation: appearDifficult 1s;
 }
 .selecter-content-show {
@@ -104,9 +101,7 @@ main {
   color: #ffffff90;
   transition: all 0.4s;
 }
-.quit-icon:hover {
-  color: #fff;
-}
+
 .h2-category {
   margin-top: 15px;
 }
@@ -134,50 +129,33 @@ main {
 .science-btn {
   background-color: #28a506;
 }
-.science-btn:hover {
-  background-color: #1d8500;
-}
+
 .history-btn {
   background-color: #067ba5;
 }
-.history-btn:hover {
-  background-color: #015979;
-}
+
 .geography-btn {
   background-color: #2006a5;
 }
-.geography-btn:hover {
-  background-color: #160371;
-}
+
 .entretainment-btn {
   background-color: #a605af;
 }
-.entretainment-btn:hover {
-  background-color: #700176;
-}
+
 .art-btn {
   background-color: #d3080b;
 }
-.art-btn:hover {
-  background-color: #9a0508;
-}
+
 .easy-btn {
   background-color: #01b66e;
 }
-.easy-btn:hover {
-  background-color: #068653;
-}
+
 .medium-btn {
   background-color: #ba8b00;
 }
-.medium-btn:hover {
-  background-color: #836303;
-}
+
 .difficult-btn {
   background-color: #d91b1e;
-}
-.difficult-btn:hover {
-  background-color: #a40003;
 }
 .back-btn {
   position: fixed;
@@ -192,9 +170,7 @@ main {
   transition: all 0.4s;
   color: #ffffff90;
 }
-.back-icon:hover {
-  color: #fff;
-}
+
 footer {
   position: fixed;
   bottom: 0;
@@ -208,7 +184,7 @@ footer {
   font-weight: 500;
 }
 
-.alert-menu{
+.alert-menu {
   position: fixed;
   bottom: 25px;
   right: 15px;
@@ -222,30 +198,28 @@ footer {
   0% {
     opacity: 0;
   }
-  50%{
+  50% {
     opacity: 1;
   }
-  100%{
+  100% {
     opacity: 0;
   }
 }
-.h4-alert{
-
+.h4-alert {
 }
-.p-alert{
-
+.p-alert {
 }
 
 @keyframes appearDifficult {
   from {
     opacity: 0;
   }
-  to{
+  to {
     opacity: 1;
   }
 }
 
-.input-name{
+.input-name {
   outline: none;
   border-radius: 5px;
   border: none;
@@ -253,12 +227,9 @@ footer {
   width: 100%;
 }
 
-.btn-submit-name{
+.btn-submit-name {
   background-color: #088417;
   cursor: pointer;
-}
-.btn-submit-name:hover{
-  background-color: #025a0d;
 }
 
 @media (min-width: 768px) {
@@ -292,10 +263,10 @@ footer {
   }
   .entretainment-btn {
   }
-  .difficult-menu{
+  .difficult-menu {
     padding: 40px;
   }
-  
+
   .art-btn {
   }
   .easy-btn {
@@ -311,6 +282,42 @@ footer {
 }
 
 @media (min-width: 1024px) {
+  .home-button:hover {
+    background-color: #025a0d;
+  }
+  .quit-icon:hover {
+    color: #fff;
+  }
+  .science-btn:hover {
+    background-color: #1d8500;
+  }
+  .history-btn:hover {
+    background-color: #015979;
+  }
+  .geography-btn:hover {
+    background-color: #160371;
+  }
+  .entretainment-btn:hover {
+    background-color: #700176;
+  }
+  .art-btn:hover {
+    background-color: #9a0508;
+  }
+  .btn-submit-name:hover {
+    background-color: #025a0d;
+  }
+  .back-icon:hover {
+    color: #fff;
+  }
+  .difficult-btn:hover {
+    background-color: #a40003;
+  }
+  .medium-btn:hover {
+    background-color: #836303;
+  }
+  .easy-btn:hover {
+    background-color: #068653;
+  }
   body {
   }
   main {
