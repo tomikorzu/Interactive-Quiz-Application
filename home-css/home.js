@@ -2,6 +2,7 @@ const startBtn = document.getElementById("start-btn");
 const selecter = document.getElementById("selecter");
 const body = document.querySelector("body");
 const main = document.querySelector("main");
+const footer = document.querySelector("footer");
 const selecterContent = document.createElement("div");
 startBtn.addEventListener("click", viewCategories);
 localStorage.clear()
@@ -76,9 +77,11 @@ function goBack() {
 
 function applyBlur() {
   main.classList.add("apply-blur");
+  footer.classList.add('apply-blur')
 }
 function quitBlur() {
   main.classList.remove("apply-blur");
+  footer.classList.remove('apply-blur')
 }
 
 function transitionRedirect(url) {
@@ -105,7 +108,7 @@ function askUserName (){
   submitName.classList.add('btn-category');
   selecterContent.classList.add("selecter-content-show");
   const backUserMenu = document.getElementById('go-back-btn');
-  backUserMenu.addEventListener('click', selectDificult);
+  backUserMenu.addEventListener('click', goBack);
   const quitUserMenu = document.getElementById('quit-user-menu');
   quitUserMenu.addEventListener('click', quitSelecter);
   submitName.addEventListener('click', submitNameFunction);
@@ -114,9 +117,19 @@ function askUserName (){
 function submitNameFunction() {
   let userName = document.getElementById('input-name').value;
   if(userName === ''){
-    alert('Please enter your name');
+    userAlert('Please enter your name');
   } else {
     localStorage.setItem('userName', userName);
     transitionRedirect('./quiz-page/index.html');
   }
+}
+
+function userAlert(alert){
+  let alertDiv = document.createElement('div');
+  alertDiv.classList.add('alert-menu');
+  alertDiv.innerHTML = `<h4 class="h4-alert">Alert</h4><p class="p-alert">${alert}</p>`;
+  body.append(alertDiv);
+  setTimeout(function(){
+    alertDiv.remove();
+  }, 3000)
 }

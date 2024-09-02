@@ -31,10 +31,12 @@ main {
 }
 .h1-home {
   font-size: 1.65em;
+  text-align: center;
 }
 .h2-home {
   color: #ffffff70;
   font-size: 1.25em;
+  text-align: center;
 }
 .home-button {
   background-color: #088417;
@@ -59,7 +61,7 @@ main {
   transform: translateY(400%);
   background-color: #330769;
   margin: 10px;
-  max-width: 450px;
+  max-width: 400px;
   z-index: 2;
   transition: transform 0.4s 0.2s;
   opacity: 0;
@@ -204,6 +206,34 @@ footer {
 .copyright {
   padding: 15px;
   font-weight: 500;
+}
+
+.alert-menu{
+  position: fixed;
+  bottom: 25px;
+  right: 15px;
+  background-color: #330769;
+  padding: 10px;
+  border-radius: 10px;
+  animation: alertMenu 3s;
+}
+
+@keyframes alertMenu {
+  0% {
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+.h4-alert{
+
+}
+.p-alert{
+
 }
 
 @keyframes appearDifficult {
