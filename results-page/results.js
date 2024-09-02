@@ -2,7 +2,8 @@ let accumulatedPoints = localStorage.getItem('quizPoints') || 0;
 let totalQuestions = localStorage.getItem('totalQuestions') || 0;
 let incorrectAnswers = localStorage.getItem('quizFailures') || 0;
 let skippedAnswers = localStorage.getItem('quizSkips') || 0;
-let correctAnswers = JSON.parse(localStorage.getItem('correctAnswers')) || [];
+let correctAnswers = localStorage.getItem('correctAnswers') || 0;
+let maxPoints = localStorage.getItem('maxPoints');
 
 
 window.onload = function(){
@@ -11,22 +12,22 @@ window.onload = function(){
 }
 
 function perfomanceList(){
-    document.getElementById('final-score').innerText = `${accumulatedPoints} / ${totalQuestions}`;
-    document.getElementById('correct-count').innerText = `${accumulatedPoints}`;
+    document.getElementById('final-score').innerText = `${accumulatedPoints} / ${maxPoints}`;
+    document.getElementById('correct-count').innerText = `${correctAnswers}`;
     document.getElementById('incorrect-count').innerText = `${incorrectAnswers}`;
     document.getElementById('skipped-count').innerText = `${skippedAnswers}`;
 }
 
-correctAnswers = [
-    {question: "Pregunta 1",
-        correctAnswer: "Respuesta correcta",
-        explanation: "Explicaciooooooooooooooooooo0000000000000000000000000n",
-    },
-    {question: "Pregunta 2",
-        correctAnswer: "Respuesta correcta",
-        explanation: "Explicaciooooooooooooooooooo0000000000000000000000000n",
-    }
-]
+// correctAnswers = [
+//     {question: "Pregunta 1",
+//         correctAnswer: "Respuesta correcta",
+//         explanation: "Explicaciooooooooooooooooooo0000000000000000000000000n",
+//     },
+//     {question: "Pregunta 2",
+//         correctAnswer: "Respuesta correcta",
+//         explanation: "Explicaciooooooooooooooooooo0000000000000000000000000n",
+//     }
+// ]
 
 function summary(){
     let correctAnswersSummary = document.getElementById('correct-answers-summary');
