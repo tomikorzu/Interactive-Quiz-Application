@@ -114,9 +114,19 @@ function askUserName (){
 function submitNameFunction() {
   let userName = document.getElementById('input-name').value;
   if(userName === ''){
-    alert('Please enter your name');
+    userAlert('Please enter your name');
   } else {
     localStorage.setItem('userName', userName);
     transitionRedirect('./quiz-page/index.html');
   }
+}
+
+function userAlert(alert){
+  let alertDiv = document.createElement('div');
+  alertDiv.classList.add('alert-menu');
+  alertDiv.innerHTML = `<h4 class="h4-alert">Alert</h4><p class="p-alert">${alert}</p>`;
+  body.append(alertDiv);
+  setTimeout(function(){
+    alertDiv.remove();
+  }, 3000)
 }
