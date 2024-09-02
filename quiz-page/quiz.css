@@ -209,7 +209,7 @@ body {
 }
 
 .explanation {
-  color: black;
+  color: #222;
   background-color: #c8be00;
   font-weight: bold;
   transition: all 0.4s;
@@ -317,6 +317,7 @@ body {
   border: none;
   border-radius: 10px;
   background-color: #00b759;
+  color: #222;
   font-weight: bold;
   transition: all 0.4s;
   cursor: pointer;
