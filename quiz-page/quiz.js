@@ -2,6 +2,7 @@ import { globalCategories } from "./questions.js";
 
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
+let userName = localStorage.getItem("userName");
 const body = document.querySelector("body");
 const main = document.querySelector("main");
 const categoryTitle = document.querySelector(".category-tittle");
@@ -292,6 +293,7 @@ function sendResults() {
   localStorage.setItem("quizPoints", correct);
   localStorage.setItem("totalQuestions", initialOrder.length);
   localStorage.setItem("quizSkips", skips);
+  localStorage.setItem("user", userName);
 }
 function setFinishMessage() {
   applyBlur();
