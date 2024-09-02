@@ -2,6 +2,7 @@ import { globalCategories } from "./questions.js";
 
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
+let userName = localStorage.getItem("userName");
 const body = document.querySelector("body");
 const main = document.querySelector("main");
 const categoryTitle = document.querySelector(".category-tittle");
@@ -10,6 +11,7 @@ const contentBox = document.querySelector(".content-box");
 
 setColorTheme(selectedCategory);
 setDifficulty(selectedDificulty);
+
 
 let answers = document.querySelectorAll(".answer");
 let skipButton = document.getElementById("next-question");
@@ -291,6 +293,7 @@ function sendResults() {
   localStorage.setItem("quizPoints", correct);
   localStorage.setItem("totalQuestions", initialOrder.length);
   localStorage.setItem("quizSkips", skips);
+  localStorage.setItem("user", userName);
 }
 function setFinishMessage() {
   applyBlur();
@@ -337,4 +340,6 @@ function goLeaderboard() {
     window.location.href = "../leaderboard-page/index.html";
   }, 700);
 }
+
+
 setQuestion();
