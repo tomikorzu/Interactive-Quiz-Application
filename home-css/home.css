@@ -31,10 +31,12 @@ main {
 }
 .h1-home {
   font-size: 1.65em;
+  text-align: center;
 }
 .h2-home {
   color: #ffffff70;
   font-size: 1.25em;
+  text-align: center;
 }
 .home-button {
   background-color: #088417;
