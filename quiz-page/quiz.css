@@ -9,11 +9,12 @@ body {
 }
 
 main {
-  margin-top: 40px;
   transition: all 0.4s;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 .hide-main {
   opacity: 0;
@@ -324,6 +325,20 @@ body {
 @media (min-width: 768px) {
 }
 @media (min-width: 1024px) {
+  .content-box{
+    max-width: none;
+    width: 90%;
+  }
+  .question-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
+  }
+  .answer {
+    width: 49%;
+    overflow: hidden;
+  }
   .back-btn:hover {
     background-color: #5d5d5d;
   }
