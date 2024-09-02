@@ -9,8 +9,12 @@ body {
 }
 
 main {
-  margin-top: 40px;
   transition: all 0.4s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 .hide-main {
   opacity: 0;
@@ -28,18 +32,23 @@ main {
   gap: 20px;
   align-items: center;
   border-radius: 10px;
-  transition: transform .4s;
+  transition: transform 0.4s;
+  width: 80%;
+  max-width: 600px;
 }
 
-.show-menu{
+.show-menu {
   transform: translate(-50%, -50%);
 }
 .h2-finish {
+  text-align: center;
 }
 
 .btns-div {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
 }
 
 .btn-finish {
@@ -49,13 +58,9 @@ main {
   padding: 10px;
   max-width: fit-content;
   font-weight: bold;
-  font-size: 1em;
+  font-size: .75em;
   color: var(--text-color);
   transition: background 0.4s;
-}
-
-.btn-finish:hover {
-  background-color: #742985;
 }
 
 .history {
@@ -74,7 +79,7 @@ main {
   background-color: #580041;
 }
 .back-btn {
-  position: fixed;
+  position: absolute;
   top: 10px;
   left: 10px;
   background-color: transparent;
@@ -83,10 +88,6 @@ main {
   border-radius: 100%;
   animation: backBtn 1s;
   transition: background 0.4s;
-}
-
-.back-btn:hover {
-  background-color: #5d5d5d;
 }
 
 @keyframes backBtn {
@@ -104,7 +105,7 @@ main {
 }
 .category {
   text-align: center;
-  padding-bottom: 30px;
+  padding-bottom: 15px;
 }
 .category-tittle {
   font-size: 32px;
@@ -115,10 +116,6 @@ main {
   font-size: 24px;
 }
 
-#progress-container {
-  display: flex;
-  justify-content: center;
-}
 
 body {
   height: 100%;
@@ -135,6 +132,8 @@ body {
   border-radius: 15px;
   background-color: grey;
   margin: 20px;
+  padding: 0 20px;
+  max-width: fit-content;
 }
 
 .timer {
@@ -155,7 +154,7 @@ body {
 }
 
 .question {
-  font-size: 24px;
+  font-size: 1.25em;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -168,7 +167,6 @@ body {
 }
 .answer {
   display: block;
-  font-size: 16px;
   cursor: pointer;
   border-radius: 10px;
   border: none;
@@ -177,10 +175,6 @@ body {
   font-weight: bold;
   padding: 10px;
   transition: all 0.4s;
-}
-
-.answer:hover {
-  background-color: #b2b2b2;
 }
 
 .correct {
@@ -194,7 +188,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 10px;
-  padding: 30px 0px;
+  padding: 20px 0px;
   width: 100%;
 }
 
@@ -210,14 +204,10 @@ body {
 
 .explanation {
   color: #222;
-  background-color: #c8be00;
+  background-color: #fff541;
   font-weight: bold;
   transition: all 0.4s;
   cursor: pointer;
-}
-
-.explanation:hover {
-  background-color: #af9e01;
 }
 
 #progress-bar {
@@ -225,7 +215,7 @@ body {
   width: 90%;
   background-color: grey;
   border-radius: 25px;
-  transition: all .5s;
+  transition: all 0.5s;
   clip-path: inset(0 0 0 0);
   position: relative;
 }
@@ -240,7 +230,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   transition: opacity 0.4s;
   color: #fff;
 }
@@ -262,7 +252,7 @@ body {
 
 .explain-menu {
   position: fixed;
-  background-color: #dcc600;
+  background-color: #d3d337;
   display: none;
   flex-direction: column;
   align-items: center;
@@ -274,6 +264,8 @@ body {
   border-radius: 10px;
   padding: 20px;
   gap: 10px;
+  width: 80%;
+  max-width: 500px;
   transition: all 0.4s;
 }
 
@@ -290,11 +282,11 @@ body {
   color: #333;
 }
 .text-explain {
+  text-align: center;
 }
 .buttons {
   display: flex;
   gap: 10px;
-  font-size: 20px;
 }
 #quit-explain {
   border: none;
@@ -309,9 +301,7 @@ body {
   color: #555;
   transition: all 0.4s;
 }
-.icon-quit:hover {
-  color: #222;
-}
+
 #next-question {
   padding: 10px;
   border: none;
@@ -321,9 +311,6 @@ body {
   font-weight: bold;
   transition: all 0.4s;
   cursor: pointer;
-}
-#next-question:hover {
-  background-color: #039d4e;
 }
 
 .change-bg {
@@ -338,6 +325,38 @@ body {
 @media (min-width: 768px) {
 }
 @media (min-width: 1024px) {
+  .content-box{
+    max-width: none;
+    width: 90%;
+  }
+  .question-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
+  }
+  .answer {
+    width: 49%;
+    overflow: hidden;
+  }
+  .back-btn:hover {
+    background-color: #5d5d5d;
+  }
+  .answer:hover {
+    background-color: #b2b2b2;
+  }
+  .explanation:hover {
+    background-color: #d6c52d;
+  }
+  .icon-quit:hover {
+    color: #222;
+  }
+  .btn-finish:hover {
+    background-color: #742985;
+  }
+  #next-question:hover {
+    background-color: #039d4e;
+  }
 }
 @media (min-width: 1440px) {
 }
