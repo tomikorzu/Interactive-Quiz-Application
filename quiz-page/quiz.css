@@ -28,10 +28,10 @@ main {
   gap: 20px;
   align-items: center;
   border-radius: 10px;
-  transition: transform .4s;
+  transition: transform 0.4s;
 }
 
-.show-menu{
+.show-menu {
   transform: translate(-50%, -50%);
 }
 .h2-finish {
@@ -54,10 +54,6 @@ main {
   transition: background 0.4s;
 }
 
-.btn-finish:hover {
-  background-color: #742985;
-}
-
 .history {
   background-color: #003346;
 }
@@ -74,7 +70,7 @@ main {
   background-color: #580041;
 }
 .back-btn {
-  position: fixed;
+  position: absolute;
   top: 10px;
   left: 10px;
   background-color: transparent;
@@ -83,10 +79,6 @@ main {
   border-radius: 100%;
   animation: backBtn 1s;
   transition: background 0.4s;
-}
-
-.back-btn:hover {
-  background-color: #5d5d5d;
 }
 
 @keyframes backBtn {
@@ -179,10 +171,6 @@ body {
   transition: all 0.4s;
 }
 
-.answer:hover {
-  background-color: #b2b2b2;
-}
-
 .correct {
   background-color: #04ff00;
 }
@@ -216,16 +204,12 @@ body {
   cursor: pointer;
 }
 
-.explanation:hover {
-  background-color: #af9e01;
-}
-
 #progress-bar {
   height: 30px;
   width: 90%;
   background-color: grey;
   border-radius: 25px;
-  transition: all .5s;
+  transition: all 0.5s;
   clip-path: inset(0 0 0 0);
   position: relative;
 }
@@ -240,7 +224,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   transition: opacity 0.4s;
   color: #fff;
 }
@@ -309,9 +293,7 @@ body {
   color: #555;
   transition: all 0.4s;
 }
-.icon-quit:hover {
-  color: #222;
-}
+
 #next-question {
   padding: 10px;
   border: none;
@@ -321,9 +303,6 @@ body {
   font-weight: bold;
   transition: all 0.4s;
   cursor: pointer;
-}
-#next-question:hover {
-  background-color: #039d4e;
 }
 
 .change-bg {
@@ -338,6 +317,24 @@ body {
 @media (min-width: 768px) {
 }
 @media (min-width: 1024px) {
+  .back-btn:hover {
+    background-color: #5d5d5d;
+  }
+  .answer:hover {
+    background-color: #b2b2b2;
+  }
+  .explanation:hover {
+    background-color: #af9e01;
+  }
+  .icon-quit:hover {
+    color: #222;
+  }
+  .btn-finish:hover {
+    background-color: #742985;
+  }
+  #next-question:hover {
+    background-color: #039d4e;
+  }
 }
 @media (min-width: 1440px) {
 }
