@@ -1,5 +1,23 @@
 let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 
+function updatePodium() {
+    const podiumSpots = [
+        { element: document.getElementById('first'), position: 0 },
+        { element: document.getElementById('second'), position: 1 },
+        { element: document.getElementById('third'), position: 2 }
+    ];
+
+    for (let spot of podiumSpots) {
+        if (leaderboard[spot.position]) {
+            spot.element.querySelector('.podium-name').textContent = leaderboard[spot.position].name;
+            spot.element.querySelector('.podium-score').textContent = leaderboard[spot.position].score;
+        } else {
+            spot.element.querySelector('.podium-name').textContent = '';
+            spot.element.querySelector('.podium-score').textContent = '';
+        }
+    }
+}
+
 function updateLeaderboard() {
     let leaderboardTable = document.querySelector("#leaderboard tbody");
     leaderboardTable.innerHTML = '';
@@ -25,6 +43,7 @@ function updateLeaderboard() {
 
         leaderboardTable.appendChild(row);
     }
+    updatePodium();
 }
 
 function order(){

@@ -17,16 +17,16 @@ function perfomanceList(){
     document.getElementById('skipped-count').innerText = `${skippedAnswers}`;
 }
 
-// correctAnswers = [
-//     {question: "Pregunta 1",
-//         correctAnswer: "Respuesta correcta",
-//         explanation: "Explicaciooooooooooooooooooo0000000000000000000000000n",
-//     },
-//     {question: "Pregunta 2",
-//         correctAnswer: "Respuesta correcta",
-//         explanation: "Explicaciooooooooooooooooooo0000000000000000000000000n",
-//     }
-// ]
+correctAnswers = [
+    {question: "Pregunta 1",
+        correctAnswer: "Respuesta correcta",
+        explanation: "Explicaciooooooooooooooooooo0000000000000000000000000n",
+    },
+    {question: "Pregunta 2",
+        correctAnswer: "Respuesta correcta",
+        explanation: "Explicaciooooooooooooooooooo0000000000000000000000000n",
+    }
+]
 
 function summary(){
     let correctAnswersSummary = document.getElementById('correct-answers-summary');
