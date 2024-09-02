@@ -1,5 +1,4 @@
 let accumulatedPoints = localStorage.getItem('quizPoints') || 0;
-let totalQuestions = localStorage.getItem('totalQuestions') || 0;
 let incorrectAnswers = localStorage.getItem('quizFailures') || 0;
 let skippedAnswers = localStorage.getItem('quizSkips') || 0;
 let correctAnswers = localStorage.getItem('correctAnswers') || 0;
