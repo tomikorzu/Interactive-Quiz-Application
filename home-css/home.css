@@ -88,7 +88,8 @@ main {
   opacity: 1;
 }
 #quit-btn,
-#exit-btn {
+#exit-btn,
+#quit-user-menu {
   position: fixed;
   right: 5px;
   top: 5px;
@@ -212,6 +213,22 @@ footer {
   to{
     opacity: 1;
   }
+}
+
+.input-name{
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  width: 100%;
+}
+
+.btn-submit-name{
+  background-color: #088417;
+  cursor: pointer;
+}
+.btn-submit-name:hover{
+  background-color: #025a0d;
 }
 
 @media (min-width: 768px) {

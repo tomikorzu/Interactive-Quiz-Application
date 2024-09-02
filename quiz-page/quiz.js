@@ -11,6 +11,7 @@ const contentBox = document.querySelector(".content-box");
 setColorTheme(selectedCategory);
 setDifficulty(selectedDificulty);
 
+
 let answers = document.querySelectorAll(".answer");
 let skipButton = document.getElementById("next-question");
 let explanationButton = document.querySelector(".explanation");
@@ -337,4 +338,6 @@ function goLeaderboard() {
     window.location.href = "../leaderboard-page/index.html";
   }, 700);
 }
+
+
 setQuestion();

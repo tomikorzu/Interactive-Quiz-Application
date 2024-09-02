@@ -58,7 +58,8 @@ function selectDificult() {
   difficultyBtn.forEach(function (btn, index) {
     btn.addEventListener("click", function () {
       localStorage.setItem("difficult", index);
-      transitionRedirect('./quiz-page/index.html')
+      askUserName();
+      // transitionRedirect('./quiz-page/index.html')
     });
   });
 }
@@ -89,4 +90,34 @@ function transitionRedirect(url) {
   setTimeout(function(){
     body.classList.remove('transition-page')
   }, 2000)
+}
+
+function askUserName (){
+  selecter.innerHTML = "";
+  selecterContent.innerHTML = `
+  <button class="back-btn" id="go-back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button><button id="quit-user-menu"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category">Enter your name</h3>
+  <input type="text" class="input-name
+  " id="input-name" palceholder="Type your name">
+  <button class="btn-submit-name" id="submit-name">Submit</button>`;
+  selecter.append(selecterContent);
+  selecter.classList.add("selecter-show");
+  let inputName = document.getElementById('input-name');
+  const submitName = document.getElementById('submit-name');
+  submitName.classList.add('btn-category');
+  selecterContent.classList.add("selecter-content-show");
+  const backUserMenu = document.getElementById('go-back-btn');
+  backUserMenu.addEventListener('click', selectDificult);
+  const quitUserMenu = document.getElementById('quit-user-menu');
+  quitUserMenu.addEventListener('click', quitSelecter);
+  submitName.addEventListener('click', submitNameFunction);
+}
+
+function submitNameFunction() {
+  let userName = document.getElementById('input-name').value;
+  if(userName === ''){
+    alert('Please enter your name');
+  } else {
+    localStorage.setItem('userName', userName);
+    transitionRedirect('./quiz-page/index.html');
+  }
 }
