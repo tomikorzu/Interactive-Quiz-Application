@@ -105,7 +105,7 @@ function askUserName (){
   submitName.classList.add('btn-category');
   selecterContent.classList.add("selecter-content-show");
   const backUserMenu = document.getElementById('go-back-btn');
-  backUserMenu.addEventListener('click', selectDificult);
+  backUserMenu.addEventListener('click', goBack);
   const quitUserMenu = document.getElementById('quit-user-menu');
   quitUserMenu.addEventListener('click', quitSelecter);
   submitName.addEventListener('click', submitNameFunction);
