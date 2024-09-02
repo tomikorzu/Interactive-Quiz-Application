@@ -31,6 +31,41 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.podium{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    text-align: center;
+    align-items: flex-end;
+}
+
+.podium-spot{
+    border: solid 1px;
+    border-radius: 10px 10px 0px 0px;
+    background-color: #330769;
+    color: #fff;
+    width: 100px;
+    position: relative;
+}
+
+#first .podium-spot{
+    height: 120px;
+}
+
+#second .podium-spot{
+    height: 100px;
+}
+
+#third .podium-spot{
+    height: 90px;
+}
+
+.podium-score{
+    position: absolute;
+    right: px;
+    bottom: 10px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
