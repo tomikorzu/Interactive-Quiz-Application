@@ -32,17 +32,22 @@ main {
   align-items: center;
   border-radius: 10px;
   transition: transform 0.4s;
+  width: 80%;
+  max-width: 600px;
 }
 
 .show-menu {
   transform: translate(-50%, -50%);
 }
 .h2-finish {
+  text-align: center;
 }
 
 .btns-div {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
 }
 
 .btn-finish {
@@ -52,7 +57,7 @@ main {
   padding: 10px;
   max-width: fit-content;
   font-weight: bold;
-  font-size: 1em;
+  font-size: .75em;
   color: var(--text-color);
   transition: background 0.4s;
 }
@@ -198,7 +203,7 @@ body {
 
 .explanation {
   color: #222;
-  background-color: #c8be00;
+  background-color: #fff541;
   font-weight: bold;
   transition: all 0.4s;
   cursor: pointer;
@@ -246,7 +251,7 @@ body {
 
 .explain-menu {
   position: fixed;
-  background-color: #dcc600;
+  background-color: #d3d337;
   display: none;
   flex-direction: column;
   align-items: center;
@@ -258,6 +263,8 @@ body {
   border-radius: 10px;
   padding: 20px;
   gap: 10px;
+  width: 80%;
+  max-width: 500px;
   transition: all 0.4s;
 }
 
@@ -274,6 +281,7 @@ body {
   color: #333;
 }
 .text-explain {
+  text-align: center;
 }
 .buttons {
   display: flex;
@@ -323,7 +331,7 @@ body {
     background-color: #b2b2b2;
   }
   .explanation:hover {
-    background-color: #af9e01;
+    background-color: #d6c52d;
   }
   .icon-quit:hover {
     color: #222;
