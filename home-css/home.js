@@ -99,7 +99,7 @@ function askUserName (){
   selecterContent.innerHTML = `
   <button class="back-btn" id="go-back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button><button id="quit-user-menu"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category">Enter your name</h3>
   <input type="text" class="input-name
-  " id="input-name" palceholder="Type your name">
+  " id="input-name" placeholder="Type your name">
   <button class="btn-submit-name" id="submit-name">Submit</button>`;
   selecter.append(selecterContent);
   selecter.classList.add("selecter-show");

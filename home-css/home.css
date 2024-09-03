@@ -220,11 +220,13 @@ footer {
 }
 
 .input-name {
+  color: #f5f5f5;
   outline: none;
   border-radius: 5px;
-  border: none;
+  border: 1px solid #ffffff60;
   padding: 10px;
   width: 100%;
+  background-color: #270156;
 }
 
 .btn-submit-name {
