@@ -3,7 +3,7 @@ let incorrectAnswers = localStorage.getItem('quizFailures') || 0;
 let skippedAnswers = localStorage.getItem('quizSkips') || 0;
 let correctAnswers = localStorage.getItem('correctAnswers') || 0;
 let maxPoints = localStorage.getItem('maxPoints');
-let correctAnswersSum = JSON.parse(localStorage.getItem('correctAnswersSummary'));
+let correctAnswersSummary = JSON.parse(localStorage.getItem('correctAnswersSummary'));
 
 window.onload = function(){
     perfomanceList();
@@ -18,13 +18,13 @@ function perfomanceList(){
 }
 
 function summary(){
-    let correctAnswersSummary = document.getElementById('correct-answers-summary');
-    correctAnswersSummary.innerHTML = '';
-    correctAnswersSum.forEach(item => {
+    let tableCorrectAnswers = document.getElementById('correct-answers-summary');
+    tableCorrectAnswers.innerHTML = '';
+    correctAnswersSummary.forEach(item => {
         let answer = Object.values(item)[0];
         let row = document.createElement('tr');
         
-        let questionCell = document.createElement('td');
+        let questionCell = document.createElement('td')
         questionCell.textContent = Object.keys(item)[0];
         row.appendChild(questionCell);
 
@@ -36,6 +36,6 @@ function summary(){
         explanationCell.textContent = item.explanation;
         row.appendChild(explanationCell);
 
-        correctAnswersSummary.append(row);
+        tableCorrectAnswers.append(row);
     });
 }
