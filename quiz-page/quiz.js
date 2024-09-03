@@ -46,6 +46,12 @@ let order = initialOrder.map(function (o) {
   return o;
 });
 
+let totalQuestions = initialOrder.length;
+let basePoints = 10;
+let pointsEarned = 0;
+let maxBonusPoints = 10;
+let maxPoints = (basePoints + maxBonusPoints)*totalQuestions;
+
 skipButton.addEventListener("click", skipQuestion);
 explanationButton.addEventListener("click", showExplain);
 quitExplainButton.addEventListener("click", function () {
@@ -140,8 +146,11 @@ function setAnswers(question) {
           explanation: currentExplanation,
         });
         setEndQuestionTransition(correctAnswer, answer.textContent);
+
         if (answer.textContent == correctAnswer) {
           correct++;
+          pointsEarned += calculatePoints(seconds);
+          console.log(pointsEarned);
         }else{
           incorrect++;
         }
@@ -293,11 +302,12 @@ function quitBlur() {
   main.classList.remove("apply-blur");
 }
 function sendResults() {
-  localStorage.setItem("quizPoints", correct);
+  localStorage.setItem("correctAnswers", correct);
   localStorage.setItem("quizFailures", incorrect);
-  localStorage.setItem("totalQuestions", initialOrder.length);
   localStorage.setItem("quizSkips", skips);
   localStorage.setItem("user", userName);
+  localStorage.setItem("quizPoints", pointsEarned);
+  localStorage.setItem("maxPoints", maxPoints);
 }
 function setFinishMessage() {
   applyBlur();
@@ -335,6 +345,7 @@ function goResults() {
     window.location.href = "../results-page/index.html";
   }, 700);
 }
+
 function goLeaderboard() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
@@ -345,5 +356,14 @@ function goLeaderboard() {
   }, 700);
 }
 
+function calculatePoints(timeTaken) {
+  let points = basePoints;
+  let bonusPoint = timeTaken;
+  if(bonusPoint > maxBonusPoints){
+    bonusPoint = maxBonusPoints;
+  }
+  points += bonusPoint;
+  return points;
+}
 
 setQuestion();
