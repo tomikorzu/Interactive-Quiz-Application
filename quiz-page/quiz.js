@@ -51,6 +51,7 @@ let basePoints = 10;
 let pointsEarned = 0;
 let maxBonusPoints = 10;
 let maxPoints = (basePoints + maxBonusPoints)*totalQuestions;
+let correctAnswersSummary = [];
 
 skipButton.addEventListener("click", skipQuestion);
 explanationButton.addEventListener("click", showExplain);
@@ -150,7 +151,10 @@ function setAnswers(question) {
         if (answer.textContent == correctAnswer) {
           correct++;
           pointsEarned += calculatePoints(seconds);
-          console.log(pointsEarned);
+          correctAnswersSummary.push({
+            [h2.textContent]: [answer.textContent, correctAnswer],
+            explanation: currentExplanation,
+          });
         }else{
           incorrect++;
         }
@@ -308,6 +312,7 @@ function sendResults() {
   localStorage.setItem("user", userName);
   localStorage.setItem("quizPoints", pointsEarned);
   localStorage.setItem("maxPoints", maxPoints);
+  localStorage.setItem("correctAnswersSummary", JSON.stringify(correctAnswersSummary));
 }
 function setFinishMessage() {
   applyBlur();
