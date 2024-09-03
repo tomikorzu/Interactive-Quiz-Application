@@ -1,4 +1,9 @@
 let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+let name = localStorage.getItem('userName');
+let score = localStorage.getItem('quizPoints');
+
+console.log(name);
+
 
 function updatePodium() {
     const podiumSpots = [
@@ -34,11 +39,11 @@ function updateLeaderboard() {
         row.appendChild(rankCell); 
 
         let nameCell = document.createElement('td');
-        nameCell.textContent = entry.name; 
+        nameCell.textContent = name; 
         row.appendChild(nameCell); 
 
         let scoreCell = document.createElement('td');
-        scoreCell.textContent = entry.score; 
+        scoreCell.textContent = score; 
         row.appendChild(scoreCell); 
 
         leaderboardTable.appendChild(row);
@@ -59,16 +64,7 @@ function order(){
 }
 
 function scoreUpdate(){
-    let scoreForm = document.getElementById('scoreForm');
-
-    scoreForm.addEventListener('submit', function(user) {
-        user.preventDefault(); 
     
-        let name = document.getElementById('username').value.trim();
-        //let score = localStorage.getItem('quizPoints');
-        
-        score = 160000;
-        
         if (isNaN(score)) {
             alert('No score available from the last game.');
             return;
@@ -81,7 +77,6 @@ function scoreUpdate(){
         updateLeaderboard();
         
         document.getElementById('scoreForm').reset();
-    });
 }
 
 
