@@ -3,7 +3,7 @@ let incorrectAnswers = localStorage.getItem('quizFailures') || 0;
 let skippedAnswers = localStorage.getItem('quizSkips') || 0;
 let correctAnswers = localStorage.getItem('correctAnswers') || 0;
 let maxPoints = localStorage.getItem('maxPoints');
-
+let correctAnswersSum = JSON.parse(localStorage.getItem('correctAnswersSummary'));
 
 window.onload = function(){
     perfomanceList();
@@ -17,29 +17,19 @@ function perfomanceList(){
     document.getElementById('skipped-count').innerText = `${skippedAnswers}`;
 }
 
-// correctAnswers = [
-//     {question: "Pregunta 1",
-//         correctAnswer: "Respuesta correcta",
-//         explanation: "Explicaciooooooooooooooooooo0000000000000000000000000n",
-//     },
-//     {question: "Pregunta 2",
-//         correctAnswer: "Respuesta correcta",
-//         explanation: "Explicaciooooooooooooooooooo0000000000000000000000000n",
-//     }
-// ]
-
 function summary(){
     let correctAnswersSummary = document.getElementById('correct-answers-summary');
     correctAnswersSummary.innerHTML = '';
-
-    correctAnswers.forEach(item => {
+    correctAnswersSum.forEach(item => {
+        let answer = Object.values(item)[0];
         let row = document.createElement('tr');
+        
         let questionCell = document.createElement('td');
-        questionCell.textContent = item.question;
+        questionCell.textContent = Object.keys(item)[0];
         row.appendChild(questionCell);
 
         let correctAnswerCell = document.createElement('td');
-        correctAnswerCell.textContent = item.correctAnswer;
+        correctAnswerCell.textContent = answer.pop();
         row.appendChild(correctAnswerCell);
 
         let explanationCell = document.createElement('td');
