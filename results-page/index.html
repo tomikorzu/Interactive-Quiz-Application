@@ -9,8 +9,56 @@
 </head>
 <body>
     <main>
-        <div class="results-container">
-            <h1>TOTAL SCORE</h1>
+        <h1 class="title">Results</h1>
+        <div class="progress-result">
+            <h2 class="progress-score" id="final-score"></h2>
+            <div class="progress-bar">
+                <div class="progress-bar-result" id="progress-bar-result"></div>
+            </div>
+        </div>
+        <div class="correct-incorrect-skip">
+           <h5 class="correct-count" id="correct-count"></h5>
+           <h5 class="incorrect-count" id="incorrect-count"></h5>
+           <h5 class="skip-count" id="skipped-count"></h5>
+        </div>
+        <div class="question-answer-explain-container">
+            <div class="question-answer-explain">
+                <div class="header-content">
+                    <h3 class="question-title">Question: </h3>
+                </div>
+                <div class="main-content">
+                    <h5 class="question-text">What is the boiling point of water at sea level in Celsius?</h5>
+                </div>
+            </div>
+            <div class="question-answer-explain">
+                <div class="header-content">
+                    <h3 class="question-title">Correct Answer</h3>
+                </div>
+                <div class="main-content">
+                    <h5 class="question-text">100°C</h5>
+                </div>
+            </div>
+            <div class="question-answer-explain">
+                <div class="header-content">
+                    <h3 class="question-title">Explanation</h3>
+                </div>
+                <div class="main-content">
+                    <h5 class="question-text">The boiling point of water at sea level is 100°C (212°F).</h5>
+                </div>
+            </div>
+        </div>
+        <div class="btns-back-next">
+            <button class="back-btn" id="back-btn">Back</button>
+            <button class="next-btn" id="next-btn">Next</button>
+        </div>
+        <div class="redirect-pages">
+            <button class="redirect-btn" id="leaderboard-redirect">View Leaderboard</button>
+            <button class="redirect-btn" id="quiz-redirect">Restart Quiz</button>
+            <button class="redirect-btn" id="home-redirect">Home</button>
+        </div>
+
+        <!-- <div class="results-container">
+            <h1>RESULTS</h1>
             <div class="score-summary">
                 <h2 id="final-score"></h2>
                 <div class="performance-breakdown">
@@ -44,11 +92,8 @@
                 <a href="../index.html"><button>Home Page</button></a>
                 <a href="../leaderboard-page/index.html"><button>View Leaderboard</button></a>
             </div>
-        </div>
-    </main> 
-    <footer>
-        <p class="copyright">© 2024 QuizMaster Inc.</p>
-    </footer>
+        </div> -->
+    </main>
     <script src="./results.js"></script>
 </body>
 </html>
