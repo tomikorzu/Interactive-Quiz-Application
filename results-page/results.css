@@ -36,19 +36,19 @@ main {
 .progress-bar-result {
   width: 0;
   height: 100%;
-  animation: progress-bar 3s forwards linear;
+  background-color: #d75353;
+  transition: all 3s;
 }
 @keyframes progress-bar {
   0% {
-    width: 0%;
     background-color: #d75353;
   }
   50% {
-    width: 50%;
+    
     background-color: #ead21b;
   }
   100% {
-    width: 100%;
+    
     background-color: #1bea3a;
   }
 }
