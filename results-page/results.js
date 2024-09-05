@@ -125,3 +125,12 @@ function progressBarStyle() {
     progressBar.style.backgroundColor = green;
   }
 }
+if (!correctAnswersSummary) {
+  setTimeout(() => {
+    body.classList.add("hide-body");
+  }, 500);
+
+  setTimeout(() => {
+    redirectPage("../page-not-found/index.html");
+  }, 500);
+}
