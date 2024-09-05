@@ -2,8 +2,9 @@ let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 let name = localStorage.getItem('userName');
 let score = localStorage.getItem('quizPoints');
 
-console.log(name);
-
+console.log('Leaderboard:', leaderboard);
+console.log('User Name:', name);
+console.log('User Score:', score);
 
 function updatePodium() {
     const podiumSpots = [
@@ -26,11 +27,10 @@ function updatePodium() {
 function updateLeaderboard() {
     let leaderboardTable = document.querySelector("#leaderboard tbody");
     leaderboardTable.innerHTML = '';
+    order();
 
     for (let i = 0; i < leaderboard.length && i < 10; i++) {
         let entry = leaderboard[i];
-        
-        order();
       
         let row = document.createElement('tr'); 
         
@@ -39,11 +39,11 @@ function updateLeaderboard() {
         row.appendChild(rankCell); 
 
         let nameCell = document.createElement('td');
-        nameCell.textContent = name; 
+        nameCell.textContent = entry.name; 
         row.appendChild(nameCell); 
 
         let scoreCell = document.createElement('td');
-        scoreCell.textContent = score; 
+        scoreCell.textContent = entry.score; 
         row.appendChild(scoreCell); 
 
         leaderboardTable.appendChild(row);
@@ -64,24 +64,28 @@ function order(){
 }
 
 function scoreUpdate(){
-    
-        if (isNaN(score)) {
-            alert('No score available from the last game.');
-            return;
-        }
-    
-        leaderboard.push({ name: name, score: score });
-    
-        localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
-    
-        updateLeaderboard();
+
+    if (isNaN(score)) {
+        alert('No score available from the last game.');
+        return;
+    }
         
-        document.getElementById('scoreForm').reset();
+    let existingEntry = leaderboard.find(user => user.name === name);
+
+    if (existingEntry) {
+        if (score > existingEntry.score) {
+            existingEntry.score = score;
+        }
+    } else {
+        leaderboard.push({ name: name, score: score });
+    }
+    
+    localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+    
+    updateLeaderboard();
 }
 
-
 window.onload = function() {
-    order();
     updateLeaderboard();
     scoreUpdate();
 }
