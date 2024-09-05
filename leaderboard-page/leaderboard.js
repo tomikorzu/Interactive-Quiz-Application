@@ -80,8 +80,6 @@ function scoreUpdate(){
         leaderboard.push({ name: name, score: score });
     }
     
-    localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
-    
     updateLeaderboard();
 }
 
