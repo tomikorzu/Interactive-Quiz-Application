@@ -2,6 +2,13 @@ export let globalCategories = {
   history: [
     [
       {
+        // "question": "Who was the first President of the United States?",
+        // "answers": {
+        //   "George Washington": true,
+        //   "Thomas Jefferson": false,
+        //   "Abraham Lincoln": false,
+        //   "John Adams": false,
+        // },
         "Who was the first President of the United States?": {
           "George Washington": true,
           "Thomas Jefferson": false,

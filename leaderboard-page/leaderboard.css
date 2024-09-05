@@ -83,25 +83,25 @@ table th {
     color: white;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.actions {
+    margin-top: 30px;
 }
 
-form input, form button {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-form button {
-    background-color: #0AD506;
-    color: white;
+.actions button {
+    padding: 10px 20px;
+    margin: 0 10px;
     border: none;
+    border-radius: 5px;
+    background-color: #7542D3;
+    color: #fff;
     cursor: pointer;
+    width: 30%;
 }
 
-form button:hover {
-    background-color: #0ca80a;
+.actions button:hover {
+    background-color: #6731CB;
+}
+
+a{
+    color: #fff;
 }
