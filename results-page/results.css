@@ -93,6 +93,8 @@ main {
   justify-content: center;
 }
 .question-title {
+  font-size: 1em;
+  padding: 10px;
 }
 .main-content {
   background-color: #5d22a6;
@@ -178,7 +180,6 @@ main {
     max-height: 30%;
   }
   .question-title {
-    font-size: 1.25em;
   }
   .main-content {
     min-height: 70%;
