@@ -3,6 +3,7 @@ const body = document.querySelector("body");
 const backBtn = document.getElementById("back-btn");
 const nextBtn = document.getElementById("next-btn");
 const questionTitle = document.getElementById("question-title");
+const questionIndex = 0;
 setTimeout(() => {
   body.classList.add("show-body");
 }, 500);
@@ -64,7 +65,7 @@ function summary() {
   let questionCorrect = document.getElementById("question-correct");
   let answerCorrect = document.getElementById("answer-correct");
   let explainCorrect = document.getElementById("explain-correct");
-  let questionIndex = 0;
+  
   questionTitle.textContent = `Question: ${questionIndex + 1}`;
 
   questionCorrect.textContent = Object.keys(
@@ -75,20 +76,7 @@ function summary() {
   )[0][1];
   explainCorrect.textContent = correctAnswersSummary[questionIndex].explanation;
 
-  if (questionIndex === 0) {
-    backBtn.style.pointerEvents = "none";
-    backBtn.style.opacity = 0.6;
-  } else {
-    backBtn.style.pointerEvents = "auto";
-    backBtn.style.opacity = 1;
-  }
-  if (questionIndex === 9) {
-    nextBtn.style.pointerEvents = "none";
-    nextBtn.style.opacity = 0.6;
-  } else {
-    nextBtn.style.pointerEvents = "auto";
-    nextBtn.style.opacity = 1;
-  }
+  setDisableButtonCondition();
   backBtn.addEventListener("click", () => {
     questionIndex -= 1;
     questionTitle.textContent = `Question: ${questionIndex + 1}`;
@@ -103,20 +91,7 @@ function summary() {
     )[0][1];
     explainCorrect.textContent =
       correctAnswersSummary[questionIndex].explanation;
-    if (questionIndex === 0) {
-      backBtn.style.pointerEvents = "none";
-      backBtn.style.opacity = 0.6;
-    } else {
-      backBtn.style.pointerEvents = "auto";
-      backBtn.style.opacity = 1;
-    }
-    if (questionIndex === 9) {
-      nextBtn.style.pointerEvents = "none";
-      nextBtn.style.opacity = 0.6;
-    } else {
-      nextBtn.style.pointerEvents = "auto";
-      nextBtn.style.opacity = 1;
-    }
+    setDisableButtonCondition();
   });
   nextBtn.addEventListener("click", () => {
     questionIndex += 1;
@@ -133,20 +108,7 @@ function summary() {
     )[0][1];
     explainCorrect.textContent =
       correctAnswersSummary[questionIndex].explanation;
-    if (questionIndex === 0) {
-      backBtn.style.pointerEvents = "none";
-      backBtn.style.opacity = 0.6;
-    } else {
-      backBtn.style.pointerEvents = "auto";
-      backBtn.style.opacity = 1;
-    }
-    if (questionIndex === 9) {
-      nextBtn.style.pointerEvents = "none";
-      nextBtn.style.opacity = 0.6;
-    } else {
-      nextBtn.style.pointerEvents = "auto";
-      nextBtn.style.opacity = 1;
-    }
+    setDisableButtonCondition();
   });
 }
 
@@ -155,4 +117,21 @@ function redirectPage(page) {
   setTimeout(() => {
     window.location.href = page;
   }, 700);
+}
+
+function setDisableButtonCondition() {
+  if (questionIndex === 0) {
+    backBtn.style.pointerEvents = "none";
+    backBtn.style.opacity = 0.6;
+  } else {
+    backBtn.style.pointerEvents = "auto";
+    backBtn.style.opacity = 1;
+  }
+  if (questionIndex === correctAnswersSummary.length - 1) {
+    nextBtn.style.pointerEvents = "none";
+    nextBtn.style.opacity = 0.6;
+  } else {
+    nextBtn.style.pointerEvents = "auto";
+    nextBtn.style.opacity = 1;
+  }
 }
