@@ -52,6 +52,7 @@ let pointsEarned = 0;
 let maxBonusPoints = 10;
 let maxPoints = (basePoints + maxBonusPoints)*totalQuestions;
 let correctAnswersSummary = [];
+let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 
 skipButton.addEventListener("click", skipQuestion);
 explanationButton.addEventListener("click", showExplain);
@@ -309,10 +310,12 @@ function sendResults() {
   localStorage.setItem("correctAnswers", correct);
   localStorage.setItem("quizFailures", incorrect);
   localStorage.setItem("quizSkips", skips);
-  localStorage.setItem("user", userName);
+  localStorage.getItem("user", userName);
   localStorage.setItem("quizPoints", pointsEarned);
   localStorage.setItem("maxPoints", maxPoints);
   localStorage.setItem("correctAnswersSummary", JSON.stringify(correctAnswersSummary));
+
+  updateLeaderboard(userName, pointsEarned);
 }
 function setFinishMessage() {
   applyBlur();
@@ -370,5 +373,19 @@ function calculatePoints(timeTaken) {
   points += bonusPoint;
   return points;
 }
+
+function updateLeaderboard(userName, pointsEarned){
+
+  let userEntry = leaderboard.find(user => user.name === userName);
+
+  if (leaderboard.length > 0) {
+    let lastUserIndex = leaderboard.length - 1;
+    leaderboard[lastUserIndex].score = pointsEarned;
+  
+  localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+  }
+}
+
+console.log(leaderboard);
 
 setQuestion();
