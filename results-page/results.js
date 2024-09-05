@@ -3,7 +3,7 @@ const body = document.querySelector("body");
 const backBtn = document.getElementById("back-btn");
 const nextBtn = document.getElementById("next-btn");
 const questionTitle = document.getElementById("question-title");
-const questionIndex = 0;
+let questionIndex = 0;
 setTimeout(() => {
   body.classList.add("show-body");
 }, 500);
@@ -65,7 +65,7 @@ function summary() {
   let questionCorrect = document.getElementById("question-correct");
   let answerCorrect = document.getElementById("answer-correct");
   let explainCorrect = document.getElementById("explain-correct");
-  
+
   questionTitle.textContent = `Question: ${questionIndex + 1}`;
 
   questionCorrect.textContent = Object.keys(
