@@ -1,10 +1,24 @@
-let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
-let name = localStorage.getItem('userName');
-let score = localStorage.getItem('quizPoints');
+let leaderboard = JSON.parse(localStorage.getItem('leaderboard'));
 
-console.log('Leaderboard:', leaderboard);
-console.log('User Name:', name);
-console.log('User Score:', score);
+function getLastUserInfo() {
+    let lastUserName = null;
+    let lastUserScore = null;
+
+    if (leaderboard.length > 0) {
+        let lastUserIndex = leaderboard.length - 1;
+        lastUserName = leaderboard[lastUserIndex].name;
+        lastUserScore = leaderboard[lastUserIndex].score;
+    }
+    
+    return {
+        name: lastUserName,
+        score: lastUserScore
+    };
+}
+
+let user = getLastUserInfo();
+let score = user.score;
+
 
 function updatePodium() {
     const podiumSpots = [
@@ -70,17 +84,13 @@ function scoreUpdate(){
         return;
     }
         
-    let existingEntry = leaderboard.find(user => user.name === name);
+    // let existingEntry = leaderboard.find(user => user.name === name);
 
-    if (existingEntry) {
-        if (score > existingEntry.score) {
-            existingEntry.score = score;
-        }
-    } else {
-        leaderboard.push({ name: name, score: score });
-    }
-    
-    localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+    // if (existingEntry) {
+    //     if (score > existingEntry.score) {
+    //         existingEntry.score = score;
+    //     }
+    // }
     
     updateLeaderboard();
 }
