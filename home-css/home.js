@@ -4,9 +4,9 @@ const body = document.querySelector("body");
 const main = document.querySelector("main");
 const footer = document.querySelector("footer");
 const selecterContent = document.createElement("div");
-let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
 startBtn.addEventListener("click", viewCategories);
-localStorage.clear()
+localStorage.clear();
 
 function viewCategories() {
   startBtn.style.pointerEvents = "none";
@@ -18,7 +18,7 @@ function viewCategories() {
   categoriesBtn.forEach(function (btn) {
     btn.addEventListener("click", function () {
       localStorage.setItem("preferences", btn.textContent.toLowerCase());
-      selectDificult()
+      selectDificult();
       const exitBtn = document.getElementById("exit-btn");
       exitBtn.addEventListener("click", quitSelecter);
     });
@@ -41,11 +41,11 @@ function createSelecter() {
   selecterContent.classList.add("selecter-content-show");
 }
 
-function selectDificult() { 
+function selectDificult() {
   selecter.innerHTML = "";
-  selecter.classList.add('difficult-menu')
+  selecter.classList.add("difficult-menu");
   selecterContent.classList.add("selecter-div");
-  selecterContent.classList.add('category-selecter')
+  selecterContent.classList.add("category-selecter");
   selecterContent.innerHTML = `<button class="back-btn" id="back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button><button id="exit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category h2-margin">Select the difficulty</h3>
             <ul class="ul-category">
                 <li><button class="btn-category btn-difficult easy-btn">Easy</button></li>
@@ -78,24 +78,24 @@ function goBack() {
 
 function applyBlur() {
   main.classList.add("apply-blur");
-  footer.classList.add('apply-blur')
+  footer.classList.add("apply-blur");
 }
 function quitBlur() {
   main.classList.remove("apply-blur");
-  footer.classList.remove('apply-blur')
+  footer.classList.remove("apply-blur");
 }
 
 function transitionRedirect(url) {
-  body.classList.add('transition-page');
-  setTimeout(function() {
+  body.classList.add("transition-page");
+  setTimeout(function () {
     window.location.href = url;
   }, 500);
-  setTimeout(function(){
-    body.classList.remove('transition-page')
-  }, 2000)
+  setTimeout(function () {
+    body.classList.remove("transition-page");
+  }, 2000);
 }
 
-function askUserName (){
+function askUserName() {
   selecter.innerHTML = "";
   selecterContent.innerHTML = `
   <button class="back-btn" id="go-back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button><button id="quit-user-menu"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category">Enter your name</h3>
@@ -104,33 +104,40 @@ function askUserName (){
   <button class="btn-submit-name" id="submit-name">Submit</button>`;
   selecter.append(selecterContent);
   selecter.classList.add("selecter-show");
-  let inputName = document.getElementById('input-name');
-  const submitName = document.getElementById('submit-name');
-  submitName.classList.add('btn-category');
+  let inputName = document.getElementById("input-name");
+  const submitName = document.getElementById("submit-name");
+  submitName.classList.add("btn-category");
   selecterContent.classList.add("selecter-content-show");
-  const backUserMenu = document.getElementById('go-back-btn');
-  backUserMenu.addEventListener('click', goBack);
-  const quitUserMenu = document.getElementById('quit-user-menu');
-  quitUserMenu.addEventListener('click', quitSelecter);
-  submitName.addEventListener('click', submitNameFunction);
+  const backUserMenu = document.getElementById("go-back-btn");
+  backUserMenu.addEventListener("click", goBack);
+  const quitUserMenu = document.getElementById("quit-user-menu");
+  quitUserMenu.addEventListener("click", quitSelecter);
+  submitName.addEventListener("click", submitNameFunction);
 }
 
 function submitNameFunction() {
-  let userName = document.getElementById('input-name').value;
-  if(userName === ''){
-    userAlert('Please enter your name');
+  let userName = document.getElementById("input-name").value;
+  if (userName === "") {
+    userAlert("Please enter your name");
   } else {
-    localStorage.setItem('userName', userName);
-    transitionRedirect('./quiz-page/index.html');
+    let nameExists = leaderboard.some((entry) => entry.name === userName);
+
+    if (nameExists) {
+      userAlert("This name already exists. Please choose another one.");
+    } else {
+      leaderboard.push({ name: userName, score: 0 });
+      localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+      transitionRedirect("./quiz-page/index.html");
+    }
   }
 }
 
-function userAlert(alert){
-  let alertDiv = document.createElement('div');
-  alertDiv.classList.add('alert-menu');
+function userAlert(alert) {
+  let alertDiv = document.createElement("div");
+  alertDiv.classList.add("alert-menu");
   alertDiv.innerHTML = `<h4 class="h4-alert">Alert</h4><p class="p-alert">${alert}</p>`;
   body.append(alertDiv);
-  setTimeout(function(){
+  setTimeout(function () {
     alertDiv.remove();
-  }, 3000)
+  }, 3000);
 }
