@@ -4,6 +4,7 @@ const body = document.querySelector("body");
 const main = document.querySelector("main");
 const footer = document.querySelector("footer");
 const selecterContent = document.createElement("div");
+let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 startBtn.addEventListener("click", viewCategories);
 localStorage.clear()
 
