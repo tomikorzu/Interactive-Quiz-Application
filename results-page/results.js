@@ -4,6 +4,11 @@ const backBtn = document.getElementById("back-btn");
 const nextBtn = document.getElementById("next-btn");
 const questionTitle = document.getElementById("question-title");
 let questionIndex = 0;
+let questionCorrect = document.getElementById("question-correct");
+let answerCorrect = document.getElementById("answer-correct");
+let explainCorrect = document.getElementById("explain-correct");
+const progressBar = document.getElementById("progress-bar-result");
+
 setTimeout(() => {
   body.classList.add("show-body");
 }, 500);
@@ -14,10 +19,10 @@ let maxPoints = localStorage.getItem("maxPoints");
 let correctAnswersSummary = JSON.parse(
   localStorage.getItem("correctAnswersSummary")
 );
-console.log(Object.values(correctAnswersSummary[0])[0]);
 let quizRedirect = document.getElementById("quiz-redirect");
 let homeRedirect = document.getElementById("home-redirect");
 let leaderboardRedirect = document.getElementById("leaderboard-redirect");
+
 quizRedirect.addEventListener("click", () =>
   redirectPage("../quiz-page/index.html")
 );
@@ -32,20 +37,7 @@ window.onload = function () {
 };
 
 function perfomanceList() {
-  let red = "#d75353";
-  let yellow = "#ead21b";
-  let green = "#1bea3a";
-
-  const progressBar = document.getElementById("progress-bar-result");
-  progressBar.style.width = `${(accumulatedPoints / maxPoints) * 100}%`;
-
-  if ((accumulatedPoints / maxPoints) * 100 < 35) {
-    progressBar.style.backgroundColor = red;
-  } else if ((accumulatedPoints / maxPoints) * 100 < 65) {
-    progressBar.style.backgroundColor = yellow;
-  } else {
-    progressBar.style.backgroundColor = green;
-  }
+  progressBarStyle();
   document.getElementById(
     "final-score"
   ).innerText = `${accumulatedPoints} / ${maxPoints}`;
@@ -60,12 +52,7 @@ function perfomanceList() {
   ).innerText = `Skipped: ${skippedAnswers}`;
 }
 
-console.log(correctAnswersSummary);
 function summary() {
-  let questionCorrect = document.getElementById("question-correct");
-  let answerCorrect = document.getElementById("answer-correct");
-  let explainCorrect = document.getElementById("explain-correct");
-
   questionTitle.textContent = `Question: ${questionIndex + 1}`;
 
   questionCorrect.textContent = Object.keys(
@@ -78,37 +65,12 @@ function summary() {
 
   setDisableButtonCondition();
   backBtn.addEventListener("click", () => {
-    questionIndex -= 1;
-    questionTitle.textContent = `Question: ${questionIndex + 1}`;
-    questionCorrect.textContent = "";
-    answerCorrect.textContent = "";
-    explainCorrect.textContent = "";
-    questionCorrect.textContent = Object.keys(
-      correctAnswersSummary[questionIndex]
-    )[0];
-    answerCorrect.textContent = Object.values(
-      correctAnswersSummary[questionIndex]
-    )[0][1];
-    explainCorrect.textContent =
-      correctAnswersSummary[questionIndex].explanation;
-    setDisableButtonCondition();
+    questionIndex--;
+    backOrNextQuestion();
   });
   nextBtn.addEventListener("click", () => {
-    questionIndex += 1;
-    questionTitle.textContent = `Question: ${questionIndex + 1}`;
-    questionCorrect.innerHTML = "";
-    answerCorrect.innerHTML = "";
-    explainCorrect.innerHTML = "";
-
-    questionCorrect.textContent = Object.keys(
-      correctAnswersSummary[questionIndex]
-    )[0];
-    answerCorrect.textContent = Object.values(
-      correctAnswersSummary[questionIndex]
-    )[0][1];
-    explainCorrect.textContent =
-      correctAnswersSummary[questionIndex].explanation;
-    setDisableButtonCondition();
+    questionIndex++;
+    backOrNextQuestion();
   });
 }
 
@@ -133,5 +95,33 @@ function setDisableButtonCondition() {
   } else {
     nextBtn.style.pointerEvents = "auto";
     nextBtn.style.opacity = 1;
+  }
+}
+
+function backOrNextQuestion() {
+  questionTitle.textContent = `Question: ${questionIndex + 1}`;
+  questionCorrect.textContent = "";
+  answerCorrect.textContent = "";
+  explainCorrect.textContent = "";
+  questionCorrect.textContent = Object.keys(
+    correctAnswersSummary[questionIndex]
+  )[0];
+  answerCorrect.textContent = Object.values(
+    correctAnswersSummary[questionIndex]
+  )[0][1];
+  explainCorrect.textContent = correctAnswersSummary[questionIndex].explanation;
+  setDisableButtonCondition();
+}
+function progressBarStyle() {
+  let red = "#d75353";
+  let yellow = "#ead21b";
+  let green = "#1bea3a";
+  progressBar.style.width = `${(accumulatedPoints / maxPoints) * 100}%`;
+  if ((accumulatedPoints / maxPoints) * 100 < 35) {
+    progressBar.style.backgroundColor = red;
+  } else if ((accumulatedPoints / maxPoints) * 100 < 65) {
+    progressBar.style.backgroundColor = yellow;
+  } else {
+    progressBar.style.backgroundColor = green;
   }
 }
