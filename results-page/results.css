@@ -4,6 +4,11 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.show-body{
+  opacity: 1;
 }
 main {
   background-color: #330769;
@@ -130,6 +135,10 @@ main {
     color: #f5f5f5;
     font-weight: bold;
     transition: background 0.4s;
+}
+
+.hide-body{
+  opacity: 0;
 }
 
 @media (min-width: 768px) {

@@ -1,4 +1,8 @@
 let accumulatedPoints = localStorage.getItem("quizPoints") || 0;
+const body = document.querySelector("body");
+setTimeout(() => {
+  body.classList.add("show-body");
+}, 500);
 let incorrectAnswers = localStorage.getItem("quizFailures") || 0;
 let skippedAnswers = localStorage.getItem("quizSkips") || 0;
 let correctAnswers = localStorage.getItem("correctAnswers") || 0;
@@ -6,6 +10,14 @@ let maxPoints = localStorage.getItem("maxPoints");
 let correctAnswersSummary = JSON.parse(
   localStorage.getItem("correctAnswersSummary")
 );
+let quizRedirect = document.getElementById("quiz-redirect");
+let homeRedirect = document.getElementById("home-redirect");
+let leaderboardRedirect = document.getElementById("leaderboard-redirect");
+quizRedirect.addEventListener("click", () =>
+  redirectPage("../quiz-page/index.html")
+);
+homeRedirect.addEventListener("click", () => redirectPage("../index.html"));
+leaderboardRedirect.addEventListener("click", () => redirectPage("../leaderboard-page/index.html"));
 
 window.onload = function () {
   perfomanceList();
@@ -22,8 +34,8 @@ function perfomanceList() {
 
   if ((accumulatedPoints / maxPoints) * 100 < 35) {
     progressBar.style.backgroundColor = red;
-} else if ((accumulatedPoints / maxPoints) * 100 < 65){
-      progressBar.style.backgroundColor = yellow;
+  } else if ((accumulatedPoints / maxPoints) * 100 < 65) {
+    progressBar.style.backgroundColor = yellow;
   } else {
     progressBar.style.backgroundColor = green;
   }
@@ -62,4 +74,11 @@ function summary() {
 
     tableCorrectAnswers.append(row);
   });
+}
+
+function redirectPage(page) {
+  body.classList.add("hide-body");
+  setTimeout(() => {
+    window.location.href = page;
+  }, 700);
 }
