@@ -105,6 +105,10 @@ function setQuestion() {
   progress.style.width =
     parseInt(100 - (order.length * 100) / questions.length) + "%";
   let question = getQuestion(order, questions);
+  correctAnswersSummary.push({
+    [h2.textContent]: [question, correctAnswer],
+    explanation: currentExplanation,
+  });
   if (question) {
     currentExplanation = Object.values(question)[1];
     h2.textContent = Object.keys(question)[0];
@@ -131,6 +135,7 @@ function setQuestion() {
     }, 1500);
     sendResults();
   }
+  
 }
 
 function setAnswers(question) {
@@ -151,13 +156,10 @@ function setAnswers(question) {
         if (answer.textContent == correctAnswer) {
           correct++;
           pointsEarned += calculatePoints(seconds);
-          correctAnswersSummary.push({
-            [h2.textContent]: [answer.textContent, correctAnswer],
-            explanation: currentExplanation,
-          });
         }else{
           incorrect++;
         }
+        
       }
     });
   });
@@ -306,6 +308,7 @@ function quitBlur() {
   main.classList.remove("apply-blur");
 }
 function sendResults() {
+  correctAnswersSummary.shift()
   localStorage.setItem("correctAnswers", correct);
   localStorage.setItem("quizFailures", incorrect);
   localStorage.setItem("quizSkips", skips);

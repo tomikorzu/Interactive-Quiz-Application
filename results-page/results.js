@@ -53,9 +53,10 @@ function perfomanceList() {
   ).innerText = `Skipped: ${skippedAnswers}`;
 }
 
+console.log(correctAnswersSummary);
 function summary() {
-  let tableCorrectAnswers = document.getElementById("correct-answers-summary");
-  tableCorrectAnswers.innerHTML = "";
+  let question = document.getElementById("question");
+  question.innerHTML = "";
   correctAnswersSummary.forEach((item) => {
     let answer = Object.values(item)[0];
     let row = document.createElement("tr");
