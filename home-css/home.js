@@ -4,6 +4,7 @@ const body = document.querySelector("body");
 const main = document.querySelector("main");
 const footer = document.querySelector("footer");
 const selecterContent = document.createElement("div");
+let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 startBtn.addEventListener("click", viewCategories);
 localStorage.clear()
 
@@ -119,8 +120,15 @@ function submitNameFunction() {
   if(userName === ''){
     userAlert('Please enter your name');
   } else {
-    localStorage.setItem('userName', userName);
-    transitionRedirect('./quiz-page/index.html');
+    let nameExists = leaderboard.some(entry => entry.name === userName);
+
+    if (nameExists) {
+      userAlert('This name already exists. Please choose another one.');
+    } else {
+      leaderboard.push({name: userName, score: 0});
+      localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+      transitionRedirect('./quiz-page/index.html');
+    }
   }
 }
 
