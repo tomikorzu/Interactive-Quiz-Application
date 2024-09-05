@@ -4,6 +4,11 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.show-body{
+  opacity: 1;
 }
 main {
   background-color: #330769;
@@ -95,6 +100,7 @@ main {
   padding: 20px;
 }
 .question-text {
+  font-size: .875em;
 }
 .btns-back-next {
   display: flex;
@@ -130,6 +136,10 @@ main {
     color: #f5f5f5;
     font-weight: bold;
     transition: background 0.4s;
+}
+
+.hide-body{
+  opacity: 0;
 }
 
 @media (min-width: 768px) {
@@ -172,9 +182,6 @@ main {
   }
   .main-content {
     min-height: 70%;
-  }
-  .question-text {
-    font-size: 1em;
   }
   .btns-back-next {
   }
