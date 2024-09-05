@@ -83,3 +83,25 @@ table th {
     color: white;
 }
 
+.actions {
+    margin-top: 30px;
+}
+
+.actions button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #7542D3;
+    color: #fff;
+    cursor: pointer;
+    width: 30%;
+}
+
+.actions button:hover {
+    background-color: #6731CB;
+}
+
+a{
+    color: #fff;
+}
