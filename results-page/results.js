@@ -1,5 +1,8 @@
 let accumulatedPoints = localStorage.getItem("quizPoints") || 0;
 const body = document.querySelector("body");
+const backBtn = document.getElementById("back-btn");
+const nextBtn = document.getElementById("next-btn");
+const questionTitle = document.getElementById("question-title");
 setTimeout(() => {
   body.classList.add("show-body");
 }, 500);
@@ -10,6 +13,7 @@ let maxPoints = localStorage.getItem("maxPoints");
 let correctAnswersSummary = JSON.parse(
   localStorage.getItem("correctAnswersSummary")
 );
+console.log(Object.values(correctAnswersSummary[0])[0]);
 let quizRedirect = document.getElementById("quiz-redirect");
 let homeRedirect = document.getElementById("home-redirect");
 let leaderboardRedirect = document.getElementById("leaderboard-redirect");
@@ -17,7 +21,9 @@ quizRedirect.addEventListener("click", () =>
   redirectPage("../quiz-page/index.html")
 );
 homeRedirect.addEventListener("click", () => redirectPage("../index.html"));
-leaderboardRedirect.addEventListener("click", () => redirectPage("../leaderboard-page/index.html"));
+leaderboardRedirect.addEventListener("click", () =>
+  redirectPage("../leaderboard-page/index.html")
+);
 
 window.onload = function () {
   perfomanceList();
@@ -55,25 +61,92 @@ function perfomanceList() {
 
 console.log(correctAnswersSummary);
 function summary() {
-  let question = document.getElementById("question");
-  question.innerHTML = "";
-  correctAnswersSummary.forEach((item) => {
-    let answer = Object.values(item)[0];
-    let row = document.createElement("tr");
+  let questionCorrect = document.getElementById("question-correct");
+  let answerCorrect = document.getElementById("answer-correct");
+  let explainCorrect = document.getElementById("explain-correct");
+  let questionIndex = 0;
+  questionTitle.textContent = `Question: ${questionIndex + 1}`;
 
-    let questionCell = document.createElement("td");
-    questionCell.textContent = Object.keys(item)[0];
-    row.appendChild(questionCell);
+  questionCorrect.textContent = Object.keys(
+    correctAnswersSummary[questionIndex]
+  )[0];
+  answerCorrect.textContent = Object.values(
+    correctAnswersSummary[questionIndex]
+  )[0][1];
+  explainCorrect.textContent = correctAnswersSummary[questionIndex].explanation;
 
-    let correctAnswerCell = document.createElement("td");
-    correctAnswerCell.textContent = answer.pop();
-    row.appendChild(correctAnswerCell);
+  if (questionIndex === 0) {
+    backBtn.style.pointerEvents = "none";
+    backBtn.style.opacity = 0.6;
+  } else {
+    backBtn.style.pointerEvents = "auto";
+    backBtn.style.opacity = 1;
+  }
+  if (questionIndex === 9) {
+    nextBtn.style.pointerEvents = "none";
+    nextBtn.style.opacity = 0.6;
+  } else {
+    nextBtn.style.pointerEvents = "auto";
+    nextBtn.style.opacity = 1;
+  }
+  backBtn.addEventListener("click", () => {
+    questionIndex -= 1;
+    questionTitle.textContent = `Question: ${questionIndex + 1}`;
+    questionCorrect.textContent = "";
+    answerCorrect.textContent = "";
+    explainCorrect.textContent = "";
+    questionCorrect.textContent = Object.keys(
+      correctAnswersSummary[questionIndex]
+    )[0];
+    answerCorrect.textContent = Object.values(
+      correctAnswersSummary[questionIndex]
+    )[0][1];
+    explainCorrect.textContent =
+      correctAnswersSummary[questionIndex].explanation;
+    if (questionIndex === 0) {
+      backBtn.style.pointerEvents = "none";
+      backBtn.style.opacity = 0.6;
+    } else {
+      backBtn.style.pointerEvents = "auto";
+      backBtn.style.opacity = 1;
+    }
+    if (questionIndex === 9) {
+      nextBtn.style.pointerEvents = "none";
+      nextBtn.style.opacity = 0.6;
+    } else {
+      nextBtn.style.pointerEvents = "auto";
+      nextBtn.style.opacity = 1;
+    }
+  });
+  nextBtn.addEventListener("click", () => {
+    questionIndex += 1;
+    questionTitle.textContent = `Question: ${questionIndex + 1}`;
+    questionCorrect.innerHTML = "";
+    answerCorrect.innerHTML = "";
+    explainCorrect.innerHTML = "";
 
-    let explanationCell = document.createElement("td");
-    explanationCell.textContent = item.explanation;
-    row.appendChild(explanationCell);
-
-    tableCorrectAnswers.append(row);
+    questionCorrect.textContent = Object.keys(
+      correctAnswersSummary[questionIndex]
+    )[0];
+    answerCorrect.textContent = Object.values(
+      correctAnswersSummary[questionIndex]
+    )[0][1];
+    explainCorrect.textContent =
+      correctAnswersSummary[questionIndex].explanation;
+    if (questionIndex === 0) {
+      backBtn.style.pointerEvents = "none";
+      backBtn.style.opacity = 0.6;
+    } else {
+      backBtn.style.pointerEvents = "auto";
+      backBtn.style.opacity = 1;
+    }
+    if (questionIndex === 9) {
+      nextBtn.style.pointerEvents = "none";
+      nextBtn.style.opacity = 0.6;
+    } else {
+      nextBtn.style.pointerEvents = "auto";
+      nextBtn.style.opacity = 1;
+    }
   });
 }
 

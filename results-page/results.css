@@ -100,6 +100,7 @@ main {
   padding: 20px;
 }
 .question-text {
+  font-size: .875em;
 }
 .btns-back-next {
   display: flex;
@@ -181,9 +182,6 @@ main {
   }
   .main-content {
     min-height: 70%;
-  }
-  .question-text {
-    font-size: 1em;
   }
   .btns-back-next {
   }
