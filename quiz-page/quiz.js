@@ -47,7 +47,8 @@ let order = initialOrder.map(function (o) {
 });
 
 let totalQuestions = initialOrder.length;
-let basePoints = 10;
+
+let basePoints = basePointsDifficulty(selectedDificulty);
 let pointsEarned = 0;
 let maxBonusPoints = 10;
 let maxPoints = (basePoints + maxBonusPoints)*totalQuestions;
@@ -365,6 +366,19 @@ function goLeaderboard() {
   setTimeout(function () {
     window.location.href = "../leaderboard-page/index.html";
   }, 700);
+}
+
+function basePointsDifficulty(selectedDificulty){
+  let basePoints = 0;
+  if(selectedDificulty == 0){
+    basePoints = 5;
+  }else if(selectedDificulty == 1){
+    basePoints = 15;
+  }else if(selectedDificulty == 2){
+    basePoints = 20;
+  }
+
+  return basePoints;
 }
 
 function calculatePoints(timeTaken) {
