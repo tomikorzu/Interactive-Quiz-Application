@@ -11,15 +11,12 @@ body {
   gap: 30px;
   transition: opacity 0.8s;
 }
-
 .show-body {
   opacity: 1;
 }
-
 .hide-body {
   opacity: 0;
 }
-
 main {
   width: 90%;
   max-width: 800px;
@@ -32,12 +29,10 @@ main {
   justify-content: center;
   align-items: center;
 }
-
 .leaderboard-title {
   margin-bottom: 15px;
   font-size: 1.75em;
 }
-
 .podium {
   display: flex;
   justify-content: center;
@@ -45,7 +40,6 @@ main {
   text-align: center;
   align-items: flex-end;
 }
-
 .podium-spot {
   border: 1px solid #bc84ff;
   border-radius: 10px 10px 0px 0px;
@@ -57,7 +51,6 @@ main {
   padding: 10px 25px;
   border-bottom: none;
 }
-
 .container-spot {
   display: flex;
   justify-content: center;
@@ -65,25 +58,20 @@ main {
   flex-direction: column;
   gap: 5px;
 }
-
 #first .podium-spot {
   height: 120px;
 }
-
 #second .podium-spot {
   height: 100px;
 }
-
 #third .podium-spot {
   height: 80px;
 }
-
 .podium-score {
   position: absolute;
   font-weight: 600;
   bottom: 10px;
 }
-
 table {
   border-collapse: collapse;
   width: 100%;
@@ -97,25 +85,21 @@ table th:first-child {
 table th:last-child {
   border-radius: 0 10px 0 0;
 }
-
 table th,
 table td {
   padding: 10px;
   text-align: center;
   border-bottom: 1px solid #bc84ff;
 }
-
 table th {
   background-color: #7b3cc9;
 }
-
 .actions {
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-
 .actions button {
   padding: 10px 15px;
   border: none;
@@ -124,7 +108,7 @@ table th {
   color: #fff;
   cursor: pointer;
   font-weight: 600;
-  transition: all .4s;
+  transition: all 0.4s;
 }
 tbody {
   width: fit-content;
@@ -137,7 +121,6 @@ tbody td,
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 @media (min-width: 768px) {
   .actions {
     flex-direction: row;

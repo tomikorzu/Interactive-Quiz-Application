@@ -124,8 +124,6 @@ main {
   transition: all 0.4s;
   color: var(--text-color);
 }
-.icon-category {
-}
 .science-btn {
   background-color: #28a506;
 }
@@ -205,10 +203,6 @@ footer {
     opacity: 0;
   }
 }
-.h4-alert {
-}
-.p-alert {
-}
 
 @keyframes appearDifficult {
   from {
@@ -235,51 +229,12 @@ footer {
 }
 
 @media (min-width: 768px) {
-  body {
-  }
-  main {
-  }
-  .h1-home {
-  }
-  .h2-home {
-  }
-  .home-button {
-  }
   .select-category {
     padding: 30px;
     max-width: 500px;
   }
-  .h2-category {
-  }
-  .ul-category {
-  }
-  .btn-category {
-  }
-  .icon-category {
-  }
-  .science-btn {
-  }
-  .history-btn {
-  }
-  .geography-btn {
-  }
-  .entretainment-btn {
-  }
   .difficult-menu {
     padding: 40px;
-  }
-
-  .art-btn {
-  }
-  .easy-btn {
-  }
-  .medium-btn {
-  }
-  .difficult-btn {
-  }
-  footer {
-  }
-  .copyright {
   }
 }
 
@@ -319,88 +274,5 @@ footer {
   }
   .easy-btn:hover {
     background-color: #068653;
-  }
-  body {
-  }
-  main {
-  }
-  .h1-home {
-  }
-  .h2-home {
-  }
-  .home-button {
-  }
-  .select-category {
-  }
-  .h2-category {
-  }
-  .ul-category {
-  }
-  .btn-category {
-  }
-  .icon-category {
-  }
-  .science-btn {
-  }
-  .history-btn {
-  }
-  .geography-btn {
-  }
-  .entretainment-btn {
-  }
-  .art-btn {
-  }
-  .easy-btn {
-  }
-  .medium-btn {
-  }
-  .difficult-btn {
-  }
-  footer {
-  }
-  .copyright {
-  }
-}
-
-@media (min-width: 1440px) {
-  body {
-  }
-  main {
-  }
-  .h1-home {
-  }
-  .h2-home {
-  }
-  .home-button {
-  }
-  .select-category {
-  }
-  .h2-category {
-  }
-  .ul-category {
-  }
-  .btn-category {
-  }
-  .icon-category {
-  }
-  .science-btn {
-  }
-  .history-btn {
-  }
-  .geography-btn {
-  }
-  .entretainment-btn {
-  }
-  .art-btn {
-  }
-  .easy-btn {
-  }
-  .medium-btn {
-  }
-  .difficult-btn {
-  }
-  footer {
-  }
-  .copyright {
   }
 }

@@ -58,11 +58,10 @@ main {
   padding: 10px;
   max-width: fit-content;
   font-weight: bold;
-  font-size: .75em;
+  font-size: 0.75em;
   color: var(--text-color);
   transition: background 0.4s;
 }
-
 .history {
   background-color: #003346;
 }
@@ -89,7 +88,6 @@ main {
   animation: backBtn 1s;
   transition: background 0.4s;
 }
-
 @keyframes backBtn {
   from {
     transform: translateX(-100%);
@@ -98,7 +96,6 @@ main {
     transform: translateX(0);
   }
 }
-
 .back-icon {
   font-size: 1.5em;
   color: #f5f5f5;
@@ -111,17 +108,13 @@ main {
   font-size: 32px;
   padding-bottom: 10px;
 }
-
 .level-dificulty {
   font-size: 24px;
 }
-
-
 body {
   height: 100%;
   margin: 0;
 }
-
 .content-box {
   display: flex;
   flex-direction: column;
@@ -135,7 +128,6 @@ body {
   padding: 0 20px;
   max-width: fit-content;
 }
-
 .timer {
   padding: 30px;
   border: 5px solid rgb(14, 187, 14);
@@ -152,13 +144,11 @@ body {
   box-sizing: border-box;
   margin-top: 20px;
 }
-
 .question {
   font-size: 1.25em;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-
 .question-container {
   display: flex;
   flex-direction: column;
@@ -176,14 +166,12 @@ body {
   padding: 10px;
   transition: all 0.4s;
 }
-
 .correct {
   background-color: #04ff00;
 }
 .incorrect {
   background-color: #ff0000;
 }
-
 .action-button {
   display: flex;
   justify-content: center;
@@ -191,7 +179,6 @@ body {
   padding: 20px 0px;
   width: 100%;
 }
-
 .action-button button {
   align-items: center;
   justify-content: center;
@@ -201,7 +188,6 @@ body {
   border-radius: 10px;
   font-size: 16px;
 }
-
 .explanation {
   color: #222;
   background-color: #fff541;
@@ -209,7 +195,6 @@ body {
   transition: all 0.4s;
   cursor: pointer;
 }
-
 #progress-bar {
   height: 30px;
   width: 90%;
@@ -219,7 +204,6 @@ body {
   clip-path: inset(0 0 0 0);
   position: relative;
 }
-
 .fullscreen {
   width: 100%;
   height: 100vh;
@@ -234,11 +218,9 @@ body {
   transition: opacity 0.4s;
   color: #fff;
 }
-
 .check-icon-appear {
   opacity: 1;
 }
-
 #progress {
   background-color: green;
   height: 30px;
@@ -249,7 +231,6 @@ body {
   align-items: center;
   transition: all 0.4s;
 }
-
 .explain-menu {
   position: fixed;
   background-color: #d3d337;
@@ -268,15 +249,12 @@ body {
   max-width: 500px;
   transition: all 0.4s;
 }
-
 .show {
   opacity: 1;
 }
-
 .apply-blur {
   filter: blur(5px);
 }
-
 .h2-explain {
   padding-top: 10px;
   color: #333;
@@ -296,12 +274,10 @@ body {
   top: 5px;
   font-size: 1.5em;
 }
-
 .icon-quit {
   color: #555;
   transition: all 0.4s;
 }
-
 #next-question {
   padding: 10px;
   border: none;
@@ -312,7 +288,6 @@ body {
   transition: all 0.4s;
   cursor: pointer;
 }
-
 .change-bg {
   background-color: var(--bg-color);
 }
@@ -322,10 +297,8 @@ body {
 .hide-menu {
   opacity: 0;
 }
-@media (min-width: 768px) {
-}
 @media (min-width: 1024px) {
-  .content-box{
+  .content-box {
     max-width: none;
     width: 90%;
   }
@@ -357,6 +330,4 @@ body {
   #next-question:hover {
     background-color: #039d4e;
   }
-}
-@media (min-width: 1440px) {
 }
