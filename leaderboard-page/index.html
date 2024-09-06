@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,29 +8,30 @@
     <link rel="stylesheet" href="./leaderboard.css">
 </head>
 <body>
-    <div class="container">
+    <main class="container">
+        <h1 class="leaderboard-title">Leaderboard</h1>
         <div class="podium">
             <div class="container-spot" id="second">
                 <i class="fa-solid fa-trophy" style="color: #cbd0d8;"></i>
-                <h3 class="podium-name">Name</h3>
+                <h6 class="podium-name">Name</h6>
                 <div class="podium-spot">
-                    <h1>2</h1>
+                    <h3>2</h3>
                     <p class="podium-score">Score</p>
                 </div>
             </div>
             <div class="container-spot" id="first">
                 <i class="fa-solid fa-trophy" style="color: #FFD43B;"></i>
-                <h3 class="podium-name">Name</h3>
+                <h6 class="podium-name">Name</h6>
                 <div class="podium-spot">
-                    <h1>1</h1>
+                    <h2>1</h2>
                     <p class="podium-score">Score</p>
                 </div>
             </div>
             <div class="container-spot" id="third">
                 <i class="fa-solid fa-trophy" style="color: #CD7F32;"></i>
-                <h3 class="podium-name">Name</h3>
+                <h6 class="podium-name">Name</h6>
                 <div class="podium-spot">
-                    <h1>3</h1>
+                    <h3>3</h3>
                     <p class="podium-score">Score</p>
                 </div>
             </div>
@@ -44,15 +45,15 @@
                 </tr>
             </thead>
             <tbody>
-               
+                
             </tbody>
         </table>
         <div class="actions">
-            <a href="../quiz-page/index.html"><button>Restart Quiz</button></a>
-            <a href="../index.html"><button>Home Page</button></a>
-            <a href="../leaderboard-page/index.html"><button>View Leaderboard</button></a>
+            <button id="restart">Restart Quiz</button>
+            <button id="home">Home Page</button>
+            <button id="results">View your results</button>
         </div>
-    </div>
+    </main>
     <script src="leaderboard.js"></script>
 </body>
 </html>
