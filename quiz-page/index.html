@@ -31,13 +31,13 @@
           <button class="answer"></button>
         </div>
         <div class="action-button">
-          <button class="explanation">Explanation</button>
-          <button id="next-question">Next</button>
+          <button class="explanation" onclick="showExplain()">Explanation</button>
+          <button id="next-question" onclick="skipQuestion()">Next</button>
         </div>
       </div>
     </main>
     <div class="explain-menu">
-      <button id="quit-explain">
+      <button id="quit-explain" onclick="quitExplainButton()">
         <i class="fa-solid fa-xmark icon-quit"></i>
       </button>
       <h3 class="h2-explain">Explanation</h3>
