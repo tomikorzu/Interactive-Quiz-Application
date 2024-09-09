@@ -1,6 +1,6 @@
 export let globalCategories = {
   history: {
-    easy: [
+    "easy": [
       {
         question: "Who was the first President of the United States?",
         answers: {
@@ -105,7 +105,7 @@ export let globalCategories = {
         explanation: "The Sahara Desert is located in Africa.",
       },
     ],
-    medium: [
+    "medium": [
       {
         question: "In which year did the Titanic sink?",
         answers: {
@@ -222,7 +222,7 @@ export let globalCategories = {
           "Machu Picchu was built by the Inca civilization in the 15th century in what is now Peru.",
       },
     ],
-    hard: [
+    "hard": [
       {
         question: "Which treaty ended the Thirty Years' War in 1648?",
         answers: {
@@ -342,7 +342,7 @@ export let globalCategories = {
     ],
   },
   science: {
-    easy: [
+    "easy": [
       {
         question: "What is the chemical symbol for water?",
         answers: {
@@ -456,7 +456,7 @@ export let globalCategories = {
           "The roots of a plant absorb water and nutrients from the soil, essential for its growth.",
       },
     ],
-    medium: [
+    "medium": [
       {
         question: "What is the most abundant gas in Earth's atmosphere?",
         answers: {
@@ -574,7 +574,7 @@ export let globalCategories = {
           "The pancreas regulates blood sugar levels by producing insulin and glucagon.",
       },
     ],
-    hard: [
+    "hard": [
       {
         question:
           "What is the name of the process by which a cell divides to produce two identical daughter cells?",
@@ -696,7 +696,7 @@ export let globalCategories = {
     ],
   },
   geography: {
-    easy: [
+    "easy": [
       {
         question: "Which continent is the largest by land area?",
         answers: {
@@ -809,7 +809,7 @@ export let globalCategories = {
           "The Equator is the imaginary line that divides the Earth into the Northern and Southern Hemispheres.",
       },
     ],
-    medium: [
+    "medium": [
       {
         question: "Which country is known as the Land of the Midnight Sun?",
         answers: {
@@ -924,7 +924,7 @@ export let globalCategories = {
           "Norway is known as the Land of the Midnight Sun due to its location within the Arctic Circle, where the sun does not set for extended periods in summer.",
       },
     ],
-    hard: [
+    "hard": [
       {
         question:
           "What is the name of the current geological epoch we are in, characterized by significant human impact on the Earth?",
@@ -1048,7 +1048,7 @@ export let globalCategories = {
     ],
   },
   entretainment: {
-    easy: [
+    "easy": [
       {
         question:
           "Which movie features the characters Woody and Buzz Lightyear?",
@@ -1168,7 +1168,7 @@ export let globalCategories = {
           "James Bond is the famous fictional British spy created by Ian Fleming, known for his espionage adventures.",
       },
     ],
-    medium: [
+    "medium": [
       {
         question: "In which movie does the character Jack Sparrow appear?",
         answers: {
@@ -1289,7 +1289,7 @@ export let globalCategories = {
           "The line 'May the Force be with you' is famous from the Star Wars movie series.",
       },
     ],
-    difficult: [
+    "hard": [
       {
         question:
           "Which film director is known for the 'Cornetto Trilogy' that includes 'Shaun of the Dead', 'Hot Fuzz', and 'The World's End'?",
@@ -1413,7 +1413,7 @@ export let globalCategories = {
     ],
   },
   culture: {
-    easy: [
+    "easy": [
       {
         question: "What is the capital city of France?",
         answers: {
@@ -1524,7 +1524,7 @@ export let globalCategories = {
           "The Nile River is the longest river in Egypt and one of the longest in the world.",
       },
     ],
-    medium: [
+    "medium": [
       {
         question: "Which Italian city is famous for its canals and gondolas?",
         answers: {
@@ -1640,7 +1640,7 @@ export let globalCategories = {
           "Albert Einstein developed the theory of relativity, which revolutionized our understanding of space and time.",
       },
     ],
-    difficult: [
+    "hard": [
       {
         question:
           "Which Spanish painter is known for his surrealist works, including 'The Persistence of Memory'?",

@@ -12,7 +12,6 @@ const contentBox = document.querySelector(".content-box");
 setColorTheme(selectedCategory);
 setDifficulty(selectedDificulty);
 
-
 let answers = document.querySelectorAll(".answer");
 let skipButton = document.getElementById("next-question");
 let explanationButton = document.querySelector(".explanation");
@@ -76,6 +75,7 @@ function getCategory(category, categories) {
 }
 
 function getDificulty(dificulty, questions) {
+  console.log(questions[dificulty])
   return questions[dificulty];
 }
 
