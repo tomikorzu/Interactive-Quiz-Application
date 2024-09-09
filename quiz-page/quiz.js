@@ -20,8 +20,6 @@ let h2 = document.querySelector("h2");
 let timer = document.getElementById("timer");
 let explainMenu = document.querySelector(".explain-menu");
 let quitExplainButton = document.getElementById("quit-explain");
-let nextExplainButton = document.getElementById("next-question");
-let backBtn = document.getElementById("back-btn");
 let finishMessageMenu = document.createElement("div");
 
 let seconds = 15;
@@ -29,7 +27,6 @@ let stopTimer = false;
 let answered = false;
 let userSelection = [];
 let currentExplanation = "";
-let currentDifficulty = selectedDificulty;
 let correctAnswer = "";
 let skips = 0;
 let correct = 0;
@@ -52,19 +49,13 @@ let maxPoints = (basePoints + maxBonusPoints)*totalQuestions;
 let correctAnswersSummary = [];
 let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 
-skipButton.addEventListener("click", skipQuestion);
-explanationButton.addEventListener("click", showExplain);
-quitExplainButton.addEventListener("click", function () {
+function quitExplainButton(){
   explainMenu.style.display = "none";
   explainMenu.classList.remove("show");
   quitBlur();
-  nextExplainButton.style.pointerEvents = "auto";
+  skipButton.style.pointerEvents = "auto";
   explanationButton.style.pointerEvents = "auto";
-});
-nextExplainButton.addEventListener("click", skipQuestion);
-
-backBtn.addEventListener("click", goBack);
-
+}
 
 window.onload = function () {
   getCategory();
@@ -219,7 +210,6 @@ function setQuestion() {
       answer.style.pointerEvents = "none";
     });
     skipButton.style.pointerEvents = "none";
-    nextExplainButton.style.pointerEvents = "none";
     explanationButton.style.pointerEvents = "none";
     setTimeout(function () {
       progressBar.style.width = "30px";
@@ -283,7 +273,7 @@ function manageTimer() {
 
 function showExplain() {
   explanationButton.style.pointerEvents = "none";
-  nextExplainButton.style.pointerEvents = "none";
+  skipButton.style.pointerEvents = "none";
   explainMenu.style.display = "flex";
   setTimeout(function () {
     applyBlur();
@@ -313,6 +303,7 @@ function goBack() {
     window.location.href = "../index.html";
   }, 400);
 }
+
 function applyBlur() {
   main.classList.add("apply-blur");
 }
@@ -352,7 +343,6 @@ function setFinishMessage() {
 function goHome() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
-  backBtn.classList.add("hide-back-btn");
   finishMessageMenu.classList.remove("show-menu");
   setTimeout(function () {
     window.location.href = "../index.html";
@@ -361,7 +351,6 @@ function goHome() {
 function goResults() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
-  backBtn.classList.add("hide-back-btn");
   finishMessageMenu.classList.remove("show-menu");
   setTimeout(function () {
     window.location.href = "../results-page/index.html";
@@ -371,7 +360,6 @@ function goResults() {
 function goLeaderboard() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
-  backBtn.classList.add("hide-back-btn");
   finishMessageMenu.classList.remove("show-menu");
   setTimeout(function () {
     window.location.href = "../leaderboard-page/index.html";
