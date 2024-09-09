@@ -3,15 +3,12 @@ import { globalCategories } from "./questions.js";
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
 let userName = localStorage.getItem("userName");
+
 const body = document.querySelector("body");
 const main = document.querySelector("main");
 const categoryTitle = document.querySelector(".category-tittle");
 const levelDifficulty = document.querySelector(".level-dificulty");
 const contentBox = document.querySelector(".content-box");
-
-setColorTheme(selectedCategory);
-setDifficulty(selectedDificulty);
-
 
 let answers = document.querySelectorAll(".answer");
 let skipButton = document.getElementById("next-question");
@@ -68,6 +65,18 @@ nextExplainButton.addEventListener("click", skipQuestion);
 
 backBtn.addEventListener("click", goBack);
 
+
+window.onload = function () {
+  getCategory();
+  getDificulty();
+  setColorTheme(selectedCategory);
+  setAnswers();
+  orderQuestions();
+  setDifficulty(selectedDificulty);
+  setQuestion();
+  basePointsDifficulty();
+}
+
 function getCategory(category, categories) {
   let entriesCategoreis = Object.entries(categories);
   return entriesCategoreis.find(function (entrieCategory) {
@@ -77,6 +86,94 @@ function getCategory(category, categories) {
 
 function getDificulty(dificulty, questions) {
   return questions[dificulty];
+}
+
+function setColorTheme() {
+  if (selectedCategory === "history") {
+    categoryTitle.textContent = "History";
+    body.classList.add("history");
+    contentBox.style.backgroundColor = "#006284";
+  } else if (selectedCategory === "science") {
+    categoryTitle.textContent = "Science";
+    body.classList.add("science");
+    contentBox.style.backgroundColor = "#2B6B1A";
+  } else if (selectedCategory === "culture") {
+    categoryTitle.textContent = "Culture";
+    body.classList.add("culture");
+    contentBox.style.backgroundColor = "#961315";
+  } else if (selectedCategory === "geography") {
+    categoryTitle.textContent = "Geography";
+    body.classList.add("geography");
+    contentBox.style.backgroundColor = "#0B1184";
+  } else if (selectedCategory === "entretainment") {
+    categoryTitle.textContent = "Entretainment";
+    body.classList.add("entretainment");
+    contentBox.style.backgroundColor = "#A20679";
+  } else {
+    body.innerHTML = "";
+    window.location.href = "../page-not-found/index.html";
+  }
+  body.classList.add("appear-body");
+}
+
+function setAnswers(question) {
+  setStartQuestionTransition();
+  let orderAnswer = orderAnswers(Object.keys(question));
+  correctAnswer = getAnswer(question)[0];
+  answers.forEach(function (answer, index) {
+    answer.textContent = Object.keys(question)[orderAnswer[index]];
+    answer.addEventListener("click", function () {
+      if (!userSelection.includes(correctAnswer) && answered) {
+        answered = false;
+        userSelection.push({
+          [h2.textContent]: [answer.textContent, correctAnswer],
+          explanation: currentExplanation,
+        });
+        setEndQuestionTransition(correctAnswer, answer.textContent);
+
+        if (answer.textContent == correctAnswer) {
+          correct++;
+          pointsEarned += calculatePoints(seconds);
+        }else{
+          incorrect++;
+        }
+        
+      }
+    });
+  });
+  stopTimer = false;
+}
+
+function setStartQuestionTransition() {
+  answers.forEach(function (answer) {
+    answer.style.pointerEvents = "auto";
+  });
+  answered = true;
+  explanationButton.style.display = "none";
+  explainMenu.classList.remove("show");
+  quitBlur();
+  timer.textContent = seconds;
+  stopTimer = false;
+  seconds = 15;
+  timer.textContent = seconds;
+  manageTimer();
+}
+
+function setEndQuestionTransition(correctAnswer, userAnswer) {
+  skipButton.textContent = "Next question";
+  explanationButton.style.display = "block";
+  stopTimer = true;
+  answers.forEach(function (answer) {
+    if (answer.textContent == userAnswer) {
+      answer.classList.add("incorrect");
+      answer.classList.remove("correct");
+    }
+    if (answer.textContent == correctAnswer) {
+      answer.classList.remove("incorrect");
+      answer.classList.add("correct");
+    }
+    answer.style.pointerEvents = "none";
+  });
 }
 
 function orderQuestions(questions) {
@@ -140,66 +237,6 @@ function setQuestion() {
   
 }
 
-function setAnswers(question) {
-  setStartQuestionTransition();
-  let orderAnswer = orderAnswers(Object.keys(question));
-  correctAnswer = getAnswer(question)[0];
-  answers.forEach(function (answer, index) {
-    answer.textContent = Object.keys(question)[orderAnswer[index]];
-    answer.addEventListener("click", function () {
-      if (!userSelection.includes(correctAnswer) && answered) {
-        answered = false;
-        userSelection.push({
-          [h2.textContent]: [answer.textContent, correctAnswer],
-          explanation: currentExplanation,
-        });
-        setEndQuestionTransition(correctAnswer, answer.textContent);
-
-        if (answer.textContent == correctAnswer) {
-          correct++;
-          pointsEarned += calculatePoints(seconds);
-        }else{
-          incorrect++;
-        }
-        
-      }
-    });
-  });
-  stopTimer = false;
-}
-
-function setStartQuestionTransition() {
-  answers.forEach(function (answer) {
-    answer.style.pointerEvents = "auto";
-  });
-  answered = true;
-  explanationButton.style.display = "none";
-  explainMenu.classList.remove("show");
-  quitBlur();
-  timer.textContent = seconds;
-  stopTimer = false;
-  seconds = 15;
-  timer.textContent = seconds;
-  manageTimer();
-}
-
-function setEndQuestionTransition(correctAnswer, userAnswer) {
-  skipButton.textContent = "Next question";
-  explanationButton.style.display = "block";
-  stopTimer = true;
-  answers.forEach(function (answer) {
-    if (answer.textContent == userAnswer) {
-      answer.classList.add("incorrect");
-      answer.classList.remove("correct");
-    }
-    if (answer.textContent == correctAnswer) {
-      answer.classList.remove("incorrect");
-      answer.classList.add("correct");
-    }
-    answer.style.pointerEvents = "none";
-  });
-}
-
 function skipQuestion() {
   answers.forEach(function (answer) {
     answer.classList.remove("incorrect");
@@ -256,34 +293,6 @@ function showExplain() {
   explain.textContent = currentExplanation;
 }
 
-function setColorTheme() {
-  if (selectedCategory === "history") {
-    categoryTitle.textContent = "History";
-    body.classList.add("history");
-    contentBox.style.backgroundColor = "#006284";
-  } else if (selectedCategory === "science") {
-    categoryTitle.textContent = "Science";
-    body.classList.add("science");
-    contentBox.style.backgroundColor = "#2B6B1A";
-  } else if (selectedCategory === "culture") {
-    categoryTitle.textContent = "Culture";
-    body.classList.add("culture");
-    contentBox.style.backgroundColor = "#961315";
-  } else if (selectedCategory === "geography") {
-    categoryTitle.textContent = "Geography";
-    body.classList.add("geography");
-    contentBox.style.backgroundColor = "#0B1184";
-  } else if (selectedCategory === "entretainment") {
-    categoryTitle.textContent = "Entretainment";
-    body.classList.add("entretainment");
-    contentBox.style.backgroundColor = "#A20679";
-  } else {
-    body.innerHTML = "";
-    window.location.href = "../page-not-found/index.html";
-  }
-  body.classList.add("appear-body");
-}
-
 function setDifficulty() {
   if (selectedDificulty == 0) {
     levelDifficulty.textContent = "Easy level";
@@ -296,6 +305,7 @@ function setDifficulty() {
     levelDifficulty.style.color = "#FD0105";
   }
 }
+
 function goBack() {
   body.classList.remove("appear-body");
   body.style.backgroundColor = "var(--bg-color)";
@@ -402,7 +412,3 @@ function updateLeaderboard(userName, pointsEarned){
   localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
   }
 }
-
-console.log(leaderboard);
-
-setQuestion();
