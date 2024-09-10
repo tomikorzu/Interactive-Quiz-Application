@@ -5,64 +5,89 @@ const main = document.querySelector("main");
 const footer = document.querySelector("footer");
 const selecterContent = document.createElement("div");
 
-let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+const categories = [
+  { id: "science-btn", name: "Science", icon: "fa-flask" },
+  { id: "history-btn", name: "History", icon: "fa-book-open" },
+  { id: "geography-btn", name: "Geography", icon: "fa-earth-americas" },
+  { id: "entertainment-btn", name: "Entertainment", icon: "fa-gamepad" },
+  { id: "art-btn", name: "Culture", icon: "fa-paintbrush" },
+];
+
+const difficulties = [
+  { value: "easy", label: "Easy" },
+  { value: "medium", label: "Medium" },
+  { value: "hard", label: "Hard" },
+];
 
 startBtn.addEventListener("click", viewCategories);
-localStorage.clear();
 
 function viewCategories() {
   startBtn.style.pointerEvents = "none";
   applyBlur();
   createSelecter();
-  const quitBtn = document.getElementById("quit-btn");
-  quitBtn.addEventListener("click", quitSelecter);
+  document.getElementById("quit-btn").addEventListener("click", quitSelecter);
   const categoriesBtn = document.querySelectorAll(".btn-category");
   categoriesBtn.forEach(function (btn) {
     btn.addEventListener("click", function () {
       localStorage.setItem("preferences", btn.textContent.toLowerCase());
-      selectDificult();
-      const exitBtn = document.getElementById("exit-btn");
-      exitBtn.addEventListener("click", quitSelecter);
+      selectDifficulty();
+      document
+        .getElementById("exit-btn")
+        .addEventListener("click", quitSelecter);
     });
   });
 }
+
 function createSelecter() {
   selecter.innerHTML = "";
-
   selecterContent.classList.add("selecter-div");
-  selecterContent.innerHTML = `<button id="quit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category">Select one category</h3>
-            <ul class="ul-category">
-                <li><button class="btn-category science-btn" id="science-btn"><i class="fa-solid fa-flask icon-category"></i>Science</button></li>
-                <li><button class="btn-category history-btn" id="history-btn"><i class="fa-solid fa-book-open icon-category"></i>History</button></li>
-                <li><button class="btn-category geography-btn" id="geography-btn"><i class="fa-solid fa-earth-americas icon-category"></i>Geography</button></li>
-                <li><button class="btn-category entretainment-btn" id="entretainment-btn"><i class="fa-solid fa-gamepad icon-category"></i>Entretainment</button></li>
-                <li><button class="btn-category art-btn" id="art-btn"><i class="fa-solid fa-paintbrush icon-category"></i>Culture</button></li>
-                </ul>`;
+
+  let categoryButtons = "";
+  categories.forEach(function (category) {
+    categoryButtons += `
+      <li><button class="btn-category ${category.id}" id="${category.id}"><i class="fa-solid ${category.icon} icon-category"></i>${category.name}</button></li>
+    `;
+  });
+
+  selecterContent.innerHTML = `
+    <button id="quit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button>
+    <h3 class="h2-category">Select one category</h3>
+    <ul class="ul-category">${categoryButtons}</ul>`;
+
   selecter.append(selecterContent);
   selecter.classList.add("selecter-show");
   selecterContent.classList.add("selecter-content-show");
 }
 
-function selectDificult() {
+function selectDifficulty() {
   selecter.innerHTML = "";
   selecter.classList.add("difficult-menu");
   selecterContent.classList.add("selecter-div");
   selecterContent.classList.add("category-selecter");
-  selecterContent.innerHTML = `<button class="back-btn" id="back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button><button id="exit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category h2-margin">Select the difficulty</h3>
-            <ul class="ul-category">
-                <li><button class="btn-category btn-difficult easy-btn">Easy</button></li>
-                <li><button class="btn-category btn-difficult medium-btn">Medium</button></li>
-                <li><button class="btn-category btn-difficult difficult-btn">Difficult</button></li>
-            </ul>`;
+
+  let difficultyButtons = "";
+  difficulties.forEach(function (difficulty) {
+    difficultyButtons += `
+      <li><button class="btn-category btn-difficulty ${difficulty.value}-btn" data-difficulty="${difficulty.value}">${difficulty.label}</button></li>
+    `;
+  });
+
+  selecterContent.innerHTML = `
+    <button class="back-btn" id="back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button>
+    <button id="exit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button>
+    <h3 class="h2-category h2-margin">Select the difficulty</h3>
+    <ul class="ul-category">${difficultyButtons}</ul>`;
+
   selecter.append(selecterContent);
-  const goBackBtn = document.getElementById("back-btn");
-  goBackBtn.addEventListener("click", goBack);
-  const difficultyBtn = document.querySelectorAll(".btn-difficult");
-  difficultyBtn.forEach(function (btn, index) {
+
+  document.getElementById("back-btn").addEventListener("click", goBack);
+  const difficultyBtn = document.querySelectorAll(".btn-difficulty");
+  difficultyBtn.forEach(function (btn) {
     btn.addEventListener("click", function () {
-      localStorage.setItem("difficult", index);
+      const difficultyValue = btn.getAttribute("data-difficulty");
+      localStorage.setItem("difficulty", difficultyValue);
       askUserName();
-      // transitionRedirect('./quiz-page/index.html')
     });
   });
 }
@@ -73,6 +98,7 @@ function quitSelecter() {
   quitBlur();
   localStorage.clear();
 }
+
 function goBack() {
   viewCategories();
   localStorage.clear();
@@ -82,6 +108,7 @@ function applyBlur() {
   main.classList.add("apply-blur");
   footer.classList.add("apply-blur");
 }
+
 function quitBlur() {
   main.classList.remove("apply-blur");
   footer.classList.remove("apply-blur");
@@ -100,21 +127,22 @@ function transitionRedirect(url) {
 function askUserName() {
   selecter.innerHTML = "";
   selecterContent.innerHTML = `
-  <button class="back-btn" id="go-back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button><button id="quit-user-menu"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category">Enter your name</h3>
-  <input type="text" class="input-name
-  " id="input-name" placeholder="Type your name">
-  <button class="btn-submit-name" id="submit-name">Submit</button>`;
+    <button class="back-btn" id="go-back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button>
+    <button id="quit-user-menu"><i class="fa-solid fa-xmark quit-icon"></i></button>
+    <h3 class="h2-category">Enter your name</h3>
+    <input type="text" class="input-name" id="input-name" placeholder="Type your name">
+    <button class="btn-submit-name" id="submit-name">Submit</button>`;
+
   selecter.append(selecterContent);
   selecter.classList.add("selecter-show");
-  let inputName = document.getElementById("input-name");
-  const submitName = document.getElementById("submit-name");
-  submitName.classList.add("btn-category");
-  selecterContent.classList.add("selecter-content-show");
-  const backUserMenu = document.getElementById("go-back-btn");
-  backUserMenu.addEventListener("click", goBack);
-  const quitUserMenu = document.getElementById("quit-user-menu");
-  quitUserMenu.addEventListener("click", quitSelecter);
-  submitName.addEventListener("click", submitNameFunction);
+
+  document.getElementById("go-back-btn").addEventListener("click", goBack);
+  document
+    .getElementById("quit-user-menu")
+    .addEventListener("click", quitSelecter);
+  document
+    .getElementById("submit-name")
+    .addEventListener("click", submitNameFunction);
 }
 
 function submitNameFunction() {
@@ -122,14 +150,16 @@ function submitNameFunction() {
   if (userName === "") {
     userAlert("Please enter your name");
   } else {
-    let nameExists = leaderboard.some(entry => entry.name === userName);
+    let nameExists = leaderboard.some(function (entry) {
+      return entry.name === userName;
+    });
 
     if (nameExists) {
-      userAlert('This name already exists. Please choose another one.');
+      userAlert("This name already exists. Please choose another one.");
     } else {
-      leaderboard.push({name: userName, score: 0});
-      localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
-      transitionRedirect('./quiz-page/index.html');
+      leaderboard.push({ name: userName, score: 0 });
+      localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+      transitionRedirect("./quiz-page/index.html");
     }
   }
 }
