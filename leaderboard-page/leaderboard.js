@@ -1,22 +1,4 @@
 let leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
-let body = document.querySelector("body");
-const restartBtn = document.getElementById("restart");
-const homeBtn = document.getElementById("home");
-const resultsBtn = document.getElementById("results");
-setTimeout(() => {
-  body.classList.add("show-body");
-}, 500);
-if (!leaderboard) {
-  redirectPage("../quiz-page/index.html");
-}
-
-restartBtn.addEventListener("click", () =>
-  redirectPage("../quiz-page/index.html")
-);
-homeBtn.addEventListener("click", () => redirectPage("../index.html"));
-resultsBtn.addEventListener("click", () =>
-  redirectPage("../results-page/index.html")
-);
 
 function getLastUserInfo() {
   let lastUserName = null;
@@ -33,9 +15,6 @@ function getLastUserInfo() {
     score: lastUserScore,
   };
 }
-
-let user = getLastUserInfo();
-let score = user.score;
 
 function updatePodium() {
   const podiumSpots = [
@@ -97,6 +76,9 @@ function order() {
 }
 
 function scoreUpdate() {
+  let user = getLastUserInfo();
+  let score = user.score;
+
   if (isNaN(score)) {
     alert("No score available from the last game.");
     return;
@@ -114,6 +96,8 @@ function scoreUpdate() {
 }
 
 function redirectPage(page) {
+  let body = document.querySelector("body");
+
   body.classList.add("hide-body");
   setTimeout(() => {
     window.location.href = page;
@@ -123,4 +107,13 @@ function redirectPage(page) {
 window.onload = function () {
   updateLeaderboard();
   scoreUpdate();
+
+  let body = document.querySelector("body");
+
+  setTimeout(() => {
+    body.classList.add("show-body");
+  }, 500);
+  if (!leaderboard) {
+    redirectPage("../quiz-page/index.html");
+  }
 };
