@@ -6,6 +6,7 @@ const footer = document.querySelector("footer");
 const selecterContent = document.createElement("div");
 
 let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
 const categories = [
   { id: "science-btn", name: "Science", icon: "fa-flask" },
   { id: "history-btn", name: "History", icon: "fa-book-open" },
@@ -85,8 +86,7 @@ function selectDifficulty() {
   const difficultyBtn = document.querySelectorAll(".btn-difficulty");
   difficultyBtn.forEach(function (btn) {
     btn.addEventListener("click", function () {
-      const difficultyValue = btn.getAttribute("data-difficulty");
-      localStorage.setItem("difficulty", difficultyValue);
+      localStorage.setItem("difficult", btn.textContent.toLowerCase());
       askUserName();
     });
   });

@@ -1,4 +1,4 @@
-import { globalCategories } from "./questions.js";
+import { globalCategories } from "../questions.js";
 
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
@@ -11,7 +11,6 @@ const contentBox = document.querySelector(".content-box");
 
 setColorTheme(selectedCategory);
 setDifficulty(selectedDificulty);
-
 
 let answers = document.querySelectorAll(".answer");
 let skipButton = document.getElementById("next-question");
@@ -51,9 +50,9 @@ let totalQuestions = initialOrder.length;
 let basePoints = basePointsDifficulty(selectedDificulty);
 let pointsEarned = 0;
 let maxBonusPoints = 10;
-let maxPoints = (basePoints + maxBonusPoints)*totalQuestions;
+let maxPoints = (basePoints + maxBonusPoints) * totalQuestions;
 let correctAnswersSummary = [];
-let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
 
 skipButton.addEventListener("click", skipQuestion);
 explanationButton.addEventListener("click", showExplain);
@@ -76,6 +75,7 @@ function getCategory(category, categories) {
 }
 
 function getDificulty(dificulty, questions) {
+  console.log(questions[dificulty]);
   return questions[dificulty];
 }
 
@@ -99,7 +99,7 @@ function getAnswer(answers) {
   let answersEntries = Object.entries(answers);
   return answersEntries.find(function () {
     return answersEntries[1];
-  });
+  })[0];
 }
 
 function setQuestion() {
@@ -112,9 +112,9 @@ function setQuestion() {
     explanation: currentExplanation,
   });
   if (question) {
-    currentExplanation = Object.values(question)[1];
-    h2.textContent = Object.keys(question)[0];
-    setAnswers(Object.values(question)[0]);
+    currentExplanation = question.explanation;
+    h2.textContent = question.question;
+    setAnswers(question.answers);
     order.shift();
   } else {
     h2.style.pointerEvents = "none";
@@ -137,13 +137,14 @@ function setQuestion() {
     }, 1500);
     sendResults();
   }
-  
 }
 
 function setAnswers(question) {
   setStartQuestionTransition();
-  let orderAnswer = orderAnswers(Object.keys(question));
-  correctAnswer = getAnswer(question)[0];
+  console.log(question);
+  let orderAnswer = orderAnswers(Object.entries(question));
+  correctAnswer = getAnswer(question);
+  console.log(correctAnswer);
   answers.forEach(function (answer, index) {
     answer.textContent = Object.keys(question)[orderAnswer[index]];
     answer.addEventListener("click", function () {
@@ -158,10 +159,9 @@ function setAnswers(question) {
         if (answer.textContent == correctAnswer) {
           correct++;
           pointsEarned += calculatePoints(seconds);
-        }else{
+        } else {
           incorrect++;
         }
-        
       }
     });
   });
@@ -215,13 +215,15 @@ function skipQuestion() {
 }
 
 function orderAnswers(ans) {
+  let ansEntries = Object.entries(ans);
   let order = [];
-  while (order.length < answers.length) {
-    let random = Math.floor(Math.random() * ans.length);
+  while (order.length < ansEntries.length) {
+    let random = Math.floor(Math.random() * ansEntries.length);
     if (!order.includes(random)) {
       order.push(random);
     }
   }
+  console.log(order);
   return order;
 }
 
@@ -285,13 +287,13 @@ function setColorTheme() {
 }
 
 function setDifficulty() {
-  if (selectedDificulty == 0) {
+  if (selectedDificulty == "easy") {
     levelDifficulty.textContent = "Easy level";
     levelDifficulty.style.color = "#01B66E";
-  } else if (selectedDificulty == 1) {
+  } else if (selectedDificulty == "medium") {
     levelDifficulty.textContent = "Mid level";
     levelDifficulty.style.color = "#BA8B00";
-  } else if (selectedDificulty == 2) {
+  } else if (selectedDificulty == "hard") {
     levelDifficulty.textContent = "Hard level";
     levelDifficulty.style.color = "#FD0105";
   }
@@ -310,14 +312,17 @@ function quitBlur() {
   main.classList.remove("apply-blur");
 }
 function sendResults() {
-  correctAnswersSummary.shift()
+  correctAnswersSummary.shift();
   localStorage.setItem("correctAnswers", correct);
   localStorage.setItem("quizFailures", incorrect);
   localStorage.setItem("quizSkips", skips);
   localStorage.getItem("user", userName);
   localStorage.setItem("quizPoints", pointsEarned);
   localStorage.setItem("maxPoints", maxPoints);
-  localStorage.setItem("correctAnswersSummary", JSON.stringify(correctAnswersSummary));
+  localStorage.setItem(
+    "correctAnswersSummary",
+    JSON.stringify(correctAnswersSummary)
+  );
 
   updateLeaderboard(userName, pointsEarned);
 }
@@ -368,13 +373,13 @@ function goLeaderboard() {
   }, 700);
 }
 
-function basePointsDifficulty(selectedDificulty){
+function basePointsDifficulty(selectedDificulty) {
   let basePoints = 0;
-  if(selectedDificulty == 0){
+  if (selectedDificulty == "easy") {
     basePoints = 5;
-  }else if(selectedDificulty == 1){
+  } else if (selectedDificulty == "medium") {
     basePoints = 15;
-  }else if(selectedDificulty == 2){
+  } else if (selectedDificulty == "hard") {
     basePoints = 20;
   }
 
@@ -384,22 +389,21 @@ function basePointsDifficulty(selectedDificulty){
 function calculatePoints(timeTaken) {
   let points = basePoints;
   let bonusPoint = timeTaken;
-  if(bonusPoint > maxBonusPoints){
+  if (bonusPoint > maxBonusPoints) {
     bonusPoint = maxBonusPoints;
   }
   points += bonusPoint;
   return points;
 }
 
-function updateLeaderboard(userName, pointsEarned){
-
-  let userEntry = leaderboard.find(user => user.name === userName);
+function updateLeaderboard(userName, pointsEarned) {
+  let userEntry = leaderboard.find((user) => user.name === userName);
 
   if (leaderboard.length > 0) {
     let lastUserIndex = leaderboard.length - 1;
     leaderboard[lastUserIndex].score = pointsEarned;
-  
-  localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
   }
 }
 
