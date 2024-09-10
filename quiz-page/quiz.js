@@ -2,7 +2,7 @@ import { globalCategories } from "../questions.js";
 
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
-let userName = localStorage.getItem("userName");
+
 const body = document.querySelector("body");
 const main = document.querySelector("main");
 const categoryTitle = document.querySelector(".category-tittle");
@@ -38,8 +38,8 @@ let correct = 0;
 let incorrect = 0;
 let id = 0;
 
-let category = getCategory(selectedCategory, globalCategories);
-let questions = getDificulty(selectedDificulty, category[1]);
+let category = getValues(selectedCategory, globalCategories);
+let questions = getValues(selectedDificulty, category);
 let initialOrder = orderQuestions(questions);
 let order = initialOrder.map(function (o) {
   return o;
@@ -67,16 +67,17 @@ nextExplainButton.addEventListener("click", skipQuestion);
 
 backBtn.addEventListener("click", goBack);
 
-function getCategory(category, categories) {
-  let entriesCategoreis = Object.entries(categories);
-  return entriesCategoreis.find(function (entrieCategory) {
-    return entrieCategory[0] == category;
-  });
+function getValues(property, values) {
+  return values[property];
 }
-
-function getDificulty(dificulty, questions) {
-  console.log(questions[dificulty]);
-  return questions[dificulty];
+function getQuestion(order, questions) {
+  return questions[order[0]];
+}
+function getAnswer(answers) {
+  let answersEntries = Object.entries(answers);
+  return answersEntries.find(function () {
+    return answersEntries[1];
+  })[0];
 }
 
 function orderQuestions(questions) {
@@ -90,18 +91,45 @@ function orderQuestions(questions) {
   }
   return order;
 }
-
-function getQuestion(order, questions) {
-  return questions[order[0]];
+function orderAnswers(ans) {
+  let ansEntries = Object.entries(ans);
+  let order = [];
+  while (order.length < ansEntries.length) {
+    let random = Math.floor(Math.random() * ansEntries.length);
+    if (!order.includes(random)) {
+      order.push(random);
+    }
+  }
+  return order;
 }
 
-function getAnswer(answers) {
-  let answersEntries = Object.entries(answers);
-  return answersEntries.find(function () {
-    return answersEntries[1];
-  })[0];
+function setColorTheme() {
+  if (selectedCategory === "history") {
+    categoryTitle.textContent = "History";
+    body.classList.add("history");
+    contentBox.style.backgroundColor = "#006284";
+  } else if (selectedCategory === "science") {
+    categoryTitle.textContent = "Science";
+    body.classList.add("science");
+    contentBox.style.backgroundColor = "#2B6B1A";
+  } else if (selectedCategory === "culture") {
+    categoryTitle.textContent = "Culture";
+    body.classList.add("culture");
+    contentBox.style.backgroundColor = "#961315";
+  } else if (selectedCategory === "geography") {
+    categoryTitle.textContent = "Geography";
+    body.classList.add("geography");
+    contentBox.style.backgroundColor = "#0B1184";
+  } else if (selectedCategory === "entretainment") {
+    categoryTitle.textContent = "Entretainment";
+    body.classList.add("entretainment");
+    contentBox.style.backgroundColor = "#A20679";
+  } else {
+    body.innerHTML = "";
+    window.location.href = "../page-not-found/index.html";
+  }
+  body.classList.add("appear-body");
 }
-
 function setQuestion() {
   skipButton.textContent = "Skip";
   progress.style.width =
@@ -128,7 +156,6 @@ function setQuestion() {
       progressBar.style.width = "30px";
       progressBar.style.backgroundColor = "green";
     }, 500);
-
     setTimeout(function () {
       progressIcon.classList.add("check-icon-appear");
     }, 1100);
@@ -138,13 +165,10 @@ function setQuestion() {
     sendResults();
   }
 }
-
 function setAnswers(question) {
   setStartQuestionTransition();
-  console.log(question);
   let orderAnswer = orderAnswers(Object.entries(question));
   correctAnswer = getAnswer(question);
-  console.log(correctAnswer);
   answers.forEach(function (answer, index) {
     answer.textContent = Object.keys(question)[orderAnswer[index]];
     answer.addEventListener("click", function () {
@@ -167,7 +191,6 @@ function setAnswers(question) {
   });
   stopTimer = false;
 }
-
 function setStartQuestionTransition() {
   answers.forEach(function (answer) {
     answer.style.pointerEvents = "auto";
@@ -182,7 +205,6 @@ function setStartQuestionTransition() {
   timer.textContent = seconds;
   manageTimer();
 }
-
 function setEndQuestionTransition(correctAnswer, userAnswer) {
   skipButton.textContent = "Next question";
   explanationButton.style.display = "block";
@@ -199,6 +221,23 @@ function setEndQuestionTransition(correctAnswer, userAnswer) {
     answer.style.pointerEvents = "none";
   });
 }
+function setFinishMessage() {
+  applyBlur();
+
+  finishMessageMenu.innerHTML = `<h4 class="h2-finish">Congratulations you finished the ${selectedCategory} Quiz</h4><div class="btns-div">
+  <button class="btn-finish" id="go-home">Go Home</button><button class="btn-finish" id="go-results">View Results</button><button class="btn-finish" id="go-leaderboard">View Leaderboard</button></div>`;
+  finishMessageMenu.classList.add("message-menu");
+  body.append(finishMessageMenu);
+  setTimeout(function () {
+    finishMessageMenu.classList.add("show-menu");
+  }, 400);
+  let goHomeBtn = document.getElementById("go-home");
+  let goResultsBtn = document.getElementById("go-results");
+  let goLeaderboardBtn = document.getElementById("go-leaderboard");
+  goHomeBtn.addEventListener("click", goHome);
+  goResultsBtn.addEventListener("click", goResults);
+  goLeaderboardBtn.addEventListener("click", goLeaderboard);
+}
 
 function skipQuestion() {
   answers.forEach(function (answer) {
@@ -212,19 +251,6 @@ function skipQuestion() {
   }
   seconds = 15;
   setQuestion();
-}
-
-function orderAnswers(ans) {
-  let ansEntries = Object.entries(ans);
-  let order = [];
-  while (order.length < ansEntries.length) {
-    let random = Math.floor(Math.random() * ansEntries.length);
-    if (!order.includes(random)) {
-      order.push(random);
-    }
-  }
-  console.log(order);
-  return order;
 }
 
 function contTimer() {
@@ -258,46 +284,6 @@ function showExplain() {
   explain.textContent = currentExplanation;
 }
 
-function setColorTheme() {
-  if (selectedCategory === "history") {
-    categoryTitle.textContent = "History";
-    body.classList.add("history");
-    contentBox.style.backgroundColor = "#006284";
-  } else if (selectedCategory === "science") {
-    categoryTitle.textContent = "Science";
-    body.classList.add("science");
-    contentBox.style.backgroundColor = "#2B6B1A";
-  } else if (selectedCategory === "culture") {
-    categoryTitle.textContent = "Culture";
-    body.classList.add("culture");
-    contentBox.style.backgroundColor = "#961315";
-  } else if (selectedCategory === "geography") {
-    categoryTitle.textContent = "Geography";
-    body.classList.add("geography");
-    contentBox.style.backgroundColor = "#0B1184";
-  } else if (selectedCategory === "entretainment") {
-    categoryTitle.textContent = "Entretainment";
-    body.classList.add("entretainment");
-    contentBox.style.backgroundColor = "#A20679";
-  } else {
-    body.innerHTML = "";
-    window.location.href = "../page-not-found/index.html";
-  }
-  body.classList.add("appear-body");
-}
-
-function setDifficulty() {
-  if (selectedDificulty == "easy") {
-    levelDifficulty.textContent = "Easy level";
-    levelDifficulty.style.color = "#01B66E";
-  } else if (selectedDificulty == "medium") {
-    levelDifficulty.textContent = "Mid level";
-    levelDifficulty.style.color = "#BA8B00";
-  } else if (selectedDificulty == "hard") {
-    levelDifficulty.textContent = "Hard level";
-    levelDifficulty.style.color = "#FD0105";
-  }
-}
 function goBack() {
   body.classList.remove("appear-body");
   body.style.backgroundColor = "var(--bg-color)";
@@ -324,24 +310,7 @@ function sendResults() {
     JSON.stringify(correctAnswersSummary)
   );
 
-  updateLeaderboard(userName, pointsEarned);
-}
-function setFinishMessage() {
-  applyBlur();
-
-  finishMessageMenu.innerHTML = `<h4 class="h2-finish">Congratulations you finished the ${selectedCategory} Quiz</h4><div class="btns-div">
-  <button class="btn-finish" id="go-home">Go Home</button><button class="btn-finish" id="go-results">View Results</button><button class="btn-finish" id="go-leaderboard">View Leaderboard</button></div>`;
-  finishMessageMenu.classList.add("message-menu");
-  body.append(finishMessageMenu);
-  setTimeout(function () {
-    finishMessageMenu.classList.add("show-menu");
-  }, 400);
-  let goHomeBtn = document.getElementById("go-home");
-  let goResultsBtn = document.getElementById("go-results");
-  let goLeaderboardBtn = document.getElementById("go-leaderboard");
-  goHomeBtn.addEventListener("click", goHome);
-  goResultsBtn.addEventListener("click", goResults);
-  goLeaderboardBtn.addEventListener("click", goLeaderboard);
+  updateLeaderboard(pointsEarned);
 }
 
 function goHome() {
@@ -396,9 +365,7 @@ function calculatePoints(timeTaken) {
   return points;
 }
 
-function updateLeaderboard(userName, pointsEarned) {
-  let userEntry = leaderboard.find((user) => user.name === userName);
-
+function updateLeaderboard(pointsEarned) {
   if (leaderboard.length > 0) {
     let lastUserIndex = leaderboard.length - 1;
     leaderboard[lastUserIndex].score = pointsEarned;
@@ -406,7 +373,4 @@ function updateLeaderboard(userName, pointsEarned) {
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
   }
 }
-
-console.log(leaderboard);
-
 setQuestion();
