@@ -2,6 +2,7 @@ import { globalCategories } from "../questions.js";
 
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
+let userName = localStorage.getItem("userName");
 
 const body = document.querySelector("body");
 const main = document.querySelector("main");
