@@ -31,7 +31,6 @@ let stopTimer = false;
 let answered = false;
 let userSelection = [];
 let currentExplanation = "";
-let currentDifficulty = selectedDificulty;
 let correctAnswer = "";
 let skips = 0;
 let correct = 0;
@@ -221,6 +220,18 @@ function setEndQuestionTransition(correctAnswer, userAnswer) {
     answer.style.pointerEvents = "none";
   });
 }
+function setDifficulty() {
+  if (selectedDificulty == "easy") {
+    levelDifficulty.textContent = "Easy level";
+    levelDifficulty.style.color = "#01B66E";
+  } else if (selectedDificulty == "medium") {
+    levelDifficulty.textContent = "Mid level";
+    levelDifficulty.style.color = "#BA8B00";
+  } else if (selectedDificulty == "hard") {
+    levelDifficulty.textContent = "Hard level";
+    levelDifficulty.style.color = "#FD0105";
+  }
+}
 function setFinishMessage() {
   applyBlur();
 
@@ -262,7 +273,6 @@ function contTimer() {
     setEndQuestionTransition(correctAnswer, null);
   }
 }
-
 function manageTimer() {
   if (stopTimer) {
     return;
@@ -284,19 +294,13 @@ function showExplain() {
   explain.textContent = currentExplanation;
 }
 
-function goBack() {
-  body.classList.remove("appear-body");
-  body.style.backgroundColor = "var(--bg-color)";
-  setTimeout(function () {
-    window.location.href = "../index.html";
-  }, 400);
-}
 function applyBlur() {
   main.classList.add("apply-blur");
 }
 function quitBlur() {
   main.classList.remove("apply-blur");
 }
+
 function sendResults() {
   correctAnswersSummary.shift();
   localStorage.setItem("correctAnswers", correct);
@@ -322,6 +326,13 @@ function goHome() {
     window.location.href = "../index.html";
   }, 700);
 }
+function goBack() {
+  body.classList.remove("appear-body");
+  body.style.backgroundColor = "var(--bg-color)";
+  setTimeout(function () {
+    window.location.href = "../index.html";
+  }, 400);
+}
 function goResults() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
@@ -331,7 +342,6 @@ function goResults() {
     window.location.href = "../results-page/index.html";
   }, 700);
 }
-
 function goLeaderboard() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
@@ -354,7 +364,6 @@ function basePointsDifficulty(selectedDificulty) {
 
   return basePoints;
 }
-
 function calculatePoints(timeTaken) {
   let points = basePoints;
   let bonusPoint = timeTaken;
