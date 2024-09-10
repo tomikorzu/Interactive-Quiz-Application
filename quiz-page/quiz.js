@@ -2,7 +2,7 @@ import { globalCategories } from "../questions.js";
 
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
-let userName = localStorage.getItem("userName");
+
 const body = document.querySelector("body");
 const main = document.querySelector("main");
 const categoryTitle = document.querySelector(".category-tittle");
@@ -31,15 +31,14 @@ let stopTimer = false;
 let answered = false;
 let userSelection = [];
 let currentExplanation = "";
-let currentDifficulty = selectedDificulty;
 let correctAnswer = "";
 let skips = 0;
 let correct = 0;
 let incorrect = 0;
 let id = 0;
 
-let category = getCategory(selectedCategory, globalCategories);
-let questions = getDificulty(selectedDificulty, category[1]);
+let category = getValues(selectedCategory, globalCategories);
+let questions = getValues(selectedDificulty, category);
 let initialOrder = orderQuestions(questions);
 let order = initialOrder.map(function (o) {
   return o;
@@ -67,16 +66,17 @@ nextExplainButton.addEventListener("click", skipQuestion);
 
 backBtn.addEventListener("click", goBack);
 
-function getCategory(category, categories) {
-  let entriesCategoreis = Object.entries(categories);
-  return entriesCategoreis.find(function (entrieCategory) {
-    return entrieCategory[0] == category;
-  });
+function getValues(property, values) {
+  return values[property];
 }
-
-function getDificulty(dificulty, questions) {
-  console.log(questions[dificulty]);
-  return questions[dificulty];
+function getQuestion(order, questions) {
+  return questions[order[0]];
+}
+function getAnswer(answers) {
+  let answersEntries = Object.entries(answers);
+  return answersEntries.find(function () {
+    return answersEntries[1];
+  })[0];
 }
 
 function orderQuestions(questions) {
@@ -90,130 +90,6 @@ function orderQuestions(questions) {
   }
   return order;
 }
-
-function getQuestion(order, questions) {
-  return questions[order[0]];
-}
-
-function getAnswer(answers) {
-  let answersEntries = Object.entries(answers);
-  return answersEntries.find(function () {
-    return answersEntries[1];
-  })[0];
-}
-
-function setQuestion() {
-  skipButton.textContent = "Skip";
-  progress.style.width =
-    parseInt(100 - (order.length * 100) / questions.length) + "%";
-  let question = getQuestion(order, questions);
-  correctAnswersSummary.push({
-    [h2.textContent]: [question, correctAnswer],
-    explanation: currentExplanation,
-  });
-  if (question) {
-    currentExplanation = question.explanation;
-    h2.textContent = question.question;
-    setAnswers(question.answers);
-    order.shift();
-  } else {
-    h2.style.pointerEvents = "none";
-    answers.forEach(function (answer) {
-      answer.style.pointerEvents = "none";
-    });
-    skipButton.style.pointerEvents = "none";
-    nextExplainButton.style.pointerEvents = "none";
-    explanationButton.style.pointerEvents = "none";
-    setTimeout(function () {
-      progressBar.style.width = "30px";
-      progressBar.style.backgroundColor = "green";
-    }, 500);
-
-    setTimeout(function () {
-      progressIcon.classList.add("check-icon-appear");
-    }, 1100);
-    setTimeout(function () {
-      setFinishMessage();
-    }, 1500);
-    sendResults();
-  }
-}
-
-function setAnswers(question) {
-  setStartQuestionTransition();
-  console.log(question);
-  let orderAnswer = orderAnswers(Object.entries(question));
-  correctAnswer = getAnswer(question);
-  console.log(correctAnswer);
-  answers.forEach(function (answer, index) {
-    answer.textContent = Object.keys(question)[orderAnswer[index]];
-    answer.addEventListener("click", function () {
-      if (!userSelection.includes(correctAnswer) && answered) {
-        answered = false;
-        userSelection.push({
-          [h2.textContent]: [answer.textContent, correctAnswer],
-          explanation: currentExplanation,
-        });
-        setEndQuestionTransition(correctAnswer, answer.textContent);
-
-        if (answer.textContent == correctAnswer) {
-          correct++;
-          pointsEarned += calculatePoints(seconds);
-        } else {
-          incorrect++;
-        }
-      }
-    });
-  });
-  stopTimer = false;
-}
-
-function setStartQuestionTransition() {
-  answers.forEach(function (answer) {
-    answer.style.pointerEvents = "auto";
-  });
-  answered = true;
-  explanationButton.style.display = "none";
-  explainMenu.classList.remove("show");
-  quitBlur();
-  timer.textContent = seconds;
-  stopTimer = false;
-  seconds = 15;
-  timer.textContent = seconds;
-  manageTimer();
-}
-
-function setEndQuestionTransition(correctAnswer, userAnswer) {
-  skipButton.textContent = "Next question";
-  explanationButton.style.display = "block";
-  stopTimer = true;
-  answers.forEach(function (answer) {
-    if (answer.textContent == userAnswer) {
-      answer.classList.add("incorrect");
-      answer.classList.remove("correct");
-    }
-    if (answer.textContent == correctAnswer) {
-      answer.classList.remove("incorrect");
-      answer.classList.add("correct");
-    }
-    answer.style.pointerEvents = "none";
-  });
-}
-
-function skipQuestion() {
-  answers.forEach(function (answer) {
-    answer.classList.remove("incorrect");
-    answer.classList.remove("correct");
-  });
-  stopTimer = true;
-  clearTimeout(id);
-  if (skipButton.textContent == "Skip") {
-    skips++;
-  }
-  seconds = 15;
-  setQuestion();
-}
-
 function orderAnswers(ans) {
   let ansEntries = Object.entries(ans);
   let order = [];
@@ -223,39 +99,7 @@ function orderAnswers(ans) {
       order.push(random);
     }
   }
-  console.log(order);
   return order;
-}
-
-function contTimer() {
-  if (seconds > 0 && !stopTimer) {
-    seconds--;
-    manageTimer();
-    timer.textContent = seconds;
-  } else if (!stopTimer) {
-    setEndQuestionTransition(correctAnswer, null);
-  }
-}
-
-function manageTimer() {
-  if (stopTimer) {
-    return;
-  }
-  if (seconds >= 0 && !stopTimer) {
-    id = setTimeout(contTimer, 1000);
-  }
-}
-
-function showExplain() {
-  explanationButton.style.pointerEvents = "none";
-  nextExplainButton.style.pointerEvents = "none";
-  explainMenu.style.display = "flex";
-  setTimeout(function () {
-    applyBlur();
-    explainMenu.classList.add("show");
-  }, 100);
-  let explain = explainMenu.querySelector(".text-explain");
-  explain.textContent = currentExplanation;
 }
 
 function setColorTheme() {
@@ -285,7 +129,97 @@ function setColorTheme() {
   }
   body.classList.add("appear-body");
 }
+function setQuestion() {
+  skipButton.textContent = "Skip";
+  progress.style.width =
+    parseInt(100 - (order.length * 100) / questions.length) + "%";
+  let question = getQuestion(order, questions);
+  correctAnswersSummary.push({
+    [h2.textContent]: [question, correctAnswer],
+    explanation: currentExplanation,
+  });
+  if (question) {
+    currentExplanation = question.explanation;
+    h2.textContent = question.question;
+    setAnswers(question.answers);
+    order.shift();
+  } else {
+    h2.style.pointerEvents = "none";
+    answers.forEach(function (answer) {
+      answer.style.pointerEvents = "none";
+    });
+    skipButton.style.pointerEvents = "none";
+    nextExplainButton.style.pointerEvents = "none";
+    explanationButton.style.pointerEvents = "none";
+    setTimeout(function () {
+      progressBar.style.width = "30px";
+      progressBar.style.backgroundColor = "green";
+    }, 500);
+    setTimeout(function () {
+      progressIcon.classList.add("check-icon-appear");
+    }, 1100);
+    setTimeout(function () {
+      setFinishMessage();
+    }, 1500);
+    sendResults();
+  }
+}
+function setAnswers(question) {
+  setStartQuestionTransition();
+  let orderAnswer = orderAnswers(Object.entries(question));
+  correctAnswer = getAnswer(question);
+  answers.forEach(function (answer, index) {
+    answer.textContent = Object.keys(question)[orderAnswer[index]];
+    answer.addEventListener("click", function () {
+      if (!userSelection.includes(correctAnswer) && answered) {
+        answered = false;
+        userSelection.push({
+          [h2.textContent]: [answer.textContent, correctAnswer],
+          explanation: currentExplanation,
+        });
+        setEndQuestionTransition(correctAnswer, answer.textContent);
 
+        if (answer.textContent == correctAnswer) {
+          correct++;
+          pointsEarned += calculatePoints(seconds);
+        } else {
+          incorrect++;
+        }
+      }
+    });
+  });
+  stopTimer = false;
+}
+function setStartQuestionTransition() {
+  answers.forEach(function (answer) {
+    answer.style.pointerEvents = "auto";
+  });
+  answered = true;
+  explanationButton.style.display = "none";
+  explainMenu.classList.remove("show");
+  quitBlur();
+  timer.textContent = seconds;
+  stopTimer = false;
+  seconds = 15;
+  timer.textContent = seconds;
+  manageTimer();
+}
+function setEndQuestionTransition(correctAnswer, userAnswer) {
+  skipButton.textContent = "Next question";
+  explanationButton.style.display = "block";
+  stopTimer = true;
+  answers.forEach(function (answer) {
+    if (answer.textContent == userAnswer) {
+      answer.classList.add("incorrect");
+      answer.classList.remove("correct");
+    }
+    if (answer.textContent == correctAnswer) {
+      answer.classList.remove("incorrect");
+      answer.classList.add("correct");
+    }
+    answer.style.pointerEvents = "none";
+  });
+}
 function setDifficulty() {
   if (selectedDificulty == "easy") {
     levelDifficulty.textContent = "Easy level";
@@ -297,34 +231,6 @@ function setDifficulty() {
     levelDifficulty.textContent = "Hard level";
     levelDifficulty.style.color = "#FD0105";
   }
-}
-function goBack() {
-  body.classList.remove("appear-body");
-  body.style.backgroundColor = "var(--bg-color)";
-  setTimeout(function () {
-    window.location.href = "../index.html";
-  }, 400);
-}
-function applyBlur() {
-  main.classList.add("apply-blur");
-}
-function quitBlur() {
-  main.classList.remove("apply-blur");
-}
-function sendResults() {
-  correctAnswersSummary.shift();
-  localStorage.setItem("correctAnswers", correct);
-  localStorage.setItem("quizFailures", incorrect);
-  localStorage.setItem("quizSkips", skips);
-  localStorage.getItem("user", userName);
-  localStorage.setItem("quizPoints", pointsEarned);
-  localStorage.setItem("maxPoints", maxPoints);
-  localStorage.setItem(
-    "correctAnswersSummary",
-    JSON.stringify(correctAnswersSummary)
-  );
-
-  updateLeaderboard(userName, pointsEarned);
 }
 function setFinishMessage() {
   applyBlur();
@@ -344,6 +250,73 @@ function setFinishMessage() {
   goLeaderboardBtn.addEventListener("click", goLeaderboard);
 }
 
+function skipQuestion() {
+  answers.forEach(function (answer) {
+    answer.classList.remove("incorrect");
+    answer.classList.remove("correct");
+  });
+  stopTimer = true;
+  clearTimeout(id);
+  if (skipButton.textContent == "Skip") {
+    skips++;
+  }
+  seconds = 15;
+  setQuestion();
+}
+
+function contTimer() {
+  if (seconds > 0 && !stopTimer) {
+    seconds--;
+    manageTimer();
+    timer.textContent = seconds;
+  } else if (!stopTimer) {
+    setEndQuestionTransition(correctAnswer, null);
+  }
+}
+function manageTimer() {
+  if (stopTimer) {
+    return;
+  }
+  if (seconds >= 0 && !stopTimer) {
+    id = setTimeout(contTimer, 1000);
+  }
+}
+
+function showExplain() {
+  explanationButton.style.pointerEvents = "none";
+  nextExplainButton.style.pointerEvents = "none";
+  explainMenu.style.display = "flex";
+  setTimeout(function () {
+    applyBlur();
+    explainMenu.classList.add("show");
+  }, 100);
+  let explain = explainMenu.querySelector(".text-explain");
+  explain.textContent = currentExplanation;
+}
+
+function applyBlur() {
+  main.classList.add("apply-blur");
+}
+function quitBlur() {
+  main.classList.remove("apply-blur");
+}
+
+function sendResults() {
+  correctAnswersSummary.shift();
+  localStorage.setItem("correctAnswers", correct);
+  localStorage.setItem("quizFailures", incorrect);
+  localStorage.setItem("quizSkips", skips);
+  localStorage.getItem("user", userName);
+  localStorage.setItem("quizPoints", pointsEarned);
+  localStorage.setItem("maxPoints", maxPoints);
+  localStorage.setItem(
+    "correctAnswersSummary",
+    JSON.stringify(correctAnswersSummary)
+  );
+
+  updateLeaderboard(pointsEarned);
+}
+
 function goHome() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
@@ -352,6 +325,13 @@ function goHome() {
   setTimeout(function () {
     window.location.href = "../index.html";
   }, 700);
+}
+function goBack() {
+  body.classList.remove("appear-body");
+  body.style.backgroundColor = "var(--bg-color)";
+  setTimeout(function () {
+    window.location.href = "../index.html";
+  }, 400);
 }
 function goResults() {
   main.classList.add("hide-main");
@@ -362,7 +342,6 @@ function goResults() {
     window.location.href = "../results-page/index.html";
   }, 700);
 }
-
 function goLeaderboard() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
@@ -385,7 +364,6 @@ function basePointsDifficulty(selectedDificulty) {
 
   return basePoints;
 }
-
 function calculatePoints(timeTaken) {
   let points = basePoints;
   let bonusPoint = timeTaken;
@@ -396,9 +374,7 @@ function calculatePoints(timeTaken) {
   return points;
 }
 
-function updateLeaderboard(userName, pointsEarned) {
-  let userEntry = leaderboard.find((user) => user.name === userName);
-
+function updateLeaderboard(pointsEarned) {
   if (leaderboard.length > 0) {
     let lastUserIndex = leaderboard.length - 1;
     leaderboard[lastUserIndex].score = pointsEarned;
@@ -406,7 +382,4 @@ function updateLeaderboard(userName, pointsEarned) {
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
   }
 }
-
-console.log(leaderboard);
-
 setQuestion();
