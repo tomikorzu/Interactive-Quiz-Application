@@ -1,6 +1,14 @@
 export let globalCategories = {
   history: {
-    "easy": [
+    description: {
+      name: "History",
+      icon: "fa-solid fa-book-open",
+      color: "#067ba5",
+      hoverColor: "#015979",
+      backgroundBody: "#003346",
+      backgroundContent: "#006284",
+    },
+    easy: [
       {
         question: "Who was the first President of the United States?",
         answers: {
@@ -34,7 +42,8 @@ export let globalCategories = {
           "Neil Armstrong was the first man to walk on the moon in 1969.",
       },
       {
-        question: "Which war was fought between the North and South in the United States?",
+        question:
+          "Which war was fought between the North and South in the United States?",
         answers: {
           "The Civil War": true,
           "World War I": false,
@@ -52,7 +61,8 @@ export let globalCategories = {
           "John Adams": false,
           "James Madison": false,
         },
-        explanation: "Thomas Jefferson was the principal author of the Declaration of Independence, adopted on July 4, 1776.",
+        explanation:
+          "Thomas Jefferson was the principal author of the Declaration of Independence, adopted on July 4, 1776.",
       },
       {
         question: "Where and when was gunpowder invented?",
@@ -62,7 +72,8 @@ export let globalCategories = {
           "France - 17th century": false,
           "India - 13th century": false,
         },
-        explanation: "Gunpowder was invented in China during the 9th century. Chinese alchemists discovered the mixture of potassium nitrate, charcoal, and sulfur, which was later used in firearms and fireworks.",
+        explanation:
+          "Gunpowder was invented in China during the 9th century. Chinese alchemists discovered the mixture of potassium nitrate, charcoal, and sulfur, which was later used in firearms and fireworks.",
       },
       {
         question: "According to ancient legends, who founded Rome?",
@@ -72,7 +83,8 @@ export let globalCategories = {
           "Alexander the Great and Ptolemy": false,
           "Hercules and Perseus": false,
         },
-        explanation: "According to Roman legend, Rome was founded by the twins Romulus and Remus in 753 BC.",
+        explanation:
+          "According to Roman legend, Rome was founded by the twins Romulus and Remus in 753 BC.",
       },
       {
         question: "What was the main cause of World War I?",
@@ -82,30 +94,35 @@ export let globalCategories = {
           "The invention of the airplane": false,
           "The moon landing": false,
         },
-        explanation: "The assassination of Archduke Franz Ferdinand of Austria in 1914 was a key event that triggered World War I.",
+        explanation:
+          "The assassination of Archduke Franz Ferdinand of Austria in 1914 was a key event that triggered World War I.",
       },
       {
-        question: "Which country was the first to grant women the right to vote?",
+        question:
+          "Which country was the first to grant women the right to vote?",
         answers: {
           "New Zealand": true,
           Canada: false,
           France: false,
           "United States": false,
         },
-        explanation: "New Zealand was the first country to grant women the right to vote in 1893.",
+        explanation:
+          "New Zealand was the first country to grant women the right to vote in 1893.",
       },
       {
-        question: "What was the name of the wall that divided Berlin from 1961 to 1989?",
+        question:
+          "What was the name of the wall that divided Berlin from 1961 to 1989?",
         answers: {
           "The Berlin Wall": true,
           "The Great Wall": false,
           "The Iron Curtain": false,
           "The Wall of China": false,
         },
-        explanation: "The Berlin Wall was erected by East Germany to separate East Berlin from West Berlin and became a symbol of the Cold War.",
+        explanation:
+          "The Berlin Wall was erected by East Germany to separate East Berlin from West Berlin and became a symbol of the Cold War.",
       },
     ],
-    "medium": [
+    medium: [
       {
         question: "In which year did the Titanic sink?",
         answers: {
@@ -222,7 +239,7 @@ export let globalCategories = {
           "Machu Picchu was built by the Inca civilization in the 15th century in what is now Peru.",
       },
     ],
-    "hard": [
+    hard: [
       {
         question: "Which treaty ended the Thirty Years' War in 1648?",
         answers: {
@@ -342,7 +359,15 @@ export let globalCategories = {
     ],
   },
   science: {
-    "easy": [
+    description: {
+      name: "Science",
+      icon: "fa-solid fa-flask",
+      color: "#28a506",
+      hoverColor: "#1d8500",
+      backgroundBody: "#0c3700",
+      backgroundContent: "#2B6B1A",
+    },
+    easy: [
       {
         question: "What is the chemical symbol for water?",
         answers: {
@@ -456,7 +481,7 @@ export let globalCategories = {
           "The roots of a plant absorb water and nutrients from the soil, essential for its growth.",
       },
     ],
-    "medium": [
+    medium: [
       {
         question: "What is the most abundant gas in Earth's atmosphere?",
         answers: {
@@ -574,7 +599,7 @@ export let globalCategories = {
           "The pancreas regulates blood sugar levels by producing insulin and glucagon.",
       },
     ],
-    "hard": [
+    hard: [
       {
         question:
           "What is the name of the process by which a cell divides to produce two identical daughter cells?",
@@ -696,7 +721,15 @@ export let globalCategories = {
     ],
   },
   geography: {
-    "easy": [
+    description: {
+      name: "Geography",
+      icon: "fa-solid fa-earth-americas",
+      color: "#2006a5",
+      hoverColor: "#160371",
+      backgroundBody: "#000229",
+      backgroundContent: "#0B1184",
+    },
+    easy: [
       {
         question: "Which continent is the largest by land area?",
         answers: {
@@ -809,7 +842,7 @@ export let globalCategories = {
           "The Equator is the imaginary line that divides the Earth into the Northern and Southern Hemispheres.",
       },
     ],
-    "medium": [
+    medium: [
       {
         question: "Which country is known as the Land of the Midnight Sun?",
         answers: {
@@ -924,7 +957,7 @@ export let globalCategories = {
           "Norway is known as the Land of the Midnight Sun due to its location within the Arctic Circle, where the sun does not set for extended periods in summer.",
       },
     ],
-    "hard": [
+    hard: [
       {
         question:
           "What is the name of the current geological epoch we are in, characterized by significant human impact on the Earth?",
@@ -1048,7 +1081,15 @@ export let globalCategories = {
     ],
   },
   entretainment: {
-    "easy": [
+    description: {
+      name: "Entretainment",
+      icon: "fa-solid fa-gamepad",
+      color: "#a605af",
+      hoverColor: "#700176",
+      backgroundBody: "#580041",
+      backgroundContent: "#A20679",
+    },
+    easy: [
       {
         question:
           "Which movie features the characters Woody and Buzz Lightyear?",
@@ -1168,7 +1209,7 @@ export let globalCategories = {
           "James Bond is the famous fictional British spy created by Ian Fleming, known for his espionage adventures.",
       },
     ],
-    "medium": [
+    medium: [
       {
         question: "In which movie does the character Jack Sparrow appear?",
         answers: {
@@ -1289,7 +1330,7 @@ export let globalCategories = {
           "The line 'May the Force be with you' is famous from the Star Wars movie series.",
       },
     ],
-    "hard": [
+    hard: [
       {
         question:
           "Which film director is known for the 'Cornetto Trilogy' that includes 'Shaun of the Dead', 'Hot Fuzz', and 'The World's End'?",
@@ -1413,7 +1454,15 @@ export let globalCategories = {
     ],
   },
   culture: {
-    "easy": [
+    description: {
+      name: "Culture",
+      icon: "fa-solid fa-paintbrush",
+      color: "#d3080b",
+      hoverColor: "#9a0508",
+      backgroundBody: "#580041",
+      backgroundContent: "#A20679",
+    },
+    easy: [
       {
         question: "What is the capital city of France?",
         answers: {
@@ -1524,7 +1573,7 @@ export let globalCategories = {
           "The Nile River is the longest river in Egypt and one of the longest in the world.",
       },
     ],
-    "medium": [
+    medium: [
       {
         question: "Which Italian city is famous for its canals and gondolas?",
         answers: {
@@ -1640,7 +1689,7 @@ export let globalCategories = {
           "Albert Einstein developed the theory of relativity, which revolutionized our understanding of space and time.",
       },
     ],
-    "hard": [
+    hard: [
       {
         question:
           "Which Spanish painter is known for his surrealist works, including 'The Persistence of Memory'?",

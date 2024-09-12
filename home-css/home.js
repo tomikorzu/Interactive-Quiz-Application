@@ -1,3 +1,5 @@
+import { globalCategories } from "../questions.js";
+
 const startBtn = document.getElementById("start-btn");
 const selecter = document.getElementById("selecter");
 const body = document.querySelector("body");
@@ -6,14 +8,14 @@ const footer = document.querySelector("footer");
 const selecterContent = document.createElement("div");
 
 let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
-
+startBtn.style.cursor = "pointer";
 startBtn.addEventListener("click", viewCategories);
 localStorage.clear();
 
 function viewCategories() {
   startBtn.style.pointerEvents = "none";
   applyBlur();
-  createSelecter();
+  selectCategory();
   const quitBtn = document.getElementById("quit-btn");
   quitBtn.addEventListener("click", quitSelecter);
   const categoriesBtn = document.querySelectorAll(".btn-category");
@@ -26,21 +28,46 @@ function viewCategories() {
     });
   });
 }
-function createSelecter() {
+function selectCategory() {
   selecter.innerHTML = "";
-
+  console.log(globalCategories);
   selecterContent.classList.add("selecter-div");
   selecterContent.innerHTML = `<button id="quit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category">Select one category</h3>
             <ul class="ul-category">
-                <li><button class="btn-category science-btn" id="science-btn"><i class="fa-solid fa-flask icon-category"></i>Science</button></li>
-                <li><button class="btn-category history-btn" id="history-btn"><i class="fa-solid fa-book-open icon-category"></i>History</button></li>
-                <li><button class="btn-category geography-btn" id="geography-btn"><i class="fa-solid fa-earth-americas icon-category"></i>Geography</button></li>
-                <li><button class="btn-category entretainment-btn" id="entretainment-btn"><i class="fa-solid fa-gamepad icon-category"></i>Entretainment</button></li>
-                <li><button class="btn-category art-btn" id="art-btn"><i class="fa-solid fa-paintbrush icon-category"></i>Culture</button></li>
                 </ul>`;
   selecter.append(selecterContent);
+  const categoryContainer = document.querySelector(".ul-category");
+  Object.keys(globalCategories).forEach((category) => {
+    let description = Object.values(globalCategories[category]);
+    console.log(description[0].name);
+    console.log(description[0].icon);
+    console.log(description[0].color);
+    console.log(description[0].hoverColor);
+    category = createCategory(
+      description[0].name,
+      description[0].icon,
+      description[0].color,
+      description[0].hoverColor
+    );
+    categoryContainer.append(category);
+  });
   selecter.classList.add("selecter-show");
   selecterContent.classList.add("selecter-content-show");
+}
+function createCategory(name, icon, color, hoverColor) {
+  console.log(name, icon, color, hoverColor);
+  let category = document.createElement("li");
+  category.innerHTML = `<button class="btn-category"><i class="${icon} icon-category"></i>${name}</button>`;
+  const categoryBtn = category.querySelector(".btn-category");
+  categoryBtn.style.backgroundColor = color;
+  categoryBtn.style.cursor = "pointer";
+  categoryBtn.addEventListener("mouseover", function () {
+    categoryBtn.style.backgroundColor = hoverColor;
+  });
+  categoryBtn.addEventListener("mouseout", function () {
+    categoryBtn.style.backgroundColor = color;
+  });
+  return category;
 }
 
 function selectDificult() {
@@ -52,7 +79,7 @@ function selectDificult() {
             <ul class="ul-category">
                 <li><button class="btn-category btn-difficult easy-btn">Easy</button></li>
                 <li><button class="btn-category btn-difficult medium-btn">Medium</button></li>
-                <li><button class="btn-category btn-difficult difficult-btn">Difficult</button></li>
+                <li><button class="btn-category btn-difficult difficult-btn">Hard</button></li>
             </ul>`;
   selecter.append(selecterContent);
   const goBackBtn = document.getElementById("back-btn");
