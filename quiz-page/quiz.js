@@ -10,9 +10,6 @@ const categoryTitle = document.querySelector(".category-tittle");
 const levelDifficulty = document.querySelector(".level-dificulty");
 const contentBox = document.querySelector(".content-box");
 
-setColorTheme(selectedCategory);
-setDifficulty(selectedDificulty);
-
 let answers = document.querySelectorAll(".answer");
 let skipButton = document.getElementById("next-question");
 let explanationButton = document.querySelector(".explanation");
@@ -383,4 +380,8 @@ function updateLeaderboard(pointsEarned) {
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
   }
 }
-setQuestion();
+window.onload = function () {
+  setColorTheme(selectedCategory);
+  setDifficulty(selectedDificulty);
+  setQuestion();
+};
