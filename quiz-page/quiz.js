@@ -104,31 +104,16 @@ function orderAnswers(ans) {
 }
 
 function setColorTheme() {
-  if (selectedCategory === "history") {
-    categoryTitle.textContent = "History";
-    body.classList.add("history");
-    contentBox.style.backgroundColor = "#006284";
-  } else if (selectedCategory === "science") {
-    categoryTitle.textContent = "Science";
-    body.classList.add("science");
-    contentBox.style.backgroundColor = "#2B6B1A";
-  } else if (selectedCategory === "culture") {
-    categoryTitle.textContent = "Culture";
-    body.classList.add("culture");
-    contentBox.style.backgroundColor = "#961315";
-  } else if (selectedCategory === "geography") {
-    categoryTitle.textContent = "Geography";
-    body.classList.add("geography");
-    contentBox.style.backgroundColor = "#0B1184";
-  } else if (selectedCategory === "entretainment") {
-    categoryTitle.textContent = "Entretainment";
-    body.classList.add("entretainment");
-    contentBox.style.backgroundColor = "#A20679";
+  console.log(globalCategories[selectedCategory].description.name);
+  categoryTitle.textContent = globalCategories[selectedCategory].description.name;
+  body.style.backgroundColor = globalCategories[selectedCategory].description.backgroundBody;
+  contentBox.style.backgroundColor = globalCategories[selectedCategory].description.backgroundContent;
+  if (!selectedCategory) {
+    body.innerHTML = '';
+    redirectPage()
   } else {
-    body.innerHTML = "";
-    window.location.href = "../page-not-found/index.html";
+    body.classList.add("appear-body");
   }
-  body.classList.add("appear-body");
 }
 function setQuestion() {
   skipButton.textContent = "Skip";
@@ -351,6 +336,13 @@ function goLeaderboard() {
   setTimeout(function () {
     window.location.href = "../leaderboard-page/index.html";
   }, 700);
+}
+
+function redirectPage (url) {
+  setTimeout(function () {
+    window.location.href = url;
+  }, 500);
+  body.classList.remove("transition-page");
 }
 
 function basePointsDifficulty(selectedDificulty) {

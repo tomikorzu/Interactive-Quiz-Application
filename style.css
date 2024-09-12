@@ -40,6 +40,10 @@ figure {
   margin: 0;
 }
 
+button {
+  cursor: pointer;
+}
+
 h1{
     font-size: 2em;
 }
