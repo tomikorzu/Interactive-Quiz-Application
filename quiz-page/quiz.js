@@ -10,9 +10,6 @@ const categoryTitle = document.querySelector(".category-tittle");
 const levelDifficulty = document.querySelector(".level-dificulty");
 const contentBox = document.querySelector(".content-box");
 
-setColorTheme(selectedCategory);
-setDifficulty(selectedDificulty);
-
 let answers = document.querySelectorAll(".answer");
 let skipButton = document.getElementById("next-question");
 let explanationButton = document.querySelector(".explanation");
@@ -105,12 +102,15 @@ function orderAnswers(ans) {
 
 function setColorTheme() {
   console.log(globalCategories[selectedCategory].description.name);
-  categoryTitle.textContent = globalCategories[selectedCategory].description.name;
-  body.style.backgroundColor = globalCategories[selectedCategory].description.backgroundBody;
-  contentBox.style.backgroundColor = globalCategories[selectedCategory].description.backgroundContent;
+  categoryTitle.textContent =
+    globalCategories[selectedCategory].description.name;
+  body.style.backgroundColor =
+    globalCategories[selectedCategory].description.backgroundBody;
+  contentBox.style.backgroundColor =
+    globalCategories[selectedCategory].description.backgroundContent;
   if (!selectedCategory) {
-    body.innerHTML = '';
-    redirectPage()
+    body.innerHTML = "";
+    redirectPage();
   } else {
     body.classList.add("appear-body");
   }
@@ -338,7 +338,7 @@ function goLeaderboard() {
   }, 700);
 }
 
-function redirectPage (url) {
+function redirectPage(url) {
   setTimeout(function () {
     window.location.href = url;
   }, 500);
@@ -375,4 +375,15 @@ function updateLeaderboard(pointsEarned) {
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
   }
 }
-setQuestion();
+window.onload = function () {
+  if (
+    globalCategories[selectedCategory] &&
+    globalCategories[selectedCategory][selectedDificulty]
+  ) {
+    setColorTheme(selectedCategory);
+    setDifficulty(selectedDificulty);
+    setQuestion();
+  } else {
+    redirectPage("../page-not-found/index.html");
+  }
+};
