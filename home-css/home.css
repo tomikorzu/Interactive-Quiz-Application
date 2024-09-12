@@ -232,13 +232,4 @@ footer {
   .back-icon:hover {
     color: #fff;
   }
-  .difficult-btn:hover {
-    background-color: #a40003;
-  }
-  .medium-btn:hover {
-    background-color: #836303;
-  }
-  .easy-btn:hover {
-    background-color: #068653;
-  }
 }
