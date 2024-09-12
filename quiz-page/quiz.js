@@ -207,16 +207,9 @@ function setEndQuestionTransition(correctAnswer, userAnswer) {
   });
 }
 function setDifficulty() {
-  if (selectedDificulty == "easy") {
-    levelDifficulty.textContent = "Easy level";
-    levelDifficulty.style.color = "#01B66E";
-  } else if (selectedDificulty == "medium") {
-    levelDifficulty.textContent = "Mid level";
-    levelDifficulty.style.color = "#BA8B00";
-  } else if (selectedDificulty == "hard") {
-    levelDifficulty.textContent = "Hard level";
-    levelDifficulty.style.color = "#FD0105";
-  }
+  levelDifficulty.textContent = `${difficultyBtnSettings[selectedDificulty].name} level`;
+  levelDifficulty.style.color =
+    difficultyBtnSettings[selectedDificulty].quizDifficultyTextColor;
 }
 function setFinishMessage() {
   applyBlur();

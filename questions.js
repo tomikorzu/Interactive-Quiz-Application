@@ -1825,7 +1825,7 @@ export const difficultyBtnSettings = {
     name: "Medium",
     backgroundBtn: "#ba8b00",
     backgroundBtnHover: "#836303",
-    quizDifficultyTextColor: "#01B66E",
+    quizDifficultyTextColor: "#BA8B00",
   },
   hard: {
     name: "Hard",
