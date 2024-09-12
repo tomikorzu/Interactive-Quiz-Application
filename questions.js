@@ -1813,3 +1813,24 @@ export let globalCategories = {
     ],
   },
 };
+
+export const difficultyBtn = {
+  easy: {
+    name: "Easy",
+    backgroundBtn: "#01b66e",
+    backgroundBtnHover: "#068653",
+    quizDifficultyTextColor: "#01B66E",
+  },
+  medium: {
+    name: "Medium",
+    backgroundBtn: "#ba8b00",
+    backgroundBtnHover: "#836303",
+    quizDifficultyTextColor: "#01B66E",
+  },
+  hard: {
+    name: "Hard",
+    backgroundBtn: "#d91b1e",
+    backgroundBtnHover: "#a40003",
+    quizDifficultyTextColor: "#FD0105",
+  },
+};

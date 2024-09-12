@@ -1,4 +1,4 @@
-import { globalCategories } from "../questions.js";
+import { globalCategories, difficultyBtn } from "../questions.js";
 
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
