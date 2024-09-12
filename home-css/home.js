@@ -1,4 +1,4 @@
-import { globalCategories, difficultyBtnSettings } from "../questions.js";
+import { globalCategories, difficultySettings } from "../questions.js";
 
 const startBtn = document.getElementById("start-btn");
 const selecter = document.getElementById("selecter");
@@ -66,7 +66,7 @@ function createCategory(name, icon, color, hoverColor) {
 }
 
 function selectDificult() {
-  console.log(Object.keys(difficultyBtnSettings));
+  console.log(Object.keys(difficultySettings));
   selecter.innerHTML = "";
   selecter.classList.add("difficult-menu");
   selecterContent.classList.add("selecter-div");
@@ -76,8 +76,8 @@ function selectDificult() {
             </ul>`;
   selecter.append(selecterContent);
   const difficultyContainerBtns = document.getElementById("ul-difficulty");
-  Object.keys(difficultyBtnSettings).forEach((difficultyBtn) => {
-    let description = difficultyBtnSettings[difficultyBtn];
+  Object.keys(difficultySettings).forEach((difficultyBtn) => {
+    let description = difficultySettings[difficultyBtn];
     difficultyBtn = createDifficultyButton(
       description.name,
       description.backgroundBtn,

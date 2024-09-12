@@ -1814,23 +1814,26 @@ export let globalCategories = {
   },
 };
 
-export const difficultyBtnSettings = {
+export const difficultySettings = {
   easy: {
     name: "Easy",
     backgroundBtn: "#01b66e",
     backgroundBtnHover: "#068653",
     quizDifficultyTextColor: "#01B66E",
+    basePoints: 10,
   },
   medium: {
     name: "Medium",
     backgroundBtn: "#ba8b00",
     backgroundBtnHover: "#836303",
     quizDifficultyTextColor: "#BA8B00",
+    basePoints: 15,
   },
   hard: {
     name: "Hard",
     backgroundBtn: "#d91b1e",
     backgroundBtnHover: "#a40003",
     quizDifficultyTextColor: "#FD0105",
+    basePoints: 20,
   },
 };
