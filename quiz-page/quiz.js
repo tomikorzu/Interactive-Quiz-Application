@@ -1,4 +1,4 @@
-import { globalCategories, difficultyBtnSettings } from "../questions.js";
+import { globalCategories, difficultySettings } from "../questions.js";
 
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
@@ -35,19 +35,18 @@ let correct = 0;
 let incorrect = 0;
 let id = 0;
 
-let category = getValues(selectedCategory, globalCategories);
-let questions = getValues(selectedDificulty, category);
-let initialOrder = orderQuestions(questions);
-let order = initialOrder.map(function (o) {
-  return o;
-});
+let category = {}
+let questions = {}
+let initialOrder = []
+let order = []
 
-let totalQuestions = initialOrder.length;
+let totalQuestions = 0;
 
-let basePoints = basePointsDifficulty(selectedDificulty);
+let basePoints = 0;
+let maxPoints = 0;
+
 let pointsEarned = 0;
 let maxBonusPoints = 10;
-let maxPoints = (basePoints + maxBonusPoints) * totalQuestions;
 let correctAnswersSummary = [];
 let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
 
@@ -207,9 +206,9 @@ function setEndQuestionTransition(correctAnswer, userAnswer) {
   });
 }
 function setDifficulty() {
-  levelDifficulty.textContent = `${difficultyBtnSettings[selectedDificulty].name} level`;
+  levelDifficulty.textContent = `${difficultySettings[selectedDificulty].name} level`;
   levelDifficulty.style.color =
-    difficultyBtnSettings[selectedDificulty].quizDifficultyTextColor;
+    difficultySettings[selectedDificulty].quizDifficultyTextColor;
 }
 function setFinishMessage() {
   applyBlur();
@@ -339,16 +338,7 @@ function redirectPage(url) {
 }
 
 function basePointsDifficulty(selectedDificulty) {
-  let basePoints = 0;
-  if (selectedDificulty == "easy") {
-    basePoints = 5;
-  } else if (selectedDificulty == "medium") {
-    basePoints = 15;
-  } else if (selectedDificulty == "hard") {
-    basePoints = 20;
-  }
-
-  return basePoints;
+  return difficultySettings[selectedDificulty].basePoints;
 }
 function calculatePoints(timeTaken) {
   let points = basePoints;
@@ -373,9 +363,19 @@ window.onload = function () {
     globalCategories[selectedCategory] &&
     globalCategories[selectedCategory][selectedDificulty]
   ) {
+    category = getValues(selectedCategory, globalCategories);
+    questions = getValues(selectedDificulty, category);
+    initialOrder = orderQuestions(questions);
+    order = initialOrder.map(function (o) {
+      return o;
+    });
+    totalQuestions = initialOrder.length;
+    basePoints = basePointsDifficulty(selectedDificulty);
+    maxPoints = (basePoints + maxBonusPoints) * totalQuestions;
     setColorTheme(selectedCategory);
     setDifficulty(selectedDificulty);
     setQuestion();
+
   } else {
     redirectPage("../page-not-found/index.html");
   }
