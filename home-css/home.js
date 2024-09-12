@@ -1,4 +1,4 @@
-import { globalCategories } from "../questions.js";
+import { globalCategories, difficultyBtnSettings } from "../questions.js";
 
 const startBtn = document.getElementById("start-btn");
 const selecter = document.getElementById("selecter");
@@ -30,7 +30,6 @@ function viewCategories() {
 }
 function selectCategory() {
   selecter.innerHTML = "";
-  console.log(globalCategories);
   selecterContent.classList.add("selecter-div");
   selecterContent.innerHTML = `<button id="quit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category">Select one category</h3>
             <ul class="ul-category">
@@ -39,10 +38,6 @@ function selectCategory() {
   const categoryContainer = document.querySelector(".ul-category");
   Object.keys(globalCategories).forEach((category) => {
     let description = Object.values(globalCategories[category]);
-    console.log(description[0].name);
-    console.log(description[0].icon);
-    console.log(description[0].color);
-    console.log(description[0].hoverColor);
     category = createCategory(
       description[0].name,
       description[0].icon,
@@ -54,8 +49,8 @@ function selectCategory() {
   selecter.classList.add("selecter-show");
   selecterContent.classList.add("selecter-content-show");
 }
+
 function createCategory(name, icon, color, hoverColor) {
-  console.log(name, icon, color, hoverColor);
   let category = document.createElement("li");
   category.innerHTML = `<button class="btn-category"><i class="${icon} icon-category"></i>${name}</button>`;
   const categoryBtn = category.querySelector(".btn-category");
@@ -71,17 +66,25 @@ function createCategory(name, icon, color, hoverColor) {
 }
 
 function selectDificult() {
+  console.log(Object.keys(difficultyBtnSettings));
   selecter.innerHTML = "";
   selecter.classList.add("difficult-menu");
   selecterContent.classList.add("selecter-div");
   selecterContent.classList.add("category-selecter");
   selecterContent.innerHTML = `<button class="back-btn" id="back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button><button id="exit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category h2-margin">Select the difficulty</h3>
-            <ul class="ul-category">
-                <li><button class="btn-category btn-difficult easy-btn">Easy</button></li>
-                <li><button class="btn-category btn-difficult medium-btn">Medium</button></li>
-                <li><button class="btn-category btn-difficult difficult-btn">Hard</button></li>
+            <ul class="ul-category" id="ul-difficulty">
             </ul>`;
   selecter.append(selecterContent);
+  const difficultyContainerBtns = document.getElementById("ul-difficulty");
+  Object.keys(difficultyBtnSettings).forEach((difficultyBtn) => {
+    let description = difficultyBtnSettings[difficultyBtn];
+    difficultyBtn = createDifficultyButton(
+      description.name,
+      description.backgroundBtn,
+      description.backgroundBtnHover
+    );
+    difficultyContainerBtns.append(difficultyBtn);
+  });
   const goBackBtn = document.getElementById("back-btn");
   goBackBtn.addEventListener("click", goBack);
   const difficultyBtn = document.querySelectorAll(".btn-difficult");
@@ -89,10 +92,24 @@ function selectDificult() {
     btn.addEventListener("click", function () {
       localStorage.setItem("difficult", btn.textContent.toLowerCase());
       askUserName();
-      // transitionRedirect('./quiz-page/index.html')
     });
   });
 }
+
+const createDifficultyButton = (name, btnColor, btnColorHover) => {
+  let difficultyBtn = document.createElement("li");
+  difficultyBtn.innerHTML = `<button class="btn-category btn-difficult">${name}</button>`;
+  const difficultyBtns = difficultyBtn.querySelector(".btn-difficult");
+  difficultyBtns.style.backgroundColor = btnColor;
+  difficultyBtns.style.cursor = "pointer";
+  difficultyBtns.addEventListener("mouseover", function () {
+    difficultyBtns.style.backgroundColor = btnColorHover;
+  });
+  difficultyBtns.addEventListener("mouseout", function () {
+    difficultyBtns.style.backgroundColor = btnColor;
+  });
+  return difficultyBtn;
+};
 
 function quitSelecter() {
   selecter.classList.remove("selecter-show");

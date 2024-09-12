@@ -1814,7 +1814,7 @@ export let globalCategories = {
   },
 };
 
-export const difficultyBtn = {
+export const difficultyBtnSettings = {
   easy: {
     name: "Easy",
     backgroundBtn: "#01b66e",
