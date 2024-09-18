@@ -1,7 +1,4 @@
 import { globalCategories, difficultySettings } from "../questions.js";
-import userButton from "../utils/mainFunctions.js";
-
-userButton();
 
 const startBtn = document.getElementById("start-btn");
 const selecter = document.getElementById("selecter");
@@ -12,8 +9,21 @@ const selecterContent = document.createElement("div");
 
 let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
 startBtn.style.cursor = "pointer";
-startBtn.addEventListener("click", viewCategories);
-localStorage.clear();
+startBtn.addEventListener("click", function () {
+  if (!localStorage.getItem("currentUser")) {
+    //mostrar panel de registro de usuario
+    localStorage.setItem("currentUser", "Pijurria");
+    leaderboard.push({
+      name: "Pijurria",
+      password: "1234",
+      score: 0,
+      stadistics: {},
+    });
+    console.log("Registrado");
+  } else {
+    viewCategories();
+  }
+});
 
 function viewCategories() {
   startBtn.style.pointerEvents = "none";
@@ -118,11 +128,13 @@ function quitSelecter() {
   selecter.classList.remove("selecter-show");
   startBtn.style.pointerEvents = "auto";
   quitBlur();
-  localStorage.clear();
+  localStorage.removeItem("difficult");
+  localStorage.removeItem("preferences");
 }
 function goBack() {
   viewCategories();
-  localStorage.clear();
+  localStorage.removeItem("difficult");
+  localStorage.removeItem("preferences");
 }
 
 function applyBlur() {
@@ -147,18 +159,18 @@ function transitionRedirect(url) {
 function askUserName() {
   selecter.innerHTML = "";
   selecterContent.innerHTML = `
-  <button class="back-btn" id="go-back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button><button id="quit-user-menu"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category">Enter your name</h3>
+ <button id="quit-user-menu"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category">Enter your name</h3>
   <input type="text" class="input-name
   " id="input-name" placeholder="Type your name">
-  <button class="btn-submit-name" id="submit-name">Submit</button>`;
+  <button class="btn-submit-name" id="submit-name">Log in</button>`;
   selecter.append(selecterContent);
   selecter.classList.add("selecter-show");
   let inputName = document.getElementById("input-name");
   const submitName = document.getElementById("submit-name");
   submitName.classList.add("btn-category");
   selecterContent.classList.add("selecter-content-show");
-  const backUserMenu = document.getElementById("go-back-btn");
-  backUserMenu.addEventListener("click", goBack);
+  //const backUserMenu = document.getElementById("go-back-btn");
+  //backUserMenu.addEventListener("click", goBack);
   const quitUserMenu = document.getElementById("quit-user-menu");
   quitUserMenu.addEventListener("click", quitSelecter);
   submitName.addEventListener("click", submitNameFunction);
@@ -176,7 +188,9 @@ function submitNameFunction() {
     } else {
       leaderboard.push({ name: userName, score: 0 });
       localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
-      transitionRedirect("./quiz-page/index.html");
+      localStorage.setItem("currentUser", userName);
+      //transitionRedirect("./quiz-page/index.html");
+      viewCategories();
     }
   }
 }
