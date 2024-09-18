@@ -1,6 +1,5 @@
 const userBtn = document.createElement("button");
 
-
 const userButton = () => {
   userBtn.classList.add("user-btn");
   userBtn.innerHTML = `<i class="fa-solid fa-user user-icon"></i>`;
@@ -40,10 +39,14 @@ const userPanel = () => {
   });
 };
 
-const applyBlur = () => {
-  const main = document.querySelector("main");
-  main.classList.add("apply-blur");
-};
+function applyBlur() {
+  document.querySelector("main").style.filter = "blur(5px)";
+  document.querySelector("footer").classList.add("apply-blur");
+}
+function quitBlur() {
+  document.querySelector("main").style.filter = "blur(0px)";
+  document.querySelector("footer").classList.remove("apply-blur");
+}
 
 const redirectPage = (page) => {
   const body = document.querySelector("body");
