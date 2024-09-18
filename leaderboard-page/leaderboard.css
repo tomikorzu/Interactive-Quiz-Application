@@ -9,7 +9,7 @@ body {
   opacity: 0;
   min-height: 100vh;
   gap: 30px;
-  transition: opacity 0.8s;
+  transition: opacity 0.4s;
 }
 .show-body {
   opacity: 1;

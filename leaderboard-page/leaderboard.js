@@ -104,8 +104,18 @@ function redirectPage(page) {
   body.classList.add("hide-body");
   setTimeout(() => {
     window.location.href = page;
-  }, 1000);
+  }, 500);
 }
+
+document.getElementById("home").addEventListener("click", () => {
+  redirectPage("../index.html");
+});
+document.getElementById("results").addEventListener("click", () => {
+  redirectPage("../results-page/index.html");
+});
+document.getElementById("restart").addEventListener("click", () => {
+  redirectPage("../quiz-page/index.html");
+});
 
 window.onload = function () {
   updateLeaderboard();
