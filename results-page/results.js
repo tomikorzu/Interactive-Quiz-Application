@@ -1,5 +1,10 @@
-let correctAnswersSummary = JSON.parse(localStorage.getItem("correctAnswersSummary"));
+let correctAnswersSummary = JSON.parse(
+  localStorage.getItem("correctAnswersSummary")
+);
 let questionIndex = 0;
+import userButton from "../utils/mainFunctions.js";
+
+userButton();
 
 window.onload = function () {
   perfomanceList();
@@ -133,7 +138,7 @@ function progressBarStyle() {
 
 if (!correctAnswersSummary) {
   const body = document.querySelector("body");
-  
+
   setTimeout(() => {
     body.classList.add("hide-body");
   }, 500);

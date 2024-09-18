@@ -23,6 +23,12 @@ body {
   --text-color: #f5f5f5;
   --form-bg: #330769;
 }
+button {
+  border: none;
+  background-color: transparent;
+  color: #f5f5f5;
+  cursor: pointer;
+}
 ul {
   list-style: none;
   padding: 0;
@@ -39,10 +45,6 @@ h6,
 p,
 figure {
   margin: 0;
-}
-
-button {
-  cursor: pointer;
 }
 
 h1 {
@@ -67,6 +69,19 @@ p {
   font-size: 0.875em;
 }
 
+.user-icon{
+  font-size: 1.25em;
+}
+
+.user-btn{
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  padding: 10px;
+  border-radius: 100%;
+  background-color: var(--form-bg);
+  display: flex;
+}
 @media (min-width: 768px) {
   body {
     font-size: 18px;
