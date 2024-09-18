@@ -136,6 +136,18 @@ function progressBarStyle() {
   }
 }
 
+document.getElementById("home-redirect").addEventListener("click", () => {
+  redirectPage("../home-css/index.html");
+});
+document
+  .getElementById("leaderboard-redirect")
+  .addEventListener("click", () => {
+    redirectPage("../leaderboard-page/index.html");
+  });
+document.getElementById("quiz-redirect").addEventListener("click", () => {
+  redirectPage("../quiz-page/index.html");
+});
+
 if (!correctAnswersSummary) {
   const body = document.querySelector("body");
 
