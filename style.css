@@ -17,6 +17,8 @@ body {
 *::after {
   box-sizing: border-box;
   touch-action: manipulation;
+  margin: 0;
+  padding: 0;
 }
 :root {
   --bg-color: #140329;
@@ -31,49 +33,71 @@ button {
 }
 ul {
   list-style: none;
-  padding: 0;
 }
 a {
   text-decoration: none;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-figure {
-  margin: 0;
+.center-fixed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-h1 {
-  font-size: 2em;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-h2 {
-  font-size: 1.75em;
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
-h3 {
-  font-size: 1.5em;
+
+@keyframes fadeLeft {
+  from {
+    transform: translateX(-400%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
-h4 {
+@keyframes fadeUp {
+  from {
+    transform: translate(-50%, 400%);
+  }
+  to {
+    transform: translate(-50%, 0);
+  }
+}
+@keyframes applyBlur {
+  from {
+    filter: blur(0);
+  }
+  to {
+    filter: blur(5px);
+  }
+}
+@keyframes quitBlur {
+  from {
+    filter: blur(5px);
+  }
+  to {
+    filter: blur(0);
+  }
+}
+.user-icon {
   font-size: 1.25em;
 }
-h5 {
-  font-size: 1em;
-}
-h6 {
-  font-size: 0.875em;
-}
-p {
-  font-size: 0.875em;
-}
-
-.user-icon{
-  font-size: 1.25em;
-}
-
-.user-btn{
+.user-btn {
   position: fixed;
   top: 15px;
   right: 15px;
@@ -81,21 +105,82 @@ p {
   border-radius: 100%;
   background-color: var(--form-bg);
   display: flex;
+  transition: all .4s;
 }
-@media (min-width: 768px) {
-  body {
-    font-size: 18px;
-  }
+.user-title {
+}
+.button-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.user-panel {
+  position: fixed;
+  width: 270px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -400%);
+  display: none;
+  background-color: #330769;
+  text-align: center;
+  padding: 30px 0;
+  border-radius: 10px;
+  z-index: 12;
+  gap: 10px;
+  flex-direction: column;
+  animation: fadeUp 0.4s forwards;
+}
+
+.btn-user-panel {
+  background-color: #7542d3;
+  transition: background-color 0.4s;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.quit-panel {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+}
+.quit-icon {
+  font-size: 2em;
+  color: #ffffff90;
+  transition: all 0.4s;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s forwards;
+}
+.fade-out {
+  animation: fadeOut 0.4s forwards;
+}
+.fade-left {
+  animation: fadeLeft 0.4s forwards;
+}
+.fade-up {
+  animation: fadeUp 0.4s forwards;
+}
+.apply-blur {
+  animation: applyBlur 0.4s forwards;
+}
+.quit-blur{
+  animation: quitBlur 0.4s forwards;
 }
 
 @media (min-width: 1024px) {
-  body {
-    font-size: 20px;
+  .user-btn:hover {
+    background-color: #48138a;
   }
-}
-
-@media (min-width: 1440px) {
-  body {
-    font-size: 22px;
+  .btn-user-panel:hover {
+    background-color: #6731cb;
+  }
+  .quit-icon:hover {
+    color: #fff;
   }
 }
