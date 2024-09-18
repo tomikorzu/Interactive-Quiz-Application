@@ -126,11 +126,11 @@ function goBack() {
 }
 
 function applyBlur() {
-  main.classList.add("apply-blur");
+  main.style.filter = "blur(5px)";
   footer.classList.add("apply-blur");
 }
 function quitBlur() {
-  main.classList.remove("apply-blur");
+  main.style.filter = "blur(0px)";
   footer.classList.remove("apply-blur");
 }
 

@@ -43,6 +43,117 @@ a {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeLeft {
+  from {
+    transform: translateX(-400%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes fadeUp {
+  from {
+    transform: translate(-50%, 400%);
+  }
+  to {
+    transform: translate(-50%, 0);
+  }
+}
+@keyframes applyBlur {
+  from {
+    filter: blur(0);
+  }
+  to {
+    filter: blur(5px);
+  }
+}
+@keyframes quitBlur {
+  from {
+    filter: blur(5px);
+  }
+  to {
+    filter: blur(0);
+  }
+}
+.user-icon {
+  font-size: 1.25em;
+}
+.user-btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  padding: 10px;
+  border-radius: 100%;
+  background-color: var(--form-bg);
+  display: flex;
+  transition: all .4s;
+}
+.user-title {
+}
+.button-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.user-panel {
+  position: fixed;
+  width: 270px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -400%);
+  display: none;
+  background-color: #330769;
+  text-align: center;
+  padding: 30px 0;
+  border-radius: 10px;
+  z-index: 12;
+  gap: 10px;
+  flex-direction: column;
+  animation: fadeUp 0.4s forwards;
+}
+
+.btn-user-panel {
+  background-color: #7542d3;
+  transition: background-color 0.4s;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.quit-panel {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+}
+.quit-icon {
+  font-size: 2em;
+  color: #ffffff90;
+  transition: all 0.4s;
+}
+
 .fade-in {
   animation: fadeIn 0.4s forwards;
 }
@@ -58,58 +169,18 @@ a {
 .apply-blur {
   animation: applyBlur 0.4s forwards;
 }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  } 
+.quit-blur{
+  animation: quitBlur 0.4s forwards;
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
+@media (min-width: 1024px) {
+  .user-btn:hover {
+    background-color: #48138a;
   }
-  to {
-    opacity: 0;
-  } 
-}
-
-@keyframes fadeLeft {
-  from {
-    transform: translateX(-400%);
+  .btn-user-panel:hover {
+    background-color: #6731cb;
   }
-  to {
-    transform: translateX(0);
+  .quit-icon:hover {
+    color: #fff;
   }
-}
-@keyframes fadeUp {
-  from {
-    transform: translateY(-400%);
-  }
-  to {
-    transform: translateY(0);
-  } 
-}
-@keyframes applyBlur {
-  from {
-    filter: blur(0);
-  }
-  to {
-    filter: blur(5px);
-  }
-}
-.user-icon{
-  font-size: 1.25em;
-}
-.user-btn{
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  padding: 10px;
-  border-radius: 100%;
-  background-color: var(--form-bg);
-  display: flex;
 }
