@@ -1,4 +1,7 @@
 import { globalCategories, difficultySettings } from "../questions.js";
+import userButton from "../utils/mainFunctions.js";
+
+userButton();
 
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
@@ -35,10 +38,10 @@ let correct = 0;
 let incorrect = 0;
 let id = 0;
 
-let category = {}
-let questions = {}
-let initialOrder = []
-let order = []
+let category = {};
+let questions = {};
+let initialOrder = [];
+let order = [];
 
 let totalQuestions = 0;
 
@@ -375,7 +378,6 @@ window.onload = function () {
     setColorTheme(selectedCategory);
     setDifficulty(selectedDificulty);
     setQuestion();
-
   } else {
     redirectPage("../page-not-found/index.html");
   }

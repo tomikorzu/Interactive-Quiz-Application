@@ -1,4 +1,7 @@
 import { globalCategories, difficultySettings } from "../questions.js";
+import userButton from "../utils/mainFunctions.js";
+
+userButton();
 
 const startBtn = document.getElementById("start-btn");
 const selecter = document.getElementById("selecter");

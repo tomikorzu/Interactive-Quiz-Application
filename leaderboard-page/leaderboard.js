@@ -1,4 +1,7 @@
 let leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
+import userButton from "../utils/mainFunctions.js";
+
+userButton();
 
 function getLastUserInfo() {
   let lastUserName = null;
