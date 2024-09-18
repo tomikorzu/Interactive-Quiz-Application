@@ -1,4 +1,5 @@
 import { globalCategories, difficultySettings } from "../questions.js";
+import userButton from "../utils/mainFunctions.js";
 
 const startBtn = document.getElementById("start-btn");
 const selecter = document.getElementById("selecter");
@@ -6,6 +7,8 @@ const body = document.querySelector("body");
 const main = document.querySelector("main");
 const footer = document.querySelector("footer");
 const selecterContent = document.createElement("div");
+
+userButton();
 
 let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
 startBtn.style.cursor = "pointer";
@@ -104,7 +107,7 @@ function selectDificult() {
   difficultyBtn.forEach(function (btn, index) {
     btn.addEventListener("click", function () {
       localStorage.setItem("difficult", btn.textContent.toLowerCase());
-      askUserName();
+      transitionRedirect("./quiz-page/index.html");
     });
   });
 }
