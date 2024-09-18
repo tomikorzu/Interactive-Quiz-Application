@@ -56,7 +56,7 @@ a {
   animation: fadeUp 0.4s forwards;
 }
 .apply-blur {
-  filter: blur(5px);
+  animation: applyBlur 0.4s forwards;
 }
 
 @keyframes fadeIn {
@@ -92,6 +92,14 @@ a {
   to {
     transform: translateY(0);
   } 
+}
+@keyframes applyBlur {
+  from {
+    filter: blur(0);
+  }
+  to {
+    filter: blur(5px);
+  }
 }
 .user-icon{
   font-size: 1.25em;
