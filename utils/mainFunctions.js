@@ -5,4 +5,9 @@ const userButton = () => {
   document.body.appendChild(userBtn);
 };
 
+const redirectPage = (page) => {
+  const body = document.querySelector("body");
+  body.classList.add("hide-body");
+};
+
 export default userButton;
