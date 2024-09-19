@@ -36,7 +36,7 @@ const userPanel = () => {
   const signupBtn = document.getElementById("btn-signup");
   const signinBtn = document.getElementById("btn-login");
   signupBtn.addEventListener("click", () => redirectPage("../sign-page/signup.html"));
-  signupBtn.addEventListener("click", () => redirectPage("../sign-page/signin.html"));
+  signinBtn.addEventListener("click", () => redirectPage("../sign-page/signin.html"));
 };
 
 function applyBlur() {
