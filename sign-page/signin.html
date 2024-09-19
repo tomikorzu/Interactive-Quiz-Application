@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In</title>
+    <link rel="stylesheet" href="./sign.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="icon" href="../public/iconQuiz.svg" />
+  </head>
+  <body>
+    <main class="fade-in">
+      <form class="sign-form">
+        <h1 class="sign-title">Sign In</h1>
+        <div class="input-container">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="input"
+            placeholder="Name"
+            autocomplete="off"
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="input"
+            placeholder="Password"
+            autocomplete="off"
+          />
+        </div>
+        <button type="submit" class="submit-btn">Enter</button>
+        <p class="p-already-account">
+          You don't have an account?
+          <button class="already-account-btn">Sign Up</button>
+        </p>
+      </form>
+    </main>
+    <script src="./signin.js"></script>
+  </body>
+</html>
