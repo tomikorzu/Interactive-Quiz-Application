@@ -27,8 +27,8 @@ QuizMaster offers an interactive quiz experience where users can select categori
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/quizmaster-app.git`
-
+1. Clone the repository: `git clone https://github.com/tomikorzu/quizmaster-app.git`
+chaati
 2. Open the folder in `Visual Studio Code` (or any code editor)
 
 ## Usage
