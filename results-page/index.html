@@ -1,63 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <title>Results</title>
-    <link rel="stylesheet" href="./results.css">
-    <link rel="stylesheet" href="../style.css">
-</head>
-<body>
+    <link rel="icon" href="../public/icon.svg" />
+    <link rel="stylesheet" href="./results.css" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
     <main>
-        <h1 class="title">Results</h1>
-        <div class="progress-result">
-            <h2 class="progress-score" id="final-score"></h2>
-            <div class="progress-bar">
-                <div class="progress-bar-result" id="progress-bar-result"></div>
-            </div>
+      <h1 class="title">Results</h1>
+      <div class="progress-result">
+        <h2 class="progress-score" id="final-score"></h2>
+        <div class="progress-bar">
+          <div class="progress-bar-result" id="progress-bar-result"></div>
         </div>
-        <div class="correct-incorrect-skip">
-           <h5 class="correct-count" id="correct-count"></h5>
-           <h5 class="incorrect-count" id="incorrect-count"></h5>
-           <h5 class="skip-count" id="skipped-count"></h5>
+      </div>
+      <div class="correct-incorrect-skip">
+        <h5 class="correct-count" id="correct-count"></h5>
+        <h5 class="incorrect-count" id="incorrect-count"></h5>
+        <h5 class="skip-count" id="skipped-count"></h5>
+      </div>
+      <div class="question-answer-explain-container">
+        <div class="question-answer-explain">
+          <div class="header-content">
+            <h3 class="question-title" id="question-title">Question:</h3>
+          </div>
+          <div class="main-content" id="question">
+            <h6 class="question-text" id="question-correct"></h6>
+          </div>
         </div>
-        <div class="question-answer-explain-container">
-            <div class="question-answer-explain">
-                <div class="header-content">
-                    <h3 class="question-title" id="question-title">Question: </h3>
-                </div>
-                <div class="main-content" id="question">
-                    <h6 class="question-text" id="question-correct"></h6>
-                </div>
-            </div>
-            <div class="question-answer-explain">
-                <div class="header-content">
-                    <h3 class="question-title">Correct Answer</h3>
-                </div>
-                <div class="main-content">
-                    <h6 class="question-text" id="answer-correct"></h6>
-                </div>
-            </div>
-            <div class="question-answer-explain">
-                <div class="header-content">
-                    <h3 class="question-title">Explanation</h3>
-                </div>
-                <div class="main-content">
-                    <h6 class="question-text" id="explain-correct"></h6>
-                </div>
-            </div>
+        <div class="question-answer-explain">
+          <div class="header-content">
+            <h3 class="question-title">Correct Answer</h3>
+          </div>
+          <div class="main-content">
+            <h6 class="question-text" id="answer-correct"></h6>
+          </div>
         </div>
-        <div class="btns-back-next">
-            <button class="back-btn" id="back-btn">Back</button>
-            <button class="next-btn" id="next-btn">Next</button>
+        <div class="question-answer-explain">
+          <div class="header-content">
+            <h3 class="question-title">Explanation</h3>
+          </div>
+          <div class="main-content">
+            <h6 class="question-text" id="explain-correct"></h6>
+          </div>
         </div>
-        <div class="redirect-pages">
-            <button class="redirect-btn" id="leaderboard-redirect">View Leaderboard</button>
-            <button class="redirect-btn" id="quiz-redirect">Restart Quiz</button>
-            <button class="redirect-btn" id="home-redirect">Home</button>
-        </div>
+      </div>
+      <div class="btns-back-next">
+        <button class="back-btn" id="back-btn">Back</button>
+        <button class="next-btn" id="next-btn">Next</button>
+      </div>
+      <div class="redirect-pages">
+        <button class="redirect-btn" id="leaderboard-redirect">
+          View Leaderboard
+        </button>
+        <button class="redirect-btn" id="quiz-redirect">Restart Quiz</button>
+        <button class="redirect-btn" id="home-redirect">Home</button>
+      </div>
 
-        <!-- <div class="results-container">
+      <!-- <div class="results-container">
             <h1>RESULTS</h1>
             <div class="score-summary">
                 <h2 id="final-score"></h2>
@@ -95,5 +101,5 @@
         </div> -->
     </main>
     <script src="./results.js" type="module"></script>
-</body>
+  </body>
 </html>
