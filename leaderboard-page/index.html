@@ -1,59 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <title>Leaderboard</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="./leaderboard.css">
-</head>
-<body>
+    <link rel="icon" href="../public/iconQuiz.svg" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="./leaderboard.css" />
+  </head>
+  <body>
     <main class="container">
-        <h1 class="leaderboard-title">Leaderboard</h1>
-        <div class="podium">
-            <div class="container-spot" id="second">
-                <i class="fa-solid fa-trophy" style="color: #cbd0d8;"></i>
-                <h6 class="podium-name">Name</h6>
-                <div class="podium-spot">
-                    <h3>2</h3>
-                    <p class="podium-score">Score</p>
-                </div>
-            </div>
-            <div class="container-spot" id="first">
-                <i class="fa-solid fa-trophy" style="color: #FFD43B;"></i>
-                <h6 class="podium-name">Name</h6>
-                <div class="podium-spot">
-                    <h2>1</h2>
-                    <p class="podium-score">Score</p>
-                </div>
-            </div>
-            <div class="container-spot" id="third">
-                <i class="fa-solid fa-trophy" style="color: #CD7F32;"></i>
-                <h6 class="podium-name">Name</h6>
-                <div class="podium-spot">
-                    <h3>3</h3>
-                    <p class="podium-score">Score</p>
-                </div>
-            </div>
+      <h1 class="leaderboard-title">Leaderboard</h1>
+      <div class="podium">
+        <div class="container-spot" id="second">
+          <i class="fa-solid fa-trophy" style="color: #cbd0d8"></i>
+          <h6 class="podium-name">Name</h6>
+          <div class="podium-spot">
+            <h3>2</h3>
+            <p class="podium-score">Score</p>
+          </div>
         </div>
-        <table id="leaderboard">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Name</th>
-                    <th>Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-            </tbody>
-        </table>
-        <div class="actions">
-            <button id="restart">Restart Quiz</button>
-            <button id="home">Home Page</button>
-            <button id="results">View your results</button>
+        <div class="container-spot" id="first">
+          <i class="fa-solid fa-trophy" style="color: #ffd43b"></i>
+          <h6 class="podium-name">Name</h6>
+          <div class="podium-spot">
+            <h2>1</h2>
+            <p class="podium-score">Score</p>
+          </div>
         </div>
+        <div class="container-spot" id="third">
+          <i class="fa-solid fa-trophy" style="color: #cd7f32"></i>
+          <h6 class="podium-name">Name</h6>
+          <div class="podium-spot">
+            <h3>3</h3>
+            <p class="podium-score">Score</p>
+          </div>
+        </div>
+      </div>
+      <table id="leaderboard">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="actions">
+        <button id="restart">Restart Quiz</button>
+        <button id="home">Home Page</button>
+        <button id="results">View your results</button>
+      </div>
     </main>
     <script src="leaderboard.js" type="module"></script>
-</body>
+  </body>
 </html>

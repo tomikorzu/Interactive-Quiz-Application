@@ -1,0 +1,83 @@
+body {
+  background-color: var(--bg-color);
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.sign-form {
+  background-color: #330769;
+  padding: 25px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.sign-title {
+  margin-bottom: 5px;
+  font-size: 1.5em;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+.input {
+  border-radius: 10px;
+  padding: 12.5px;
+  font-size: 16px;
+  outline: none;
+  background-color: #884ef360;
+  color: #f5f5f5;
+  border: 1px solid #ffffff60;
+}
+.input::placeholder {
+  position: absolute;
+  top: 50%;
+  left: 12.5px;
+  color: #ffffff80;
+  font-weight: 500;
+  transform: translateY(-50%);
+  font-size: 14px;
+  transition: all 0.4s;
+  pointer-events: none;
+}
+
+.submit-btn {
+  border: none;
+  padding: 12.5px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: #7935f6;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  margin: 15px 0 5px;
+  transition: background-color 0.4s;
+}
+.submit-btn:hover {
+  background-color: #884ef3;
+}
+
+.p-already-account {
+  text-align: start;
+  font-size: 16px;
+  font-weight: 500;
+}
+.already-account-btn {
+  font-weight: 500;
+  color: #9b65ff;
+  font-size: 16px;
+  transition: color 0.4s;
+}
+.already-account-btn:hover {
+  color: #bb99f9;
+}
