@@ -276,10 +276,10 @@ function showExplain() {
 }
 
 function applyBlur() {
-  main.classList.add("apply-blur");
+  main.style.filter="blur(5px)";
 }
 function quitBlur() {
-  main.classList.remove("apply-blur");
+  main.style.filter='blur(0)';
 }
 
 function sendResults() {
