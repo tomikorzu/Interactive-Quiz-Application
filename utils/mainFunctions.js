@@ -16,12 +16,12 @@ const userPanel = () => {
     userPanel.style.display = "flex";
   }, 200);
   userPanel.innerHTML = `
-            <button class="quit-panel"><i class="fa-solid fa-xmark quit-icon"></i></button>
-            <h3 class="user-title">Choose an option<h3/>
-            <div class="button-div">
-                <button class="btn-user-panel" id="btn-signup">Sign up</button>
-                <button class="btn-user-panel" id="btn-login">Sign in</button>
-            <div/>`;
+  <button class="quit-panel"><i class="fa-solid fa-xmark quit-icon"></i></button>
+  <h3 class="user-title">Choose an option<h3/>
+  <div class="button-div">
+  <button class="btn-user-panel" id="btn-signup">Sign up</button>
+  <button class="btn-user-panel" id="btn-login">Sign in</button>
+  <div/>`;
   document.body.appendChild(userPanel);
   const quitPanel = document.querySelector(".quit-panel");
   quitPanel.addEventListener("click", () => {
@@ -32,6 +32,11 @@ const userPanel = () => {
       userPanel.remove();
     }, 500);
   });
+
+  const signupBtn = document.getElementById("btn-signup");
+  const signinBtn = document.getElementById("btn-login");
+  signupBtn.addEventListener("click", () => redirectPage("../signup-page/index.html"));
+  signinBtn.addEventListener("click", () => redirectPage("../signin-page/index.html"));
 };
 
 function applyBlur() {
@@ -47,7 +52,10 @@ function quitBlur() {
 
 const redirectPage = (page) => {
   const body = document.querySelector("body");
-  body.classList.add("hide-body");
+  body.classList.add("fade-out");
+  setTimeout(() => {
+    window.location.href = page;
+  } , 500);
 };
 
 export default userButton;
