@@ -43,6 +43,45 @@ a {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.75em;
+}
+h3 {
+  font-size: 1.5em;
+}
+h4 {
+  font-size: 1.25em;
+}
+h5 {
+  font-size: 1em;
+}
+h6 {
+  font-size: 0.875em;
+}
+p {
+  font-size: 0.875em;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1440px) {
+  body {
+    font-size: 22px;
+  }
+}
 
 @keyframes fadeIn {
   from {
@@ -75,7 +114,7 @@ a {
     transform: translate(-50%, 400%);
   }
   to {
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
   }
 }
 @keyframes applyBlur {
@@ -105,9 +144,10 @@ a {
   border-radius: 100%;
   background-color: var(--form-bg);
   display: flex;
-  transition: all .4s;
+  transition: all 0.4s;
 }
 .user-title {
+  font-size: 24px;
 }
 .button-div {
   display: flex;
@@ -117,17 +157,17 @@ a {
 }
 .user-panel {
   position: fixed;
-  width: 270px;
+  width: 300px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -400%);
   display: none;
+  transform: translate(-50%,-50%);
   background-color: #330769;
   text-align: center;
-  padding: 30px 0;
+  padding: 40px 0;
   border-radius: 10px;
   z-index: 12;
-  gap: 10px;
+  gap: 15px;
   flex-direction: column;
   animation: fadeUp 0.4s forwards;
 }
@@ -169,7 +209,7 @@ a {
 .apply-blur {
   animation: applyBlur 0.4s forwards;
 }
-.quit-blur{
+.quit-blur {
   animation: quitBlur 0.4s forwards;
 }
 

@@ -9,9 +9,6 @@ const userButton = () => {
 
 const userPanel = () => {
   userBtn.style.pointerEvents = "none";
-  userBtn.classList.add("apply-blur");
-  userBtn.classList.remove("quit-blur");
-  document.querySelector("main").classList.remove("quit-blur");
   applyBlur();
   const userPanel = document.createElement("div");
   userPanel.classList.add("user-panel");
@@ -28,11 +25,9 @@ const userPanel = () => {
   document.body.appendChild(userPanel);
   const quitPanel = document.querySelector(".quit-panel");
   quitPanel.addEventListener("click", () => {
+    quitBlur();
     userPanel.classList.add("fade-out");
     userBtn.style.pointerEvents = "auto";
-    userBtn.classList.remove("apply-blur");
-    userBtn.classList.add("quit-blur");
-    document.querySelector("main").classList.add("quit-blur");
     setTimeout(() => {
       userPanel.remove();
     }, 500);
@@ -40,12 +35,14 @@ const userPanel = () => {
 };
 
 function applyBlur() {
+  userBtn.style.filter = "blur(5px)";
   document.querySelector("main").style.filter = "blur(5px)";
-  document.querySelector("footer").classList.add("apply-blur");
+  document.querySelector("footer").style.filter = "blur(5px)";
 }
 function quitBlur() {
   document.querySelector("main").style.filter = "blur(0px)";
-  document.querySelector("footer").classList.remove("apply-blur");
+  document.querySelector("footer").style.filter = "blur(0px)";
+  userBtn.style.filter = "blur(0)";
 }
 
 const redirectPage = (page) => {
