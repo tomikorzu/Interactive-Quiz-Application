@@ -7,22 +7,19 @@ const body = document.querySelector("body");
 const main = document.querySelector("main");
 const footer = document.querySelector("footer");
 const selecterContent = document.createElement("div");
-
 userButton();
 
-let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+const redirectPage = (page) => {
+  body.classList.add("fade-out");
+  setTimeout(() => {
+    window.location.href = page;
+  }, 500);
+};
+
 startBtn.style.cursor = "pointer";
 startBtn.addEventListener("click", function () {
   if (!localStorage.getItem("currentUser")) {
-    //mostrar panel de registro de usuario
-    localStorage.setItem("currentUser", "Pijurria");
-    leaderboard.push({
-      name: "Pijurria",
-      password: "1234",
-      score: 0,
-      stadistics: {},
-    });
-    console.log("Registrado");
+    redirectPage("./sign-page/signin.html");
   } else {
     viewCategories();
   }
@@ -157,53 +154,4 @@ function transitionRedirect(url) {
   setTimeout(function () {
     body.classList.remove("transition-page");
   }, 2000);
-}
-
-function askUserName() {
-  selecter.innerHTML = "";
-  selecterContent.innerHTML = `
- <button id="quit-user-menu"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category">Enter your name</h3>
-  <input type="text" class="input-name
-  " id="input-name" placeholder="Type your name">
-  <button class="btn-submit-name" id="submit-name">Log in</button>`;
-  selecter.append(selecterContent);
-  selecter.classList.add("selecter-show");
-  let inputName = document.getElementById("input-name");
-  const submitName = document.getElementById("submit-name");
-  submitName.classList.add("btn-category");
-  selecterContent.classList.add("selecter-content-show");
-  //const backUserMenu = document.getElementById("go-back-btn");
-  //backUserMenu.addEventListener("click", goBack);
-  const quitUserMenu = document.getElementById("quit-user-menu");
-  quitUserMenu.addEventListener("click", quitSelecter);
-  submitName.addEventListener("click", submitNameFunction);
-}
-
-function submitNameFunction() {
-  let userName = document.getElementById("input-name").value;
-  if (userName === "") {
-    userAlert("Please enter your name");
-  } else {
-    let nameExists = leaderboard.some((entry) => entry.name === userName);
-
-    if (nameExists) {
-      userAlert("This name already exists. Please choose another one.");
-    } else {
-      leaderboard.push({ name: userName, score: 0 });
-      localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
-      localStorage.setItem("currentUser", userName);
-      //transitionRedirect("./quiz-page/index.html");
-      viewCategories();
-    }
-  }
-}
-
-function userAlert(alert) {
-  let alertDiv = document.createElement("div");
-  alertDiv.classList.add("alert-menu");
-  alertDiv.innerHTML = `<h4 class="h4-alert">Alert</h4><p class="p-alert">${alert}</p>`;
-  body.append(alertDiv);
-  setTimeout(function () {
-    alertDiv.remove();
-  }, 3000);
 }
