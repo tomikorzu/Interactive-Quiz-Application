@@ -28,11 +28,24 @@ function signUp() {
   let password = getValue(passwordInput);
   let passwordConfirmed = getValue(passwordConfirmedInput);
   if (verifyUsername(username) && verifyPassword(password, passwordConfirmed)) {
+    let date = new Date();
     let usersStasts = JSON.parse(localStorage.getItem("usersStats"));
     if (usersStasts) {
-      usersStasts.push({ name: username, password: password });
+      usersStasts.push({
+        name: username,
+        password: password,
+        date: date.toDateString(),
+        stadistics: {},
+      });
     } else {
-      usersStasts = [{ name: username, password: password }];
+      usersStasts = [
+        {
+          name: username,
+          password: password,
+          date: date.toDateString(),
+          stadistics: {},
+        },
+      ];
     }
     localStorage.setItem("currentUser", username);
     localStorage.setItem("usersStats", JSON.stringify(usersStasts));

@@ -51,7 +51,7 @@ let maxPoints = 0;
 let pointsEarned = 0;
 let maxBonusPoints = 10;
 let correctAnswersSummary = [];
-let userStats = JSON.parse(localStorage.getItem("userStats")) || [];
+let usersStats = JSON.parse(localStorage.getItem("usersStats")) || [];
 
 skipButton.addEventListener("click", skipQuestion);
 explanationButton.addEventListener("click", showExplain);
@@ -287,15 +287,13 @@ function sendResults() {
   localStorage.setItem("correctAnswers", correct);
   localStorage.setItem("quizFailures", incorrect);
   localStorage.setItem("quizSkips", skips);
-  localStorage.getItem("user", userName);
   localStorage.setItem("quizPoints", pointsEarned);
   localStorage.setItem("maxPoints", maxPoints);
   localStorage.setItem(
     "correctAnswersSummary",
     JSON.stringify(correctAnswersSummary)
   );
-
-  updateLeaderboard(pointsEarned);
+  updateUser(pointsEarned);
 }
 
 function goHome() {
@@ -353,12 +351,33 @@ function calculatePoints(timeTaken) {
   return points;
 }
 
-function updateLeaderboard(pointsEarned) {
-  if (userStats.length > 0) {
-    let lastUserIndex = leaderboard.length - 1;
-    userStats[lastUserIndex].score = pointsEarned;
-
-    localStorage.setItem("userStats", JSON.stringify(userStats));
+function updateUser(pointsEarned) {
+  if (usersStats.length > 0) {
+    const user = localStorage.getItem("currentUser");
+    usersStats.forEach(function (userStats) {
+      if (userStats.name === user) {
+        if (userStats.stadistics[selectedCategory]) {
+          userStats.stadistics[selectedCategory].corrects += correct;
+          userStats.stadistics[selectedCategory].incorrects += incorrect;
+          userStats.stadistics[selectedCategory].skips += skips;
+          if (
+            userStats.stadistics[selectedCategory].maxPoints &&
+            userStats.stadistics[selectedCategory].maxPoints < pointsEarned
+          ) {
+            userStats.stadistics[selectedCategory].maxPoints = pointsEarned;
+          }
+        } else {
+          userStats.stadistics[selectedCategory] = {
+            corrects: correct,
+            incorrects: incorrect,
+            skips: skips,
+            maxPoints: pointsEarned,
+          };
+        }
+      }
+    });
+    localStorage.setItem("currentScore", pointsEarned);
+    localStorage.setItem("usersStats", JSON.stringify(usersStats));
   }
 }
 window.onload = function () {
