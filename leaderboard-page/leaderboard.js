@@ -1,23 +1,12 @@
 let leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
 let currentLeaderboard = leaderboard.map(function(cell){return cell})
 import userButton from "../utils/mainFunctions.js";
+let thead = document.querySelectorAll("thead tr th")
+
+let arrow = document.querySelector(".arrow-button")
+
 
 userButton();
-
-function getLastUserInfo() {
-  let lastUserName = null;
-  let lastUserScore = null;
-
-  if (leaderboard.length > 0) {
-    let lastUserIndex = leaderboard.length - 1;
-    lastUserName = leaderboard[lastUserIndex].name;
-    lastUserScore = leaderboard[lastUserIndex].score;
-  }
-  return {
-    name: lastUserName,
-    score: lastUserScore,
-  };
-}
 
 function updatePodium() {
   const podiumSpots = [
@@ -82,26 +71,6 @@ function order() {
   }
 }
 
-function scoreUpdate() {
-  let user = getLastUserInfo();
-  let score = user.score;
-
-  if (isNaN(score)) {
-    alert("No score available from the last game.");
-    return;
-  }
-
-  // let existingEntry = leaderboard.find(user => user.name === name);
-
-  // if (existingEntry) {
-  //     if (score > existingEntry.score) {
-  //         existingEntry.score = score;
-  //     }
-  // }
-
-  updateLeaderboard();
-}
-
 function redirectPage(page) {
   let body = document.querySelector("body");
 
@@ -123,7 +92,6 @@ document.getElementById("restart").addEventListener("click", () => {
 
 window.onload = function () {
   updateLeaderboard();
-  scoreUpdate();
 
   let body = document.querySelector("body");
 

@@ -33,6 +33,9 @@ main {
   margin-bottom: 15px;
   font-size: 1.75em;
 }
+.leaderboard-icon{
+  font-size: 1.5em;
+}
 .podium {
   display: flex;
   justify-content: center;
@@ -87,12 +90,14 @@ table th:last-child {
 }
 table th,
 table td {
+  cursor: default;
   padding: 10px;
   text-align: center;
   border-bottom: 1px solid #bc84ff;
 }
 table th {
   background-color: #7b3cc9;
+  position: relative;
 }
 .actions {
   margin-top: 30px;
@@ -120,6 +125,25 @@ tbody td,
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.arrow-button{
+  cursor: pointer;
+  transition: opacity 0.1s ease-in;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+}
+
+.rank-arrow:hover .arrow-button{
+  opacity: 1;
+}
+
+.show{
+  display: block;
+  opacity: 1;
 }
 @media (min-width: 768px) {
   .actions {
