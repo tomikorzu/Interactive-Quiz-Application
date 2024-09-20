@@ -7,13 +7,13 @@ userInfoPanelDiv.classList.add("user-info-panel");
 
 const userButton = () => {
   userBtn.classList.add("user-btn");
+
+  userBtn.classList.add("fade-in");
   userBtn.innerHTML = `<i class="fa-solid fa-user user-icon"></i>`;
   document.body.appendChild(userBtn);
   userBtn.addEventListener("click", () => {
     if (localStorage.getItem("currentUser")) {
       userInfoPanel();
-      userBtn.style.pointerEvents = "none";
-      userBtn.classList.add("fade-out");
     } else {
       userPanel();
     }
@@ -85,20 +85,9 @@ const redirectPage = (page) => {
 };
 
 const userInfoPanel = () => {
-  setTimeout(() => {
-    userInfoPanelDiv.classList.add("user-info-show");
-    document.addEventListener("click", function (event) {
-      if (!userInfoPanelDiv.contains(event.target)) {
-        userInfoPanelDiv.classList.remove("user-info-show");
-        setTimeout(() => {
-          userInfoPanelDiv.remove();
-          userBtn.style.pointerEvents = "auto";
-          userBtn.classList.remove("fade-out");
-          userBtn.classList.add("fade-in");
-        }, 500);
-      }
-    });
-  }, 200);
+  userBtn.style.pointerEvents = "none";
+  userBtn.classList.remove("fade-in");
+  userBtn.classList.add("fade-out");
   userInfoPanelDiv.innerHTML = `
   <h3 class="user-name user-info-title">${localStorage.getItem(
     "currentUser"
@@ -110,6 +99,23 @@ const userInfoPanel = () => {
   const profileBtn = document.getElementById("profile-btn");
   profileBtn.addEventListener("click", goProfilePage);
   signoutBtn.addEventListener("click", signOut);
+    document.addEventListener("click", quitUserInfoPanel);
+
+  setTimeout(() => {
+    userInfoPanelDiv.classList.add("user-info-show");
+  }, 200);
+};
+
+const quitUserInfoPanel = (event) => {
+  if (!userInfoPanelDiv.contains(event.target) && event.target !== userBtn && event.target !== userBtn.querySelector('.user-icon')) {
+    userInfoPanelDiv.classList.remove("user-info-show");
+    userBtn.classList.add("fade-in");
+    userBtn.classList.remove("fade-out");
+    setTimeout(() => {
+      // userInfoPanelDiv.remove();
+      userBtn.style.pointerEvents = "auto";
+    }, 500);
+  }
 };
 
 function userAlert(alert) {
