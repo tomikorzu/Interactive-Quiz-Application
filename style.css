@@ -223,15 +223,19 @@ p {
 .user-info-panel{
   display: flex;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(200%);
+  top: 2%;
+  right: 2%;
   background-color: #330769;
   padding: 20px;
   border-radius: 10px;
   z-index: 12;
   gap: 15px;
   flex-direction: column;
+  transition: transform 0.4s;
+}
+.user-info-show{
+  transform: translateX(0)
 }
 
 .fade-in {

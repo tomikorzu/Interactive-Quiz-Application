@@ -9,6 +9,9 @@ const footer = document.querySelector("footer");
 const selecterContent = document.createElement("div");
 userButton();
 
+localStorage.removeItem("difficult");
+localStorage.removeItem("category");
+
 const redirectPage = (page) => {
   body.classList.add("fade-out");
   setTimeout(() => {

@@ -1,18 +1,19 @@
 const userBtn = document.createElement("button");
 
 // const usersLogged = localStorage.getItem("usersStats");
-const currentUsername = localStorage.getItem("currentUser");
 
 const userInfoPanelDiv = document.createElement("div");
+userInfoPanelDiv.classList.add("user-info-panel");
 
 const userButton = () => {
   userBtn.classList.add("user-btn");
   userBtn.innerHTML = `<i class="fa-solid fa-user user-icon"></i>`;
   document.body.appendChild(userBtn);
   userBtn.addEventListener("click", () => {
-    if (currentUsername) {
+    if (localStorage.getItem("currentUser")) {
       userInfoPanel();
       userBtn.style.pointerEvents = "none";
+      userBtn.classList.add("fade-out");
     } else {
       userPanel();
     }
@@ -84,23 +85,26 @@ const redirectPage = (page) => {
 };
 
 const userInfoPanel = () => {
-  userInfoPanelDiv.classList.add("user-info-panel");
   setTimeout(() => {
-    userInfoPanelDiv.classList.add("fade-right");
+    userInfoPanelDiv.classList.add("user-info-show");
     document.addEventListener("click", function (event) {
       if (!userInfoPanelDiv.contains(event.target)) {
-        userInfoPanelDiv.classList.remove("fade-right");
+        userInfoPanelDiv.classList.remove("user-info-show");
         setTimeout(() => {
           userInfoPanelDiv.remove();
           userBtn.style.pointerEvents = "auto";
+          userBtn.classList.remove("fade-out");
+          userBtn.classList.add("fade-in");
         }, 500);
       }
     });
-  }, 500);
+  }, 200);
   userInfoPanelDiv.innerHTML = `
-  <h3 class="user-name user-info-title">${currentUsername}<h3/>
-  <button class="user-panel-btn" id="profile-btn">Profile</button>
-  <button class="user-panel-btn" id="signout-btn">Sign out</button>`;
+  <h3 class="user-name user-info-title">${localStorage.getItem(
+    "currentUser"
+  )}<h3/>
+  <button class="btn-user-panel" id="profile-btn">Profile</button>
+  <button class="btn-user-panel" id="signout-btn">Sign out</button>`;
   document.body.appendChild(userInfoPanelDiv);
   const signoutBtn = document.getElementById("signout-btn");
   const profileBtn = document.getElementById("profile-btn");
@@ -120,10 +124,12 @@ function userAlert(alert) {
 
 const signOut = () => {
   localStorage.removeItem("currentUser");
-  console.log(userInfoPanelDiv);
-  userInfoPanelDiv.classList.remove("fade-right");
+  localStorage.removeItem("difficult");
+  localStorage.removeItem("category");
+  userInfoPanelDiv.classList.add("fade-out");
   setTimeout(() => {
     userInfoPanelDiv.remove();
+    userInfoPanelDiv.classList.remove("fade-out");
   }, 500);
   setTimeout(() => {
     if (window.location.pathname === "/index.html") {
