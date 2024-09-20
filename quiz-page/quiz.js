@@ -51,7 +51,7 @@ let maxPoints = 0;
 let pointsEarned = 0;
 let maxBonusPoints = 10;
 let correctAnswersSummary = [];
-let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+let userStats = JSON.parse(localStorage.getItem("userStats")) || [];
 
 skipButton.addEventListener("click", skipQuestion);
 explanationButton.addEventListener("click", showExplain);
@@ -276,10 +276,10 @@ function showExplain() {
 }
 
 function applyBlur() {
-  main.style.filter="blur(5px)";
+  main.style.filter = "blur(5px)";
 }
 function quitBlur() {
-  main.style.filter='blur(0)';
+  main.style.filter = "blur(0)";
 }
 
 function sendResults() {
@@ -354,11 +354,11 @@ function calculatePoints(timeTaken) {
 }
 
 function updateLeaderboard(pointsEarned) {
-  if (leaderboard.length > 0) {
+  if (userStats.length > 0) {
     let lastUserIndex = leaderboard.length - 1;
-    leaderboard[lastUserIndex].score = pointsEarned;
+    userStats[lastUserIndex].score = pointsEarned;
 
-    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+    localStorage.setItem("userStats", JSON.stringify(userStats));
   }
 }
 window.onload = function () {
