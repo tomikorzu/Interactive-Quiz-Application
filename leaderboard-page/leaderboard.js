@@ -1,4 +1,5 @@
-let usersStats = JSON.parse(localStorage.getItem("usersStats"));
+let leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
+let currentLeaderboard = leaderboard.map(function(cell){return cell})
 import userButton from "../utils/mainFunctions.js";
 
 userButton();
@@ -7,10 +8,10 @@ function getLastUserInfo() {
   let lastUserName = null;
   let lastUserScore = null;
 
-  if (usersStats.length > 0) {
-    let lastUserIndex = usersStats.length - 1;
-    lastUserName = usersStats[lastUserIndex].name;
-    lastUserScore = usersStats[lastUserIndex].score;
+  if (leaderboard.length > 0) {
+    let lastUserIndex = leaderboard.length - 1;
+    lastUserName = leaderboard[lastUserIndex].name;
+    lastUserScore = leaderboard[lastUserIndex].score;
   }
   return {
     name: lastUserName,
@@ -26,11 +27,11 @@ function updatePodium() {
   ];
 
   for (let spot of podiumSpots) {
-    if (usersStats[spot.position]) {
+    if (leaderboard[spot.position]) {
       spot.element.querySelector(".podium-name").textContent =
-        usersStats[spot.position].name;
+        leaderboard[spot.position].name;
       spot.element.querySelector(".podium-score").textContent =
-        usersStats[spot.position].score;
+        leaderboard[spot.position].score;
     } else {
       spot.element.querySelector(".podium-name").textContent = "";
       spot.element.querySelector(".podium-score").textContent = "";
@@ -43,8 +44,8 @@ function updateLeaderboard() {
   leaderboardTable.innerHTML = "";
   order();
 
-  for (let i = 0; i < usersStats.length && i < 10; i++) {
-    let entry = usersStats[i];
+  for (let i = 0; i < leaderboard.length && i < 10; i++) {
+    let entry = leaderboard[i];
 
     let row = document.createElement("tr");
 
@@ -56,6 +57,10 @@ function updateLeaderboard() {
     nameCell.textContent = entry.name;
     row.appendChild(nameCell);
 
+    let categoryCell = document.createElement("td");
+    categoryCell.textContent = entry.category;
+    row.appendChild(categoryCell);
+
     let scoreCell = document.createElement("td");
     scoreCell.textContent = entry.score;
     row.appendChild(scoreCell);
@@ -66,12 +71,12 @@ function updateLeaderboard() {
 }
 
 function order() {
-  for (let i = 0; i < usersStats.length; i++) {
-    for (let j = i + 1; j < usersStats.length; j++) {
-      if (usersStats[j].score > usersStats[i].score) {
-        let temp = usersStats[i];
-        usersStats[i] = usersStats[j];
-        usersStats[j] = temp;
+  for (let i = 0; i < leaderboard.length; i++) {
+    for (let j = i + 1; j < leaderboard.length; j++) {
+      if (leaderboard[j].score > leaderboard[i].score) {
+        let temp = leaderboard[i];
+        leaderboard[i] = leaderboard[j];
+        leaderboard[j] = temp;
       }
     }
   }
@@ -125,7 +130,7 @@ window.onload = function () {
   setTimeout(() => {
     body.classList.add("show-body");
   }, 500);
-  if (!usersStats) {
+  if (!leaderboard) {
     redirectPage("../quiz-page/index.html");
   }
 };

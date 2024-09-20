@@ -51,7 +51,7 @@ let maxPoints = 0;
 let pointsEarned = 0;
 let maxBonusPoints = 10;
 let correctAnswersSummary = [];
-let userStats = JSON.parse(localStorage.getItem("userStats")) || [];
+let usersStats = JSON.parse(localStorage.getItem("usersStats")) || [];
 
 skipButton.addEventListener("click", skipQuestion);
 explanationButton.addEventListener("click", showExplain);
@@ -74,8 +74,8 @@ function getQuestion(order, questions) {
 }
 function getAnswer(answers) {
   let answersEntries = Object.entries(answers);
-  return answersEntries.find(function () {
-    return answersEntries[1];
+  return answersEntries.find(function (answer) {
+    return answer[1];
   })[0];
 }
 
@@ -103,7 +103,6 @@ function orderAnswers(ans) {
 }
 
 function setColorTheme() {
-  console.log(globalCategories[selectedCategory].description.name);
   categoryTitle.textContent =
     globalCategories[selectedCategory].description.name;
   body.style.backgroundColor =
@@ -287,15 +286,14 @@ function sendResults() {
   localStorage.setItem("correctAnswers", correct);
   localStorage.setItem("quizFailures", incorrect);
   localStorage.setItem("quizSkips", skips);
-  localStorage.getItem("user", userName);
   localStorage.setItem("quizPoints", pointsEarned);
   localStorage.setItem("maxPoints", maxPoints);
   localStorage.setItem(
     "correctAnswersSummary",
     JSON.stringify(correctAnswersSummary)
   );
-
-  updateLeaderboard(pointsEarned);
+  updateUser();
+  updateLeaderboard();
 }
 
 function goHome() {
@@ -353,12 +351,43 @@ function calculatePoints(timeTaken) {
   return points;
 }
 
-function updateLeaderboard(pointsEarned) {
-  if (userStats.length > 0) {
-    let lastUserIndex = leaderboard.length - 1;
-    userStats[lastUserIndex].score = pointsEarned;
+function updateLeaderboard() {
+  let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+  leaderboard.push({
+    name: localStorage.getItem("currentUser"),
+    score: pointsEarned,
+    category: selectedCategory,
+  });
+  localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+}
 
-    localStorage.setItem("userStats", JSON.stringify(userStats));
+function updateUser() {
+  if (usersStats.length > 0) {
+    const user = localStorage.getItem("currentUser");
+    usersStats.forEach(function (userStats) {
+      if (userStats.name === user) {
+        if (userStats.stadistics[selectedCategory]) {
+          userStats.stadistics[selectedCategory].corrects += correct;
+          userStats.stadistics[selectedCategory].incorrects += incorrect;
+          userStats.stadistics[selectedCategory].skips += skips;
+          if (
+            userStats.stadistics[selectedCategory].maxPoints &&
+            userStats.stadistics[selectedCategory].maxPoints < pointsEarned
+          ) {
+            userStats.stadistics[selectedCategory].maxPoints = pointsEarned;
+          }
+        } else {
+          userStats.stadistics[selectedCategory] = {
+            corrects: correct,
+            incorrects: incorrect,
+            skips: skips,
+            maxPoints: pointsEarned,
+          };
+        }
+      }
+    });
+    localStorage.setItem("currentScore", pointsEarned);
+    localStorage.setItem("usersStats", JSON.stringify(usersStats));
   }
 }
 window.onload = function () {
