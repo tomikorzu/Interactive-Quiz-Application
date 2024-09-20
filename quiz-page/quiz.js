@@ -74,8 +74,8 @@ function getQuestion(order, questions) {
 }
 function getAnswer(answers) {
   let answersEntries = Object.entries(answers);
-  return answersEntries.find(function () {
-    return answersEntries[1];
+  return answersEntries.find(function (answer) {
+    return answer[1];
   })[0];
 }
 
@@ -103,7 +103,6 @@ function orderAnswers(ans) {
 }
 
 function setColorTheme() {
-  console.log(globalCategories[selectedCategory].description.name);
   categoryTitle.textContent =
     globalCategories[selectedCategory].description.name;
   body.style.backgroundColor =
@@ -355,11 +354,11 @@ function calculatePoints(timeTaken) {
 function updateLeaderboard() {
   let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
   leaderboard.push({
-    user: localStorage.getItem("currentUser"),
+    name: localStorage.getItem("currentUser"),
     score: pointsEarned,
     category: selectedCategory,
   });
-  localStorage.setItem("leaderboard", leaderboard);
+  localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
 }
 
 function updateUser() {
