@@ -29,9 +29,13 @@ function signUp() {
   let passwordConfirmed = getValue(passwordConfirmedInput);
   if (verifyUsername(username) && verifyPassword(password, passwordConfirmed)) {
     let usersStasts = JSON.parse(localStorage.getItem("usersStats"));
-    usersStasts.push({ name: username });
+    if (usersStasts) {
+      usersStasts.push({ name: username, password: password });
+    } else {
+      usersStasts = [{ name: username, password: password }];
+    }
     localStorage.setItem("currentUser", username);
-    localStorage.getItem("usersStats", JSON.stringify(usersStasts));
+    localStorage.setItem("usersStats", JSON.stringify(usersStasts));
     redirectPage("../index.html");
   }
 }
@@ -42,9 +46,17 @@ function getValue(input) {
 
 function verifyUsername(username) {
   const usersStasts = JSON.parse(localStorage.getItem("usersStats"));
-  return !usersStasts.some(function (user) {
-    return user.name == username;
-  });
+  if (usersStasts) {
+    let existUser = !usersStasts.some(function (user) {
+      return user.name == username;
+    });
+    if (!existUser) {
+      //alert existe el usuario
+    }
+    return existUser;
+  } else {
+    return true;
+  }
 }
 
 function verifyPassword(password, passwordConfirmed) {
@@ -55,10 +67,6 @@ function verifyPassword(password, passwordConfirmed) {
   } else if (!verifyRegex(password, /\d/)) {
     //alertar que la contra no tiene numero
     console.log(2);
-    return false;
-  } else if (!verifyRegex(password, /\s/) && !verifyRegex(password, /\W/)) {
-    //alertar que contenga al menos un caracter especial
-    console.log(3);
     return false;
   } else if (!someUpperCase(password)) {
     //alertar que contenga alguna mayuscula
@@ -78,13 +86,23 @@ function verifyPassword(password, passwordConfirmed) {
 }
 
 function verifyRegex(string, expression) {
-  console.log(string.match(expression));
   return string.match(expression);
 }
 
 function someLowerCase(password) {
+  let string = "";
   for (let i = 0; i < password.length; i++) {
-    if (password[i].toLowerCase() === password[i]) {
+    if (
+      verifyRegex(password[i], /\D/) &&
+      verifyRegex(password[i], /\w/) &&
+      password[i] != "_"
+    ) {
+      string += password[i];
+    }
+  }
+  console.log(string);
+  for (let i = 0; i < string.length; i++) {
+    if (string[i].toLowerCase() === string[i]) {
       return true;
     }
   }
@@ -92,8 +110,14 @@ function someLowerCase(password) {
 }
 
 function someUpperCase(password) {
+  let string = "";
   for (let i = 0; i < password.length; i++) {
-    if (password[i].toUpperCase() === password[i]) {
+    if (verifyRegex(password[i], /\D/)) {
+      string += password[i];
+    }
+  }
+  for (let i = 0; i < string.length; i++) {
+    if (string[i].toUpperCase() === string[i]) {
       return true;
     }
   }
