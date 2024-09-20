@@ -117,6 +117,14 @@ p {
     transform: translate(-50%, -50%);
   }
 }
+@keyframes fadeRight {
+  from {
+    transform: translateX(400%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
 @keyframes applyBlur {
   from {
     filter: blur(0);
@@ -161,7 +169,7 @@ p {
   top: 50%;
   left: 50%;
   display: none;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   background-color: #330769;
   text-align: center;
   padding: 40px 0;
@@ -170,6 +178,24 @@ p {
   gap: 15px;
   flex-direction: column;
   animation: fadeUp 0.4s forwards;
+}
+
+.users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.users-list li {
+
+}
+
+.select-user-btn{
+  background-color: #7542d3;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: background-color 0.4s;
 }
 
 .btn-user-panel {
@@ -194,6 +220,20 @@ p {
   transition: all 0.4s;
 }
 
+.user-info-panel{
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #330769;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 12;
+  gap: 15px;
+  flex-direction: column;
+}
+
 .fade-in {
   animation: fadeIn 0.4s forwards;
 }
@@ -205,6 +245,9 @@ p {
 }
 .fade-up {
   animation: fadeUp 0.4s forwards;
+}
+.fade-right {
+  animation: fadeRight 0.4s forwards;
 }
 .apply-blur {
   animation: applyBlur 0.4s forwards;
