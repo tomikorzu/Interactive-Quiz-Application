@@ -2,11 +2,22 @@ const userBtn = document.createElement("button");
 
 // const usersLogged = localStorage.getItem("usersStats");
 
+const userInfoPanelDiv = document.createElement("div");
+userInfoPanelDiv.classList.add("user-info-panel");
+
 const userButton = () => {
   userBtn.classList.add("user-btn");
   userBtn.innerHTML = `<i class="fa-solid fa-user user-icon"></i>`;
   document.body.appendChild(userBtn);
-  userBtn.addEventListener("click", userPanel);
+  userBtn.addEventListener("click", () => {
+    if (localStorage.getItem("currentUser")) {
+      userInfoPanel();
+      userBtn.style.pointerEvents = "none";
+      userBtn.classList.add("fade-out");
+    } else {
+      userPanel();
+    }
+  });
 };
 
 const userPanel = () => {
@@ -74,17 +85,30 @@ const redirectPage = (page) => {
 };
 
 const userInfoPanel = () => {
-  const userInfoPanel = document.createElement("div");
-  userInfoPanel.classList.add("user-info-panel");
   setTimeout(() => {
-    userInfoPanel.classList.add("fade-right");
-  }, 500);
-  userInfoPanel.innerHTML = `
-  <button class="quit-info-panel"><i class="fa-solid fa-xmark quit-icon"></i></button>
-  <h3 class="user-name user-info-title">${currentUsername}<h3/>
-  <button class="user-panel-btn" id="signout-btn">Sign out</button>`;
-  document.body.appendChild(userInfoPanel);
+    userInfoPanelDiv.classList.add("user-info-show");
+    document.addEventListener("click", function (event) {
+      if (!userInfoPanelDiv.contains(event.target)) {
+        userInfoPanelDiv.classList.remove("user-info-show");
+        setTimeout(() => {
+          userInfoPanelDiv.remove();
+          userBtn.style.pointerEvents = "auto";
+          userBtn.classList.remove("fade-out");
+          userBtn.classList.add("fade-in");
+        }, 500);
+      }
+    });
+  }, 200);
+  userInfoPanelDiv.innerHTML = `
+  <h3 class="user-name user-info-title">${localStorage.getItem(
+    "currentUser"
+  )}<h3/>
+  <button class="btn-user-panel" id="profile-btn">Profile</button>
+  <button class="btn-user-panel" id="signout-btn">Sign out</button>`;
+  document.body.appendChild(userInfoPanelDiv);
   const signoutBtn = document.getElementById("signout-btn");
+  const profileBtn = document.getElementById("profile-btn");
+  profileBtn.addEventListener("click", goProfilePage);
   signoutBtn.addEventListener("click", signOut);
 };
 
@@ -100,9 +124,12 @@ function userAlert(alert) {
 
 const signOut = () => {
   localStorage.removeItem("currentUser");
-  userInfoPanel.classList.remove("fade-right");
+  localStorage.removeItem("difficult");
+  localStorage.removeItem("category");
+  userInfoPanelDiv.classList.add("fade-out");
   setTimeout(() => {
-    userInfoPanel.remove();
+    userInfoPanelDiv.remove();
+    userInfoPanelDiv.classList.remove("fade-out");
   }, 500);
   setTimeout(() => {
     if (window.location.pathname === "/index.html") {
@@ -111,6 +138,14 @@ const signOut = () => {
       redirectPage("../index.html");
     }
   }, 500);
-}
+};
+
+const goProfilePage = () => {
+  if (window.location.pathname === "/index.html") {
+    redirectPage("./profile-page/index.html");
+  } else {
+    redirectPage("../profile-page/index.html");
+  }
+};
 
 export default userButton;
