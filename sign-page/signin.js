@@ -1,4 +1,6 @@
 const body = document.querySelector("body");
+const userNameInput = document.getElementById("username");
+const passwordInput = document.getElementById("password");
 
 const redirectPage = (page) => {
   body.classList.add("fade-out");
