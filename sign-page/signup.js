@@ -30,12 +30,12 @@ function signUp() {
   if (verifyUsername(username) && verifyPassword(password, passwordConfirmed)) {
     let usersStasts = JSON.parse(localStorage.getItem("usersStats"));
     if (usersStasts) {
-      usersStasts.push({ name: username });
+      usersStasts.push({ name: username, password: password });
     } else {
-      usersStasts = [{ name: username }];
+      usersStasts = [{ name: username, password: password }];
     }
     localStorage.setItem("currentUser", username);
-    localStorage.getItem("usersStats", JSON.stringify(usersStasts));
+    localStorage.setItem("usersStats", JSON.stringify(usersStasts));
     redirectPage("../index.html");
   }
 }
@@ -46,11 +46,17 @@ function getValue(input) {
 
 function verifyUsername(username) {
   const usersStasts = JSON.parse(localStorage.getItem("usersStats"));
-  return usersStasts
-    ? !usersStasts.some(function (user) {
-        return user.name == username;
-      })
-    : true;
+  if (usersStasts) {
+    let existUser = !usersStasts.some(function (user) {
+      return user.name == username;
+    });
+    if (!existUser) {
+      //alert existe el usuario
+    }
+    return existUser;
+  } else {
+    return true;
+  }
 }
 
 function verifyPassword(password, passwordConfirmed) {
