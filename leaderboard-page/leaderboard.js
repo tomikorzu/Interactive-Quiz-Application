@@ -1,4 +1,4 @@
-let usersStats = JSON.parse(localStorage.getItem("usersStats"));
+let usersStats = JSON.parse(localStorage.getItem("leaderboard"));
 import userButton from "../utils/mainFunctions.js";
 
 userButton();

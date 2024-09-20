@@ -293,7 +293,8 @@ function sendResults() {
     "correctAnswersSummary",
     JSON.stringify(correctAnswersSummary)
   );
-  updateUser(pointsEarned);
+  updateUser();
+  updateLeaderboard();
 }
 
 function goHome() {
@@ -351,7 +352,17 @@ function calculatePoints(timeTaken) {
   return points;
 }
 
-function updateUser(pointsEarned) {
+function updateLeaderboard() {
+  let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+  leaderboard.push({
+    user: localStorage.getItem("currentUser"),
+    score: pointsEarned,
+    category: selectedCategory,
+  });
+  localStorage.setItem("leaderboard", leaderboard);
+}
+
+function updateUser() {
   if (usersStats.length > 0) {
     const user = localStorage.getItem("currentUser");
     usersStats.forEach(function (userStats) {
