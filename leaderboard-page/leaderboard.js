@@ -1,4 +1,4 @@
-let userStats = JSON.parse(localStorage.getItem("userStats"));
+let usersStats = JSON.parse(localStorage.getItem("usersStats"));
 import userButton from "../utils/mainFunctions.js";
 
 userButton();
@@ -7,10 +7,10 @@ function getLastUserInfo() {
   let lastUserName = null;
   let lastUserScore = null;
 
-  if (userStats.length > 0) {
-    let lastUserIndex = userStats.length - 1;
-    lastUserName = userStats[lastUserIndex].name;
-    lastUserScore = userStats[lastUserIndex].score;
+  if (usersStats.length > 0) {
+    let lastUserIndex = usersStats.length - 1;
+    lastUserName = usersStats[lastUserIndex].name;
+    lastUserScore = usersStats[lastUserIndex].score;
   }
   return {
     name: lastUserName,
@@ -26,11 +26,11 @@ function updatePodium() {
   ];
 
   for (let spot of podiumSpots) {
-    if (userStats[spot.position]) {
+    if (usersStats[spot.position]) {
       spot.element.querySelector(".podium-name").textContent =
-        userStats[spot.position].name;
+        usersStats[spot.position].name;
       spot.element.querySelector(".podium-score").textContent =
-        userStats[spot.position].score;
+        usersStats[spot.position].score;
     } else {
       spot.element.querySelector(".podium-name").textContent = "";
       spot.element.querySelector(".podium-score").textContent = "";
@@ -43,8 +43,8 @@ function updateLeaderboard() {
   leaderboardTable.innerHTML = "";
   order();
 
-  for (let i = 0; i < userStats.length && i < 10; i++) {
-    let entry = userStats[i];
+  for (let i = 0; i < usersStats.length && i < 10; i++) {
+    let entry = usersStats[i];
 
     let row = document.createElement("tr");
 
@@ -66,12 +66,12 @@ function updateLeaderboard() {
 }
 
 function order() {
-  for (let i = 0; i < userStats.length; i++) {
-    for (let j = i + 1; j < userStats.length; j++) {
-      if (userStats[j].score > userStats[i].score) {
-        let temp = userStats[i];
-        userStats[i] = userStats[j];
-        userStats[j] = temp;
+  for (let i = 0; i < usersStats.length; i++) {
+    for (let j = i + 1; j < usersStats.length; j++) {
+      if (usersStats[j].score > usersStats[i].score) {
+        let temp = usersStats[i];
+        usersStats[i] = usersStats[j];
+        usersStats[j] = temp;
       }
     }
   }
@@ -125,7 +125,7 @@ window.onload = function () {
   setTimeout(() => {
     body.classList.add("show-body");
   }, 500);
-  if (!userStats) {
+  if (!usersStats) {
     redirectPage("../quiz-page/index.html");
   }
 };
