@@ -23,10 +23,10 @@ export let globalCategories = {
       {
         question: "What year did Columbus first sail to America?",
         answers: {
-          1492: true,
-          1500: false,
-          1600: false,
-          1400: false,
+          "1492": true,
+          "1500": false,
+          "1600": false,
+          "1400": false,
         },
         explanation: "Christopher Columbus first sailed to America in 1492.",
       },
