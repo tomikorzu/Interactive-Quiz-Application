@@ -32,6 +32,7 @@ function signUp() {
     usersStasts.push({ name: username });
     localStorage.setItem("currentUser", username);
     localStorage.getItem("usersStats", JSON.stringify(usersStasts));
+    redirectPage("../index.html");
   }
 }
 
