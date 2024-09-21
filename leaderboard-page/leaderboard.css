@@ -11,6 +11,10 @@ body {
   gap: 30px;
   transition: opacity 0.4s;
 }
+th,
+td {
+  transition: text-shadow 0.1s ease-in;
+}
 .show-body {
   opacity: 1;
 }

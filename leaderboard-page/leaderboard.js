@@ -19,6 +19,21 @@ arrow.addEventListener("click", function () {
   updateLeaderboard(currentLeaderboard);
 });
 
+let categoryCell = document.querySelector(".rank-category");
+categoryCell.style.cursor = "pointer";
+categoryCell.addEventListener("mouseover", function () {
+  categoryCell.style.textShadow = "0 0 30px #fff";
+});
+categoryCell.addEventListener("mouseleave", function () {
+  categoryCell.style.textShadow = "0 0 0 ";
+});
+categoryCell.addEventListener("click", function () {
+  let currentLeaderboard = leaderboard.map(function (l) {
+    return l;
+  });
+  updateLeaderboard(currentLeaderboard);
+});
+
 userButton();
 
 function updatePodium() {
@@ -68,6 +83,29 @@ function updateLeaderboard(currentLeaderboard) {
 
     leaderboardTable.appendChild(row);
   }
+  document.querySelectorAll("#leaderboard tbody tr").forEach(function (tr) {
+    tr.children[2].style.cursor = "pointer";
+    tr.children[2].addEventListener("click", function () {
+      let newOrder = [];
+      for (let i = 0; i < currentLeaderboard.length; i++) {
+        if (currentLeaderboard[i].category === tr.children[2].textContent) {
+          newOrder.push(currentLeaderboard[i]);
+        }
+      }
+      currentLeaderboard = newOrder.map(function (n) {
+        return n;
+      });
+      updateLeaderboard(currentLeaderboard);
+    });
+
+    tr.children[2].addEventListener("mouseover", function () {
+      tr.children[2].style.textShadow = "0 0 30px #fff";
+    });
+    tr.children[2].addEventListener("mouseleave", function () {
+      tr.children[2].style.textShadow = "0 0 0 ";
+    });
+  });
+
   updatePodium();
 }
 
