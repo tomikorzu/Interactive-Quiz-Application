@@ -38,7 +38,7 @@ main {
   font-size: 1.75em;
 }
 .leaderboard-icon {
-  font-size: 1.5em;
+  font-size: 1em;
 }
 .podium {
   display: flex;
@@ -134,17 +134,12 @@ tbody td,
 .arrow-button {
   cursor: pointer;
   transition: opacity 0.1s ease-in;
-  opacity: 0;
+  opacity: 1;
   position: absolute;
   top: 50%;
-  left: 35px;
   transform: translateY(-50%);
+  left: 5%;
 }
-
-.rank-arrow:hover .arrow-button {
-  opacity: 1;
-}
-
 .show {
   display: block;
   opacity: 1;
@@ -280,10 +275,23 @@ tbody td,
   .difficult-menu {
     padding: 40px;
   }
+  .arrow-button {
+    left: 20%;
+  }
+  .leaderboard-icon {
+    font-size: 1.5em;
+  }
 }
 @media (min-width: 1024px) {
   .actions button:hover {
     background-color: #6731cb;
+  }
+  .arrow-button {
+    opacity: 0;
+    left: 35px;
+  }
+  .rank-arrow:hover .arrow-button {
+    opacity: 1;
   }
 }
 @media (min-width: 1440px) {

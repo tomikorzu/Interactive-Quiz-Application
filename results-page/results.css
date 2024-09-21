@@ -137,7 +137,6 @@ main {
 .hide-body {
   opacity: 0;
 }
-
 .select-category {
   border-radius: 10px;
   padding: 40px 15px;
@@ -224,7 +223,7 @@ main {
 .difficult-btn {
   background-color: #d91b1e;
 }
-.back-btn {
+.back-button {
   position: fixed;
   top: 5px;
   left: 5px;

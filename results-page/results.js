@@ -6,8 +6,8 @@ const selecter = document.getElementById("selecter");
 const main = document.querySelector("main");
 const selecterContent = document.createElement("div");
 
-import userButton from "../utils/mainFunctions.js";
 import { globalCategories, difficultySettings } from "../questions.js";
+import userButton from "../utils/mainFunctions.js";
 
 userButton();
 
@@ -210,7 +210,7 @@ function selectDificult() {
   selecter.classList.add("difficult-menu");
   selecterContent.classList.add("selecter-div");
   selecterContent.classList.add("category-selecter");
-  selecterContent.innerHTML = `<button class="back-btn" id="back-btn"><i class="fa-solid fa-arrow-left back-icon"></i></button><button id="exit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category h2-margin">Select the difficulty</h3>
+  selecterContent.innerHTML = `<button class="back-button" id="back-button"><i class="fa-solid fa-arrow-left back-icon"></i></button><button id="exit-btn"><i class="fa-solid fa-xmark quit-icon"></i></button><h3 class="h2-category h2-margin">Select the difficulty</h3>
             <ul class="ul-category" id="ul-difficulty">
             </ul>`;
   selecter.append(selecterContent);
@@ -224,7 +224,7 @@ function selectDificult() {
     );
     difficultyContainerBtns.append(difficultyBtn);
   });
-  const goBackBtn = document.getElementById("back-btn");
+  const goBackBtn = document.getElementById("back-button");
   goBackBtn.addEventListener("click", goBack);
   const difficultyBtn = document.querySelectorAll(".btn-difficult");
   difficultyBtn.forEach(function (btn, index) {
