@@ -64,6 +64,7 @@ function verifyUsername(username) {
       return user.name == username;
     });
     if (!existUser) {
+      console.log("existe el usuario");
       //alert existe el usuario
     }
     return existUser;

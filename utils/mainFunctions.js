@@ -68,11 +68,15 @@ const userPanel = () => {
 function applyBlur() {
   userBtn.style.filter = "blur(5px)";
   document.querySelector("main").style.filter = "blur(5px)";
-  document.querySelector("footer").style.filter = "blur(5px)";
+  if (document.querySelector("footer")) {
+    document.querySelector("footer").style.filter = "blur(5px)";
+  }
 }
 function quitBlur() {
   document.querySelector("main").style.filter = "blur(0px)";
-  document.querySelector("footer").style.filter = "blur(0px)";
+  if (document.querySelector("footer")) {
+    document.querySelector("footer").style.filter = "blur(0px)";
+  }
   userBtn.style.filter = "blur(0)";
 }
 
@@ -99,7 +103,7 @@ const userInfoPanel = () => {
   const profileBtn = document.getElementById("profile-btn");
   profileBtn.addEventListener("click", goProfilePage);
   signoutBtn.addEventListener("click", signOut);
-    document.addEventListener("click", quitUserInfoPanel);
+  document.addEventListener("click", quitUserInfoPanel);
 
   setTimeout(() => {
     userInfoPanelDiv.classList.add("user-info-show");
@@ -107,7 +111,11 @@ const userInfoPanel = () => {
 };
 
 const quitUserInfoPanel = (event) => {
-  if (!userInfoPanelDiv.contains(event.target) && event.target !== userBtn && event.target !== userBtn.querySelector('.user-icon')) {
+  if (
+    !userInfoPanelDiv.contains(event.target) &&
+    event.target !== userBtn &&
+    event.target !== userBtn.querySelector(".user-icon")
+  ) {
     userInfoPanelDiv.classList.remove("user-info-show");
     userBtn.classList.add("fade-in");
     userBtn.classList.remove("fade-out");
