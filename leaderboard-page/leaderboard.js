@@ -1,10 +1,23 @@
 let leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
-let currentLeaderboard = leaderboard.map(function(cell){return cell})
+order();
+let currentLeaderboard = leaderboard.map(function (l) {
+  return l;
+});
+
 import userButton from "../utils/mainFunctions.js";
-let thead = document.querySelectorAll("thead tr th")
 
-let arrow = document.querySelector(".arrow-button")
-
+let arrow = document.querySelector(".arrow-button");
+arrow.addEventListener("click", function () {
+  arrow.children[0].classList.toggle("fa-rotate-180");
+  let newOrder = [];
+  for (let i = currentLeaderboard.length - 1; i >= 0; i--) {
+    newOrder.push(currentLeaderboard[i]);
+  }
+  currentLeaderboard = newOrder.map(function (n) {
+    return n;
+  });
+  updateLeaderboard(currentLeaderboard);
+});
 
 userButton();
 
@@ -28,18 +41,17 @@ function updatePodium() {
   }
 }
 
-function updateLeaderboard() {
+function updateLeaderboard(currentLeaderboard) {
   let leaderboardTable = document.querySelector("#leaderboard tbody");
   leaderboardTable.innerHTML = "";
-  order();
 
-  for (let i = 0; i < leaderboard.length && i < 10; i++) {
-    let entry = leaderboard[i];
+  for (let i = 0; i < currentLeaderboard.length; i++) {
+    let entry = currentLeaderboard[i];
 
     let row = document.createElement("tr");
 
     let rankCell = document.createElement("td");
-    rankCell.textContent = i + 1;
+    rankCell.textContent = entry.rank;
     row.appendChild(rankCell);
 
     let nameCell = document.createElement("td");
@@ -69,6 +81,9 @@ function order() {
       }
     }
   }
+  for (let i = 0; i < leaderboard.length; i++) {
+    leaderboard[i].rank = i + 1;
+  }
 }
 
 function redirectPage(page) {
@@ -91,7 +106,7 @@ document.getElementById("restart").addEventListener("click", () => {
 });
 
 window.onload = function () {
-  updateLeaderboard();
+  updateLeaderboard(leaderboard);
 
   let body = document.querySelector("body");
 
