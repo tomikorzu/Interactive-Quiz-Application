@@ -117,7 +117,9 @@ function setColorTheme() {
   }
 }
 function setQuestion() {
-  skipButton.textContent = "Skip";
+  if (order.length > 1) {
+    skipButton.textContent = "Skip";
+  }
   progress.style.width =
     parseInt(100 - (order.length * 100) / questions.length) + "%";
   let question = getQuestion(order, questions);
@@ -176,6 +178,9 @@ function setAnswers(question) {
     });
   });
   stopTimer = false;
+  if (order.length == 1) {
+    skipButton.textContent = "End quiz";
+  }
 }
 function setStartQuestionTransition() {
   answers.forEach(function (answer) {
@@ -192,7 +197,9 @@ function setStartQuestionTransition() {
   manageTimer();
 }
 function setEndQuestionTransition(correctAnswer, userAnswer) {
-  skipButton.textContent = "Next question";
+  if (order.length > 1) {
+    skipButton.textContent = "Next question";
+  }
   explanationButton.style.display = "block";
   stopTimer = true;
   answers.forEach(function (answer) {
