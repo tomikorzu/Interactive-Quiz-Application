@@ -137,6 +137,127 @@ main {
 .hide-body {
   opacity: 0;
 }
+
+.select-category {
+  border-radius: 10px;
+  padding: 40px 15px;
+  position: fixed;
+  top: 50%;
+  transform: translateY(500%);
+  background-color: #330769;
+  margin: 10px;
+  max-width: 400px;
+  z-index: 2;
+  transition: transform 0.4s 0.2s;
+  opacity: 0;
+}
+.selecter-show {
+  transform: translateY(-50%);
+  opacity: 1;
+}
+.apply-blur {
+  filter: blur(10px);
+}
+.selecter-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transition: all 0.4s 2s;
+}
+
+.category-selecter {
+  animation: appearDifficult 1s;
+}
+.selecter-content-show {
+  opacity: 1;
+}
+
+#quit-btn,
+#exit-btn,
+#quit-user-menu {
+  position: fixed;
+  right: 5px;
+  top: 5px;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+}
+.quit-icon {
+  font-size: 2em;
+  color: #ffffff90;
+  transition: all 0.4s;
+}
+
+.h2-category {
+  margin-top: 15px;
+}
+.ul-category {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 5px;
+}
+.btn-category {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  font-size: 0.875em;
+  transition: all 0.4s;
+  color: var(--text-color);
+}
+
+.easy-btn {
+  background-color: #01b66e;
+}
+
+.medium-btn {
+  background-color: #ba8b00;
+}
+
+.difficult-btn {
+  background-color: #d91b1e;
+}
+.back-btn {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+}
+.back-icon {
+  font-size: 2em;
+  transition: all 0.4s;
+  color: #ffffff90;
+}
+@keyframes alertMenu {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes appearDifficult {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @media (min-width: 768px) {
   body {
     min-height: 100vh;
@@ -170,6 +291,13 @@ main {
   .redirect-btn {
     width: 25%;
   }
+  .select-category {
+    padding: 30px;
+    max-width: 500px;
+  }
+  .difficult-menu {
+    padding: 40px;
+  }
 }
 @media (min-width: 1024px) {
   main {
@@ -186,5 +314,17 @@ main {
   }
   .redirect-btn:hover {
     background-color: #7d35d6;
+  }
+  .home-button:hover {
+    background-color: #025a0d;
+  }
+  .quit-icon:hover {
+    color: #fff;
+  }
+  .btn-submit-name:hover {
+    background-color: #025a0d;
+  }
+  .back-icon:hover {
+    color: #fff;
   }
 }
