@@ -206,7 +206,6 @@ function createCategory(name, icon, color, hoverColor) {
 }
 
 function selectDificult() {
-  console.log(Object.keys(difficultySettings));
   selecter.innerHTML = "";
   selecter.classList.add("difficult-menu");
   selecterContent.classList.add("selecter-div");
