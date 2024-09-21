@@ -1,8 +1,6 @@
 let leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
+let currentLeaderboard = [];
 order();
-let currentLeaderboard = leaderboard.map(function (l) {
-  return l;
-});
 
 const selecter = document.getElementById("selecter");
 const main = document.querySelector("main");
@@ -14,14 +12,16 @@ import userButton from "../utils/mainFunctions.js";
 let arrow = document.querySelector(".arrow-button");
 arrow.addEventListener("click", function () {
   arrow.children[0].classList.toggle("fa-rotate-180");
-  let newOrder = [];
-  for (let i = currentLeaderboard.length - 1; i >= 0; i--) {
-    newOrder.push(currentLeaderboard[i]);
+  if (leaderboard) {
+    let newOrder = [];
+    for (let i = currentLeaderboard.length - 1; i >= 0; i--) {
+      newOrder.push(currentLeaderboard[i]);
+    }
+    currentLeaderboard = newOrder.map(function (n) {
+      return n;
+    });
+    updateLeaderboard();
   }
-  currentLeaderboard = newOrder.map(function (n) {
-    return n;
-  });
-  updateLeaderboard();
 });
 
 let categoryCell = document.querySelector(".rank-category");
@@ -49,15 +49,17 @@ function updatePodium() {
     { element: document.getElementById("third"), position: 2 },
   ];
 
-  for (let spot of podiumSpots) {
-    if (leaderboard[spot.position]) {
-      spot.element.querySelector(".podium-name").textContent =
-        leaderboard[spot.position].name;
-      spot.element.querySelector(".podium-score").textContent =
-        leaderboard[spot.position].score;
-    } else {
-      spot.element.querySelector(".podium-name").textContent = "";
-      spot.element.querySelector(".podium-score").textContent = "";
+  if (leaderboard) {
+    for (let spot of podiumSpots) {
+      if (leaderboard[spot.position]) {
+        spot.element.querySelector(".podium-name").textContent =
+          leaderboard[spot.position].name;
+        spot.element.querySelector(".podium-score").textContent =
+          leaderboard[spot.position].score;
+      } else {
+        spot.element.querySelector(".podium-name").textContent = "";
+        spot.element.querySelector(".podium-score").textContent = "";
+      }
     }
   }
 }
@@ -116,17 +118,23 @@ function updateLeaderboard() {
 }
 
 function order() {
-  for (let i = 0; i < leaderboard.length; i++) {
-    for (let j = i + 1; j < leaderboard.length; j++) {
-      if (leaderboard[j].score > leaderboard[i].score) {
-        let temp = leaderboard[i];
-        leaderboard[i] = leaderboard[j];
-        leaderboard[j] = temp;
+  if (leaderboard) {
+    for (let i = 0; i < leaderboard.length; i++) {
+      for (let j = i + 1; j < leaderboard.length; j++) {
+        if (leaderboard[j].score > leaderboard[i].score) {
+          let temp = leaderboard[i];
+          leaderboard[i] = leaderboard[j];
+          leaderboard[j] = temp;
+        }
       }
     }
-  }
-  for (let i = 0; i < leaderboard.length; i++) {
-    leaderboard[i].rank = i + 1;
+    for (let i = 0; i < leaderboard.length; i++) {
+      leaderboard[i].rank = i + 1;
+    }
+    currentLeaderboard = leaderboard.map(function (l) {
+      return l;
+    });
+  } else {
   }
 }
 
@@ -272,7 +280,4 @@ window.onload = function () {
   setTimeout(() => {
     body.classList.add("show-body");
   }, 500);
-  if (!leaderboard) {
-    redirectPage("../quiz-page/index.html");
-  }
 };
