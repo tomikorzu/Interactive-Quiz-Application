@@ -3,6 +3,20 @@ const submitBtn = document.querySelector(".submit-btn");
 const userNameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const passwordConfirmedInput = document.getElementById("confirm-password");
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 submitBtn.addEventListener("click", function (e) {
   e.preventDefault();
@@ -34,7 +48,7 @@ function signUp() {
       usersStasts.push({
         name: username,
         password: password,
-        date: date.toDateString(),
+        date: months[date.getMonth()] + " " + date.getDate(),
         stadistics: {},
       });
     } else {
