@@ -23,7 +23,7 @@ const redirectPage = (page) => {
 startBtn.style.cursor = "pointer";
 startBtn.addEventListener("click", function () {
   if (!localStorage.getItem("currentUser")) {
-    redirectPage("./sign-page/signin.html");
+    transitionRedirect("./sign-page/signin.html");
   } else {
     viewCategories();
   }
