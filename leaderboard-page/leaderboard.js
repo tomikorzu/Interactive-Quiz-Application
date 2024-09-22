@@ -150,11 +150,12 @@ function redirectPage(page) {
 document.getElementById("home").addEventListener("click", () => {
   redirectPage("../index.html");
 });
-document.getElementById("results").addEventListener("click", () => {
-  redirectPage("../results-page/index.html");
-});
 document.getElementById("restart").addEventListener("click", function () {
-  viewCategories();
+  if (localStorage.getItem("currentUser")) {
+    viewCategories();
+  } else {
+    redirectPage("../sign-page/signin.html");
+  }
 });
 
 function viewCategories() {

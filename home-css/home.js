@@ -7,6 +7,7 @@ const body = document.querySelector("body");
 const main = document.querySelector("main");
 const footer = document.querySelector("footer");
 const selecterContent = document.createElement("div");
+const leaderboardBtn = document.querySelector(".leaderboard-btn");
 userButton();
 
 localStorage.removeItem("difficult");
@@ -19,6 +20,10 @@ const redirectPage = (page) => {
     body.classList.remove("fade-out");
   }, 500);
 };
+
+leaderboardBtn.addEventListener("click", function () {
+  transitionRedirect("./leaderboard-page/index.html");
+});
 
 startBtn.style.cursor = "pointer";
 startBtn.addEventListener("click", function () {
