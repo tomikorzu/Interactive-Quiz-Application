@@ -29,7 +29,7 @@ function signUp() {
   let passwordConfirmed = getValue(passwordConfirmedInput);
   if (verifyUsername(username) && verifyPassword(password, passwordConfirmed)) {
     let date = new Date();
-    let usersStasts = JSON.parse(localStorage.getItem("usersStats"));
+    let usersStasts = JSON.parse(localStorage.getItem("usersStats")) || [];
     if (usersStasts) {
       usersStasts.push({
         name: username,
@@ -58,7 +58,7 @@ function getValue(input) {
 }
 
 function verifyUsername(username) {
-  const usersStasts = JSON.parse(localStorage.getItem("usersStats"));
+  const usersStasts = JSON.parse(localStorage.getItem("usersStats")) || [];
   if (usersStasts) {
     let existUser = !usersStasts.some(function (user) {
       return user.name == username;

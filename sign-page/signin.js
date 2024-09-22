@@ -35,7 +35,7 @@ function signIn() {
 }
 
 function findPassword(username, password) {
-  let usersStasts = JSON.parse(localStorage.getItem("usersStats"));
+  let usersStasts = JSON.parse(localStorage.getItem("usersStats")) || [];
   return usersStasts
     ? usersStasts.some(function (user) {
         return user.name == username && user.password == password;
