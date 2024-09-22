@@ -1,3 +1,6 @@
+import { globalCategories } from "../questions.js";
+console.log(globalCategories.history.description.backgroundContent);
+
 document.querySelector("h1").textContent = localStorage.getItem("currentUser");
 const usersStats = JSON.parse(localStorage.getItem("usersStats"));
 const currentUserInfo = usersStats.find(
@@ -9,5 +12,7 @@ const currentUserStats = currentUserInfo.stadistics;
 
 document.querySelector(".first-log").textContent = currentUserInfo.date;
 
- 
+let categoryBox = document.querySelector(".category-div");
+categoryBox.style.backgroundColor =
+  globalCategories.history.description.backgroundContent;
 // document.querySelector('.total-played').textContent
