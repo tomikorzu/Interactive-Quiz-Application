@@ -1,5 +1,5 @@
 const userBtn = document.createElement("button");
-
+const body = document.createElement("body");
 const userInfoPanelDiv = document.createElement("div");
 userInfoPanelDiv.classList.add("user-info-panel");
 
@@ -115,15 +115,16 @@ const quitUserInfoPanel = (event) => {
   }
 };
 
-function userAlert(alert) {
+export const userAlert = (alert) => {
+  let currentBody = document.querySelector("body");
   let alertDiv = document.createElement("div");
   alertDiv.classList.add("alert-menu");
   alertDiv.innerHTML = `<h4 class="h4-alert">Alert</h4><p class="p-alert">${alert}</p>`;
-  body.append(alertDiv);
+  currentBody.append(alertDiv);
   setTimeout(function () {
     alertDiv.remove();
-  }, 3000);
-}
+  }, 4000);
+};
 
 const signOut = () => {
   localStorage.removeItem("currentUser");
