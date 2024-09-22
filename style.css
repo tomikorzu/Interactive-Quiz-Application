@@ -187,10 +187,9 @@ p {
   align-items: center;
 }
 .users-list li {
-
 }
 
-.select-user-btn{
+.select-user-btn {
   background-color: #7542d3;
   padding: 10px;
   border-radius: 10px;
@@ -220,7 +219,7 @@ p {
   transition: all 0.4s;
 }
 
-.user-info-panel{
+.user-info-panel {
   display: flex;
   position: fixed;
   transform: translateX(200%);
@@ -234,8 +233,8 @@ p {
   flex-direction: column;
   transition: transform 0.4s;
 }
-.user-info-show{
-  transform: translateX(0)
+.user-info-show {
+  transform: translateX(0);
 }
 
 .fade-in {
@@ -260,6 +259,39 @@ p {
   animation: quitBlur 0.4s forwards;
 }
 
+.alert-menu {
+  position: fixed;
+  bottom: 25px;
+  right: 50%;
+  transform: translateX(50%);
+  background-color: #330769;
+  padding: 10px;
+  border-radius: 10px;
+  opacity: 0;
+  animation: alertMenu 4s;
+  min-width: 300px;
+}
+
+@keyframes alertMenu {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (min-width: 768px) {
+  .alert-menu {
+    right: 25px;
+    transform: translateX(0);
+  }
+}
 @media (min-width: 1024px) {
   .user-btn:hover {
     background-color: #48138a;

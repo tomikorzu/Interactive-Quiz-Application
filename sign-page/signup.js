@@ -4,6 +4,8 @@ const userNameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const passwordConfirmedInput = document.getElementById("confirm-password");
 
+import { userAlert } from "../utils/mainFunctions.js";
+
 submitBtn.addEventListener("click", function (e) {
   e.preventDefault();
   signUp();
@@ -27,30 +29,36 @@ function signUp() {
   let username = getValue(userNameInput);
   let password = getValue(passwordInput);
   let passwordConfirmed = getValue(passwordConfirmedInput);
-  if (verifyUsername(username) && verifyPassword(password, passwordConfirmed)) {
-    let date = new Date();
-    let usersStasts = JSON.parse(localStorage.getItem("usersStats"));
-    if (usersStasts) {
-      usersStasts.push({
-        name: username,
-        password: password,
-        date:
-          date.getMonth() + " / " + date.getDate() + " / " + date.getFullYear(),
-        stadistics: {},
-      });
-    } else {
-      usersStasts = [
-        {
+  if (verifyUsername(username)) {
+    if (verifyPassword(password, passwordConfirmed)) {
+      let date = new Date();
+      let usersStasts = JSON.parse(localStorage.getItem("usersStats"));
+      if (usersStasts) {
+        usersStasts.push({
           name: username,
           password: password,
-          date: date.toDateString(),
+          date:
+            date.getMonth() +
+            " / " +
+            date.getDate() +
+            " / " +
+            date.getFullYear(),
           stadistics: {},
-        },
-      ];
+        });
+      } else {
+        usersStasts = [
+          {
+            name: username,
+            password: password,
+            date: date.toDateString(),
+            stadistics: {},
+          },
+        ];
+      }
+      localStorage.setItem("currentUser", username);
+      localStorage.setItem("usersStats", JSON.stringify(usersStasts));
+      redirectPage("../index.html");
     }
-    localStorage.setItem("currentUser", username);
-    localStorage.setItem("usersStats", JSON.stringify(usersStasts));
-    redirectPage("../index.html");
   }
 }
 
@@ -60,13 +68,16 @@ function getValue(input) {
 
 function verifyUsername(username) {
   const usersStasts = JSON.parse(localStorage.getItem("usersStats"));
+  if (!username) {
+    userAlert("Username cannot be empty,");
+    return false;
+  }
   if (usersStasts) {
     let existUser = !usersStasts.some(function (user) {
       return user.name == username;
     });
     if (!existUser) {
-      console.log("existe el usuario");
-      //alert existe el usuario
+      userAlert("Username already exists. Please choose a different one.");
     }
     return existUser;
   } else {
@@ -76,24 +87,19 @@ function verifyUsername(username) {
 
 function verifyPassword(password, passwordConfirmed) {
   if (password.length < 8) {
-    //alertar que la contra es menor de 8
-    console.log(1);
+    userAlert("Password must be at least 8 characters long.");
     return false;
   } else if (!verifyRegex(password, /\d/)) {
-    //alertar que la contra no tiene numero
-    console.log(2);
+    userAlert("Password must contain at least one number.");
     return false;
   } else if (!someUpperCase(password)) {
-    //alertar que contenga alguna mayuscula
-    console.log(4);
+    userAlert("Password must contain at least one uppercase letter.");
     return false;
   } else if (!someLowerCase(password)) {
-    //alertar que contenga alguna minuscula
-    console.log(5);
+    userAlert("Password must contain at least one lowercase letter.");
     return false;
   } else if (password !== passwordConfirmed) {
-    //alertar que las contraseñas tienen que ser iguales
-    console.log(6);
+    userAlert("Passwords do not match.");
     return false;
   } else {
     return true;
@@ -115,7 +121,6 @@ function someLowerCase(password) {
       string += password[i];
     }
   }
-  console.log(string);
   for (let i = 0; i < string.length; i++) {
     if (string[i].toLowerCase() === string[i]) {
       return true;

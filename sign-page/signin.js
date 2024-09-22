@@ -3,6 +3,8 @@ const submitBtn = document.querySelector(".submit-btn");
 const userNameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 
+import { userAlert } from "../utils/mainFunctions.js";
+
 submitBtn.addEventListener("click", function (e) {
   e.preventDefault();
   signIn();
@@ -29,8 +31,9 @@ function signIn() {
     localStorage.setItem("currentUser", username);
     redirectPage("../index.html");
   } else {
-    console.log("no existe el usuario");
-    //alert no existe el usuario
+    userAlert(
+      "Incorrect username or password. Please check your details and try again."
+    );
   }
 }
 
