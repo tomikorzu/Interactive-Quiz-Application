@@ -150,7 +150,11 @@ document
     redirectPage("../leaderboard-page/index.html");
   });
 document.getElementById("quiz-redirect").addEventListener("click", function () {
-  viewCategories();
+  if (localStorage.getItem("currentUser")) {
+    viewCategories();
+  } else {
+    redirectPage("../sign-page/signin.html");
+  }
 });
 
 function viewCategories() {
