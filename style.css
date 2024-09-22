@@ -270,6 +270,9 @@ p {
   opacity: 0;
   animation: alertMenu 4s;
   min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 @keyframes alertMenu {
@@ -290,6 +293,7 @@ p {
   .alert-menu {
     right: 25px;
     transform: translateX(0);
+    padding: 20px;
   }
 }
 @media (min-width: 1024px) {
