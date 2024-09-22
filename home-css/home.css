@@ -209,6 +209,19 @@ footer {
   cursor: pointer;
 }
 
+.leaderboard-btn {
+  position: fixed;
+  bottom: 70px;
+  right: 15px;
+  padding: 10px;
+  border-radius: 100%;
+  background-color: var(--form-bg);
+  display: flex;
+  transition: all 0.4s;
+}
+.leaderboard-icon {
+  font-size: 1.25em;
+}
 @media (min-width: 768px) {
   .select-category {
     padding: 30px;
@@ -220,6 +233,9 @@ footer {
 }
 
 @media (min-width: 1024px) {
+  .leaderboard-btn:hover {
+    background-color: #48138a;
+  }
   .home-button:hover {
     background-color: #025a0d;
   }
