@@ -1,6 +1,21 @@
 body {
   background-color: var(--bg-color);
 }
+main{
+  display: flex;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+.general-data{
+  background-color: #333;
+  padding: 20px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
 .data-div {
   display: flex;
   gap: 5px;
@@ -9,4 +24,26 @@ body {
   font-weight: 600;
 }
 .data-span {
+}
+.category-data{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.category-div{
+  padding: 20px;
+  border: 1px solid #ffffff60;
+  border-radius: 10px;
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.category-name{
+  font-size: 1.5em;
+  font-weight: 600;
+  color: white;
 }
