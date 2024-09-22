@@ -3,9 +3,11 @@ const usersStats = JSON.parse(localStorage.getItem("usersStats"));
 const currentUserInfo = usersStats.find(
   (user) => user.name === localStorage.getItem("currentUser")
 );
-console.log(currentUserInfo.stats);
+console.log(currentUserInfo.stadistics);
 
-const currentUserStats = currentUserInfo.stats;
+const currentUserStats = currentUserInfo.stadistics;
 
 document.querySelector(".first-log").textContent = currentUserInfo.date;
+
+ 
 // document.querySelector('.total-played').textContent

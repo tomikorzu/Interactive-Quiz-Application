@@ -16,6 +16,7 @@ const redirectPage = (page) => {
   body.classList.add("fade-out");
   setTimeout(() => {
     window.location.href = page;
+    body.classList.remove("fade-out");
   }, 500);
 };
 
