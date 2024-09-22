@@ -7,6 +7,7 @@ export let globalCategories = {
       hoverColor: "#015979",
       backgroundBody: "#003346",
       backgroundContent: "#006284",
+      leaderboard: "#0db3ee",
     },
     easy: [
       {
@@ -23,10 +24,10 @@ export let globalCategories = {
       {
         question: "What year did Columbus first sail to America?",
         answers: {
-          "1492": true,
-          "1500": false,
-          "1600": false,
-          "1400": false,
+          1492: true,
+          1500: false,
+          1600: false,
+          1400: false,
         },
         explanation: "Christopher Columbus first sailed to America in 1492.",
       },
@@ -366,6 +367,7 @@ export let globalCategories = {
       hoverColor: "#1d8500",
       backgroundBody: "#0c3700",
       backgroundContent: "#2B6B1A",
+      leaderboard: "#3eee0e",
     },
     easy: [
       {
@@ -728,6 +730,7 @@ export let globalCategories = {
       hoverColor: "#160371",
       backgroundBody: "#000229",
       backgroundContent: "#0B1184",
+      leaderboard: "#1c49ed",
     },
     easy: [
       {
@@ -1088,6 +1091,7 @@ export let globalCategories = {
       hoverColor: "#700176",
       backgroundBody: "#580041",
       backgroundContent: "#A20679",
+      leaderboard: "#e212ee",
     },
     easy: [
       {
@@ -1461,6 +1465,7 @@ export let globalCategories = {
       hoverColor: "#9a0508",
       backgroundBody: "#580041",
       backgroundContent: "#A20679",
+      leaderboard: "#e90c10",
     },
     easy: [
       {

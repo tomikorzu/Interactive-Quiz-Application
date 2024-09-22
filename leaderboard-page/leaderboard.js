@@ -4,6 +4,7 @@ order();
 
 const selecter = document.getElementById("selecter");
 const main = document.querySelector("main");
+const categoryTitle = document.querySelector(".category-title");
 const selecterContent = document.createElement("div");
 
 import { globalCategories, difficultySettings } from "../questions.js";
@@ -26,13 +27,10 @@ arrow.addEventListener("click", function () {
 
 let categoryCell = document.querySelector(".rank-category");
 categoryCell.style.cursor = "pointer";
-categoryCell.addEventListener("mouseover", function () {
-  categoryCell.style.textShadow = "0 0 30px #fff";
-});
-categoryCell.addEventListener("mouseleave", function () {
-  categoryCell.style.textShadow = "0 0 0 ";
-});
 categoryCell.addEventListener("click", function () {
+  if (categoryTitle.children[0]) {
+    categoryTitle.children[0].remove();
+  }
   arrow.children[0].classList.remove("fa-rotate-180");
   currentLeaderboard = leaderboard.map(function (l) {
     return l;
@@ -42,14 +40,23 @@ categoryCell.addEventListener("click", function () {
 
 userButton();
 
-function updatePodium() {
+function updatePodium(leaderboard) {
   const podiumSpots = [
     { element: document.getElementById("first"), position: 0 },
     { element: document.getElementById("second"), position: 1 },
     { element: document.getElementById("third"), position: 2 },
   ];
-
+  let orderInverted = arrow.children[0].classList.contains("fa-rotate-180");
   if (leaderboard) {
+    if (orderInverted) {
+      let newOrder = [];
+      for (let i = leaderboard.length - 1; i >= 0; i--) {
+        newOrder.push(leaderboard[i]);
+      }
+      leaderboard = newOrder.map(function (n) {
+        return n;
+      });
+    }
     for (let spot of podiumSpots) {
       if (leaderboard[spot.position]) {
         spot.element.querySelector(".podium-name").textContent =
@@ -82,7 +89,11 @@ function updateLeaderboard() {
     row.appendChild(nameCell);
 
     let categoryCell = document.createElement("td");
-    categoryCell.textContent = entry.category;
+    let catergoryToUpperCase = entry.category[0].toUpperCase();
+    for (let i = 1; i < entry.category.length; i++) {
+      catergoryToUpperCase += entry.category[i];
+    }
+    categoryCell.textContent = catergoryToUpperCase;
     row.appendChild(categoryCell);
 
     let scoreCell = document.createElement("td");
@@ -92,11 +103,19 @@ function updateLeaderboard() {
     leaderboardTable.appendChild(row);
   }
   document.querySelectorAll("#leaderboard tbody tr").forEach(function (tr) {
-    tr.children[2].style.cursor = "pointer";
+    tr.children[2].classList.add("rank-category");
     tr.children[2].addEventListener("click", function () {
+      categoryTitle.innerHTML = `<span class="appear-category">${tr.children[2].textContent}</span>`;
+      categoryTitle.children[0].style.color =
+        globalCategories[
+          tr.children[2].textContent.toLowerCase()
+        ].description.leaderboard;
       let newOrder = [];
       for (let i = 0; i < currentLeaderboard.length; i++) {
-        if (currentLeaderboard[i].category === tr.children[2].textContent) {
+        if (
+          currentLeaderboard[i].category ===
+          tr.children[2].textContent.toLowerCase()
+        ) {
           newOrder.push(currentLeaderboard[i]);
         }
       }
@@ -105,16 +124,9 @@ function updateLeaderboard() {
       });
       updateLeaderboard(currentLeaderboard);
     });
-
-    tr.children[2].addEventListener("mouseover", function () {
-      tr.children[2].style.textShadow = "0 0 30px #fff";
-    });
-    tr.children[2].addEventListener("mouseleave", function () {
-      tr.children[2].style.textShadow = "0 0 0 ";
-    });
   });
 
-  updatePodium();
+  updatePodium(currentLeaderboard);
 }
 
 function order() {

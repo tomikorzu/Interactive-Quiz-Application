@@ -244,6 +244,30 @@ tbody td,
   transition: all 0.4s;
   color: #ffffff90;
 }
+.category-title {
+  font-weight: 600;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.appear-category {
+  animation: appearCategory 1s;
+}
+.rank-category {
+  cursor: pointer;
+}
+@keyframes appearCategory {
+  0% {
+    font-size: 1em;
+  }
+  50% {
+    font-size: 1.5em;
+  }
+  100% {
+    font-size: 1em;
+  }
+}
+
 @keyframes alertMenu {
   0% {
     opacity: 0;
@@ -283,6 +307,10 @@ tbody td,
   }
 }
 @media (min-width: 1024px) {
+  .rank-category:hover {
+    cursor: pointer;
+    text-shadow: #f6f5f1 0px 0px 30px;
+  }
   .actions button:hover {
     background-color: #6731cb;
   }
