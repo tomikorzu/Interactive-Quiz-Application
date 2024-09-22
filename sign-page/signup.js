@@ -34,7 +34,8 @@ function signUp() {
       usersStasts.push({
         name: username,
         password: password,
-        date: date.toDateString(),
+        date:
+          date.getMonth() + " / " + date.getDate() + " / " + date.getFullYear(),
         stadistics: {},
       });
     } else {
