@@ -1,7 +1,5 @@
 const userBtn = document.createElement("button");
 
-// const usersLogged = localStorage.getItem("usersStats");
-
 const userInfoPanelDiv = document.createElement("div");
 userInfoPanelDiv.classList.add("user-info-panel");
 
@@ -31,20 +29,12 @@ const userPanel = () => {
   userPanel.innerHTML = `
   <button class="quit-panel"><i class="fa-solid fa-xmark quit-icon"></i></button>
   <h3 class="user-title">Choose an option<h3/>
-  <ul class="users-list" id="users-list"></ul>
   <div class="button-div">
   <button class="btn-user-panel" id="btn-signup">Sign up</button>
   <button class="btn-user-panel" id="btn-login">Sign in</button>
   <div/>`;
   document.body.appendChild(userPanel);
   const quitPanel = document.querySelector(".quit-panel");
-  const usersList = document.getElementById("users-list");
-
-  // usersLogged.forEach((user) => {
-  //   let li = document.createElement("li");
-  //   li.innerHTML = `<button class="select-user-btn"><i class="fa-solid fa-user user-icon"></i><p>${user.name}</p></button>`;
-  //   usersList.appendChild(li);
-  // });
 
   quitPanel.addEventListener("click", () => {
     quitBlur();
@@ -99,7 +89,7 @@ const userInfoPanel = () => {
   const profileBtn = document.getElementById("profile-btn");
   profileBtn.addEventListener("click", goProfilePage);
   signoutBtn.addEventListener("click", signOut);
-    document.addEventListener("click", quitUserInfoPanel);
+  document.addEventListener("click", quitUserInfoPanel);
 
   setTimeout(() => {
     userInfoPanelDiv.classList.add("user-info-show");
@@ -107,12 +97,15 @@ const userInfoPanel = () => {
 };
 
 const quitUserInfoPanel = (event) => {
-  if (!userInfoPanelDiv.contains(event.target) && event.target !== userBtn && event.target !== userBtn.querySelector('.user-icon')) {
+  if (
+    !userInfoPanelDiv.contains(event.target) &&
+    event.target !== userBtn &&
+    event.target !== userBtn.querySelector(".user-icon")
+  ) {
     userInfoPanelDiv.classList.remove("user-info-show");
     userBtn.classList.add("fade-in");
     userBtn.classList.remove("fade-out");
     setTimeout(() => {
-      // userInfoPanelDiv.remove();
       userBtn.style.pointerEvents = "auto";
     }, 500);
   }

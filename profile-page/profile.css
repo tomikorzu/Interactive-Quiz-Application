@@ -1,3 +1,13 @@
 body{
     background-color: var(--bg-color);
 }
+.date{
+    display: flex;
+    gap: 5px;
+}
+.first-log-title{
+    font-weight: 600;
+}
+.total-played{
+
+}
