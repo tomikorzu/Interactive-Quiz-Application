@@ -72,8 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (profileImgElement) {
         profileImgElement.src = imageSrc;
       }
-    } else {
-      console.error("Usuario no encontrado en usersStats");
     }
   }
 });
