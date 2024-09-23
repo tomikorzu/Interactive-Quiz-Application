@@ -1,4 +1,5 @@
 import { globalCategories } from "../questions.js";
+
 const deleteAccount = document.getElementById("delete");
 deleteAccount.addEventListener("click", deleteAlert);
 document.querySelector("body").classList.add("appear-body");
@@ -62,26 +63,34 @@ function getTotalValues(value) {
   return totalValue;
 }
 
-setProfileInformation();
-
 let statsLength = Object.keys(currentUserStats).length;
-if (statsLength == 0) {
-  document.querySelector(".category-data").innerHTML = `<h3>No stats yet</h3>`;
-} else {
-  for (let key in currentUserStats) {
-    addCategory(key);
-  }
-  if (statsLength == 1) {
-    document.querySelector(".category-container").style.gridTemplateColumns =
-      "repeat(1, 1fr)";
-  } else if (statsLength == 2) {
-    document.querySelector(".category-container").style.gridTemplateColumns =
-      "repeat(2, 1fr)";
-  } else if (statsLength >= 3) {
-    document.querySelector(".category-container").style.gridTemplateColumns =
-      "repeat(3, 1fr)";
+const categoryContainer = document.querySelector(".category-container");
+
+function updateGridLayout() {
+  if (statsLength == 0) {
+    document.querySelector(
+      ".category-data"
+    ).innerHTML = `<h3>No stats yet</h3>`;
+  } else {
+    if (window.innerWidth < 768) {
+      categoryContainer.style.gridTemplateColumns = "repeat(1, 1fr)";
+    } else if (window.innerWidth >= 768 && window.innerWidth < 1100) {
+      categoryContainer.style.gridTemplateColumns =
+        statsLength === 1 ? "repeat(1, 1fr)" : "repeat(2, 1fr)";
+    } else if (window.innerWidth >= 1100) {
+      if (statsLength === 1) {
+        categoryContainer.style.gridTemplateColumns = "repeat(1, 1fr)";
+      } else if (statsLength === 2) {
+        categoryContainer.style.gridTemplateColumns = "repeat(2, 1fr)";
+      } else {
+        categoryContainer.style.gridTemplateColumns = "repeat(3, 1fr)";
+      }
+    }
   }
 }
+
+setProfileInformation();
+
 function signOut() {
   localStorage.removeItem("currentUser");
   document.querySelector("body").classList.remove("appear-body");
@@ -202,9 +211,20 @@ function changeNameFunction(name) {
 }
 
 function redirectPage(page) {
-  document.querySelector('body').classList.add("fade-out");
+  document.querySelector("body").classList.add("fade-out");
   setTimeout(() => {
     window.location.href = page;
     body.classList.remove("fade-out");
   }, 500);
+}
+
+if (statsLength == 0) {
+  document.querySelector(".category-data").innerHTML = `<h3>No stats yet</h3>`;
+} else {
+  for (let key in currentUserStats) {
+    addCategory(key);
+  }
+
+  updateGridLayout();
+  window.addEventListener("resize", updateGridLayout);
 }

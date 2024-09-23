@@ -100,9 +100,11 @@ main {
     width: auto;
   }
   .category-data {
-    width: auto;
+    width: 60%;
+    margin: 0 auto;
   }
   main {
+    gap: 0;
     flex-direction: row;
   }
 }
