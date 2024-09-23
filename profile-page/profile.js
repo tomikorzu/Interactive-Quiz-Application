@@ -39,7 +39,8 @@ function addCategory(category) {
     newCategoryDiv.innerHTML = `
       <span class="category-name">${globalCategories[category].description.name}</span>
       <div class="data-div">
-        <span class="data-title">Total played:</span>
+        <span class="data-title">Total Played:</span>
+        <span class="category-played">${currentUserStats[category].totalPlayed}</span>
       </div>
       <div class="data-div">
         <span class="data-title">Corrects:</span>

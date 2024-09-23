@@ -404,7 +404,7 @@ function updateUser() {
           userStats.stadistics[selectedCategory].corrects += correct;
           userStats.stadistics[selectedCategory].incorrects += incorrect;
           userStats.stadistics[selectedCategory].skips += skips;
-          userStats.stadistics[selectedCategory].totalTime += 1;
+          userStats.stadistics[selectedCategory].totalPlayed += 1;
           if (
             userStats.stadistics[selectedCategory].maxPoints &&
             userStats.stadistics[selectedCategory].maxPoints < pointsEarned
@@ -417,7 +417,7 @@ function updateUser() {
             incorrects: incorrect,
             skips: skips,
             maxPoints: pointsEarned,
-            totalTime: 0,
+            totalPlayed: 1,
           };
         }
       }
