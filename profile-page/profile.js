@@ -2,6 +2,8 @@ import { globalCategories } from "../questions.js";
 const deleteAccount = document.getElementById("delete");
 deleteAccount.addEventListener("click", deleteAlert);
 document.querySelector("body").classList.add("appear-body");
+const changeName = document.getElementById("change-name");
+changeName.addEventListener("click", changeNameMenu);
 
 document.querySelector("h1").textContent = localStorage.getItem("currentUser");
 const usersStats = JSON.parse(localStorage.getItem("usersStats"));
@@ -12,7 +14,6 @@ const currentUserInfo = usersStats.find(
 const currentUserStats = currentUserInfo.stadistics;
 
 document.querySelector(".first-log").textContent = currentUserInfo.date;
-//
 let statsLength = Object.keys(currentUserStats).length;
 if (statsLength == 0) {
   document.querySelector(".category-data").innerHTML = `<h3>No stats yet</h3>`;
@@ -107,4 +108,39 @@ function addCategory(category) {
   `;
     document.querySelector(".category-container").appendChild(newCategoryDiv);
   }
+}
+const changeNameDiv = document.createElement("div");
+
+function changeNameMenu() {
+  changeNameDiv.classList.add("alert-menu");
+  changeNameDiv.innerHTML = `
+    <h2>Change your name</h2>
+    <input type="text" id="new-name" placeholder="New name">
+    <button id="change-name-button">Change</button>
+  `;
+  document.body.appendChild(changeNameDiv);
+
+  const changeNameButton = document.getElementById("change-name-button");
+  changeNameButton.addEventListener("click", () => {
+    const newName = document.getElementById("new-name").value;
+    if (newName.length > 0) {
+      changeNameFunction(newName);
+    }
+  });
+}
+
+function changeNameFunction(name) {
+  const usersStats = JSON.parse(localStorage.getItem("usersStats"));
+  const currentUserInfo = usersStats.find(
+    (user) => user.name === localStorage.getItem("currentUser")
+  );
+  const index = usersStats.indexOf(currentUserInfo);
+  usersStats[index].name = name;
+  localStorage.setItem("usersStats", JSON.stringify(usersStats));
+  localStorage.setItem("currentUser", name);
+  document.querySelector("h1").textContent = name;
+  changeNameDiv.classList.remove("alert-menu-transition");
+  setTimeout(() => {
+    changeNameDiv.remove();
+  }, 500);
 }
