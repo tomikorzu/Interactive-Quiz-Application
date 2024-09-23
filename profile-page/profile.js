@@ -3,15 +3,80 @@ import { globalCategories } from "../questions.js";
 const deleteAccount = document.getElementById("delete");
 deleteAccount.addEventListener("click", deleteAlert);
 document.querySelector("body").classList.add("appear-body");
-const changeName = document.getElementById("change-name");
 const changeNameDiv = document.createElement("div");
 const leaderboardBtn = document.querySelector(".leaderboard-btn");
 leaderboardBtn.addEventListener("click", function () {
   redirectPage("../leaderboard-page/index.html");
 });
+
+const changeName = document.getElementById("change-name");
 changeName.addEventListener("click", changeNameMenu);
+
 const signOutBtn = document.getElementById("sign-out");
 signOutBtn.addEventListener("click", signOut);
+
+document.addEventListener("DOMContentLoaded", () => {
+  let fileInput = document.getElementById("imageUpload");
+  let imagePreview = document.getElementById("img-preview");
+  let defaultFileImg = "../public/user-solid.svg";
+
+  if (!imagePreview) {
+    return;
+  }
+
+  const usersStats = JSON.parse(localStorage.getItem("usersStats")) || [];
+  const currentUserName = localStorage.getItem("currentUser");
+  const currentUserInfo = usersStats.find(
+    (user) => user.name === currentUserName
+  );
+
+  if (currentUserInfo && currentUserInfo.image) {
+    imagePreview.src = currentUserInfo.image;
+  } else {
+    imagePreview.src = defaultFileImg;
+  }
+
+  const changePhotoLabel = document.getElementById("change-photo-label");
+  if (changePhotoLabel) {
+    changePhotoLabel.addEventListener("click", () => {
+      if (fileInput) {
+        fileInput.click();
+      }
+    });
+  }
+
+  if (fileInput) {
+    fileInput.addEventListener("change", function () {
+      if (fileInput.files[0]) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+          imagePreview.src = e.target.result;
+          updateUserImage(e.target.result);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      }
+    });
+  }
+
+  function updateUserImage(imageSrc) {
+    const currentUserName = localStorage.getItem("currentUser");
+    const currentUserInfo = usersStats.find(
+      (user) => user.name === currentUserName
+    );
+
+    if (currentUserInfo) {
+      currentUserInfo.image = imageSrc;
+      localStorage.setItem("usersStats", JSON.stringify(usersStats));
+
+      const profileImgElement = document.querySelector(".profile-img");
+      if (profileImgElement) {
+        profileImgElement.src = imageSrc;
+      }
+    } else {
+      console.error("Usuario no encontrado en usersStats");
+    }
+  }
+});
 
 if (!localStorage.getItem("currentUser")) {
   window.location.href = "../page-not-found/index.html";
@@ -57,7 +122,9 @@ function getAverageScore() {
   let incorrects = getTotalValues("incorrects");
   let skips = getTotalValues("skips");
   if (corrects) {
-    return incorrects || skips ? (corrects / (incorrects + skips)).toFixed(1) : corrects;
+    return incorrects || skips
+      ? (corrects / (incorrects + skips)).toFixed(1)
+      : corrects;
   } else {
     return 0;
   }
