@@ -1,6 +1,21 @@
 import { globalCategories } from "../questions.js";
 
 const deleteAccount = document.getElementById("delete");
+const imagePreview = document.getElementById("img-preview");
+let defaultFileImg = "../public/user-solid.svg";
+const imageBox = document.querySelector(".figure-new-channel");
+
+console.log(imagePreview);
+imagePreview.addEventListener("mouseover", function () {
+  let deleteButton = document.createAttribute("button");
+  console.log(deleteButton);
+  deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+  deleteButton.addEventListener("click", function () {
+    updateUserImage(defaultFileImg);
+  });
+  imageBox.append(deleteButton);
+});
+
 deleteAccount.addEventListener("click", deleteAlert);
 document.querySelector("body").classList.add("appear-body");
 const changeNameDiv = document.createElement("div");
@@ -17,8 +32,6 @@ signOutBtn.addEventListener("click", signOut);
 
 document.addEventListener("DOMContentLoaded", () => {
   let fileInput = document.getElementById("imageUpload");
-  let imagePreview = document.getElementById("img-preview");
-  let defaultFileImg = "../public/user-solid.svg";
 
   if (!imagePreview) {
     return;
