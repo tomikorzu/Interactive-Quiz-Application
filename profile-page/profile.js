@@ -25,26 +25,36 @@ function setProfileInformation() {
   setValue(".total-correct", getTotalValues("corrects"));
   setValue(".total-incorrect", getTotalValues("incorrects"));
   setValue(".total-skip", getTotalValues("skips"));
+  setValue(".total-time", getTotalValues("totalTime"));
   setValue(".average-score", getAverageScore());
   setValue(".favorite-category", getFavoriteCategory());
 }
 function getFavoriteCategory() {
   let statsValues = Object.entries(currentUserStats);
-  let maxPlayed = statsValues[0][1].totalPlayed;
-  let favoriteCategory = statsValues[0][0];
-  for (let i = 1; i < statsValues.length; i++) {
-    if (statsValues[i][1].totalPlayed > maxPlayed) {
-      maxPlayed = statsValues[i][1].totalPlayed;
-      favoriteCategory = statsValues[i][0];
+  let favoriteCategory = "";
+  if (statsValues[0]) {
+    let maxPlayed = statsValues[0][1].totalPlayed;
+    favoriteCategory = statsValues[0][0];
+    for (let i = 1; i < statsValues.length; i++) {
+      if (statsValues[i][1].totalPlayed > maxPlayed) {
+        maxPlayed = statsValues[i][1].totalPlayed;
+        favoriteCategory = statsValues[i][0];
+      }
     }
+  } else {
+    favoriteCategory = "No favorite category found";
   }
   return favoriteCategory;
 }
 function getAverageScore() {
-  return (
-    getTotalValues("corrects") /
-    (getTotalValues("incorrects") + getTotalValues("skips"))
-  ).toFixed(1);
+  let corrects = getTotalValues("corrects");
+  let incorrects = getTotalValues("incorrects");
+  let skips = getTotalValues("skips");
+  if (corrects) {
+    return incorrects ? (corrects / (incorrects + skips)).toFixed(1) : corrects;
+  } else {
+    return 0;
+  }
 }
 function setValue(element, value) {
   document.querySelector(element).textContent = value;
