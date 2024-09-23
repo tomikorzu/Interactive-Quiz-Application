@@ -3,6 +3,11 @@ const deleteAccount = document.getElementById("delete");
 deleteAccount.addEventListener("click", deleteAlert);
 document.querySelector("body").classList.add("appear-body");
 const changeName = document.getElementById("change-name");
+const changeNameDiv = document.createElement("div");
+const leaderboardBtn = document.querySelector(".leaderboard-btn");
+leaderboardBtn.addEventListener("click", function () {
+  redirectPage("../leaderboard-page/index.html");
+});
 changeName.addEventListener("click", changeNameMenu);
 const signOutBtn = document.getElementById("sign-out");
 signOutBtn.addEventListener("click", signOut);
@@ -161,7 +166,6 @@ function addCategory(category) {
     document.querySelector(".category-container").appendChild(newCategoryDiv);
   }
 }
-const changeNameDiv = document.createElement("div");
 
 function changeNameMenu() {
   changeNameDiv.classList.add("alert-menu");
@@ -194,5 +198,13 @@ function changeNameFunction(name) {
   changeNameDiv.classList.remove("alert-menu-transition");
   setTimeout(() => {
     changeNameDiv.remove();
+  }, 500);
+}
+
+function redirectPage(page) {
+  document.querySelector('body').classList.add("fade-out");
+  setTimeout(() => {
+    window.location.href = page;
+    body.classList.remove("fade-out");
   }, 500);
 }
