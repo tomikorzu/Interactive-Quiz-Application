@@ -11,7 +11,6 @@ if (!localStorage.getItem("currentUser")) {
   window.location.href = "../page-not-found/index.html";
 }
 
-document.querySelector("h1").textContent = localStorage.getItem("currentUser");
 const usersStats = JSON.parse(localStorage.getItem("usersStats"));
 const currentUserInfo = usersStats.find(
   (user) => user.name === localStorage.getItem("currentUser")
@@ -19,7 +18,47 @@ const currentUserInfo = usersStats.find(
 
 const currentUserStats = currentUserInfo.stadistics;
 
-document.querySelector(".first-log").textContent = currentUserInfo.date;
+function setProfileInformation() {
+  setValue("h1", currentUserInfo.name);
+  setValue(".first-log", currentUserInfo.date);
+  setValue(".total-played", getTotalValues("totalPlayed"));
+  setValue(".total-correct", getTotalValues("corrects"));
+  setValue(".total-incorrect", getTotalValues("incorrects"));
+  setValue(".total-skip", getTotalValues("skips"));
+  setValue(".average-score", getAverageScore());
+  setValue(".favorite-category", getFavoriteCategory());
+}
+function getFavoriteCategory() {
+  let statsValues = Object.entries(currentUserStats);
+  let maxPlayed = statsValues[0][1].totalPlayed;
+  let favoriteCategory = statsValues[0][0];
+  for (let i = 1; i < statsValues.length; i++) {
+    if (statsValues[i][1].totalPlayed > maxPlayed) {
+      maxPlayed = statsValues[i][1].totalPlayed;
+      favoriteCategory = statsValues[i][0];
+    }
+  }
+  return favoriteCategory;
+}
+function getAverageScore() {
+  return (
+    getTotalValues("corrects") /
+    (getTotalValues("incorrects") + getTotalValues("skips"))
+  ).toFixed(1);
+}
+function setValue(element, value) {
+  document.querySelector(element).textContent = value;
+}
+function getTotalValues(value) {
+  let totalValue = 0;
+  Object.values(currentUserStats).forEach(function (stat) {
+    totalValue += stat[value];
+  });
+  return totalValue;
+}
+
+setProfileInformation();
+
 let statsLength = Object.keys(currentUserStats).length;
 if (statsLength == 0) {
   document.querySelector(".category-data").innerHTML = `<h3>No stats yet</h3>`;
@@ -43,7 +82,7 @@ function signOut() {
   document.querySelector("body").classList.remove("appear-body");
   setTimeout(() => {
     window.location.href = "../index.html";
-  }, 500)
+  }, 500);
 }
 
 function deleteAlert() {
