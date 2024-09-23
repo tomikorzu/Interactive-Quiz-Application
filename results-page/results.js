@@ -142,7 +142,7 @@ function progressBarStyle() {
 }
 
 document.getElementById("home-redirect").addEventListener("click", () => {
-  redirectPage("../home-css/index.html");
+  redirectPage("../index.html");
 });
 document
   .getElementById("leaderboard-redirect")

@@ -33,16 +33,13 @@ main {
   align-items: center;
 }
 .category-container{
-  display: flex;
+  display: grid;
   gap: 20px;
-  flex-wrap: wrap;
   justify-content: center;
 }
 .category-div {
   padding: 20px;
-  border: 1px solid #ffffff60;
   border-radius: 10px;
-  background-color: #333;
   display: flex;
   flex-direction: column;
   justify-content: center;
