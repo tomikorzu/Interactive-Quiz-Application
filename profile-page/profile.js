@@ -4,6 +4,8 @@ deleteAccount.addEventListener("click", deleteAlert);
 document.querySelector("body").classList.add("appear-body");
 const changeName = document.getElementById("change-name");
 changeName.addEventListener("click", changeNameMenu);
+const signOutBtn = document.getElementById("sign-out");
+signOutBtn.addEventListener("click", signOut);
 
 if (!localStorage.getItem("currentUser")) {
   window.location.href = "../page-not-found/index.html";
@@ -35,6 +37,13 @@ if (statsLength == 0) {
     document.querySelector(".category-container").style.gridTemplateColumns =
       "repeat(3, 1fr)";
   }
+}
+function signOut() {
+  localStorage.removeItem("currentUser");
+  document.querySelector("body").classList.remove("appear-body");
+  setTimeout(() => {
+    window.location.href = "../index.html";
+  }, 500)
 }
 
 function deleteAlert() {
