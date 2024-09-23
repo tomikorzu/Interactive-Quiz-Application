@@ -9,7 +9,7 @@ main {
 }
 .sign-form {
   background-color: #330769;
-  padding: 25px;
+  padding: 50px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -80,4 +80,24 @@ main {
 }
 .already-account-btn:hover {
   color: #bb99f9;
+}
+.password-container {
+  display: flex;
+  position: relative;
+}
+.password-container input {
+  width: 100%;
+}
+.password-show-btn {
+  position: absolute;
+  left: 103%;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #7935f6;
+  padding: 8px;
+  border-radius: 100%;
+  transition: background-color 0.4s;
+}
+.password-show-btn:hover {
+  background-color: #884ef3;
 }
