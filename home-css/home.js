@@ -13,14 +13,6 @@ userButton();
 localStorage.removeItem("difficult");
 localStorage.removeItem("category");
 
-const redirectPage = (page) => {
-  body.classList.add("fade-out");
-  setTimeout(() => {
-    window.location.href = page;
-    body.classList.remove("fade-out");
-  }, 500);
-};
-
 leaderboardBtn.addEventListener("click", function () {
   transitionRedirect("./leaderboard-page/index.html");
 });

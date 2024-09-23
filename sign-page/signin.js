@@ -3,6 +3,7 @@ const submitBtn = document.querySelector(".submit-btn");
 const userNameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const backBtn = document.getElementById("back-btn");
+const showBtn = document.querySelector(".password-show-btn");
 
 import { userAlert } from "../utils/mainFunctions.js";
 
@@ -28,6 +29,19 @@ document
     e.preventDefault();
     redirectPage("./signup.html");
   });
+
+showBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (showBtn.children[0].classList.contains("fa-eye")) {
+    showBtn.children[0].classList.remove("fa-eye");
+    showBtn.children[0].classList.add("fa-eye-slash");
+    passwordInput.setAttribute("Type", "Input");
+  } else {
+    showBtn.children[0].classList.remove("fa-eye-slash");
+    showBtn.children[0].classList.add("fa-eye");
+    passwordInput.setAttribute("Type", "Password");
+  }
+});
 
 function signIn() {
   let username = getValue(userNameInput);

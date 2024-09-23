@@ -4,6 +4,7 @@ const userNameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const passwordConfirmedInput = document.getElementById("confirm-password");
 const backBtn = document.getElementById("back-btn");
+const showBtn = document.querySelector(".password-show-btn");
 const months = [
   "Jan",
   "Feb",
@@ -20,6 +21,21 @@ const months = [
 ];
 
 import { userAlert } from "../utils/mainFunctions.js";
+
+showBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (showBtn.children[0].classList.contains("fa-eye")) {
+    showBtn.children[0].classList.remove("fa-eye");
+    showBtn.children[0].classList.add("fa-eye-slash");
+    passwordConfirmedInput.setAttribute("Type", "Input");
+    passwordInput.setAttribute("Type", "Input");
+  } else {
+    showBtn.children[0].classList.remove("fa-eye-slash");
+    showBtn.children[0].classList.add("fa-eye");
+    passwordConfirmedInput.setAttribute("Type", "Password");
+    passwordInput.setAttribute("Type", "Password");
+  }
+});
 
 submitBtn.addEventListener("click", function (e) {
   e.preventDefault();
