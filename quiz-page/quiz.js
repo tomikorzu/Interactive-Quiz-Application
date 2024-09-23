@@ -417,7 +417,7 @@ function updateUser() {
             incorrects: incorrect,
             skips: skips,
             maxPoints: pointsEarned,
-            totalPlayed: 0,
+            totalPlayed: 1,
           };
         }
       }
