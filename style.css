@@ -141,6 +141,23 @@ p {
     filter: blur(0);
   }
 }
+.back-icon {
+  font-size: 1em;
+}
+.back-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px solid #999;
+  padding: 6px;
+  border-radius: 100%;
+  animation: backBtn 1s;
+  display: flex;
+  transition: background 0.4s;
+  z-index: 1;
+}
 .user-icon {
   font-size: 1.25em;
 }
