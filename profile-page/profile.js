@@ -62,6 +62,7 @@ function getAverageScore() {
     return 0;
   }
 }
+//resolve vercel
 function setValue(element, value) {
   document.querySelector(element).textContent = value;
 }
