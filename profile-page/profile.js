@@ -3,18 +3,43 @@ import { globalCategories } from "../questions.js";
 const deleteAccount = document.getElementById("delete");
 const imagePreview = document.getElementById("img-preview");
 let defaultFileImg = "../public/user-solid.svg";
-const imageBox = document.querySelector(".figure-new-channel");
+const imageBox = document.querySelector(".image-box");
 
-console.log(imagePreview);
-imagePreview.addEventListener("mouseover", function () {
-  let deleteButton = document.createAttribute("button");
-  console.log(deleteButton);
-  deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-  deleteButton.addEventListener("click", function () {
-    updateUserImage(defaultFileImg);
-  });
+let deleteButton = document.createElement("button");
+deleteButton.classList.add("delete-image-button");
+deleteButton.classList.add("fade-in");
+deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+deleteButton.children[0].classList.add("delete-image-icon");
+deleteButton.addEventListener("click", function () {
+  //ALERTA DE SI ESTAS SEGUROOOOOOOOOOOOOOOO
+  updateUserImage("");
+});
+imageBox.addEventListener("mouseover", function () {
   imageBox.append(deleteButton);
 });
+
+imageBox.addEventListener("mouseleave", function () {
+  deleteButton.remove();
+});
+
+function updateUserImage(imageSrc) {
+  const currentUserName = localStorage.getItem("currentUser");
+  const currentUserInfo = usersStats.find(
+    (user) => user.name === currentUserName
+  );
+  if (currentUserInfo) {
+    currentUserInfo.image = imageSrc;
+    localStorage.setItem("usersStats", JSON.stringify(usersStats));
+
+    const profileImgElement = document.querySelector(".profile-img");
+    if (profileImgElement) {
+      profileImgElement.src = imageSrc;
+    }
+  } else {
+    console.error("Usuario no encontrado en usersStats");
+  }
+  location.reload();
+}
 
 deleteAccount.addEventListener("click", deleteAlert);
 document.querySelector("body").classList.add("appear-body");
@@ -70,25 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
-  function updateUserImage(imageSrc) {
-    const currentUserName = localStorage.getItem("currentUser");
-    const currentUserInfo = usersStats.find(
-      (user) => user.name === currentUserName
-    );
-
-    if (currentUserInfo) {
-      currentUserInfo.image = imageSrc;
-      localStorage.setItem("usersStats", JSON.stringify(usersStats));
-
-      const profileImgElement = document.querySelector(".profile-img");
-      if (profileImgElement) {
-        profileImgElement.src = imageSrc;
-      }
-    } else {
-      console.error("Usuario no encontrado en usersStats");
-    }
-  }
 });
 
 if (!localStorage.getItem("currentUser")) {
@@ -128,7 +134,7 @@ function getFavoriteCategory() {
   } else {
     favoriteCategory = "None";
   }
-  return favoriteCategory;
+  return globalCategories[favoriteCategory].description.name;
 }
 function getAverageScore() {
   let corrects = getTotalValues("corrects");
@@ -149,6 +155,9 @@ function setValue(element, value) {
 function getTotalValues(value) {
   let totalValue = 0;
   Object.values(currentUserStats).forEach(function (stat) {
+    if (!stat[value]) {
+      return 0;
+    }
     totalValue += stat[value];
   });
   return totalValue;
