@@ -1,4 +1,7 @@
 import { globalCategories } from "../questions.js";
+const deleteAccount = document.getElementById("delete");
+deleteAccount.addEventListener("click", deleteAlert);
+document.querySelector("body").classList.add("appear-body");
 
 document.querySelector("h1").textContent = localStorage.getItem("currentUser");
 const usersStats = JSON.parse(localStorage.getItem("usersStats"));
@@ -29,6 +32,48 @@ if (statsLength == 0) {
   }
 }
 
+function deleteAlert() {
+  const alertMenu = document.createElement("div");
+  alertMenu.classList.add("alert-menu");
+  alertMenu.classList.add("alert-menu-transition");
+  alertMenu.innerHTML = `
+      <h2>Are you sure you want to delete your account?</h2>
+      <div class="alert-buttons">
+        <button class="alert-button" id="cancel-delete">Cancel</button>
+        <button class="alert-button" id="accept-delete">Delete</button>
+      </div>
+  `;
+  document.body.appendChild(alertMenu);
+  const cancelDelete = document.getElementById("cancel-delete");
+  cancelDelete.addEventListener("click", () => {
+    alertMenu.classList.remove("alert-menu-transition");
+    setTimeout(() => {
+      alertMenu.remove();
+    }, 500);
+  });
+  const acceptDelete = document.getElementById("accept-delete");
+  acceptDelete.addEventListener("click", () => {
+    alertMenu.classList.remove("alert-menu-transition");
+    setTimeout(() => {
+      alertMenu.remove();
+      document.querySelector("body").classList.remove("appear-body");
+      setTimeout(() => {
+        deleteAccountFunction();
+      }, 500);
+    }, 500);
+  });
+}
+function deleteAccountFunction() {
+  const usersStats = JSON.parse(localStorage.getItem("usersStats"));
+  const currentUserInfo = usersStats.find(
+    (user) => user.name === localStorage.getItem("currentUser")
+  );
+  const index = usersStats.indexOf(currentUserInfo);
+  usersStats.splice(index, 1);
+  localStorage.setItem("usersStats", JSON.stringify(usersStats));
+  localStorage.removeItem("currentUser");
+  window.location.href = "../index.html";
+}
 function addCategory(category) {
   if (globalCategories[category]) {
     const newCategoryDiv = document.createElement("div");
