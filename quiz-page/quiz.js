@@ -188,8 +188,6 @@ function setQuestion() {
 function setAnswers(question) {
   if (order.length > 1) {
     skipButton.textContent = "Skip";
-  } else {
-    skipButton.textContent = "End Quiz";
   }
   setStartQuestionTransition();
   let orderAnswer = orderAnswers(Object.entries(question));
@@ -197,6 +195,9 @@ function setAnswers(question) {
   answers.forEach(function (answer, index) {
     answer.textContent = Object.keys(question)[orderAnswer[index]];
     answer.addEventListener("click", function () {
+      if (order.length === 0) {
+        skipButton.textContent = "End Quiz";
+      }
       if (!userSelection.includes(correctAnswer) && answered) {
         answered = false;
         userSelection.push({
