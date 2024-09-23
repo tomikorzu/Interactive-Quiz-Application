@@ -61,7 +61,7 @@ function summary() {
   explainCorrect.textContent = correctAnswersSummary[questionIndex].explanation;
 
   setDisableButtonCondition();
-  const backBtn = document.getElementById("back-btn");
+  const backBtn = document.getElementById("return-btn");
   const nextBtn = document.getElementById("next-btn");
 
   backBtn.addEventListener("click", () => {
@@ -84,7 +84,7 @@ function redirectPage(page) {
 }
 
 function setDisableButtonCondition() {
-  const backBtn = document.getElementById("back-btn");
+  const backBtn = document.getElementById("return-btn");
   const nextBtn = document.getElementById("next-btn");
 
   if (questionIndex === 0) {

@@ -57,7 +57,9 @@ function getAverageScore() {
   let incorrects = getTotalValues("incorrects");
   let skips = getTotalValues("skips");
   if (corrects) {
-    return incorrects ? (corrects / (incorrects + skips)).toFixed(1) : corrects;
+    return incorrects || skips
+      ? (corrects / (incorrects + skips)).toFixed(1)
+      : corrects;
   } else {
     return 0;
   }
