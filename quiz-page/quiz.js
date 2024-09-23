@@ -2,7 +2,6 @@ import { globalCategories, difficultySettings } from "../questions.js";
 import userButton from "../utils/mainFunctions.js";
 
 userButton();
-
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
 
@@ -51,6 +50,15 @@ let pointsEarned = 0;
 let maxBonusPoints = 10;
 let correctAnswersSummary = [];
 let usersStats = JSON.parse(localStorage.getItem("usersStats")) || [];
+
+let timeSpent = 0;
+
+setTimeout(totalTimer, 1000);
+
+function totalTimer() {
+  timeSpent += 1;
+  setTimeout(totalTimer, 1000);
+}
 
 skipButton.addEventListener("click", skipQuestion);
 explanationButton.addEventListener("click", showExplain);
@@ -144,9 +152,6 @@ function setColorTheme() {
   }
 }
 function setQuestion() {
-  if (order.length > 1) {
-    skipButton.textContent = "Skip";
-  }
   progress.style.width =
     parseInt(100 - (order.length * 100) / questions.length) + "%";
   let question = getQuestion(order, questions);
@@ -181,6 +186,11 @@ function setQuestion() {
   }
 }
 function setAnswers(question) {
+  if (order.length > 1) {
+    skipButton.textContent = "Skip";
+  } else {
+    skipButton.textContent = "End Quiz";
+  }
   setStartQuestionTransition();
   let orderAnswer = orderAnswers(Object.entries(question));
   correctAnswer = getAnswer(question);
@@ -205,9 +215,6 @@ function setAnswers(question) {
     });
   });
   stopTimer = false;
-  if (order.length == 1) {
-    skipButton.textContent = "End quiz";
-  }
 }
 function setStartQuestionTransition() {
   answers.forEach(function (answer) {
@@ -224,7 +231,7 @@ function setStartQuestionTransition() {
   manageTimer();
 }
 function setEndQuestionTransition(correctAnswer, userAnswer) {
-  if (order.length > 1) {
+  if (order.length > 0) {
     skipButton.textContent = "Next question";
   }
   explanationButton.style.display = "block";
@@ -398,6 +405,7 @@ function updateLeaderboard() {
 function updateUser() {
   if (usersStats.length > 0) {
     const user = localStorage.getItem("currentUser");
+    console.log(skips);
     usersStats.forEach(function (userStats) {
       if (userStats.name === user) {
         if (userStats.stadistics[selectedCategory]) {
@@ -405,6 +413,7 @@ function updateUser() {
           userStats.stadistics[selectedCategory].incorrects += incorrect;
           userStats.stadistics[selectedCategory].skips += skips;
           userStats.stadistics[selectedCategory].totalPlayed += 1;
+          userStats.stadistics[selectedCategory].totalTime += timeSpent;
           if (
             userStats.stadistics[selectedCategory].maxPoints &&
             userStats.stadistics[selectedCategory].maxPoints < pointsEarned
@@ -418,6 +427,7 @@ function updateUser() {
             skips: skips,
             maxPoints: pointsEarned,
             totalPlayed: 1,
+            totalTime: timeSpent,
           };
         }
       }

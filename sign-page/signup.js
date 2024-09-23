@@ -156,7 +156,11 @@ function someLowerCase(password) {
 function someUpperCase(password) {
   let string = "";
   for (let i = 0; i < password.length; i++) {
-    if (verifyRegex(password[i], /\D/)) {
+    if (
+      verifyRegex(password[i], /\D/) &&
+      verifyRegex(password[i], /\w/) &&
+      password[i] != "_"
+    ) {
       string += password[i];
     }
   }
