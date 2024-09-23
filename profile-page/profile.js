@@ -31,8 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   if (currentUserInfo && currentUserInfo.image) {
+    imagePreview.style.objectFit = "cover";
     imagePreview.src = currentUserInfo.image;
   } else {
+    imagePreview.style.objectFit = "contain";
     imagePreview.src = defaultFileImg;
   }
 
@@ -50,10 +52,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (fileInput.files[0]) {
         let reader = new FileReader();
         reader.onload = function (e) {
+          imagePreview.style.objectFit = "cover";
           imagePreview.src = e.target.result;
           updateUserImage(e.target.result);
         };
         reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        imagePreview.style.objectFit = "contain";
+        imagePreview.src = defaultFileImg;
       }
     });
   }

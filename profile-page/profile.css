@@ -24,6 +24,7 @@ main {
 }
 .leaderboard-icon {
   font-size: 1.25em;
+  pointer-events: none;
 }
 .general-data {
   background-color: #2b0659;
@@ -93,19 +94,6 @@ main {
   font-weight: 600;
   color: white;
 }
-.img-group {
-  width: 25px;
-  height: 25px;
-  object-fit: cover;
-  border-radius: 100%;
-  position: relative;
-}
-.img-group::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
 .figure-new-channel {
   margin: 0;
   background-color: #00000020;
@@ -115,6 +103,9 @@ main {
   width: 150px;
   height: 150px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .img-preview {
   object-fit: cover;
