@@ -5,7 +5,6 @@ userButton();
 
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
-let userName = localStorage.getItem("userName");
 
 const body = document.querySelector("body");
 const main = document.querySelector("main");
@@ -64,7 +63,35 @@ quitExplainButton.addEventListener("click", function () {
 });
 nextExplainButton.addEventListener("click", skipQuestion);
 
-backBtn.addEventListener("click", goBack);
+backBtn.addEventListener("click", askUserBack);
+
+function askUserBack() {
+  let askContainer = document.createElement("div");
+  askContainer.classList.add("user-ask-container");
+  askContainer.classList.add("fade-up");
+  askContainer.innerHTML = `<p class="ask-question">
+      Are you sure you want to exit the current quiz? Your progress will not be
+      saved.
+    </p>
+    <div class="ask-buttons">
+      <button class="ask-cancel">
+        <i class="fa-solid fa-xmark ask-icon"></i></button
+      ><button class="ask-accept">
+        <i class="fa-solid fa-check ask-icon"></i>
+      </button>
+    </div>`;
+  askContainer
+    .querySelector(".ask-cancel")
+    .addEventListener("click", function () {
+      askContainer.remove();
+      quitBlur();
+    });
+  askContainer.querySelector(".ask-accept").addEventListener("click", goBack);
+  setTimeout(function () {
+    applyBlur();
+    body.append(askContainer);
+  }, 100);
+}
 
 function getValues(property, values) {
   return values[property];
@@ -377,6 +404,7 @@ function updateUser() {
           userStats.stadistics[selectedCategory].corrects += correct;
           userStats.stadistics[selectedCategory].incorrects += incorrect;
           userStats.stadistics[selectedCategory].skips += skips;
+          userStats.stadistics[selectedCategory].totalTime += 1;
           if (
             userStats.stadistics[selectedCategory].maxPoints &&
             userStats.stadistics[selectedCategory].maxPoints < pointsEarned
@@ -389,6 +417,7 @@ function updateUser() {
             incorrects: incorrect,
             skips: skips,
             maxPoints: pointsEarned,
+            totalTime: 0,
           };
         }
       }

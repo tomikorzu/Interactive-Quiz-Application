@@ -78,18 +78,7 @@ main {
 .entretainment {
   background-color: #580041;
 }
-.back-btn {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  background-color: transparent;
-  border: 2px solid #999;
-  padding: 7.5px;
-  border-radius: 100%;
-  animation: backBtn 1s;
-  display: flex;
-  transition: background 0.4s;
-}
+
 @keyframes backBtn {
   from {
     transform: translateX(-100%);
@@ -250,6 +239,7 @@ body {
   width: 80%;
   max-width: 500px;
   transition: all 0.4s;
+  font-weight: 600;
 }
 .show {
   opacity: 1;
@@ -298,6 +288,49 @@ body {
 }
 .hide-menu {
   opacity: 0;
+}
+.user-ask-container {
+  position: fixed;
+  display: flex;
+  background-color: #330769;
+  color: white;
+  flex-direction: column;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #222;
+  border-radius: 10px;
+  padding: 40px 70px 30px;
+  gap: 30px;
+  max-width: 860px;
+  min-width: 370px;
+  transition: all 0.4s;
+}
+.ask-question {
+  color: white;
+  font-size: 1.25em;
+}
+.ask-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.ask-cancel,
+.ask-accept {
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 49.8%;
+  padding: 15px 0;
+  background-color: #270550;
+  border-radius: 10px;
+  transition: background-color 0.1s ease-in;
+}
+.ask-cancel:hover,
+.ask-accept:hover {
+  background-color: #2f0760;
 }
 @media (min-width: 1024px) {
   .content-box {
