@@ -405,7 +405,6 @@ function updateLeaderboard() {
 function updateUser() {
   if (usersStats.length > 0) {
     const user = localStorage.getItem("currentUser");
-    console.log(skips);
     usersStats.forEach(function (userStats) {
       if (userStats.name === user) {
         if (userStats.stadistics[selectedCategory]) {
