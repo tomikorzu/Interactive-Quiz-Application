@@ -15,7 +15,13 @@ deleteButton.addEventListener("click", function () {
   updateUserImage("");
 });
 imageBox.addEventListener("mouseover", function () {
-  imageBox.append(deleteButton);
+  const currentUserName = localStorage.getItem("currentUser");
+  const currentUserInfo = usersStats.find(
+    (user) => user.name === currentUserName
+  );
+  if (currentUserInfo.image) {
+    imageBox.append(deleteButton);
+  }
 });
 
 imageBox.addEventListener("mouseleave", function () {
