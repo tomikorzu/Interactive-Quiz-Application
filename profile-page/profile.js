@@ -9,7 +9,7 @@ const currentUserInfo = usersStats.find(
 const currentUserStats = currentUserInfo.stadistics;
 
 document.querySelector(".first-log").textContent = currentUserInfo.date;
-
+//
 let statsLength = Object.keys(currentUserStats).length;
 if (statsLength == 0) {
   document.querySelector(".category-data").innerHTML = `<h3>No stats yet</h3>`;
