@@ -1,5 +1,5 @@
 import { globalCategories, difficultySettings } from "../questions.js";
-import userButton from "../utils/mainFunctions.js";
+import functions from "../utils/mainFunctions.js";
 
 const startBtn = document.getElementById("start-btn");
 const selecter = document.getElementById("selecter");
@@ -8,13 +8,13 @@ const main = document.querySelector("main");
 const footer = document.querySelector("footer");
 const selecterContent = document.createElement("div");
 const leaderboardBtn = document.querySelector(".leaderboard-btn");
-userButton();
+functions.userButton();
 
 localStorage.removeItem("difficult");
 localStorage.removeItem("category");
 
 leaderboardBtn.addEventListener("click", function () {
-  transitionRedirect("./leaderboard-page/index.html");
+  transitionRedirect("./leaderboard-page/");
 });
 
 startBtn.style.cursor = "pointer";
@@ -104,7 +104,7 @@ function selectDificult() {
   difficultyBtn.forEach(function (btn, index) {
     btn.addEventListener("click", function () {
       localStorage.setItem("difficult", btn.textContent.toLowerCase());
-      transitionRedirect("./quiz-page/index.html");
+      transitionRedirect("./quiz-page/");
     });
   });
 }

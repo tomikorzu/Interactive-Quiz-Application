@@ -8,7 +8,7 @@ const categoryTitle = document.querySelector(".category-title");
 const selecterContent = document.createElement("div");
 
 import { globalCategories, difficultySettings } from "../questions.js";
-import userButton from "../utils/mainFunctions.js";
+import functions from "../utils/mainFunctions.js";
 
 let arrow = document.querySelector(".arrow-button");
 arrow.addEventListener("click", function () {
@@ -38,7 +38,7 @@ categoryCell.addEventListener("click", function () {
   updateLeaderboard();
 });
 
-userButton();
+functions.userButton();
 
 function updatePodium(leaderboard) {
   const podiumSpots = [
@@ -160,7 +160,7 @@ function redirectPage(page) {
 }
 
 document.getElementById("home").addEventListener("click", () => {
-  redirectPage("../index.html");
+  redirectPage("../");
 });
 document.getElementById("restart").addEventListener("click", function () {
   if (localStorage.getItem("currentUser")) {
@@ -247,7 +247,7 @@ function selectDificult() {
   difficultyBtn.forEach(function (btn, index) {
     btn.addEventListener("click", function () {
       localStorage.setItem("difficult", btn.textContent.toLowerCase());
-      redirectPage("../quiz-page/index.html");
+      redirectPage("../quiz-page/");
     });
   });
 }

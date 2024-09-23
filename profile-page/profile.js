@@ -1,12 +1,13 @@
 import { globalCategories } from "../questions.js";
-
+import functions from "../utils/mainFunctions.js";
+functions.homeButton("../");
 const deleteAccount = document.getElementById("delete");
 deleteAccount.addEventListener("click", deleteAlert);
 document.querySelector("body").classList.add("appear-body");
 const changeNameDiv = document.createElement("div");
 const leaderboardBtn = document.querySelector(".leaderboard-btn");
 leaderboardBtn.addEventListener("click", function () {
-  redirectPage("../leaderboard-page/index.html");
+  redirectPage("../leaderboard-page/");
 });
 
 const changeName = document.getElementById("change-name");
@@ -83,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 if (!localStorage.getItem("currentUser")) {
-  window.location.href = "../page-not-found/index.html";
+  window.location.href = "../page-not-found/";
 }
 
 const usersStats = JSON.parse(localStorage.getItem("usersStats"));
@@ -177,7 +178,7 @@ function signOut() {
   localStorage.removeItem("currentUser");
   document.querySelector("body").classList.remove("appear-body");
   setTimeout(() => {
-    window.location.href = "../index.html";
+    window.location.href = "../";
   }, 500);
 }
 
@@ -221,7 +222,7 @@ function deleteAccountFunction() {
   usersStats.splice(index, 1);
   localStorage.setItem("usersStats", JSON.stringify(usersStats));
   localStorage.removeItem("currentUser");
-  window.location.href = "../index.html";
+  window.location.href = "../";
 }
 function addCategory(category) {
   if (globalCategories[category]) {

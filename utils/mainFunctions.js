@@ -136,20 +136,30 @@ const signOut = () => {
     userInfoPanelDiv.classList.remove("fade-out");
   }, 500);
   setTimeout(() => {
-    if (window.location.pathname === "/index.html") {
+    if (window.location.pathname === "/") {
       location.reload();
     } else {
-      redirectPage("../index.html");
+      redirectPage("../");
     }
   }, 500);
 };
 
 const goProfilePage = () => {
-  if (window.location.pathname === "/index.html") {
-    redirectPage("./profile-page/index.html");
+  if (window.location.pathname === "/") {
+    redirectPage("./profile-page/");
   } else {
-    redirectPage("../profile-page/index.html");
+    redirectPage("../profile-page/");
   }
 };
 
-export default userButton;
+const homeButton = (url) => {
+  const homeBtn = document.createElement("button");
+  homeBtn.classList.add("home-btn");
+  homeBtn.innerHTML = `<i class="fa-solid fa-home home-icon"></i>`;
+  document.body.appendChild(homeBtn);
+  homeBtn.addEventListener("click", () => {
+    redirectPage(url);
+  });
+}
+
+export default {userButton, userAlert, homeButton};

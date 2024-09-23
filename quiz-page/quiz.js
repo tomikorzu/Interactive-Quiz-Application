@@ -1,7 +1,9 @@
 import { globalCategories, difficultySettings } from "../questions.js";
-import userButton from "../utils/mainFunctions.js";
+import functions from "../utils/mainFunctions.js";
 
-userButton();
+functions.homeButton("../");
+
+functions.userButton();
 let selectedCategory = localStorage.getItem("preferences");
 let selectedDificulty = localStorage.getItem("difficult");
 
@@ -22,7 +24,6 @@ let timer = document.getElementById("timer");
 let explainMenu = document.querySelector(".explain-menu");
 let quitExplainButton = document.getElementById("quit-explain");
 let nextExplainButton = document.getElementById("next-question");
-let backBtn = document.getElementById("back-btn");
 let finishMessageMenu = document.createElement("div");
 
 let seconds = 15;
@@ -70,8 +71,6 @@ quitExplainButton.addEventListener("click", function () {
   explanationButton.style.pointerEvents = "auto";
 });
 nextExplainButton.addEventListener("click", skipQuestion);
-
-backBtn.addEventListener("click", askUserBack);
 
 function askUserBack() {
   let askContainer = document.createElement("div");
@@ -258,16 +257,14 @@ function setFinishMessage() {
   applyBlur();
 
   finishMessageMenu.innerHTML = `<h4 class="h2-finish">Congratulations you finished the ${selectedCategory} Quiz</h4><div class="btns-div">
-  <button class="btn-finish" id="go-home">Go Home</button><button class="btn-finish" id="go-results">View Results</button><button class="btn-finish" id="go-leaderboard">View Leaderboard</button></div>`;
+  <button class="btn-finish" id="go-results">View Results</button><button class="btn-finish" id="go-leaderboard">View Leaderboard</button></div>`;
   finishMessageMenu.classList.add("message-menu");
   body.append(finishMessageMenu);
   setTimeout(function () {
     finishMessageMenu.classList.add("show-menu");
   }, 400);
-  let goHomeBtn = document.getElementById("go-home");
   let goResultsBtn = document.getElementById("go-results");
   let goLeaderboardBtn = document.getElementById("go-leaderboard");
-  goHomeBtn.addEventListener("click", goHome);
   goResultsBtn.addEventListener("click", goResults);
   goLeaderboardBtn.addEventListener("click", goLeaderboard);
 }
@@ -341,35 +338,32 @@ function sendResults() {
 function goHome() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
-  backBtn.classList.add("hide-back-btn");
   finishMessageMenu.classList.remove("show-menu");
   setTimeout(function () {
-    window.location.href = "../index.html";
+    window.location.href = "../";
   }, 700);
 }
 function goBack() {
   body.classList.remove("appear-body");
   body.style.backgroundColor = "var(--bg-color)";
   setTimeout(function () {
-    window.location.href = "../index.html";
+    window.location.href = "../";
   }, 400);
 }
 function goResults() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
-  backBtn.classList.add("hide-back-btn");
   finishMessageMenu.classList.remove("show-menu");
   setTimeout(function () {
-    window.location.href = "../results-page/index.html";
+    window.location.href = "../results-page/";
   }, 700);
 }
 function goLeaderboard() {
   main.classList.add("hide-main");
   body.classList.add("change-bg");
-  backBtn.classList.add("hide-back-btn");
   finishMessageMenu.classList.remove("show-menu");
   setTimeout(function () {
-    window.location.href = "../leaderboard-page/index.html";
+    window.location.href = "../leaderboard-page/";
   }, 700);
 }
 
@@ -454,6 +448,6 @@ window.onload = function () {
     setDifficulty(selectedDificulty);
     setQuestion();
   } else {
-    redirectPage("../page-not-found/index.html");
+    redirectPage("../page-not-found/");
   }
 };
