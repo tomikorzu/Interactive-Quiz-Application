@@ -1463,8 +1463,8 @@ export let globalCategories = {
       icon: "fa-solid fa-paintbrush",
       color: "#d3080b",
       hoverColor: "#9a0508",
-      backgroundBody: "#580041",
-      backgroundContent: "#A20679",
+      backgroundBody: "#4D0102",
+      backgroundContent: "#961315",
       leaderboard: "#e90c10",
     },
     easy: [

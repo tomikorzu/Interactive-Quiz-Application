@@ -10,14 +10,22 @@ const currentUserStats = currentUserInfo.stadistics;
 
 document.querySelector(".first-log").textContent = currentUserInfo.date;
 
-
-
-for (let key in currentUserStats) {
-  console.log(key, currentUserStats[key]);
-  if (!currentUserStats) {
-    document.querySelector(".category-container").textContent = "No stats yet";
-  } else {
+let statsLength = Object.keys(currentUserStats).length;
+if (statsLength == 0) {
+  document.querySelector(".category-data").innerHTML = `<h3>No stats yet</h3>`;
+} else {
+  for (let key in currentUserStats) {
     addCategory(key);
+  }
+  if (statsLength == 1) {
+    document.querySelector(".category-container").style.gridTemplateColumns =
+      "repeat(1, 1fr)";
+  } else if (statsLength == 2) {
+    document.querySelector(".category-container").style.gridTemplateColumns =
+      "repeat(2, 1fr)";
+  } else if (statsLength >= 3) {
+    document.querySelector(".category-container").style.gridTemplateColumns =
+      "repeat(3, 1fr)";
   }
 }
 
