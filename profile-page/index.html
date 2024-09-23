@@ -11,24 +11,29 @@
   <body>
     <main class="fade-in">
       <div class="general-data">
-        <figure class="figure-new-channel">
-          <input
-            type="file"
-            class="input-image-receive"
-            id="imageUpload"
-            accept="image/*"
-          />
-          <img
-            src="../public/iconQuiz.svg"
-            alt="Image Channel"
-            class="img-preview"
-            id="img-preview"
-          />
-        </figure>
+        <div class="image-box">
+          <figure class="figure-new-channel">
+            <input
+              type="file"
+              class="input-image-receive"
+              id="imageUpload"
+              accept="image/*"
+            />
+            <img
+              src="../public/iconQuiz.svg"
+              alt="Image Channel"
+              class="img-preview"
+              id="img-preview"
+            />
+          </figure>
+        </div>
+
         <h1 class="title"></h1>
         <div class="button-container">
           <button class="btn-data" id="change-name">Change Name</button>
-          <label for="imageUpload" class="btn-data" id="change-photo">Change Photo</label>
+          <label for="imageUpload" class="btn-data" id="change-photo"
+            >Change Photo</label
+          >
         </div>
         <div class="data-div">
           <span class="data-title">First logged:</span>
