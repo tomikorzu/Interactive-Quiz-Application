@@ -4,6 +4,20 @@ const userNameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const passwordConfirmedInput = document.getElementById("confirm-password");
 const backBtn = document.getElementById("back-btn");
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 import { userAlert } from "../utils/mainFunctions.js";
 
@@ -43,10 +57,10 @@ function signUp() {
           name: username,
           password: password,
           date:
-            date.getMonth() +
-            " / " +
+            months[date.getMonth()] +
+            " " +
             date.getDate() +
-            " / " +
+            " " +
             date.getFullYear(),
           stadistics: {},
         });
@@ -55,7 +69,12 @@ function signUp() {
           {
             name: username,
             password: password,
-            date: date.toDateString(),
+            date:
+              months[date.getMonth()] +
+              " " +
+              date.getDate() +
+              " " +
+              date.getFullYear(),
             stadistics: {},
           },
         ];
