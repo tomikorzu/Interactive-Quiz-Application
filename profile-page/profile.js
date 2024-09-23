@@ -48,7 +48,7 @@ function getFavoriteCategory() {
       }
     }
   } else {
-    favoriteCategory = "No favorite category found";
+    favoriteCategory = "None";
   }
   return favoriteCategory;
 }
@@ -57,13 +57,12 @@ function getAverageScore() {
   let incorrects = getTotalValues("incorrects");
   let skips = getTotalValues("skips");
   if (corrects) {
-    return incorrects || skips
-      ? (corrects / (incorrects + skips)).toFixed(1)
-      : corrects;
+    return incorrects || skips ? (corrects / (incorrects + skips)).toFixed(1) : corrects;
   } else {
     return 0;
   }
 }
+//resolve vercel
 function setValue(element, value) {
   document.querySelector(element).textContent = value;
 }
