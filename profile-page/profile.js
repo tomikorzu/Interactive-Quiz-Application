@@ -5,6 +5,10 @@ document.querySelector("body").classList.add("appear-body");
 const changeName = document.getElementById("change-name");
 changeName.addEventListener("click", changeNameMenu);
 
+if (!localStorage.getItem("currentUser")) {
+  window.location.href = "../page-not-found/index.html";
+}
+
 document.querySelector("h1").textContent = localStorage.getItem("currentUser");
 const usersStats = JSON.parse(localStorage.getItem("usersStats"));
 const currentUserInfo = usersStats.find(
