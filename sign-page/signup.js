@@ -106,11 +106,11 @@ function getValue(input) {
 
 function verifyUsername(username) {
   const usersStasts = JSON.parse(localStorage.getItem("usersStats"));
-  if (!username) {
+  if (!username.trim()) {
     userAlert("Username cannot be empty.");
     return false;
   }
-  if (username.length > 20) {
+  if (username.trim().length > 20) {
     userAlert("The username cannot be longer than 20 characters.");
     return false;
   }
