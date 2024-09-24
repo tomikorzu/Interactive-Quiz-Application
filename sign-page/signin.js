@@ -2,8 +2,10 @@ const body = document.querySelector("body");
 const submitBtn = document.querySelector(".submit-btn");
 const userNameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
-const backBtn = document.getElementById("back-btn");
 const showBtn = document.querySelector(".password-show-btn");
+import functions from "../utils/mainFunctions.js";
+
+functions.homeButton('../');
 
 import { userAlert } from "../utils/mainFunctions.js";
 
@@ -18,10 +20,6 @@ const redirectPage = (page) => {
     window.location.href = page;
   }, 500);
 };
-
-backBtn.addEventListener("click", function () {
-  redirectPage("../index.html");
-});
 
 document
   .querySelector(".already-account-btn")
@@ -48,7 +46,7 @@ function signIn() {
   let password = getValue(passwordInput);
   if (findPassword(username, password)) {
     localStorage.setItem("currentUser", username);
-    redirectPage("../index.html");
+    redirectPage("../");
   } else {
     userAlert(
       "Incorrect username or password. Please check your details and try again."

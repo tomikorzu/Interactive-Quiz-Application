@@ -7,6 +7,6 @@ const backBtn = document.getElementById('back-error')
 backBtn.addEventListener('click', function(){
     body.classList.remove('preload')
     setTimeout(function(){
-        window.location.href = '../index.html'
+        window.location.href = '../'
     }, 400)
 })

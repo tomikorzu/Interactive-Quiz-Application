@@ -1,5 +1,6 @@
 import { globalCategories } from "../questions.js";
-
+import functions from "../utils/mainFunctions.js";
+functions.homeButton("../");
 const deleteAccount = document.getElementById("delete");
 const imagePreview = document.getElementById("img-preview");
 let defaultFileImg = "../public/user-solid.svg";
@@ -52,7 +53,7 @@ document.querySelector("body").classList.add("appear-body");
 const changeNameDiv = document.createElement("div");
 const leaderboardBtn = document.querySelector(".leaderboard-btn");
 leaderboardBtn.addEventListener("click", function () {
-  redirectPage("../leaderboard-page/index.html");
+  redirectPage("../leaderboard-page/");
 });
 
 const changeName = document.getElementById("change-name");
@@ -75,8 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   if (currentUserInfo && currentUserInfo.image) {
+    imagePreview.style.objectFit = "cover";
     imagePreview.src = currentUserInfo.image;
   } else {
+    imagePreview.style.objectFit = "contain";
     imagePreview.src = defaultFileImg;
   }
 
@@ -94,17 +97,21 @@ document.addEventListener("DOMContentLoaded", () => {
       if (fileInput.files[0]) {
         let reader = new FileReader();
         reader.onload = function (e) {
+          imagePreview.style.objectFit = "cover";
           imagePreview.src = e.target.result;
           updateUserImage(e.target.result);
         };
         reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        imagePreview.style.objectFit = "contain";
+        imagePreview.src = defaultFileImg;
       }
     });
   }
 });
 
 if (!localStorage.getItem("currentUser")) {
-  window.location.href = "../page-not-found/index.html";
+  window.location.href = "../page-not-found/";
 }
 
 const usersStats = JSON.parse(localStorage.getItem("usersStats"));
@@ -201,7 +208,7 @@ function signOut() {
   localStorage.removeItem("currentUser");
   document.querySelector("body").classList.remove("appear-body");
   setTimeout(() => {
-    window.location.href = "../index.html";
+    window.location.href = "../";
   }, 500);
 }
 
@@ -245,7 +252,7 @@ function deleteAccountFunction() {
   usersStats.splice(index, 1);
   localStorage.setItem("usersStats", JSON.stringify(usersStats));
   localStorage.removeItem("currentUser");
-  window.location.href = "../index.html";
+  window.location.href = "../";
 }
 function addCategory(category) {
   if (globalCategories[category]) {

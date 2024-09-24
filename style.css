@@ -306,6 +306,20 @@ p {
     opacity: 0;
   }
 }
+
+.home-btn{
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  padding: 10px;
+  border-radius: 100%;
+  background-color: var(--form-bg);
+  display: flex;
+  transition: background-color 0.4s;
+}
+.home-icon{
+  font-size: 1.25em;
+}
 @media (min-width: 768px) {
   .alert-menu {
     right: 25px;
@@ -314,6 +328,9 @@ p {
   }
 }
 @media (min-width: 1024px) {
+  .home-btn:hover{
+    background-color: #4c198a;
+  }
   .user-btn:hover {
     background-color: #48138a;
   }

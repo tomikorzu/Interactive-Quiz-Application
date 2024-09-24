@@ -7,9 +7,9 @@ const main = document.querySelector("main");
 const selecterContent = document.createElement("div");
 
 import { globalCategories, difficultySettings } from "../questions.js";
-import userButton from "../utils/mainFunctions.js";
+import functions from "../utils/mainFunctions.js";
 
-userButton();
+functions.userButton();
 
 window.onload = function () {
   perfomanceList();
@@ -142,12 +142,12 @@ function progressBarStyle() {
 }
 
 document.getElementById("home-redirect").addEventListener("click", () => {
-  redirectPage("../index.html");
+  redirectPage("../");
 });
 document
   .getElementById("leaderboard-redirect")
   .addEventListener("click", () => {
-    redirectPage("../leaderboard-page/index.html");
+    redirectPage("../leaderboard-page/");
   });
 document.getElementById("quiz-redirect").addEventListener("click", function () {
   if (localStorage.getItem("currentUser")) {
@@ -234,7 +234,7 @@ function selectDificult() {
   difficultyBtn.forEach(function (btn, index) {
     btn.addEventListener("click", function () {
       localStorage.setItem("difficult", btn.textContent.toLowerCase());
-      redirectPage("../quiz-page/index.html");
+      redirectPage("../quiz-page/");
     });
   });
 }
@@ -281,6 +281,6 @@ if (!correctAnswersSummary) {
   }, 500);
 
   setTimeout(() => {
-    redirectPage("../page-not-found/index.html");
+    redirectPage("../page-not-found/");
   }, 500);
 }

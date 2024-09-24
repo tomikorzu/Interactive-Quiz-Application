@@ -3,7 +3,9 @@ const submitBtn = document.querySelector(".submit-btn");
 const userNameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const passwordConfirmedInput = document.getElementById("confirm-password");
-const backBtn = document.getElementById("back-btn");
+import functions from "../utils/mainFunctions.js";
+
+functions.homeButton("../");
 const showBtn = document.querySelector(".password-show-btn");
 const months = [
   "Jan",
@@ -49,10 +51,6 @@ const redirectPage = (page) => {
   }, 500);
 };
 
-backBtn.addEventListener("click", function () {
-  redirectPage("../index.html");
-});
-
 document
   .querySelector(".already-account-btn")
   .addEventListener("click", (e) => {
@@ -97,7 +95,7 @@ function signUp() {
       }
       localStorage.setItem("currentUser", username);
       localStorage.setItem("usersStats", JSON.stringify(usersStasts));
-      redirectPage("../index.html");
+      redirectPage("../");
     }
   }
 }
