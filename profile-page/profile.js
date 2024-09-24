@@ -45,8 +45,6 @@ function updateUserImage(imageSrc) {
     if (profileImgElement) {
       profileImgElement.src = imageSrc;
     }
-  } else {
-    console.error("Usuario no encontrado en usersStats");
   }
   location.reload();
 }

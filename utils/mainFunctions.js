@@ -182,7 +182,6 @@ const homeButton = (url) => {
       }
     );
     homeBtn.style.pointerEvents = "none";
-    // redirectPage(url);
   });
 };
 

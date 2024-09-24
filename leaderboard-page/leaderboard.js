@@ -88,12 +88,6 @@ function updateLeaderboard() {
     nameCell.textContent = entry.name;
       
     row.appendChild(nameCell);
-// nameCell.classList.add("name-cell")
-// let username = localStorage.getItem("currentUser")
-// let userStats = JSON.parse(localStorage.getItem("usersStats")).find(function(u){return u.name === username})
-// let defaultFileImg = "../public/user-solid.svg";
-// let image = userStats.image || defaultFileImg
-// nameCell.innerHTML = `<div class="profile-data-cell podium-name"><img class="profile-image" src="${image}" alt="">${entry.name}</div>`
     let categoryCell = document.createElement("td");
     let catergoryToUpperCase = entry.category[0].toUpperCase();
     for (let i = 1; i < entry.category.length; i++) {
