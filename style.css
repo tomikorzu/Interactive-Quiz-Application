@@ -307,7 +307,7 @@ p {
   }
 }
 
-.home-btn{
+.home-btn {
   position: fixed;
   top: 15px;
   left: 15px;
@@ -317,8 +317,39 @@ p {
   display: flex;
   transition: background-color 0.4s;
 }
-.home-icon{
+.home-icon {
   font-size: 1.25em;
+}
+.ask-menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #330769;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  z-index: 12;
+  animation: fadeUp 0.4s forwards;
+  text-align: center;
+}
+.buttons-container-ask {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.buttons-container-ask i {
+  font-size: 1.75em;
+}
+#yes-btn {
+  background-color: #1da639;
+  width: 25%;
+}
+#no-btn {
+  width: 25%;
+  background-color: #c81b1b;
 }
 @media (min-width: 768px) {
   .alert-menu {
@@ -328,7 +359,13 @@ p {
   }
 }
 @media (min-width: 1024px) {
-  .home-btn:hover{
+  #yes-btn:hover {
+    background-color: #1a8c2e;
+  }
+  #no-btn:hover {
+    background-color: #a41a1a;
+  }
+  .home-btn:hover {
     background-color: #4c198a;
   }
   .user-btn:hover {
