@@ -79,10 +79,27 @@ const redirectPage = (page) => {
 };
 
 const userInfoPanel = () => {
+  let username = localStorage.getItem("currentUser");
+  let userStats = JSON.parse(localStorage.getItem("usersStats")).find(function (
+    u
+  ) {
+    return u.name === username;
+  });
+  let defaultFileImg = "../public/user-solid.svg";
+  let image = userStats.image || defaultFileImg;
   userBtn.style.pointerEvents = "none";
   userBtn.classList.remove("fade-in");
   userBtn.classList.add("fade-out");
-  userInfoPanelDiv.innerHTML = `
+  userInfoPanelDiv.innerHTML = `<div class="image-box">
+          <figure class="figure-new-channel userBtn-figure">
+            <img
+              src="${image}"
+              alt=""
+              class="img-preview"
+              id="img-preview"
+            />
+          </figure>
+        </div>
   <h3 class="user-name user-info-title">${localStorage.getItem(
     "currentUser"
   )}<h3/>
