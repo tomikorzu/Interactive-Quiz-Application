@@ -150,9 +150,9 @@ function getFavoriteCategory() {
       }
     }
   } else {
-    favoriteCategory = "None";
+    return "None";
   }
-  return globalCategories[favoriteCategory].description.name;
+  return globalCategories[favoriteCategory.toLowerCase()].description.name;
 }
 function getAverageScore() {
   let corrects = getTotalValues("corrects");
@@ -242,11 +242,16 @@ function deleteMenu() {
 }
 function deleteAccountFunction() {
   const usersStats = JSON.parse(localStorage.getItem("usersStats"));
+  const leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
+  const currentLeaderboard = usersStats.filter(
+    (user) => user.name !== localStorage.getItem("currentUser")
+  );
   const currentUserInfo = usersStats.find(
     (user) => user.name === localStorage.getItem("currentUser")
   );
   const index = usersStats.indexOf(currentUserInfo);
   usersStats.splice(index, 1);
+  localStorage.setItem("leaderboard", JSON.stringify(currentLeaderboard));
   localStorage.setItem("usersStats", JSON.stringify(usersStats));
   localStorage.removeItem("currentUser");
   window.location.href = "../";
