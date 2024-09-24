@@ -12,8 +12,8 @@ main {
   min-height: 100vh;
   gap: 20px;
 }
-span{
-  font-size: .875em;
+span {
+  font-size: 0.875em;
 }
 .leaderboard-btn {
   position: fixed;
@@ -38,7 +38,7 @@ span{
   justify-content: center;
   gap: 5px;
 }
-.button-container{
+.button-container {
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
@@ -83,6 +83,7 @@ span{
   gap: 20px;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 .category-container {
   display: grid;
@@ -156,16 +157,44 @@ span{
   animation: fadeUp 0.4s forwards;
   text-align: center;
 }
-.menu-delete-btn{
+.menu-delete-btn {
   background-color: #e51c1c;
   padding: 10px;
   border-radius: 10px;
   font-weight: 700;
-  font-size: .875em;
+  font-size: 0.875em;
   transition: background-color 0.4s;
 }
-#cancel-delete{
+#cancel-delete {
   background-color: #444;
+}
+
+.new-name {
+  border-radius: 10px;
+  padding: 12.5px;
+  font-size: 16px;
+  outline: none;
+  background-color: #884ef360;
+  color: #f5f5f5;
+  border: 1px solid #ffffff60;
+}
+.new-name::placeholder {
+  position: absolute;
+  top: 50%;
+  left: 12.5px;
+  color: #ffffff80;
+  font-weight: 500;
+  transform: translateY(-50%);
+  font-size: 14px;
+  transition: all 0.4s;
+  pointer-events: none;
+}
+
+#cancel-change{
+  background-color: #444;
+}
+#change-name-button{
+  background-color: #cd3434;
 }
 
 @media (min-width: 768px) {
@@ -198,5 +227,11 @@ span{
   }
   #delete:hover {
     background-color: #e51c1c;
+  }
+  #cancel-change:hover {
+    background-color: #333;
+  }
+  #change-name-button:hover{
+    background-color: #fa1c1c;
   }
 }

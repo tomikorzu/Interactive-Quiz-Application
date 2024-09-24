@@ -1,12 +1,12 @@
 import { globalCategories } from "../questions.js";
 import functions from "../utils/mainFunctions.js";
+import { userAlert } from "../utils/mainFunctions.js";
+
 functions.homeButton("../");
 const deleteAccount = document.getElementById("delete");
 const imagePreview = document.getElementById("img-preview");
 let defaultFileImg = "../public/user-solid.svg";
 const imageBox = document.querySelector(".image-box");
-
-
 
 let deleteButton = document.createElement("button");
 deleteButton.classList.add("delete-image-button");
@@ -14,7 +14,9 @@ deleteButton.classList.add("fade-in");
 deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
 deleteButton.children[0].classList.add("delete-image-icon");
 deleteButton.addEventListener("click", function () {
-  functions.askMenuFunction('Are you sure you want to quit your photo?', () => updateUserImage(""));
+  functions.askMenuFunction("Are you sure you want to quit your photo?", () =>
+    updateUserImage("")
+  );
 });
 imageBox.addEventListener("mouseover", function () {
   const currentUserName = localStorage.getItem("currentUser");
@@ -61,8 +63,8 @@ const changeName = document.getElementById("change-name");
 changeName.addEventListener("click", changeNameMenu);
 
 const signOutBtn = document.getElementById("sign-out");
-signOutBtn.addEventListener("click", function(){
-  functions.askMenuFunction("Are you sure you want to sign out?", signOut)
+signOutBtn.addEventListener("click", function () {
+  functions.askMenuFunction("Are you sure you want to sign out?", signOut);
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -164,7 +166,6 @@ function getAverageScore() {
     return 0;
   }
 }
-//resolve vercel
 function setValue(element, value) {
   document.querySelector(element).textContent = value;
 }
@@ -257,7 +258,6 @@ function addCategory(category) {
     newCategoryDiv.classList.add("category-div");
     newCategoryDiv.style.backgroundColor =
       globalCategories[category].description.backgroundContent;
-    // <span class="category-played">${currentUserStats[category].totalPlayed}</span>
     newCategoryDiv.innerHTML = `
       <span class="category-name">${globalCategories[category].description.name}</span>
       <div class="data-div">
@@ -285,39 +285,88 @@ function addCategory(category) {
     document.querySelector(".category-container").appendChild(newCategoryDiv);
   }
 }
+function verifyUsername(username) {
+  const usersStats = JSON.parse(localStorage.getItem("usersStats")) || [];
+
+  if (!username) {
+    userAlert("Username cannot be empty.");
+    return false;
+  }
+
+  if (username.length > 20) {
+    userAlert("The username cannot be longer than 20 characters.");
+    return false;
+  }
+
+  const existUser = usersStats.some((user) => user.name === username);
+
+  if (existUser) {
+    userAlert("Username already exists. Please choose a different one.");
+    return false;
+  }
+  functions.quitBlur();
+  changeNameDiv.remove();
+  location.reload();
+  return true;
+}
 
 function changeNameMenu() {
-  changeNameDiv.classList.add("alert-menu");
+  functions.applyBlur();
+
+  if (!changeNameDiv) {
+    changeNameDiv = document.createElement("div");
+  }
+
+  changeNameDiv.classList.add("menu");
   changeNameDiv.innerHTML = `
     <h2>Change your name</h2>
-    <input type="text" id="new-name" placeholder="New name">
-    <button id="change-name-button">Change</button>
+    <input type="text" id="new-name" class="new-name" placeholder="New name">
+    <div class="alert-buttons">
+    <button class="menu-delete-btn" id="cancel-change">Cancel</button>
+    <button class="menu-delete-btn" id="change-name-button">Change</button>
+    </div>
   `;
   document.body.appendChild(changeNameDiv);
-
+  const cancelChange = document.getElementById("cancel-change");
+  cancelChange.addEventListener("click", () => {
+    changeNameDiv.classList.add("fade-out");
+    functions.quitBlur();
+    setTimeout(() => {
+      changeNameDiv.remove();
+      changeNameDiv.classList.remove("fade-out");
+    }, 500);
+  });
   const changeNameButton = document.getElementById("change-name-button");
   changeNameButton.addEventListener("click", () => {
     const newName = document.getElementById("new-name").value;
-    if (newName.length > 0) {
-      changeNameFunction(newName);
+    if (verifyUsername(newName)) {
+      updateUserName(newName);
     }
   });
 }
 
-function changeNameFunction(name) {
-  const usersStats = JSON.parse(localStorage.getItem("usersStats"));
-  const currentUserInfo = usersStats.find(
-    (user) => user.name === localStorage.getItem("currentUser")
-  );
-  const index = usersStats.indexOf(currentUserInfo);
-  usersStats[index].name = name;
-  localStorage.setItem("usersStats", JSON.stringify(usersStats));
-  localStorage.setItem("currentUser", name);
-  document.querySelector("h1").textContent = name;
-  changeNameDiv.classList.remove("alert-menu-transition");
-  setTimeout(() => {
-    changeNameDiv.remove();
-  }, 500);
+function updateUserName(newName) {
+  let usersStats = JSON.parse(localStorage.getItem("usersStats")) || [];
+  let currentUserName = localStorage.getItem("currentUser");
+  let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+  let currentUser = usersStats.find((user) => user.name === currentUserName);
+
+  if (currentUser) {
+    currentUser.name = newName;
+
+    localStorage.setItem("usersStats", JSON.stringify(usersStats));
+
+    localStorage.setItem("currentUser", newName);
+
+    leaderboard.forEach((entry) => {
+      if (entry.name === currentUserName) {
+        entry.name = newName;
+      }
+    });
+
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+  }
 }
 
 function redirectPage(page) {
