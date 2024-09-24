@@ -231,7 +231,7 @@ main {
   border: none;
   font-size: 16px;
 }
-.back-icon {
+.back-button i {
   font-size: 2em;
   transition: all 0.4s;
   color: #ffffff90;

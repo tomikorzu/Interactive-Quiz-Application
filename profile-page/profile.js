@@ -6,14 +6,15 @@ const imagePreview = document.getElementById("img-preview");
 let defaultFileImg = "../public/user-solid.svg";
 const imageBox = document.querySelector(".image-box");
 
+
+
 let deleteButton = document.createElement("button");
 deleteButton.classList.add("delete-image-button");
 deleteButton.classList.add("fade-in");
 deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
 deleteButton.children[0].classList.add("delete-image-icon");
 deleteButton.addEventListener("click", function () {
-  //ALERTA DE SI ESTAS SEGUROOOOOOOOOOOOOOOO
-  updateUserImage("");
+  functions.askMenuFunction('Are you sure you want to quit your photo?', () => updateUserImage(""));
 });
 imageBox.addEventListener("mouseover", function () {
   const currentUserName = localStorage.getItem("currentUser");
@@ -48,7 +49,7 @@ function updateUserImage(imageSrc) {
   location.reload();
 }
 
-deleteAccount.addEventListener("click", deleteAlert);
+deleteAccount.addEventListener("click", deleteMenu);
 document.querySelector("body").classList.add("appear-body");
 const changeNameDiv = document.createElement("div");
 const leaderboardBtn = document.querySelector(".leaderboard-btn");
@@ -60,7 +61,9 @@ const changeName = document.getElementById("change-name");
 changeName.addEventListener("click", changeNameMenu);
 
 const signOutBtn = document.getElementById("sign-out");
-signOutBtn.addEventListener("click", signOut);
+signOutBtn.addEventListener("click", function(){
+  functions.askMenuFunction("Are you sure you want to sign out?", signOut)
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   let fileInput = document.getElementById("imageUpload");
@@ -212,34 +215,27 @@ function signOut() {
   }, 500);
 }
 
-function deleteAlert() {
-  const alertMenu = document.createElement("div");
-  alertMenu.classList.add("alert-menu");
-  alertMenu.classList.add("alert-menu-transition");
-  alertMenu.innerHTML = `
-      <h2>Are you sure you want to delete your account?</h2>
+import { menu, menuFunction } from "../utils/mainFunctions.js";
+function deleteMenu() {
+  menuFunction(`<h2>Are you sure you want to delete your account?</h2>
       <div class="alert-buttons">
-        <button class="alert-button" id="cancel-delete">Cancel</button>
-        <button class="alert-button" id="accept-delete">Delete</button>
-      </div>
-  `;
-  document.body.appendChild(alertMenu);
+        <button class="menu-delete-btn" id="cancel-delete">Cancel</button>
+        <button class="menu-delete-btn" id="accept-delete">Delete</button>
+      </div>`);
   const cancelDelete = document.getElementById("cancel-delete");
   cancelDelete.addEventListener("click", () => {
-    alertMenu.classList.remove("alert-menu-transition");
+    menu.classList.add("fade-out");
+    functions.quitBlur();
     setTimeout(() => {
-      alertMenu.remove();
+      menu.remove();
+      menu.classList.remove("fade-out");
     }, 500);
   });
   const acceptDelete = document.getElementById("accept-delete");
   acceptDelete.addEventListener("click", () => {
-    alertMenu.classList.remove("alert-menu-transition");
+    document.querySelector("body").classList.add("fade-out");
     setTimeout(() => {
-      alertMenu.remove();
-      document.querySelector("body").classList.remove("appear-body");
-      setTimeout(() => {
-        deleteAccountFunction();
-      }, 500);
+      deleteAccountFunction();
     }, 500);
   });
 }
@@ -254,6 +250,7 @@ function deleteAccountFunction() {
   localStorage.removeItem("currentUser");
   window.location.href = "../";
 }
+
 function addCategory(category) {
   if (globalCategories[category]) {
     const newCategoryDiv = document.createElement("div");

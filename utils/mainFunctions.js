@@ -152,14 +152,60 @@ const goProfilePage = () => {
   }
 };
 
+const homeBtn = document.createElement("button");
 const homeButton = (url) => {
-  const homeBtn = document.createElement("button");
   homeBtn.classList.add("home-btn");
   homeBtn.innerHTML = `<i class="fa-solid fa-home home-icon"></i>`;
   document.body.appendChild(homeBtn);
   homeBtn.addEventListener("click", () => {
-    redirectPage(url);
+    askMenuFunction(
+      "Are you sure you want to go back to the home page?",
+      () => {
+        redirectPage(url);
+      }
+    );
+    homeBtn.style.pointerEvents = "none";
+    // redirectPage(url);
+  });
+};
+
+function askMenuFunction(question, functionToExecute) {
+  const askMenu = document.createElement("div");
+  askMenu.classList.add("ask-menu");
+  applyBlur();
+  askMenu.innerHTML = `
+  <h4>${question}</h4>
+  <div class="buttons-container-ask">
+  <button class="btn-user-panel" id="no-btn"><i class="fa-solid fa-xmark"></i></button>
+  <button class="btn-user-panel" id="yes-btn"><i class="fa-solid fa-check"></i></button>
+  </div>`;
+  document.body.appendChild(askMenu);
+  const yesBtn = document.getElementById("yes-btn");
+  const noBtn = document.getElementById("no-btn");
+  yesBtn.addEventListener("click", () => {
+    functionToExecute();
+  });
+  noBtn.addEventListener("click", () => {
+    askMenu.remove();
+    quitBlur();
+    homeBtn.style.pointerEvents = "auto";
   });
 }
 
-export default {userButton, userAlert, homeButton};
+export const menu = document.createElement("div");
+export function menuFunction(content) {
+  menu.classList.add("menu");
+  applyBlur();
+  menu.innerHTML = `${content}`;
+  document.body.appendChild(menu);
+}
+
+export default {
+  userButton,
+  userAlert,
+  homeButton,
+  menuFunction,
+  applyBlur,
+  quitBlur,
+  askMenuFunction,
+};
