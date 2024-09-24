@@ -335,14 +335,6 @@ function sendResults() {
   updateLeaderboard();
 }
 
-function goHome() {
-  main.classList.add("hide-main");
-  body.classList.add("change-bg");
-  finishMessageMenu.classList.remove("show-menu");
-  setTimeout(function () {
-    window.location.href = "../";
-  }, 700);
-}
 function goBack() {
   body.classList.remove("appear-body");
   body.style.backgroundColor = "var(--bg-color)";
